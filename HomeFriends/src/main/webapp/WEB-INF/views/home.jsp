@@ -20,10 +20,7 @@
 	<script src="/controller/js/jquery-3.6.0.min.js"></script>
 	<script src="/controller/js/nav.js"></script>
 	<script src="/controller/js/home.js"></script>
-	
-	<style>
-		
-	</style>
+
 </head>
 <body>
 	<%@ include file="header.jsp" %>
