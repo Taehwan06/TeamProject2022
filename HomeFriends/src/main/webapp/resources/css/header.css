@@ -15,6 +15,75 @@ header{
 	background-color: white;
 }
 
+
+/* 모달 CSS */
+#exampleModal{
+	z-index: 7777;
+}
+#exampleModalLabel{
+	text-align: center;
+}
+.modalMenu{
+	text-align: center;
+}
+.modalMenuBtn{
+	border: none;
+	width: 100px;
+	height: 35px;
+	color: white;
+	background-color: #ffb6c1;
+	border-radius: 5px;
+	font-size: 18px;
+}
+.iconMenu{
+	margin-top: 30px;
+}
+.modalIconBtn{
+	border: none;
+	background-color: white;
+	display: inline-block;
+	margin-bottom: 30px;
+}
+#modalMypage, #modalBasket, #modalDelivery{
+	font-size: 50px;
+}
+.modalTextMenu{
+	text-align: center;
+	font-size: 22px;
+	color: black;
+}
+.detailMenu{
+	font-size: 18px;
+	margin-top: 5px;
+	cursor: pointer;
+}
+.detailMenu:hover{
+	color: blue;
+}
+.eventMenu{
+	text-align: left;
+	margin-left: 20px;
+	margin-top: 10px;
+	margin-bottom: 30px;
+	cursor: pointer;
+}
+.eventMenu:hover{
+	color: blue;
+}
+#loginBtn{
+	margin-left: 50px;
+}
+#joinBtn{
+	margin-right: 50px;
+}
+		
+
+/* 헤더 CSS */
+.iconBtn{
+	border: none;
+	background-color: white;
+	display: inline-block;
+}
 #headerDiv{
 	margin: auto;
 	max-width: 1560px;

@@ -28,7 +28,7 @@
 	<!-- 본문 영역 -->	
 	<section>
 
-		<form action="" name="joinFrm" id="joinFrm" class="joinFrm" method="post">		
+		<form name="joinFrm" id="joinFrm" class="joinFrm" method="post">
 			<div class="title">회원 가입</div>
 	
 			<!-- 아이디 -->
@@ -188,7 +188,7 @@
 	
 			<!-- 버튼 영역 -->
 			<div class="submitArea">
-				<input type="button" name="submitbtn" id="submitbtn" class="submitbtn" value="회원 가입"><br>
+				<input type="button" name="submitbtn" id="submitbtn" class="submitbtn" onclick="joinSubmitFn()" value="회원 가입"><br>
 				<div>
 					<a href="#">아이디 찾기 |</a>
 					<a href="#">비밀번호 재설정 |</a>

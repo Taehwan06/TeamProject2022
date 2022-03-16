@@ -28,7 +28,7 @@ public class LoginController {
 	 * @throws Exception 
 	 */
 	@RequestMapping(value = "/join.do", method = RequestMethod.GET)
-	public String list(Locale locale, Model model, SearchVO vo) throws Exception {
+	public String login(Locale locale, Model model, SearchVO vo) throws Exception {
 		
 		return "login/join";
 	}
