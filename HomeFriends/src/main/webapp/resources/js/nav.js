@@ -3,7 +3,7 @@ $(document).ready( function(){
    	/*========================================================================*/
 	$("#menuStore").mouseover(function(){
 		$("#menuStore").css({"color" : "#ffb6c1"});
-		if($(window).width()>758){
+		if($(window).width()>751){
 			$("#subNav").css({"display" : "block"});
 			$("#subNav2").css({"display" : "none"});
 		}
@@ -16,14 +16,14 @@ $(document).ready( function(){
 	});
 
 	$("#subNav").mouseover(function(){
-		if($(window).width()>758){
+		if($(window).width()>751){
 			$("#menuStore").css({"color" : "#ffb6c1"});
 			$("#subNav").css({"display" : "block"});
 		}
 	});
 
 	$("#subNav").mouseleave(function(){
-		if($(window).width()>758){
+		if($(window).width()>751){
 			$("#menuStore").css({"color" : "black"});
 			$("#subNav").css({"display" : "none"});
 		}
@@ -33,7 +33,7 @@ $(document).ready( function(){
    	/*========================================================================*/
 	$("#menuComm").mouseover(function(){
 		$("#menuComm").css({"color" : "#ffb6c1"});
-		if($(window).width()>758){
+		if($(window).width()>751){
 			$("#subNav2").css({"display" : "block"});
 			$("#subNav").css({"display" : "none"});
 		}
@@ -45,14 +45,14 @@ $(document).ready( function(){
 	});
 
 	$("#subNav2").mouseover(function(){
-		if($(window).width()>758){
+		if($(window).width()>751){
 			$("#menuComm").css({"color" : "#ffb6c1"});
 			$("#subNav2").css({"display" : "block"});
 		}
 	});
 
 	$("#subNav2").mouseleave(function(){
-		if($(window).width()>758){
+		if($(window).width()>751){
 			$("#menuComm").css({"color" : "black"});
 			$("#subNav2").css({"display" : "none"});
 		}
@@ -62,7 +62,7 @@ $(document).ready( function(){
 	/*========================================================================*/
 	$("#category").mouseover(function(){
 		$("#categoryLi").css({"color" : "#ffb6c1"});
-		if($(window).width()>758){
+		if($(window).width()>751){
 			$(".categoryDiv").css({"display" : "block"});
 		}
 	});
@@ -74,14 +74,14 @@ $(document).ready( function(){
 	});
 
 	$(".categoryDiv").mouseover(function(){
-		if($(window).width()>758){
+		if($(window).width()>751){
 			$("#categoryLi").css({"color" : "#ffb6c1"});
 			$(".categoryDiv").css({"display" : "block"});
 		}
 	});
 
 	$(".categoryDiv").mouseleave(function(){
-		if($(window).width()>758){
+		if($(window).width()>751){
 			$("#categoryLi").css({"color" : "black"});
 			$(".categoryDiv").css({"display" : "none"});
 		}
