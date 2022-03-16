@@ -45,4 +45,18 @@ public class HomeController {
 		return "login/login";
 	}
 	
+	@RequestMapping(value = "/search_result.do", method = RequestMethod.GET)
+	public String search_result(Locale locale, Model model) {
+		
+		
+		return "search_result";
+	}
+	
+	@RequestMapping(value = "/last_view.do", method = RequestMethod.GET)
+	public String last_view(Locale locale, Model model) {
+		
+		
+		return "last_view";
+	}
+	
 }

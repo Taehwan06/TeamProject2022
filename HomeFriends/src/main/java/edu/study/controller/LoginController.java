@@ -28,10 +28,47 @@ public class LoginController {
 	 * @throws Exception 
 	 */
 	@RequestMapping(value = "/join.do", method = RequestMethod.GET)
-	public String login(Locale locale, Model model, SearchVO vo) throws Exception {
+	public String join(Locale locale, Model model, SearchVO vo) throws Exception {
 		
 		return "login/join";
 	}
 	
+	@RequestMapping(value = "/login.do", method = RequestMethod.GET)
+	public String login(Locale locale, Model model, SearchVO vo) throws Exception {
+		
+		return "login/login";
+	}
+	
+	@RequestMapping(value = "/join_result.do", method = RequestMethod.GET)
+	public String join_result(Locale locale, Model model, SearchVO vo) throws Exception {
+		
+		return "login/join_result";
+	}
+	
+	@RequestMapping(value = "/find_id.do", method = RequestMethod.GET)
+	public String find_id(Locale locale, Model model, SearchVO vo) throws Exception {
+		
+		return "login/find_id";
+	}
+	
+	@RequestMapping(value = "/find_id_result.do", method = RequestMethod.GET)
+	public String find_id_result(Locale locale, Model model, SearchVO vo) throws Exception {
+		
+		return "login/find_id_result";
+	}
+	
+	@RequestMapping(value = "/find_pwd_result.do", method = RequestMethod.GET)
+	public String find_pwd_result(Locale locale, Model model, SearchVO vo) throws Exception {
+		
+		return "login/find_pwd_result";
+	}
+	
+	@RequestMapping(value = "/find_pwd.do", method = RequestMethod.GET)
+	public String find_pwd(Locale locale, Model model, SearchVO vo) throws Exception {
+		
+		return "login/find_pwd";
+	}
+	
+		
 	
 }
