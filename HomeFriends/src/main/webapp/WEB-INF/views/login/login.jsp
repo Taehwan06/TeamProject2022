@@ -10,7 +10,7 @@
 	<!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 	
-	<title>로그인</title>
+	<title>로그인</title>   
 	 
 	<link href="/controller/css/header.css" rel="stylesheet">
 	<link href="/controller/css/nav.css" rel="stylesheet">
@@ -30,7 +30,7 @@
 	<div class="login_wrap container">  
 	<div class="row">
 		<div class="col-xs-12 col-sm-10 col-md-6" style="float: none; margin:0 auto;">
-			<img class="login_logo" width="180px" src="image/mainLogo.png">
+			<img class="login_logo" width="180px" src="/controller/image/mainLogo.png">
 			<form>
 				<div>
 					<input type="text" name="id" placeholder="   이메일">
