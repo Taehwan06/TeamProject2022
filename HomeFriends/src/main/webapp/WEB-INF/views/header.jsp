@@ -8,7 +8,7 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title" id="exampleModalLabel">
-					<img class="col-4" id="modalLogo" src="image/mainLogo.png" alt="메인 로고">
+					<img class="col-4" id="modalLogo" src="/controller/image/mainLogo.png" alt="메인 로고">
 				</h5>
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
@@ -107,7 +107,7 @@
 	<div class="row" id="headerDiv">
 		
 		<div class="col-4" id="spaceDiv"></div>
-		<img class="col-4 col-pull-4 col-md-2 col-sm-3" id="logo" src="image/mainLogo.png" alt="메인 로고">
+		<img class="col-4 col-pull-4 col-md-2 col-sm-3" id="logo" src="/controller/image/mainLogo.png" alt="메인 로고">
 		<div class="col-2" id="spaceDiv"></div>
 		
 		<form class="col-md-6 col-sm-7" id="searchFrm" name="searchFrm">

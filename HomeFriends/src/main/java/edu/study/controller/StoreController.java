@@ -51,10 +51,10 @@ public class StoreController {
 		return "store/store_list";
 	}
 	
-	@RequestMapping(value = "/store_view.do", method = RequestMethod.GET)
-	public String store_view(Locale locale, Model model, SearchVO vo) throws Exception {
+	@RequestMapping(value = "/_view.do", method = RequestMethod.GET)
+	public String _view(Locale locale, Model model, SearchVO vo) throws Exception {
 		
-		return "store/store_view";
+		return "store/_view";
 	}
 	
 	@RequestMapping(value = "/category.do", method = RequestMethod.GET)
