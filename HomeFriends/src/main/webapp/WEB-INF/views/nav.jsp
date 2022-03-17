@@ -5,18 +5,18 @@
 		<ul class="row navbar list-unstyled" id="mainNavbar">
 			<li class="col-sm-3 col-md-2 mainMenu" id="menuStore">
 				<ul class="list-unstyled">
-					<li onclick="">스토어</li>
+					<li onclick="location.href='<%=request.getContextPath()%>/store/store.do'">스토어</li>
 					<li class="navSpaceLi"></li>
 				</ul>
 			</li>
 			<li class="col-sm-3 col-md-2 mainMenu" id="menuComm">
 				<ul class="list-unstyled">
-					<li onclick="">커뮤니티</li>
+					<li onclick="location.href='<%=request.getContextPath()%>/community/home_story.do'">커뮤니티</li>
 					<li class="navSpaceLi"></li>
 				</ul>		
 			</li>
-			<li class="col-md-2 mainMenu" id="menuLogin" onclick="">로그인</li>
-			<li class="col-md-2 mainMenu" id="menuJoin" onclick="">회원가입</li>
+			<li class="col-md-2 mainMenu" id="menuLogin" onclick="location.href='<%=request.getContextPath()%>/login/login.do'">로그인</li>
+			<li class="col-md-2 mainMenu" id="menuJoin" onclick="location.href='<%=request.getContextPath()%>/login/join.do'">회원가입</li>
 			<li class="col-sm-6 col-md-4 mainMenu" id="menuSearchlist">실시간 검색어 영역</li>
 		</ul>
 	</div>
@@ -85,15 +85,15 @@
 				</ul>
 			</li>
 			<li class="col-sm-2 col-md-2 subMenu" id="best" onclick="">베스트</li>
-			<li class="col-md-2 subMenu" id="hotdil" onclick="">핫딜</li>
-			<li class="col-md-2 subMenu" id="recommend" onclick="">추천 상품</li>
+			<li class="col-sm-2 col-md-2 subMenu" id="hotdil" onclick="">핫딜</li>
+			<li class="col-sm-2 col-md-2 subMenu" id="recommend" onclick="">추천 상품</li>
 			<li class="col-sm-2 col-md-2 subMenu" id="like" onclick="">좋아요</li>
 			<li class="col-sm-2 col-md-2 subMenu" id="event" onclick="">이벤트</li>
 		</ul>
 	</div>
 	<div id="subNav2">
 		<ul class="row navbar list-unstyled" id="subNavbar2">
-			<li class="col-sm-2 col-md-2 subMenu" id="community" onclick="">홈 스토리</li>
+			<li class="col-sm-2 col-md-2 subMenu" id="community" onclick="location.href='<%=request.getContextPath()%>/community/home_story.do'">홈 스토리</li>
 			<li class="col-sm-2 col-md-2 subMenu" id="following" onclick="">팔로잉</li>
 			<li class="col-md-2 subMenu" id="scrab" onclick="">스크랩</li>
 			<li class="col-md-2 subMenu" id="QnA" onclick="">질문 &amp; 답변</li>

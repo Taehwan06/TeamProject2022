@@ -4,7 +4,7 @@ $(document).ready(function(){
 	$("#menuStore").mouseover(function(){
 		$("#menuStore").css({"color" : "#ffb6c1"});
 		if($(window).width()>751){
-			$("#subNav").css({"display" : "block", "border-bottom" : "3px solid #ffb6c1"});
+			$("#subNav").css({"display" : "block"});
 			$("#subNav2").css({"display" : "none"});
 		}
 	});
@@ -14,7 +14,6 @@ $(document).ready(function(){
 			$("#subNav").css({"display" : "block"});
 		}
 	});
-	
 
 	$("#subNav").mouseover(function(){
 		if($(window).width()>751){
@@ -59,7 +58,7 @@ $(document).ready(function(){
 		$("#menuComm").css({"color" : "#ffb6c1"});
 		if($(window).width()>751){
 			$("#subNav").css({"display" : "none"});
-			$("#subNav2").css({"display" : "block", "border-bottom" : "3px solid #ffb6c1"});
+			$("#subNav2").css({"display" : "block"});
 		}else{
 			$("#subNav").css({"display" : "none"});
 			$("#subNav2").css({"display" : "none"});
@@ -204,6 +203,13 @@ $(document).ready(function(){
 	$("#change_content").mouseleave(function(){
 		$("._change").css({"border" : "none", "color" : "black"});
 	});
+});
+
+$(window).resize(function() {
+	if($(window).width()<751 && $(window).width()>576){
+			$("#subNav").css({"display" : "none"});
+			$("#subNav2").css({"display" : "none"});
+	}
 });
 
 function locationFn(type){
