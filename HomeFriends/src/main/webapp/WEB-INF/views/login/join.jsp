@@ -33,14 +33,13 @@
 	
 			<!-- 아이디 -->
 			<div class="idbtnDiv">
-				
 			</div>
 			<div class="idArea border">
 				<label for="id" class="label">
 					<div name="idHead" id="idHead" class="head">아이디</div>
 				</label>
 				<input type="text" name="id" id="id" class="input value" onblur="onBlurFn(this)" placeholder="예) IU@hanmail.net">
-				<input type="button" name="idbtn" id="idbtn" class="idbtn" value="인증메일 발송" onclick="">
+				<input type="button" name="idbtn" id="idbtn" class="idbtn button" value="인증메일 발송" onclick="">
 			</div>
 			
 			<label for="id">
@@ -53,7 +52,7 @@
 					<div name="emailcheckHead" id="emailcheckHead" class="head">인증번호</div>
 				</label>
 				<input type="text" name="emailcheck" id="emailcheck" class="emailcheck input value" onblur="onBlurFn(this)">
-				<input type="button" name="emailbtn" id="emailbtn" class="emailbtn" value="인증번호 확인" onclick="">
+				<input type="button" name="emailbtn" id="emailbtn" class="emailbtn button" value="인증번호 확인" onclick="">
 			</div>
 			
 			<label for="emailcheck">
@@ -107,7 +106,7 @@
 			<!-- 주소찾기 -->
 			<div class="addrArea border">
 				<input type="text" name="addr1" id="sample2_postcode" class="addr addr1 input value" onblur="onBlurFn(this)" placeholder="우편번호" readonly>
-				<input type="button" id="addrbtn" class="addrbtn" onclick="sample2_execDaumPostcode()" value="우편번호 찾기">
+				<input type="button" id="addrbtn" class="addrbtn button" onclick="sample2_execDaumPostcode()" value="우편번호 찾기">
 			</div>
 			
 			<input type="text" name="addr2" id="sample2_address" class="addr addr2 input value" onblur="onBlurFn(this)" placeholder="주소" readonly><br>
@@ -188,7 +187,7 @@
 	
 			<!-- 버튼 영역 -->
 			<div class="submitArea">
-				<input type="button" name="submitbtn" id="submitbtn" class="submitbtn" onclick="joinSubmitFn()" value="회원 가입"><br>
+				<input type="button" name="submitbtn" id="submitbtn" class="submitbtn button" onclick="joinSubmitFn()" value="회원 가입"><br>
 				<div>
 					<a href="#">아이디 찾기 |</a>
 					<a href="#">비밀번호 재설정 |</a>

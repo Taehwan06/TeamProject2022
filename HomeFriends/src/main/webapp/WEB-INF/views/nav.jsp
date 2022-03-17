@@ -15,9 +15,9 @@
 					<li class="navSpaceLi"></li>
 				</ul>		
 			</li>
+			<li class="col-sm-6 col-md-4 mainMenu" id="menuSearchlist">실시간 검색어 영역</li>
 			<li class="col-md-2 mainMenu" id="menuLogin" onclick="">로그인</li>
 			<li class="col-md-2 mainMenu" id="menuJoin" onclick="">회원가입</li>
-			<li class="col-sm-6 col-md-4 mainMenu" id="menuSearchlist">실시간 검색어 영역</li>
 		</ul>
 	</div>
 	<div id="subNav">

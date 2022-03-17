@@ -61,8 +61,8 @@ nav{
 #menuLogin{
 	border-left: 1px solid lightgray;
 }
-#menuJoin{
-	border-right: 1px solid lightgray;
+#menuSearchlist{
+	border-left: 1px solid lightgray;
 }
 
 .navSpaceLi{

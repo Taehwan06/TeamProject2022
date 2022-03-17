@@ -57,10 +57,16 @@ public class MypageController {
 		return "mypage/payment";
 	}
 	
-	@RequestMapping(value = "/order_result.do", method = RequestMethod.GET)
-	public String order_result(Locale locale, Model model, SearchVO vo) throws Exception {
+	@RequestMapping(value = "/order_success.do", method = RequestMethod.GET)
+	public String order_success(Locale locale, Model model, SearchVO vo) throws Exception {
 		
-		return "mypage/order_result";
+		return "mypage/order_success";
+	}
+	
+	@RequestMapping(value = "/order_fail.do", method = RequestMethod.GET)
+	public String order_fail(Locale locale, Model model, SearchVO vo) throws Exception {
+		
+		return "mypage/order_fail";
 	}
 	
 	@RequestMapping(value = "/basket.do", method = RequestMethod.GET)
