@@ -24,7 +24,7 @@
 </head>
 <body>
 	<%@ include file="header.jsp" %>
-	<%@ include file="nav.jsp" %>
+	<%@ include file="nav.jsp" %> 
 
 	<!-- 본문 영역 -->
 	<section>
