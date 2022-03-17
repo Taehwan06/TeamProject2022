@@ -16,134 +16,14 @@
 	<link href="/controller/css/nav.css" rel="stylesheet">
 	<link href="/controller/css/home.css" rel="stylesheet">
 	<link href="/controller/css/footer.css" rel="stylesheet">
+	<link href="/controller/css/store/store_list.css" rel="stylesheet">
 	<script src="/controller/js/jquery-3.6.0.min.js"></script>
 	<script src="/controller/js/nav.js"></script>
 	<script src="/controller/js/home.js"></script>
+	<script src="/controller/js/store/store_list.js"></script>
 	
 	<title>store_list</title>
 	
-	<style>
-		.category{
-			text-align: center;
-			font-size: 21px;
-			color: black;
-			cursor: pointer;
-			margin-bottom: 50px;
-		}
-		.category_img{
-			height: 80%;
-		}
-		.category_link2{
-			cursor:pointer;
-		}
-		.category_ul{
-			padding: 0px;
-		}
-		.category_link2{
-			padding-left: 20px;
-			list-style-type : none;
-		}
-		.category_link2:hover{
-			background-color: #ffebf0;
-
-		}
-
-		/*가격범위css*/
-		.proerty-filter-panel-range-control_input-row{
-			width: 100%;
-			height: 100%;
-			padding: auto;
-		}
-		.proerty-filter-panel-range-control_input-row input{
-			width: 100px;
-			height: 20px;
-		}
-		.proerty-filter-panel-range-control_input-row .list_btn,price_btn{
-			width: 40px;
-			height: 20px;
-			font-size: 0.7em;
-		}
-		.row{
-			margin:0;
-			padding:0;
-		}
-
-		/*home_list에서 가져옴*/
-		.list_{
-			margin-top : 45px;
-			margin-bottom: 20px;/*마진바텀 추가함*/
-			list-style: none;
-
-		}
-		.list_btn, .price_btn{
-			width : 80px;
-			height : 30px;
-			border-radius : 15px;
-			background : none;
-			border : none;
-		}
-		.list_all{
-			margin-top : 50px;
-			color : gray;
-			font-size : 15px;
-		}
-		.price_box{
-			display: none;
-			width: 370px;
-			height: 30px;
-			border: 1px solid #ffb6c1;
-			border-radius: 5px;
-			padding-top: auto;
-			padding-bottom: auto;
-		}
-		
-		.price_add{
-			width: 50px;
-			background: gray;
-			
-		}
-		
-		
-	</style>
-	
-	<script>
-		$(document).ready( function(){
-			$(".category_link").click(function(){
-				var id = $(this).attr('id');
-				location.href = 'store_list.jsp?searchType='+id;
-			});
-			//searchType이름 변경할것 DB컬럼으로
-			$(".category_link2").click(function(){
-				var id = $(this).attr('id');
-				location.href = 'store_list.jsp?searchType2='+id;
-			});
-		
-			
-			//가격범위
-			textchange = false;
-			console.log($(".price_btn"));
-			$(".price_btn").click(function(){
-			  	if(textchange){
-			      textchange = false;
-			      $(this).css({"background" : "none", "color" : "black"});
-			    }else{
-			      textchange = true;
-			      $(this).css({"background" : "#ffb6c1", "color" : "white"});
-			    }
-			    $('.price_box').toggle('300');
-			})
-			
-		});
-		//home_list에서 가져옴 
-		//정렬방식 클릭시 색상변경
-		function listFn(e){
-			$(".list_btn").css({"background" : "none", "color" : "black"});
-			$(e).css({"background" : "#ffb6c1", "color" : "white"});
-		}
-		
-		
-		
-	</script>
 </head>
 <body>
 
@@ -276,38 +156,24 @@
 				<!-- 정렬방식 -->
 				<!-- home_list에서 가져옴 -->
 				<div class="row" id="sectionDiv">
-					<ul class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-1 list_">
+					<ul class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 list_">
 						<li>
 							<button class="list_btn" onclick="listFn(this)">구매순</button>
 						</li>
 					</ul>
-					<ul class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-1 list_">
+					<ul class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 list_">
 						<li>
 							<button class="list_btn" onclick="listFn(this)">별점순</button>
 						</li>
 					</ul>
-					<ul class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-1 list_">
+					<ul class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 list_">
 						<li>
 							<button class="list_btn" onclick="listFn(this)">무료배송</button>
 						</li>
 					</ul>
-					<ul class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-1 list_">
+					<ul class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 list_">
 						<li>
 							<button class="price_btn">가격지정</button>
-						</li>
-						<li class="proerty-filter-panel-range-control price_box contaner">
-							<div class="proerty-filter-panel-range-control_input-row row">
-								<div class="col-12 row">
-									<div class="col-9">
-									<input type="text" name="" placeholder="최소" class="">
-									원~
-									<input type="text" name="" placeholder="최대" class="">
-									</div>
-									<div class="col-3">
-									<button type="button" class="col-1 price_add" style="background: gray;">적용</button>
-									</div>
-								</div>
-							</div>
 						</li>
 					</ul>
 					<div class="crice_box2" style="width: ">
@@ -315,6 +181,34 @@
 					</div>
 					
 				</div>
+				
+				<div id="pricePopup" class="popout popout--prepared popout--axis-1 popout--dir-0 popout--cross-dir-0"
+					 data-popout="true">
+					<div class="animated-popout drop-down__content panel-drop-down__content property-filter-bar-drop-down open open-active">
+						<div class="drop-down-panel" data-panel-title="가격" data-panel-parents="">
+							<section class="property-filter-panel-range-control">
+								<div class="property-filter-panel-range-control__input-row">
+									<span class="property-filter-panel-range-control__input-row__cell">
+										<span class="property-filter-panel-range-control__input-row__input-wrap">
+											<input id="priceStart" type="text" width="5" placeholder="0" class="numberOnly property-filter-panel-range-control__input-row__input" value="">
+										</span>
+										<span class="property-filter-panel-range-control__input-row__footer">원</span>
+									</span>
+									<span class="property-filter-panel-range-control__input-row__separator">~</span>
+									<span class="property-filter-panel-range-control__input-row__cell">
+										<span class="property-filter-panel-range-control__input-row__input-wrap">
+											<input id="priceEnd"  type="text" width="5" placeholder="69,930,000" class="numberOnly property-filter-panel-range-control__input-row__input" value="">
+										</span>
+										<span class="property-filter-panel-range-control__input-row__footer">원</span>
+									</span>
+									<button id="priceSelected"  class="property-filter-panel-range-control__input-row__button" type="button">적용</button>
+								</div>
+
+							</section>
+						</div>
+					</div>
+				</div>
+				
 				<!-- 컨텐츠 선택카테고리 물품 -->
 				<div id="deal">
 					<div class="row shopList">

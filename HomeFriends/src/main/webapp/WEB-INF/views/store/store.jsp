@@ -16,37 +16,13 @@
 	<link href="/controller/css/nav.css" rel="stylesheet">
 	<link href="/controller/css/home.css" rel="stylesheet">
 	<link href="/controller/css/footer.css" rel="stylesheet">
+	<link href="/controller/css/store/store.css" rel="stylesheet">
 	<script src="/controller/js/jquery-3.6.0.min.js"></script>
 	<script src="/controller/js/nav.js"></script>
 	<script src="/controller/js/home.js"></script>
+	<script src="/controller/js/store/store.js"></script>
 	
-	<style>
-		.category{
-			text-align: center;
-			font-size: 21px;
-			color: black;
-			cursor: pointer;
-			margin-top: 50px;
-			margin-bottom: 50px;
-		}
-		.category_img{
-			width: 90%;
-			height: 50%;
-			
-		}
-	</style>
 	
-	<script>
-		$(document).ready( function(){
-			//카테고리 클릭시 페이지 이동
-			$(".category_link").click(function(){
-				var id = $(this).attr('id');
-				location.href = 'store_list.jsp?searchType='+id;
-			});
-		});
-
-
-	</script>
 </head>
 <body>
 	<%@ include file="../header.jsp" %>
