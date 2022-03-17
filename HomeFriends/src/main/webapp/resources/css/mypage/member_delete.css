@@ -2,10 +2,12 @@
   
   /*메인컬러:ffb6c1 핑크*/
   
-		  section{
+		section{
 			margin: auto;
 			max-width: 1560px;
-			color:gray;
+			color:#222222;
+			font-size: 1rem;
+			font-weight: 600;
 		}
 		
 		/*input 테두리*/
@@ -13,109 +15,8 @@
 			outline:4px solid #ffb6c1;
 		}
 		
-		/*select 화살표 없애는 방법*/
-		select{
-			border:none;
-			border-radius:0;
-			-webkit-appearance:none;
-			-moz-apearance:none;
-			appearance:none;
-		
-		}
-		  
-   		.member_modiv{	
-   			border: 1px solid #dcdcdc;
-   			text-align: left;
-   			width:100%;
-   			margin-bottom:30px;
-   			
-   		}
-   	
-   		.membermodiv_title{
-   			font-size: 1.6rem;
-			color: black;
-			margin-top: 40px;
-			margin-bottom: 50px;
-			margin-left:30px;
-			font-weight: 1000;
-   		}
-   		
-   		.withdrawal{
-   			height:50px;
-   			text-align:right;
-   			margin-right:20px;
-   			
-   		}
-   		
-   		a{
-   			text-decoration: none;
-   			color:gray;
-   		}
-   		
-   		a:hover{
-   			color:#ffb6c1;
-   			text-decoration: underline;
-   		}
-   		 
-   		
-		.edit_dummy,.memberEditSubmit{
-			margin-left:30px;
-			margin-bottom:50px;
-		}   	
-		
-   		
-
-   		.Edit{
-   			display: inline-block;
-   		}
-
-   		/*.compulsory{
-   			font-size: 0.7rem;
-   			position: relative;
-   			top: 10px;
-   			right: 50px;
-   		}*/
-
-   		
-   		.edit_member_info{
-   			width: 120px;
-   			font-size: 1rem;
-   			font-weight: 800;
-   		}
-   		
-   		.edit_dummy input[type=text], select{
-   			text-align:center;
-   			color:gray;
-			background:white;
-			border:1px solid #dcdcdc;
-			font-size:medium;
-			font-weight:medium;
-			border-radius: 0.25rem;
-			height:40px; 
-   		
-   		}
-   		
-   		.edit_member_form input[type=radio]{
-   			color:#ffb6c1;
-   		
-   		}
-   		
-
-		#idInput,.emailInput{
-			width:175px;
-			
-		}
-		
-		#nickInput{
-			width:370px;
 	
-		}
-		
-
-		 .phoneInput{
-			width:120px;
-		}
-		
+		/*버튼*/
 		input[type=submit]{
 			width:500px; 
 			height:50px;
@@ -138,36 +39,118 @@
 			background-color: white;
 			border: 1px solid #ffb6c1;
 		}
-	
 		
-		/*라디오버튼css*/
-		div.radio-wrap {
-		  display: inline-flex;
-		  align-items: center;
+		/*div css*/
+		
+		
+		.del{
+			margin-left:3%;
+			margin-bottom: 30px;
+		}
+		
+		.memberdelete_title{
+			font-size: 1.6rem;
+			color: black;
+			margin-top: 40px;
+			margin-bottom: 50px;
+			margin-left:3%;
+			font-weight: 1000;
+		}
+		
+		.delete_subtitle{
+			font-size: 1.4rem;
+			color: #ff4162;
+			font-weight: 800;
+		}
+		
+		.deleteBox{
+			border: 1px solid #dcdcdc;
+			border-radius: 0.25rem;
+			padding:2%;
+		 
+		}
+		
+		/*버튼*/
+		#delApply{
+			border-radius : 8px;
+			width : 22%;
+			height : 55px;
+			font-size : 20px;
+			font-weight : bold;
+			background-color : white;
+			color : #ffb6c1;
+			border : 2px solid #ffb6c1;
+		}
+		
+		#delApply:hover{
+			background-color : #ffb6c1;
+			color : white;
+			border:none;
+		}
+		
+		#delCancel{
+			border-radius : 8px;
+			width : 22%;
+			height : 55px;
+			font-size : 20px;
+			font-weight : bold;
+			background-color : #ffb6c1;
+			color : white;
+			border : none;
+		}
+		
+		#delCancel:hover{
+			background-color : white;
+			color : #ffb6c1;
+			border: 2px solid #ffb6c1;
 		}
 		
 		
-		
-		input[type='radio'],input[type='radio']:checked {
-  			appearance: none;
-  			width: 1.6rem;
-			height: 1.6rem;
-		 	border-radius: 100%;
-			margin-right: 0.1rem;
-			cursor: pointer;
+		.liTitle{
+			font-size: 1.2rem;
+			color: #ff8da1;
 		}
-		
 				
-		input[type='radio']{
-		  background-color: white;
-		  border: 1px solid #dcdcdc;
+		/*체크박스css*/
+		input[type="checkbox"]{
+       		 display: none;
+		}
+		      
+		input[type="checkbox"] + label{
+		        display: inline-block;
+		        width: 20px;
+		        height: 20px;
+		        border:1px solid #ff8da1;
+		        border-radius:4px;
+		        position: relative;
+		 }
+		input[id="check1"]:checked + label::after{
+				background-color:#ff8da1;
+				border:none;
+		        content:'';
+		        font-size: 20px;
+		        width: 20px;
+		        height: 20px;
+		        text-align: center;
+		        position: absolute;
+		        border-radius:4px;
+		        left: 0;
+		        top:0;
+		   }
+	
+		textarea{
+			width:100%;
+			height:200px;
+			border:none;
 		}
 		
-		input[type='radio']:checked {
-		  background-color: white;
-		  border: 8px solid #ffb6c1;
+		textarea:focus{
+			outline:4px solid #ffb6c1;
+			border-radius:8px;
+			padding:2%;
 		}
-
+		
+	
 		/* 미디어 쿼리  CSS */
    		/*========================================================================*/
    		/*========================================================================*/
@@ -200,9 +183,6 @@
 				display: none;
 			}
 
-			#mystory4{
-				display: none; 
-			}
 			
 		}
 		@media screen and (min-width: 992px) and (max-width: 1199.99px){
@@ -289,17 +269,8 @@
 				width: 400px;
 			}
 			
-			.phoneInput{
-				width:100px;
-			}
+			/* 본문 css */
 			
-			#idInput{
-				width:120px;	
-			}
-			
-			#nickInput{
-				width:320px;
-			}
 			
 			input[type=submit]{
 				width:440px;
@@ -334,12 +305,6 @@
 				border: none;
 			}
 
-			.edit_member_info{
-   			width: 90px;
-   			font-size: 0.8rem;
-   			font-weight: 600;
-   			}
-   			
    			nav{ 
 				display:none;
 			}
@@ -347,14 +312,6 @@
 				border-top: 3px solid #ffb6c1; 
 			}
 			
-			#idInput, .phoneInput{
-				width:100px;
-				
-			}
-			
-			#nickInput{
-				width:300px;
-			}
 
 			input[type=submit]{
 				width:400px;

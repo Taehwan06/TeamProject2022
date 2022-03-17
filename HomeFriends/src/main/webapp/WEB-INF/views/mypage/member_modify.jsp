@@ -30,6 +30,9 @@
 					<div class="membermodiv_title">
 						회원정보수정
 					</div>
+					<div class="withdrawal">
+						<a href="#">탈퇴하기</a>
+					</div>
 					<div id="memberEdit_wrap">
 						<form>
 							<div class="edit_dummy">
