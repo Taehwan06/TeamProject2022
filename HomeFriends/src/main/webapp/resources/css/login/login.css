@@ -1,5 +1,134 @@
 @charset "EUC-KR";
-.login_wrap{
+
+		*{
+			padding: 0px;
+			margin: 0px;
+		}
+		body{
+			margin: auto;
+		}
+	
+		@media screen and (min-width: 1400px){
+			#headerDiv,.navbar{
+				width: 80%;
+			}
+			#searchInput{
+				width: 90%;
+			}
+			#spaceDiv{
+				display: none;
+			}
+			
+			
+			#vacant1{
+				display: none;
+			}
+			
+			
+		}
+		@media screen and (min-width: 1200px) and (max-width: 1399.99px){
+			#headerDiv,.navbar{
+				width: 85%;
+			}
+			#searchInput{
+				width: 90%;
+			}
+			#spaceDiv{
+				display: none;
+			}
+			
+			#vacant1{
+				display: none;
+			}
+			
+			
+		}
+		@media screen and (min-width: 992px) and (max-width: 1199.99px){
+			#headerDiv,.navbar{
+				width: 90%;
+			}
+			#searchInput{
+				width: 90%;
+			}
+			#spaceDiv{
+				display: none;
+			}
+			
+			#vacant1{
+				display: none;
+			}			
+			
+		}
+		@media screen and (min-width: 768px) and (max-width: 991.99px){
+			#headerDiv,.navbar{
+				width: 100%;
+			}
+			#searchInput{
+				width: 89%;
+			}
+			#spaceDiv{
+				display: none;
+			}
+			
+			#vacant1{
+				display: none;
+			}
+			
+		}
+		@media screen and (min-width: 576px) and (max-width: 767.99px){
+			#headerDiv,.navbar{
+				width: 90%;
+			}
+			#searchFrm{
+				width: 55%;
+			}
+			#mypage, #delivery, #basket, #viewList, #menuLogin, #menuJoin, #spaceDiv{
+				display: none;
+			}
+			#menuComm{
+				border-right: 1px solid lightgray;
+			}
+			#smallMenu2{
+				display: inline-block;
+			}
+			#subNav, #subNav2{
+				display : none;
+			}
+			
+			#vacant1{
+				display: none;
+			}
+			
+		}
+		@media screen and (max-width: 575.99px){
+			#headerDiv,.navbar{
+				width: 100%;
+			}
+			#searchFrm, #mypage, #delivery, #basket, #viewList, #mainNavbar{
+				display: none;
+			}
+			#smallMenu2{
+				display: inline-block;
+			}
+			
+			.login_logo{
+				display: none;
+			}
+			
+			nav{ 
+				display:none;
+			}
+			section{
+				border-top: 3px solid #ffb6c1; 
+			}
+		
+			
+		}
+
+
+		/* 로그인 스타일 */
+
+		.login_wrap{
 			text-align: center;
 		}
 
@@ -9,7 +138,10 @@
 
 		.login_wrap input[type=text], input[type=password]{
 			width:60%;
+			max-width: 500px;
+			min-width: 320px;
 			height:50px;
+			margin-top: 10px;
 			color:gray;
 			background:white;
 			border:1px solid #dcdcdc;
@@ -26,11 +158,14 @@
 		}
 
 		.login_wrap input[type=submit]{
-			margin: 15px;
+			margin-top: 30px;
+			margin-bottom: 30px;
 			width:60%;
+			max-width: 500px;
+			min-width: 320px;
 			height:50px;
 			display: inline-block;
-			font-weight: 800;
+			font-weight: bold;
 			color: white;
 			text-align: center; 
 		 	text-decoration: none;
@@ -43,13 +178,23 @@
 			border: none;
 		}
 
-		.login_wrap input[type=submit]:hover,input[type=text]:hover,input[type=password]:hover{
+		input[type=text]:hover,input[type=password]:hover{
 			box-shadow: 0 80px 0 0 rgba(0,0,0,0.012) inset, 0 -80px 0 0 rgba(0,0,0,0.011) inset;
+		}
+		
+		.login_wrap input[type=submit]:hover{
+			color: #ffb6c1;
+			background-color:white;
+			border: 2px solid #ffb6c1;
 		}
 		
 		.login_wrap a{
 			text-decoration: none;
 			color: gray;
+		}
+		
+		.login_wrap a:hover{	
+			color: #ffb6c1;
 		}
 
 		.login_logo{
@@ -60,5 +205,6 @@
 			font-size: 0.8rem;
 			color: gray;
 		}
+
 
 
