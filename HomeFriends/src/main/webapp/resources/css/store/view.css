@@ -1,4 +1,5 @@
 @charset "UTF-8";
+/* 본문 CSS */
 body{
 	min-width : 518px;
 }
@@ -278,7 +279,6 @@ article{
 @media screen and (min-width: 1400px){
 	#subNav{
 		display : block;
-		border-bottom : 3px solid #ffb6c1;
 	}
 	#menuStore{
 		color : #ffb6c1;
@@ -290,7 +290,6 @@ article{
 @media screen and (min-width: 1200px) and (max-width: 1399.99px){
 	#subNav{
 		display : block;
-		border-bottom : 3px solid #ffb6c1;
 	}
 	#menuStore{
 		color : #ffb6c1;
@@ -302,7 +301,6 @@ article{
 @media screen and (min-width: 992px) and (max-width: 1199.99px){
 	#subNav{
 		display : block;
-		border-bottom : 3px solid #ffb6c1;
 	}
 	#menuStore{
 		color : #ffb6c1;
@@ -313,8 +311,7 @@ article{
 }
 @media screen and (min-width: 768px) and (max-width: 991.99px){
 	#subNav{
-		display : block;
-		border-bottom : 3px solid #ffb6c1;
+		display : block
 	}
 	#menuStore{
 		color : #ffb6c1;
