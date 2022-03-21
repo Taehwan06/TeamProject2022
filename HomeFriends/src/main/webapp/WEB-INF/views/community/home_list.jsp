@@ -30,7 +30,7 @@
 	<!-- 본문 영역 -->
 	<section id="Community_area">
 		<div class="row" id="sectionDiv">
-			<div class="col-2 col-sm-2 col-md-2 col-lg-1 col-xl-1 list_"><button class="list_btn" onclick="listFn(this)">최신글</button></div>
+			<div class="col-2 col-sm-2 col-md-2 col-lg-1 col-xl-1 list_"><button class="list_btn" onclick="listFn(this)" id="recent">최신글</button></div>
 			<div class="col-2 col-sm-2 col-md-2 col-lg-1 col-xl-1 list_"> <button class="list_btn" onclick="listFn(this)">조회수</button></div>
 			<div class="col-2 col-sm-2 col-md-2 col-lg-1 col-xl-1 list_"><button class="list_btn" onclick="listFn(this)">좋아요</button></div>
 		</div>

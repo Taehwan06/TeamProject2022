@@ -52,7 +52,17 @@
 	margin-top : 50px;
 }
 .storyListTitle{
+	font-weight : bold;
+}
+#moreview{
+	color : #ffb6c1;
+	font-size : 18px;
+	font-weight : bold;
+	float : right;
 	cursor : pointer;
+}
+#clear{
+	clear : both;
 }
 
 /* 미디어 쿼리  CSS */
@@ -78,6 +88,9 @@
 	#community{
 		color : #ffb6c1;
 	}
+	#story_title{
+		font-size : 36px;
+	}
 }
 @media screen and (min-width: 992px) and (max-width: 1199.99px){
 	#subNav2{
@@ -89,8 +102,11 @@
 	#community{
 		color : #ffb6c1;
 	}
+	#story_title{
+		font-size : 32px;
+	}
 }
-@media screen and (min-width: 768px) and (max-width: 991.99px){
+@media screen and (min-width: 768.01px) and (max-width: 991.99px){
 	#subNav2{
 		display : block
 	}
@@ -100,15 +116,38 @@
 	#community{
 		color : #ffb6c1;
 	}
+	#story_title{
+		font-size : 28px;
+	}
+	#btn_absolute{
+		width : 20%
+	}
 }
-@media screen and (min-width: 576px) and (max-width: 767.99px){
+@media screen and (max-width: 768px){
+	#menuSearchlist{
+		border-left: none;
+	}
+}
+@media screen and (min-width: 576.01px) and (max-width: 767.99px){
 	#menuComm{
 		color : #ffb6c1;
 	}
 	#smallMenu{
 		padding : 0;
 	}
+	#story_title{
+		font-size : 24px;
+	}
+	#btn_absolute{
+		width : 22%;
+		height : 35px;
+	}
 	
+}
+@media screen and (max-width: 576px){
+	#spaceDiv{
+		display : block;
+	}
 }
 @media screen and (max-width: 575.99px){
 	#menuComm{
@@ -116,5 +155,19 @@
 	}
 	#smallMenu{
 		padding : 0;
+	}
+	#storyimg_area{
+		min-width : 528px;
+		width : 100%;
+		height : 360px;
+	}
+	#btn_absolute{
+		width : 24%
+	}
+	#story_title{
+		font-size : 20px;
+	}
+	#slide_area{
+		display : none;
 	}
 }

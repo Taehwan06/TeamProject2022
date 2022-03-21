@@ -256,6 +256,9 @@ article{
 	font-size : 20px;
 	font-weight : bold;
 }
+._product, ._review, ._QnA, ._change{
+	cursor : pointer;
+}
 #buy_btn2{
 	width : 48%;
 	border-radius : 8px;
@@ -275,6 +278,14 @@ article{
 .price___ span {
 	float : right;
 	font-size : 24px;
+}
+.Top_btn_{
+	position : fixed;
+	bottom : 30px;
+	right : 30px;
+	width : 60px;
+	height : 60px;
+	color : #ffb6c1;
 }
 @media screen and (min-width: 1400px){
 	#subNav{
