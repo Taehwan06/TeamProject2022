@@ -141,6 +141,12 @@
 	font-weight: bold;
 	font-size: 15px;
 }
+.price_visible{
+	overflow: visible;
+}
+.content_margin{
+	margin-top:10px;
+}
 
 /*모바일 결제버튼*/
 .m_payment_button{
@@ -148,6 +154,7 @@
 	width: 100%; 
 	margin-top:30px;
 }
+
 
 
 

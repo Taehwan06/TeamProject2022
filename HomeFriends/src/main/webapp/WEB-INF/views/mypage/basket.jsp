@@ -55,7 +55,7 @@
 						</li>
 						<li class="col-9">
 							<ul class="row no_list">
-								<li class="col-6" style="margin-top:10px;">
+								<li class="col-6 content_margin">
 									<div class="">
 										포근한 이불
 									</div>
@@ -89,7 +89,7 @@
 						</li>
 						<li class="col-9">
 							<ul class="row no_list">
-								<li class="col-6" style="margin-top:10px;">
+								<li class="col-6 content_margin">
 									<div class="">
 										포근한 이불
 									</div>
@@ -123,7 +123,7 @@
 						</li>
 						<li class="col-9">
 							<ul class="row no_list">
-								<li class="col-6" style="margin-top:10px;">
+								<li class="col-6 content_margin">
 									<div class="">
 										포근한 이불
 									</div>
@@ -157,7 +157,7 @@
 						</li>
 						<li class="col-9">
 							<ul class="row no_list">
-								<li class="col-6" style="margin-top:10px;">
+								<li class="col-6 content_margin">
 									<div class="">
 										포근한 이불
 									</div>
@@ -191,7 +191,7 @@
 						</li>
 						<li class="col-9">
 							<ul class="row no_list">
-								<li class="col-6" style="margin-top:10px;">
+								<li class="col-6 content_margin">
 									<div class="">
 										포근한 이불
 									</div>
@@ -211,110 +211,9 @@
 						</li>
 					</ul>
 					<!--  -->
-					<!-- 개별 상품목록 -->
-					<ul class="row no_list container border_b">
-						<li class="col-3">
-							<ul class="row no_list">
-								<li class="col-3">
-									<input class="Selection" type="checkbox" name="Selection" value="상품번호3">
-								</li>
-								<li class="col-9">
-									<img class="product_image" src="/controller/image/bedding.png">
-								</li>
-							</ul>
-						</li>
-						<li class="col-9">
-							<ul class="row no_list">
-								<li class="col-6" style="margin-top:10px;">
-									<div class="">
-										포근한 이불
-									</div>
-								</li>
-								<li class="col-3 text_center">
-									<div class="absolute_center">
-										<button type="button" class="btn decreaseQuantity">&#60;</button>
-										<input type="text" class="numberUpDown" class="numberOnly" maxlength="3" size="1" value="1">
-									    <button type="button" class="btn increaseQuantity">&#62;</button>
-								    </div>
-								</li>
-								<li class="col-3 text_center price_val_box">
-									<div class="hidden">10000</div>
-									<div class="absolute_center price_val"><span>10000</span>원</div>
-								</li>
-							</ul>
-						</li>
-					</ul>
-					<!--  -->
-					<!-- 개별 상품목록 -->
-					<ul class="row no_list container border_b">
-						<li class="col-3">
-							<ul class="row no_list">
-								<li class="col-3">
-									<input class="Selection" type="checkbox" name="Selection" value="상품번호3">
-								</li>
-								<li class="col-9">
-									<img class="product_image" src="/controller/image/bedding.png">
-								</li>
-							</ul>
-						</li>
-						<li class="col-9">
-							<ul class="row no_list">
-								<li class="col-6" style="margin-top:10px;">
-									<div class="">
-										포근한 이불
-									</div>
-								</li>
-								<li class="col-3 text_center">
-									<div class="absolute_center">
-										<button type="button" class="btn decreaseQuantity">&#60;</button>
-										<input type="text" class="numberUpDown" class="numberOnly" maxlength="3" size="1" value="1">
-									    <button type="button" class="btn increaseQuantity">&#62;</button>
-								    </div>
-								</li>
-								<li class="col-3 text_center price_val_box">
-									<div class="hidden">10000</div>
-									<div class="absolute_center price_val"><span>10000</span>원</div>
-								</li>
-							</ul>
-						</li>
-					</ul>
-					<!--  -->
-					<!-- 개별 상품목록 -->
-					<ul class="row no_list container border_b">
-						<li class="col-3">
-							<ul class="row no_list">
-								<li class="col-3">
-									<input class="Selection" type="checkbox" name="Selection" value="상품번호3">
-								</li>
-								<li class="col-9">
-									<img class="product_image" src="/controller/image/bedding.png">
-								</li>
-							</ul>
-						</li>
-						<li class="col-9">
-							<ul class="row no_list">
-								<li class="col-6" style="margin-top:10px;">
-									<div class="">
-										포근한 이불
-									</div>
-								</li>
-								<li class="col-3 text_center">
-									<div class="absolute_center">
-										<button type="button" class="btn decreaseQuantity">&#60;</button>
-										<input type="text" class="numberUpDown" class="numberOnly" maxlength="3" size="1" value="1">
-									    <button type="button" class="btn increaseQuantity">&#62;</button>
-								    </div>
-								</li>
-								<li class="col-3 text_center price_val_box">
-									<div class="hidden">10000</div>
-									<div class="absolute_center price_val"><span>10000</span>원</div>
-								</li>
-							</ul>
-						</li>
-					</ul>
-					<!--  -->
+					
 					<!-- 하단 금액표기 -->
-					<div class="row text_middle bottom_all_price" style="text-align: center;">
+					<div class="row text_middle bottom_all_price .text_center">
 						<div class="col-4 bottom_all_price_text">
 							<div>
 								상품금액
@@ -384,13 +283,13 @@
 							</li>
 						</ul>
 					</div>
-					<div class="row" style="margin-top:10px;">
-						<span class="col-5" style=" overflow: visible;">총 결제금액</span>
+					<div class="row content_margin">
+						<span class="col-5 price_visible">총 결제금액</span>
 						<span class="col-7 sumPriceBox_content_text_right">
 							<strong class="font_size_small">9,000,000</strong><span class="font_size_small">원</span>
 						</span>
 					</div>
-					<div style="margin-top:10px;">
+					<div class="content_margin">
 						<button type="button" class="sumPriceBox_button">구매하기</button>
 					</div>
 				</div>
