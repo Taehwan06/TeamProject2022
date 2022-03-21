@@ -1,0 +1,14 @@
+@charset "UTF-8";
+.category{
+	text-align: center;
+	font-size: 21px;
+	color: black;
+	cursor: pointer;
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+.category_img{
+	width: 90%;
+	height: 50%;
+	
+}

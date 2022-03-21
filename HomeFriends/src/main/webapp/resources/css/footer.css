@@ -37,3 +37,14 @@ footer{
 	max-width: 250px;
 	margin-bottom: 20px;
 }
+.Top_btn{
+	visibility : hidden;
+}
+.Top_btn_{
+	position : fixed;
+	bottom : 30px;
+	right : 30px;
+	width : 60px;
+	height : 60px;
+	color : #ffb6c1;
+}

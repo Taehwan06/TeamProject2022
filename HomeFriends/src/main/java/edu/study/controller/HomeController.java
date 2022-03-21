@@ -52,6 +52,13 @@ public class HomeController {
 		return "search_result";
 	}
 	
+	@RequestMapping(value = "/search_result_none.do", method = RequestMethod.GET)
+	public String search_result_none(Locale locale, Model model) {
+		
+		
+		return "search_result_none";
+	}
+	
 	@RequestMapping(value = "/last_view.do", method = RequestMethod.GET)
 	public String last_view(Locale locale, Model model) {
 		
