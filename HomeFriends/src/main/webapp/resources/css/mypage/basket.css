@@ -50,18 +50,20 @@
 .basket_content li{
 	position: relative;
 }
-.absolute_center{
+.text_right{
+	text-align: right;
+}
+/* .absolute_center{
 	position: absolute;
 	top: 20%;
 	left: 9%;
-}
+} */
 
 /*상품별 구분선*/
 .border_b{
 	/* border-bottom: 1px solid gray; */ 
 	padding:10px;
 	padding-right:0px;
-	margin-right: 10px; 
 	
 }
 .padding_right{
@@ -88,15 +90,11 @@
 	margin-bottom: 30px;
 }
 
-.price_val{
-	text-align: center;
-}
 .margin_auto{
 	margin-right: auto;
 	margin-left: auto;
 	display: inline-block;
 }
-
 
 /*우측 결제박스*/
 .sticky_box{
@@ -231,11 +229,11 @@
 		top: 20%;
 		left: 9%;
 	}
-	.sticky_box{
-		padding: 20px 8px;
+	.sumPriceBox{
+		display: none;
 	}
 	.m_payment_button{
-		display: none;
+		display: block;
 	}
 }
 @media screen and (max-width: 575.99px){

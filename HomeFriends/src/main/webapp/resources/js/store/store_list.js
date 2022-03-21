@@ -20,7 +20,6 @@ $(document).ready( function(){
 	
 	//가격범위
 	textchange = false;
-	console.log($(".price_btn"));
 	$(".price_btn").click(function(){
 	  	if(textchange){
 	      textchange = false;
@@ -42,6 +41,11 @@ $(document).ready( function(){
 //home_list에서 가져옴 
 //정렬방식 클릭시 색상변경
 function listFn(e){
-	$(".list_btn").css({"background" : "none", "color" : "black"});
-	$(e).css({"background" : "#ffb6c1", "color" : "white"});
+	if($(e).css("color")!="rgb(255, 255, 255)"){
+		$(e).css({"background" : "#ffb6c1", "color" : "white"});
+	}else{
+		$(".list_btn").css({"background" : "none", "color" : "black"});
+	}
+	
+	
 }

@@ -1,5 +1,8 @@
 @charset "UTF-8";
 /*카테고리*/
+.store_list_side-bar{
+	width: 170px;
+}
 .category{
 	text-align: center;
 	font-size: 21px;
@@ -25,12 +28,34 @@
 
 }
 
+.storeTitle{
+	font-size: 25px;
+	font-weight: bold;
+}
+
+
+.margin_auto{
+	margin: auto;
+}
+
+
+
+.sort{
+	border:none;
+}
+
+/*아코디언*/
+.accordion-body{
+	padding: 5px 0px;
+	
+}
+
 /*아코디언 버튼 색상css*/
 .accordion-button:not(.collapsed) {
-         color: #ffffff;
-         background-color: #ffb6c1;
-         border: none;
-      }
+	color: #ffffff;
+	background-color: #ffb6c1;
+	border: none;
+}
 
 .accordion-button:focus {
 	box-shadow: none;
@@ -193,4 +218,42 @@
 	border-image: initial;
 	border-radius: 4px;
 	transition: color 0.1s ease 0s, background-color 0.1s ease 0s, border-color 0.1s ease 0s;
+}
+
+
+/* 미디어 쿼리  CSS */
+/*========================================================================*/
+@media screen and (min-width: 1400px){
+	
+}
+@media screen and (min-width: 1200px) and (max-width: 1399.99px){
+
+}
+@media screen and (min-width: 992px) and (max-width: 1199.99px){
+	
+}
+@media screen and (min-width: 768px) and (max-width: 991.99px){
+	
+}
+@media screen and (min-width: 576px) and (max-width: 767.99px){
+	.store_list_side-bar{
+		width: 100%;
+	}
+	.storeTitle{
+		margin-top: 20px;
+	}
+	#sectionDiv{
+		text-align: right;
+	}
+}
+@media screen and (max-width: 575.99px){
+	.store_list_side-bar{
+		width: 100%;
+	}
+	.storeTitle{
+		margin-top: 20px;
+	}
+	#sectionDiv{
+		text-align: right;
+	}
 }
