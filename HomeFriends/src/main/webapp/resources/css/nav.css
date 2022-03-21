@@ -119,3 +119,8 @@ nav{
 .hidden{
 	visibility: hidden;
 }
+@media screen and (max-width: 575.99px){
+	nav{
+		height: 50px;
+	}
+}

@@ -23,6 +23,40 @@ header{
 #exampleModalLabel{
 	text-align: center;
 }
+
+
+#modalSearchFrm{
+	width: 80%;
+	border: 3px solid #ffb6c1;
+	border-radius: 50px;
+	height: 50px;
+	margin-top: auto;
+	margin-bottom: auto;
+	margin-left: auto;
+	margin-right: auto;
+	padding-right: 6px;
+}
+
+#modalSearchInput{
+	border: none;
+	background: none;
+	width: 88%;
+	height: 40px;
+}
+#modalSearchInput:focus{
+	outline: none;
+}
+
+#modalSearchButton{
+	border: none;
+	background: none;
+	color: #ffb6c1;
+}
+
+
+
+
+
 .modalMenu{
 	text-align: center;
 }
@@ -46,6 +80,9 @@ header{
 }
 #modalMypage, #modalBasket, #modalDelivery{
 	font-size: 50px;
+}
+.modalLoginButton{
+	margin-bottom: 50px;
 }
 .modalTextMenu{
 	text-align: center;
@@ -133,4 +170,22 @@ header{
 
 .headerMenu:hover{
 	color: #ffb6c1;
+}
+
+/* 미디어 쿼리  CSS */
+/*========================================================================*/
+@media screen and (min-width: 768px) and (max-width: 991.99px){
+	#logo{
+		padding: 0px;
+	}
+}
+@media screen and (min-width: 576px) and (max-width: 767.99px){
+	#smallMenu{
+		padding: 0px;
+	}
+}
+@media screen and (max-width: 575.99px){
+	#smallMenu, #logo{
+		padding: 0px;
+	}
 }

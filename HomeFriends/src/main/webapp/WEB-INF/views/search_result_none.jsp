@@ -35,64 +35,93 @@
 		</div>
 
 		<div class="searchTitle">
-			<span class="bold">검색어</span>에 대한 검색 결과
+			<span class="bold">검색어</span>에 대한 검색결과
 		</div>
 
-		<!-- 홈 스토리 영역 -->
+		<div class="resultNone">검색 결과가 없습니다.</div>
+
+
+		<!-- 추천 상품 영역 -->
 		<!-- ================================================================================ -->
-		<div class="row">
-			<div class="searchType col-8">홈 스토리</div>		
-			<div class="col-4 moreButtonDiv"><button class="moreButton" onclick="">더보기</button></div>
-		</div>
-		
-		<div class="row storyList">
-			<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 story">
-				<img src="image/story02.webp" class="storyImg" onclick="">
-				<div class="storyText" onclick="">
-					<div class="storyTitle">내추럴 모던 홈 스타일링</div>
-					<div class="storyWriter">
-						<img class="writerImg" src="image/winter.png">Winter
-					</div>
-				</div>
-			</div>
-			<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 story">
-				<img src="image/story01.webp" class="storyImg" onclick="">
-				<div class="storyText" onclick="">
-					<div class="storyTitle">맥시멀리스트의 싱글라이프</div>
-					<div class="storyWriter">
-						<img class="writerImg" src="image/karina.png">Karina
-					</div>
-				</div>
-			</div>
-			<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 story">
-				<img src="image/story03.webp" class="storyImg" onclick="">
-				<div class="storyText" onclick="">
-					<div class="storyTitle">넓은 거실이 있는 30평대 신혼집</div>
-					<div class="storyWriter">
-						<img class="writerImg" src="image/iu.png">IU
-					</div>
-				</div>
-			</div>
-			<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 story hiddenStory">
-				<img src="image/story02.webp" class="storyImg" onclick="">
-				<div class="storyText" onclick="">
-					<div class="storyTitle">내추럴 모던 홈 스타일링</div>
-					<div class="storyWriter">
-						<img class="writerImg" src="image/winter.png">Winter
-					</div>
-				</div>
-			</div>
-		</div>
-
-
-		<!-- 스토어 영역 -->
-		<!-- ================================================================================ -->
-		<div class="row">
-			<div class="searchType col-8">스토어</div>		
+		<div class="recommendList row">
+			<div class="recommendTitle col-8">추천 상품</div>
 			<div class="col-4 moreButtonDiv"><button class="moreButton" onclick="">더보기</button></div>
 		</div>
 			
 		<div class="row shopList">			
+			<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop">
+				<img src="image/shop01.webp" class="shopImg" onclick="">
+				<div class="shopText" onclick="">
+					<div class="shopTitle">
+						<div class="brand">코코도르</div>
+						(1+1) 코코도르 인기 디퓨저 14종
+					</div>
+					<div class="shopPrice">
+						<span class="red">72%</span> 10,900
+					</div>
+					<span class="sky">
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+							<path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+						</svg>
+					</span>
+					<b>4.7</b> <span class="gray">리뷰 7,391</span>
+				</div>
+			</div>
+			<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop">
+				<img src="image/shop02.webp" class="shopImg" onclick="">
+				<div class="shopText" onclick="">
+					<div class="shopTitle">
+						<div class="brand">픽켄드</div>
+						[10%쿠폰/단독컬러] 정말정말 부드러운 두부이불 차렵이불 세트(SS/Q)
+					</div>
+					<div class="shopPrice">
+						<span class="red">47%</span> 46,700
+					</div>
+					<span class="sky">
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+							<path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+						</svg>
+					</span>
+					<b>4.7</b> <span class="gray">리뷰 2,732</span>
+				</div>
+			</div>
+			<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop">
+				<img src="image/shop03.webp" class="shopImg" onclick="">
+				<div class="shopText" onclick="">
+					<div class="shopTitle">
+						<div class="brand">미닉스</div>
+						[2만쿠폰] 미닉스 미니건조기
+					</div>
+					<div class="shopPrice">
+						<span class="red">31%</span> 319,000
+					</div>
+					<span class="sky">
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+							<path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+						</svg>
+					</span>
+					<b>4.8</b> <span class="gray">리뷰 4,432</span>
+				</div>
+			</div>
+			<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop hiddenShop">
+				<img src="image/shop04.webp" class="shopImg" onclick="">
+				<div class="shopText" onclick="">
+					<div class="shopTitle">
+						<div class="brand">노와</div>
+						독일IH 쿡웨어 7P세트 외 주방용품 베스트 모음전
+					</div>
+					<div class="shopPrice">
+						<span class="red">76%</span> 68,900 외
+					</div>
+					<span class="sky">
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+							<path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+						</svg>
+					</span>
+					<b>4.6</b> <span class="gray">리뷰 6,568</span>
+				</div>
+			</div>		
+
 			<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop">
 				<img src="image/shop01.webp" class="shopImg" onclick="">
 				<div class="shopText" onclick="">

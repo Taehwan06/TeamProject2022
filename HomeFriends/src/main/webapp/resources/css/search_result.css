@@ -1,79 +1,116 @@
 @charset "UTF-8";
+/* 본문 CSS */
 section{
 	margin: auto;
 	max-width: 1560px;
+}
+
+
+.eventDiv{
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 50px;
+}
+.eventImg{
 	width: 100%;
-}
-.sectionTitle{
-	font-size: 25px;
-	margin-bottom: 20px;
-}
-#sectionSearchType{
-	width: 100px;
-	height: 30px;
-	border: 1px solid lightgray;
-	border-radius: 5px;
-}
-#sectionSearchType:focus{
-	outline: 1px solid #ffb6c1;
-	border: 1px solid #ffb6c1;
-}
-#sectionSearchValue{
-	width: 200px;
-	height: 30px;
-	border: 1px solid lightgray;
-	border-radius: 5px;
-}
-#sectionSearchValue:focus{
-	outline: 1px solid #ffb6c1;
-	border: 1px solid #ffb6c1;
-}
-#sectionSearchButton{
-	width: 50px;
-	height: 30px;
-	border: 2px solid #ffb6c1;
-	border-radius: 5px;
-	background-color: #ffb6c1;
-	color: white;
-	font-weight: bold;
-}
-#sectionSearchButton:hover{
-	background-color: white;
-	color: #ffb6c1;
-	font-weight: bold;
-}
-
-
-.memberTable{
-	text-align: center;
-	margin-top: 30px;
-}
-tbody tr:hover{
-	background-color: #ffe3ee;
-}
-tbody td{
+	height: auto;
+	border-radius: 15px;
 	cursor: pointer;
 }
 
-.pink{
-	margin-top: 30px;
+.searchTitle{
+	font-size: 25px;
+	text-align: center;
+	margin-bottom: 50px;	
 }
-.pink a{
-	color: #ffb6c1;
-	background-color: white;
-	border: 2px solid #ffb6c1;
-	border-radius: 5px;
-}
-.pink a:hover{
-	color: white;
-	background-color: #ffb6c1;
-	border: 2px solid #ffb6c1;
-	border-radius: 5px;
-}
-.pink li{
-	margin: 3px;
+.bold{
+	font-weight: bold;
 }
 
+.resultNone{
+	text-align: center;
+	font-size: 20px;
+	margin-bottom: 70px;
+}
+
+.storyList, .shopList{
+	margin-top: 10px;
+	margin-bottom: 50px;
+}
+.searchType, .recommendTitle{
+	font-size: 25px;
+	margin-bottom: 20px;
+}
+.moreButtonDiv{
+	text-align: right;
+	
+}
+.moreButton{
+	width: 70px;
+	font-size: 15px;
+	border: 2px solid #ffb6c1;
+	border-radius: 5px;
+	background-color: #ffb6c1;
+	color: white;
+	font-weight: bold;
+	cursor: pointer;
+	margin-top: 30px;
+}
+.moreButton:hover{
+	background-color: white;
+	color: #ffb6c1;
+}
+.story, .shop{
+	margin-bottom: 25px;
+}
+.storyImg, .shopImg{
+	width: 100%;
+	border-radius: 10px;
+	cursor: pointer;
+}
+.storyText, .shopText{
+	width: 100%;
+	padding: 15px;
+	cursor: pointer;
+}
+.storyTitle{
+	font-size: 19px;
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+.storyWriter{
+	font-size: 18px;
+	font-weight: 100;
+}
+.writerImg{
+	width: 40px;
+	height: 40px;
+	border-radius: 50px;
+	margin-right: 10px;
+}
+
+.brand{
+	color: gray;
+	font-size: 14px;
+}
+.shopTitle{
+	font-size: 16px;
+}
+.shopPrice{
+	font-size: 18px;
+	font-weight: bold;
+}
+.red{
+	color: red;
+}
+.sky{
+	color: skyblue;
+}
+.gray{
+	color: gray;
+}
+		
 
 /* 미디어 쿼리  CSS */
 /*========================================================================*/
@@ -155,12 +192,6 @@ tbody td{
 		width: 95%;
 		margin-left: 0px;
 	}
-	.sidebar_menu{
-		width: 400px;
-	}
-	.phone{
-		display: none;
-	}
 }
 @media screen and (max-width: 575.99px){
 	#headerDiv, .navbar, section, footer{
@@ -171,12 +202,5 @@ tbody td{
 	}
 	#smallMenu{
 		display: inline-block;
-	}
-	.sidebar_menu{
-		width: 100%;
-		max-width: 400px;
-	}
-	.phone, .birth{
-		display: none;
 	}
 }
