@@ -36,18 +36,18 @@
 		</div>
 	
 		<div class="followingUserList row">
-			<div class="followingUser col-12 col-md-6">
+			<div class="followingUser col-12 col-lg-6">
 				<div class="row">
 					<div class="followingTextArea col-12">
 						<div class="row">
 							<div class="profile col-2">
 								<img src="/controller/image/iu.png" class="profileImg" alt="팔로잉 유저 프로필 사진" onclick="">
 							</div>
-							<div class="userName col-8" onclick="">
+							<div class="userName col-7" onclick="">
 								<span class="nick" onclick="">IU</span><span class="hashtag">#아이유 #U&I #겨울잠</span><br>
 								내 이십대의 그 사이사이 조각들
 							</div>
-							<div class="followingButtonArea col-2">
+							<div class="followingButtonArea col-3">
 								<input type="button" name="followingButton" class="followingButton" value="팔로잉" onclick="">
 							</div>
 						</div>
@@ -71,18 +71,18 @@
 				</div>
 			</div>
 			
-			<div class="followingUser col-12 col-md-6">
+			<div class="followingUser col-12 col-lg-6">
 				<div class="row">
 					<div class="followingTextArea col-12">
 						<div class="row">
 							<div class="profile col-2">
 								<img src="/controller/image/iu.png" class="profileImg" alt="팔로잉 유저 프로필 사진" onclick="">
 							</div>
-							<div class="userName col-8" onclick="">
+							<div class="userName col-7" onclick="">
 								<span class="nick" onclick="">IU</span><span class="hashtag">#아이유 #U&I #겨울잠</span><br>
 								내 이십대의 그 사이사이 조각들
 							</div>
-							<div class="followingButtonArea col-2">
+							<div class="followingButtonArea col-3">
 								<input type="button" name="followingButton" class="followingButton" value="팔로잉" onclick="">
 							</div>
 						</div>
@@ -105,18 +105,19 @@
 					</div>
 				</div>
 			</div>
-			<div class="followingUser col-12 col-md-6">
+			
+			<div class="followingUser col-12 col-lg-6">
 				<div class="row">
 					<div class="followingTextArea col-12">
 						<div class="row">
 							<div class="profile col-2">
 								<img src="/controller/image/iu.png" class="profileImg" alt="팔로잉 유저 프로필 사진" onclick="">
 							</div>
-							<div class="userName col-8" onclick="">
+							<div class="userName col-7" onclick="">
 								<span class="nick" onclick="">IU</span><span class="hashtag">#아이유 #U&I #겨울잠</span><br>
 								내 이십대의 그 사이사이 조각들
 							</div>
-							<div class="followingButtonArea col-2">
+							<div class="followingButtonArea col-3">
 								<input type="button" name="followingButton" class="followingButton" value="팔로잉" onclick="">
 							</div>
 						</div>
@@ -139,18 +140,19 @@
 					</div>
 				</div>
 			</div>
-			<div class="followingUser col-12 col-md-6">
+			
+			<div class="followingUser col-12 col-lg-6">
 				<div class="row">
 					<div class="followingTextArea col-12">
 						<div class="row">
 							<div class="profile col-2">
 								<img src="/controller/image/iu.png" class="profileImg" alt="팔로잉 유저 프로필 사진" onclick="">
 							</div>
-							<div class="userName col-8" onclick="">
+							<div class="userName col-7" onclick="">
 								<span class="nick" onclick="">IU</span><span class="hashtag">#아이유 #U&I #겨울잠</span><br>
 								내 이십대의 그 사이사이 조각들
 							</div>
-							<div class="followingButtonArea col-2">
+							<div class="followingButtonArea col-3">
 								<input type="button" name="followingButton" class="followingButton" value="팔로잉" onclick="">
 							</div>
 						</div>
@@ -173,18 +175,19 @@
 					</div>
 				</div>
 			</div>
-			<div class="followingUser col-12 col-md-6">
+			
+			<div class="followingUser col-12 col-lg-6">
 				<div class="row">
 					<div class="followingTextArea col-12">
 						<div class="row">
 							<div class="profile col-2">
 								<img src="/controller/image/iu.png" class="profileImg" alt="팔로잉 유저 프로필 사진" onclick="">
 							</div>
-							<div class="userName col-8" onclick="">
+							<div class="userName col-7" onclick="">
 								<span class="nick" onclick="">IU</span><span class="hashtag">#아이유 #U&I #겨울잠</span><br>
 								내 이십대의 그 사이사이 조각들
 							</div>
-							<div class="followingButtonArea col-2">
+							<div class="followingButtonArea col-3">
 								<input type="button" name="followingButton" class="followingButton" value="팔로잉" onclick="">
 							</div>
 						</div>
@@ -207,18 +210,19 @@
 					</div>
 				</div>
 			</div>
-			<div class="followingUser col-12 col-md-6">
+			
+			<div class="followingUser col-12 col-lg-6">
 				<div class="row">
 					<div class="followingTextArea col-12">
 						<div class="row">
 							<div class="profile col-2">
 								<img src="/controller/image/iu.png" class="profileImg" alt="팔로잉 유저 프로필 사진" onclick="">
 							</div>
-							<div class="userName col-8" onclick="">
+							<div class="userName col-7" onclick="">
 								<span class="nick" onclick="">IU</span><span class="hashtag">#아이유 #U&I #겨울잠</span><br>
 								내 이십대의 그 사이사이 조각들
 							</div>
-							<div class="followingButtonArea col-2">
+							<div class="followingButtonArea col-3">
 								<input type="button" name="followingButton" class="followingButton" value="팔로잉" onclick="">
 							</div>
 						</div>
@@ -241,7 +245,7 @@
 					</div>
 				</div>
 			</div>
-					
+				
 		</div>
 		
 	</section>

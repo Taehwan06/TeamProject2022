@@ -66,8 +66,13 @@ header{
 	height: 35px;
 	color: white;
 	background-color: #ffb6c1;
+	border: 2px solid #ffb6c1;
 	border-radius: 5px;
 	font-size: 18px;
+}
+.modalMenuBtn:hover{
+	color: #ffb6c1;
+	background-color: white;
 }
 .iconMenu{
 	margin-top: 30px;
@@ -171,6 +176,7 @@ header{
 .headerMenu:hover{
 	color: #ffb6c1;
 }
+  
 
 /* 미디어 쿼리  CSS */
 /*========================================================================*/
@@ -179,10 +185,11 @@ header{
 		padding: 0px;
 	}
 }
-@media screen and (min-width: 576px) and (max-width: 767.99px){
+@media screen and (min-width: 576.01px) and (max-width: 767.99px){
 	#smallMenu{
 		padding: 0px;
 	}
+	
 }
 @media screen and (max-width: 575.99px){
 	#smallMenu, #logo{
