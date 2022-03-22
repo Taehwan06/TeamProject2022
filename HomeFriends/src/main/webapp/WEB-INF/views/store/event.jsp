@@ -10,10 +10,11 @@
 	<!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 	
-	<title>신고 목록</title>
+	<title>이벤트 목록</title>
 	
 	<link href="/controller/css/header.css" rel="stylesheet">
 	<link href="/controller/css/nav.css" rel="stylesheet">
+	<link href="/controller/css/home.css" rel="stylesheet">
 	<link href="/controller/css/store/event.css" rel="stylesheet">
 	<link href="/controller/css/footer.css" rel="stylesheet">
 	<script src="/controller/js/jquery-3.6.0.min.js"></script>
@@ -30,25 +31,25 @@
 
 	<!-- 본문 영역 -->
 	<section>
-		<h2 id="contentTitle">EVENT</h2>
+		<div id="contentTitle">EVENT</div>
 		<div class="row">
 			<div class="col-sm-12 col-md-6 col-lg-4 eventBanner">
-				<a><img class="img100" alt="" src="/controller/image/eventBanner1-1.jpeg"></a>
+				<a href="#"><img class="img100" alt="" src="/controller/image/eventBanner1-1.jpeg"></a>
 			</div>
 			<div class="col-sm-12 col-md-6 col-lg-4 eventBanner">
-				<a><img class="img100" alt="" src="/controller/image/eventBanner2-1.jpeg"></a>
+				<a href="#"><img class="img100" alt="" src="/controller/image/eventBanner2-1.jpeg"></a>
 			</div>
 			<div class="col-sm-12 col-md-6 col-lg-4 eventBanner">
-				<a><img class="img100" alt="" src="/controller/image/eventBanner3-1(m).jpeg"></a>
+				<a href="#"><img class="img100" alt="" src="/controller/image/eventBanner3-1(m).jpeg"></a>
 			</div>
 			<div class="col-sm-12 col-md-6 col-lg-4 eventBanner">
-				<a><img class="img100" alt="" src="/controller/image/eventBanner1-1.jpeg"></a>
+				<a href="#"><img class="img100" alt="" src="/controller/image/eventBanner1-1.jpeg"></a>
 			</div>
 			<div class="col-sm-12 col-md-6 col-lg-4 eventBanner">
-				<a><img class="img100" alt="" src="/controller/image/eventBanner2-1.jpeg"></a>
+				<a href="#"><img class="img100" alt="" src="/controller/image/eventBanner2-1.jpeg"></a>
 			</div>
 			<div class="col-sm-12 col-md-6 col-lg-4 eventBanner">
-				<a><img class="img100" alt="" src="/controller/image/eventBanner3-1(m).jpeg"></a>
+				<a href="#"><img class="img100" alt="" src="/controller/image/eventBanner3-1(m).jpeg"></a>
 			</div>
 		</div>
 		

@@ -70,8 +70,8 @@
 			<div class="row shopList">
 				<div class="shopListTitle">오늘의 딜</div>
 				<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop">
-					<img src="/controller/image/shop01.webp" class="shopImg" onclick="">
-					<div class="shopText" onclick="">
+					<img src="/controller/image/shop01.webp" class="shopImg" onClick="">
+					<div class="shopText" onClick="">
 						<div class="shopTitle">
 							<div class="brand">코코도르</div>
 							(1+1) 코코도르 인기 디퓨저 14종
@@ -89,8 +89,8 @@
 				</div>
 
 				<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop">
-					<img src="/controller/image/shop02.webp" class="shopImg" onclick="">
-					<div class="shopText" onclick="">
+					<img src="/controller/image/shop02.webp" class="shopImg" onClick="">
+					<div class="shopText" onClick="">
 						<div class="shopTitle">
 							<div class="brand">픽켄드</div>
 							[10%쿠폰/단독컬러] 정말정말 부드러운 두부이불 차렵이불 세트(SS/Q)
@@ -108,8 +108,8 @@
 				</div>
 
 				<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop">
-					<img src="/controller/image/shop03.webp" class="shopImg" onclick="">
-					<div class="shopText" onclick="">
+					<img src="/controller/image/shop03.webp" class="shopImg" onClick="">
+					<div class="shopText" onClick="">
 						<div class="shopTitle">
 							<div class="brand">미닉스</div>
 							[2만쿠폰] 미닉스 미니건조기
@@ -127,8 +127,8 @@
 				</div>
 
 				<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop">
-					<img src="/controller/image/shop04.webp" class="shopImg" onclick="">
-					<div class="shopText" onclick="">
+					<img src="/controller/image/shop04.webp" class="shopImg" onClick="">
+					<div class="shopText" onClick="">
 						<div class="shopTitle">
 							<div class="brand">노와</div>
 							독일IH 쿡웨어 7P세트 외 주방용품 베스트 모음전
@@ -150,10 +150,10 @@
 		<!-- 컨텐츠 베스트 상품 -->
 		<div id="deal">
 			<div class="row shopList">
-				<div class="shopListTitle">best</div>
+				<div class="shopListTitle">Best</div>
 				<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop">
-					<img src="/controller/image/shop01.webp" class="shopImg" onclick="">
-					<div class="shopText" onclick="">
+					<img src="/controller/image/shop01.webp" class="shopImg" onClick="">
+					<div class="shopText" onClick="">
 						<div class="shopTitle">
 							<div class="brand">코코도르</div>
 							(1+1) 코코도르 인기 디퓨저 14종
@@ -171,8 +171,8 @@
 				</div>
 
 				<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop">
-					<img src="/controller/image/shop02.webp" class="shopImg" onclick="">
-					<div class="shopText" onclick="">
+					<img src="/controller/image/shop02.webp" class="shopImg" onClick="">
+					<div class="shopText" onClick="">
 						<div class="shopTitle">
 							<div class="brand">픽켄드</div>
 							[10%쿠폰/단독컬러] 정말정말 부드러운 두부이불 차렵이불 세트(SS/Q)
@@ -190,8 +190,8 @@
 				</div>
 
 				<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop">
-					<img src="/controller/image/shop03.webp" class="shopImg" onclick="">
-					<div class="shopText" onclick="">
+					<img src="/controller/image/shop03.webp" class="shopImg" onClick="">
+					<div class="shopText" onClick="">
 						<div class="shopTitle">
 							<div class="brand">미닉스</div>
 							[2만쿠폰] 미닉스 미니건조기
@@ -209,8 +209,8 @@
 				</div>
 
 				<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop">
-					<img src="/controller/image/shop04.webp" class="shopImg" onclick="">
-					<div class="shopText" onclick="">
+					<img src="/controller/image/shop04.webp" class="shopImg" onClick="">
+					<div class="shopText" onClick="">
 						<div class="shopTitle">
 							<div class="brand">노와</div>
 							독일IH 쿡웨어 7P세트 외 주방용품 베스트 모음전
@@ -234,8 +234,8 @@
 			<div class="row shopList">
 				<div class="shopListTitle">추천상품</div>
 				<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop">
-					<img src="/controller/image/shop01.webp" class="shopImg" onclick="">
-					<div class="shopText" onclick="">
+					<img src="/controller/image/shop01.webp" class="shopImg" onClick="">
+					<div class="shopText" onClick="">
 						<div class="shopTitle">
 							<div class="brand">코코도르</div>
 							(1+1) 코코도르 인기 디퓨저 14종
@@ -253,8 +253,8 @@
 				</div>
 
 				<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop">
-					<img src="/controller/image/shop02.webp" class="shopImg" onclick="">
-					<div class="shopText" onclick="">
+					<img src="/controller/image/shop02.webp" class="shopImg" onClick="">
+					<div class="shopText" onClick="">
 						<div class="shopTitle">
 							<div class="brand">픽켄드</div>
 							[10%쿠폰/단독컬러] 정말정말 부드러운 두부이불 차렵이불 세트(SS/Q)
@@ -272,8 +272,8 @@
 				</div>
 
 				<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop">
-					<img src="/controller/image/shop03.webp" class="shopImg" onclick="">
-					<div class="shopText" onclick="">
+					<img src="/controller/image/shop03.webp" class="shopImg" onClick="">
+					<div class="shopText" onClick="">
 						<div class="shopTitle">
 							<div class="brand">미닉스</div>
 							[2만쿠폰] 미닉스 미니건조기
@@ -291,8 +291,8 @@
 				</div>
 
 				<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop">
-					<img src="/controller/image/shop04.webp" class="shopImg" onclick="">
-					<div class="shopText" onclick="">
+					<img src="/controller/image/shop04.webp" class="shopImg" onClick="">
+					<div class="shopText" onClick="">
 						<div class="shopTitle">
 							<div class="brand">노와</div>
 							독일IH 쿡웨어 7P세트 외 주방용품 베스트 모음전
