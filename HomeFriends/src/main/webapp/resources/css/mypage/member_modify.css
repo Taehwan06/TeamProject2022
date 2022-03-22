@@ -1,20 +1,19 @@
-
 @charset "EUC-KR";
   
-  /*ï¿½ï¿½ï¿½ï¿½ï¿½Ã·ï¿½:ffb6c1 ï¿½ï¿½Å©*/
+  /*¸ÞÀÎÄÃ·¯:ffb6c1 ÇÎÅ©*/
   
-		section{
+		  section{
 			margin: auto;
-			max-width: 1560px;  
+			max-width: 1560px;
 			color:gray;
 		}
 		
-		/*input ï¿½×µÎ¸ï¿½*/
+		/*input Å×µÎ¸®*/
 		input:focus{
 			outline:4px solid #ffb6c1;
 		}
 		
-		/*select È­ï¿½ï¿½Ç¥ ï¿½ï¿½ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½*/
+		/*select È­»ìÇ¥ ¾ø¾Ö´Â ¹æ¹ý*/
 		select{
 			border:none;
 			border-radius:0;
@@ -62,14 +61,7 @@
 		.edit_dummy,.memberEditSubmit{
 			margin-left:30px;
 			margin-bottom:50px;
-		}   
-		
-		.edit_dummy2{
-			margin-left:30px;
-			margin-bottom:2px;
-			
 		}   	
-			
 		
    		
 
@@ -91,7 +83,7 @@
    			font-weight: 800;
    		}
    		
-   		.edit_dummy input[type=text], select,.edit_dummy2 input[type=text]{
+   		.edit_dummy input[type=text], select{
    			text-align:center;
    			color:gray;
 			background:white;
@@ -114,18 +106,14 @@
 			
 		}
 		
-		#nickInput,#emailInput,#BirthInput{
+		#nickInput{
 			width:370px;
 	
 		}
 		
-		#AddrInput1, #AddrInput2, #AddrInput3{
-			width:370px;
-		}
-		
-	
+
 		 .phoneInput{
-			width:122px;
+			width:120px;
 		}
 		
 		input[type=submit]{
@@ -152,7 +140,7 @@
 		}
 	
 		
-		/*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ°css*/
+		/*¶óµð¿À¹öÆ°css*/
 		div.radio-wrap {
 		  display: inline-flex;
 		  align-items: center;
@@ -180,7 +168,7 @@
 		  border: 8px solid #ffb6c1;
 		}
 
-		/* ï¿½Ìµï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½  CSS */
+		/* ¹Ìµð¾î Äõ¸®  CSS */
    		/*========================================================================*/
    		/*========================================================================*/
    		/*========================================================================*/
@@ -309,14 +297,9 @@
 				width:120px;	
 			}
 			
-			#nickInput,#emailInput,#BirthInput{
+			#nickInput{
 				width:320px;
 			}
-			
-			#AddrInput1, #AddrInput2, #AddrInput3{
-				width:320px;
-			}
-			
 			
 			input[type=submit]{
 				width:440px;
@@ -369,11 +352,7 @@
 				
 			}
 			
-			#nickInput,#emailInput,#BirthInput{
-				width:300px;
-			}
-			
-			#AddrInput1, #AddrInput2, #AddrInput3{
+			#nickInput{
 				width:300px;
 			}
 

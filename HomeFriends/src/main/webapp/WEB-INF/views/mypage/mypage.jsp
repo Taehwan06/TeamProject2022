@@ -21,6 +21,7 @@
 	
 	<script src="/controller/js/jquery-3.6.0.min.js"></script>
 	<script src="/controller/js/nav.js"></script>
+	<script src="/controller/js/footer.js"></script>
 </head>
 <body>
 	<%@ include file="../header.jsp" %>
@@ -50,11 +51,11 @@
 					<hr>
 					<div class="col-12 col-lg-12" id="profile_etc">
 						<div class="profile_icon">
-							<i class="bi bi-bookmark icon-pointer"></i><br>스크랩<br>
+							<i class="bi bi-bookmark"></i><br>스크랩<br>
 							<strong>10</strong>
 						</div>
 						<div class="profile_icon">
-							<i class="bi bi-heart icon-pointer"></i><br>좋아요<br>
+							<i class="bi bi-heart"></i><br>좋아요<br>
 							<strong>20</strong>
 						</div> 
 					</div>

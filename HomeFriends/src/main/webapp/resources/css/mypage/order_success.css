@@ -1,6 +1,6 @@
 @charset "EUC-KR";
   
-  /*ï¿½ï¿½ï¿½ï¿½ï¿½Ã·ï¿½:ffb6c1 ï¿½ï¿½Å©*/
+  /*¸ÞÀÎÄÃ·¯:ffb6c1 ÇÎÅ©*/
   
 		section{
 			margin: auto;
@@ -22,13 +22,13 @@
 		}
 		
 		
-		/*input ï¿½×µÎ¸ï¿½*/
+		/*input Å×µÎ¸®*/
 		input:focus{
 			outline:4px solid #ffb6c1;
 		}
 		
 	
-		/*ï¿½ï¿½Æ°
+		/*¹öÆ°
 		input[type=submit]{
 			width:20%; 
 			height:50px;
@@ -84,7 +84,7 @@
 		 
 		}
 		
-		/*ï¿½ï¿½Æ°*/
+		/*¹öÆ°*/
 		#odrApply{
 			border-radius : 8px;
 			width : 40%;
@@ -139,7 +139,7 @@
 		}
 	
 	
-		/* ï¿½Ìµï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½  CSS */
+		/* ¹Ìµð¾î Äõ¸®  CSS */
    		/*========================================================================*/
    		/*========================================================================*/
    		/*========================================================================*/
@@ -257,7 +257,7 @@
 				width: 400px;
 			}
 			
-			/* ï¿½ï¿½ï¿½ï¿½ css */
+			/* º»¹® css */
 			
 			.order_title{
 			font-size: 1.6rem;
@@ -318,17 +318,13 @@
 			}
 			
 			.okTitle{
-				font-size: 1.5rem;
+				font-size: 1.6rem;
 				font-weight:1200;	
 			}
 			
 			.odrdetail{
-				font-size: 0.8rem;
+				font-size: 0.9rem;
 			}
 		
-			#odrApply{
-				font-size: 17px;
-				font-weight:bold;
-			}
 
 		} 

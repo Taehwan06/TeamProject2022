@@ -139,8 +139,8 @@
 			margin-bottom: 25px;
 			margin-left: 10px;
 			display: inline-block;
-			width: 180px;
-			height: 180px;
+			width: 200px;
+			height: 200px;
 			background-color: #f5f5f5;
 			border: none;
 			border-radius: 9px;
@@ -180,12 +180,7 @@
 			margin-bottom: 15px;
 		}
 		
-		
-		.icon-pointer{
-			cursor:pointer;
-		}
-		
-		/*ï¿½Ìµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
+		/*¹Ìµð¾îÄõ¸®*/
 		@media screen and (min-width: 1400px){
 			#headerDiv,.navbar{
 				width: 80%;
@@ -196,9 +191,8 @@
 			#spaceDiv{
 				display: none;
 			}
-			
 		}
-		@media screen and (min-width: 1200px) and (max-width: 1427px){
+		@media screen and (min-width: 1200px) and (max-width: 1399.99px){
 			#headerDiv,.navbar, section, footer{
 				width: 85%;
 			}
@@ -371,3 +365,6 @@
 			}
 
 		}
+		
+		
+		

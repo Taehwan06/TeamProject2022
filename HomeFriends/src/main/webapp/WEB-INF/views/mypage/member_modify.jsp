@@ -17,6 +17,7 @@
 	<script src="/controller/js/jquery-3.6.0.min.js"></script>
 	<script src="/controller/js/nav.js"></script>
 	<script src="/controller/js/login/join1.js"></script>
+	<script src="/controller/js/footer.js"></script>
 </head>
 <body>
 	<%@ include file="../header.jsp" %>
@@ -40,22 +41,21 @@
 									이메일<!--<span class="compulsory">*필수항목</span>-->
 								</div>
 								<div class="Edit edit_member_form">
-									<!-- <input type="text" id="idInput" value="test123" name="id"> @
-									 <select name="email_modify" class="emailInput">
+									<input type="text" id="idInput" value="test123" name="id"> @
+									<select name="email_modify" class="emailInput">
 										<option value="naver">naver.com</option>
 										<option value="hanmail">hanmail.net</option>
 										<option value="daum">daum.net</option>
 										<option value="gmail">gmail.com</option>
 										<option value="nate">nate.com</option>
 										<option value="self">직접입력</option>
-							직접입력 선택시 input[text]로 변경되게끔 추후 script 작성 필요
-									</select>  -->
-									<input type="text" id="emailInput" value="test12@naver.com" name="id" readonly>
+							<!--직접입력 선택시 input[text]로 변경되게끔 추후 script 작성 필요-->
+									</select>
 								</div>
 							</div>
 							<div class="edit_dummy">
 								<div class="Edit edit_member_info">
-									닉네임<!--<span class="compulsory">*필수항목</span>-->
+									별명<!--<span class="compulsory">*필수항목</span>-->
 								</div>
 								<div class="Edit edit_member_form">
 									<input type="text" id="nickInput" value="코코story" name="nick_name">
@@ -83,36 +83,6 @@
 									</select>
 									<input type="text" class="phoneInput" name="phone2" id="phone2" maxlength="4">
 									<input type="text" class="phoneInput" name="phone3" id="phone3" maxlength="4">
-								</div>
-							</div>
-							<div class="edit_dummy">
-								<div class="Edit edit_member_info">
-									생년월일
-								</div>
-								<div class="Edit edit_member_form">
-									<input type="text" id="BirthInput" value="1996년 1월 6일" name="birth" readonly>
-								</div>
-							</div>
-							<div class="edit_dummy2">
-								<div class="Edit edit_member_info">
-									주소
-								</div>
-								<div class="Edit edit_member_form">
-									<input type="text" id="AddrInput1" value="전라북도 전주시 백제대로 34" name="addr1" readonly>
-								</div>
-							</div>
-							<div class="edit_dummy2">
-								<div class="Edit edit_member_info">
-								</div>
-								<div class="Edit edit_member_form">
-									<input type="text" id="AddrInput2" value="이젠컴퓨터학원 4층" name="addr2" readonly>
-								</div>
-							</div>
-							<div class="edit_dummy">
-								<div class="Edit edit_member_info">
-								</div>
-								<div class="Edit edit_member_form">
-									<input type="text" id="AddrInput3" value="금암동" name="addr3" readonly>
 								</div>
 							</div>
 							<div class="edit_dummy">
