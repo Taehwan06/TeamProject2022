@@ -190,7 +190,7 @@
 				<input type="button" name="submitbtn" id="submitbtn" class="submitbtn button" onclick="joinSubmitFn()" value="회원 가입"><br>
 				<div>
 					<a href="#">아이디 찾기 |</a>
-					<a href="#">비밀번호 재설정 |</a>
+					<a href="#">비밀번호 찾기 |</a>
 					<a href="#">로그인</a>
 				</div>
 			</div>

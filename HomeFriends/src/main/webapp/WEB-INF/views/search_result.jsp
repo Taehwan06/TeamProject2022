@@ -41,8 +41,11 @@
 		<!-- 홈 스토리 영역 -->
 		<!-- ================================================================================ -->
 		<div class="row">
-			<div class="searchType col-8">홈 스토리</div>		
-			<div class="col-4 moreButtonDiv"><button class="moreButton" onclick="">더보기</button></div>
+			<div class="searchType bold col-8">홈 스토리</div>
+			<div class="col-4 moreButtonDiv">
+				<span class="moreview" onclick="location.href='home_list.do'">더보기</span>
+	           	<div class="clear"></div>
+			</div>
 		</div>
 		
 		<div class="row storyList">
@@ -88,11 +91,14 @@
 		<!-- 스토어 영역 -->
 		<!-- ================================================================================ -->
 		<div class="row">
-			<div class="searchType col-8">스토어</div>		
-			<div class="col-4 moreButtonDiv"><button class="moreButton" onclick="">더보기</button></div>
+			<div class="searchType bold col-8">스토어</div>
+			<div class="col-4 moreButtonDiv">
+				<span class="moreview" onclick="location.href='home_list.do'">더보기</span>
+	           	<div class="clear"></div>
+			</div>
 		</div>
 			
-		<div class="row shopList">			
+		<div class="row shopList">
 			<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop">
 				<img src="image/shop01.webp" class="shopImg" onclick="">
 				<div class="shopText" onclick="">

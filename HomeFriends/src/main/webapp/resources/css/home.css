@@ -41,6 +41,17 @@ section{
 .storyListTitle, .shopListTitle{
 	font-size: 25px;
 	margin-bottom: 20px;
+	font-weight: bold;
+}
+.moreview{
+   color : #ffb6c1;
+   font-size : 18px;
+   font-weight : bold;
+   float : right;
+   cursor : pointer;
+}
+.clear{
+	clear: both;
 }
 .story, .shop{
 	margin-bottom: 25px;
@@ -152,7 +163,7 @@ section{
 		padding: 15px 0px 15px 10px;
 	}
 }
-@media screen and (min-width: 576px) and (max-width: 767.99px){
+@media screen and (min-width: 576.01px) and (max-width: 767.99px){
 	#headerDiv, .navbar, section, footer{
 		width: 98%;
 	}
@@ -176,6 +187,11 @@ section{
 	.sidebar_menu{
 		width: 400px;
 	}
+}
+@media screen and (max-width: 576px){
+   #spaceDiv{
+      display : block;
+   }
 }
 @media screen and (max-width: 575.99px){
 	#headerDiv, .navbar, section, footer{

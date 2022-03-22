@@ -44,8 +44,11 @@
 		<!-- 추천 상품 영역 -->
 		<!-- ================================================================================ -->
 		<div class="recommendList row">
-			<div class="recommendTitle col-8">추천 상품</div>
-			<div class="col-4 moreButtonDiv"><button class="moreButton" onclick="">더보기</button></div>
+			<div class="recommendTitle bold col-8">추천 상품</div>
+			<div class="col-4 moreButtonDiv">
+				<span class="moreview" onclick="location.href='home_list.do'">더보기</span>
+	           	<div class="clear"></div>
+			</div>
 		</div>
 			
 		<div class="row shopList">			

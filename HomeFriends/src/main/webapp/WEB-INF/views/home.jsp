@@ -100,7 +100,11 @@
 		<!-- ====================================================================================== -->
 		<!-- ====================================================================================== -->
 		<div class="row storyList">
-			<div class="storyListTitle">오늘의 스토리</div>
+			<div class="storyListTitle">
+	            오늘의 스토리
+	            <span class="moreview" onclick="location.href='home_list.do'">더보기</span>
+	            <div class="clear"></div>
+	         </div>
 			<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 story">
 				<img src="image/story02.webp" class="storyImg" onclick="">
 				<div class="storyText" onclick="">
@@ -144,7 +148,11 @@
 		<!-- ====================================================================================== -->
 		<!-- ====================================================================================== -->
 		<div class="row shopList">
-			<div class="shopListTitle">오늘의 딜</div>
+			<div class="shopListTitle">
+	            오늘의 딜
+	            <span class="moreview" onclick="location.href='store_list.do'">더보기</span>
+	            <div class="clear"></div>
+	         </div>
 			<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop">
 				<img src="image/shop01.webp" class="shopImg" onclick="">
 				<div class="shopText" onclick="">
