@@ -318,13 +318,17 @@
 			}
 			
 			.okTitle{
-				font-size: 1.6rem;
+				font-size: 1.5rem;
 				font-weight:1200;	
 			}
 			
 			.odrdetail{
-				font-size: 0.9rem;
+				font-size: 0.8rem;
 			}
 		
+			#odrApply{
+				font-size: 17px;
+				font-weight:bold;
+			}
 
 		} 

@@ -144,6 +144,10 @@
 			border:none;
 		}
 		
+		textarea{
+			resize:none;		
+		}
+		
 		textarea:focus{
 			outline:4px solid #ffb6c1;
 			border-radius:8px;
