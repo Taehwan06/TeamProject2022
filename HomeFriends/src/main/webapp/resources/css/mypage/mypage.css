@@ -1,4 +1,4 @@
-@charset "EUC-KR";
+@charset "UTF-8";
 
 		#mypage_profile_box{
 			border: 2px solid #ffb6c1;
@@ -139,8 +139,8 @@
 			margin-bottom: 25px;
 			margin-left: 10px;
 			display: inline-block;
-			width: 200px;
-			height: 200px;
+			width: 180px;
+			height: 180px;
 			background-color: #f5f5f5;
 			border: none;
 			border-radius: 9px;
@@ -180,7 +180,12 @@
 			margin-bottom: 15px;
 		}
 		
-		/*¹Ìµð¾îÄõ¸®*/
+		
+		.icon-pointer{
+			cursor:pointer;
+		}
+		
+		/*ë¯¸ë””ì–´ì¿¼ë¦¬*/
 		@media screen and (min-width: 1400px){
 			#headerDiv,.navbar{
 				width: 80%;
@@ -191,8 +196,9 @@
 			#spaceDiv{
 				display: none;
 			}
+			
 		}
-		@media screen and (min-width: 1200px) and (max-width: 1399.99px){
+		@media screen and (min-width: 1200px) and (max-width: 1427px){
 			#headerDiv,.navbar, section, footer{
 				width: 85%;
 			}

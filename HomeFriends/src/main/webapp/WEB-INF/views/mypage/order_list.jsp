@@ -21,7 +21,6 @@
 	<script src="/controller/js/jquery-3.6.0.min.js"></script>
 	<script src="/controller/js/nav.js"></script> 
 	<script src="/controller/js/login/join1.js"></script>
-	<script src="/controller/js/footer.js"></script>
 </head>
 <body>
 	<%@ include file="../header.jsp" %>
@@ -31,31 +30,88 @@
 	<section>
 	<div class="container">
 			<div class="row">
-				<div class="col-12 coll-pull-12 coll-md-12 col-lg-12 col-xl-12 odrWrap">
+				<div class="col-12 col-md-12 col-lg-12 col-xl-12">
 					<form>
-						<div class="order_title">
-							 주문완료
-						</div>
-						<div class="odr orderBox">
-							<div id="iconDIV">
-								<i class="bi bi-cart-check"></i>
+					<div class="row">
+						<div id="OList1">
+							<div class="sbox state col-2" id="payOk">
+								<i class="bi bi-credit-card listIcon"></i><br>
+								결제완료<br>
+								<span class="pinkNum">2</span>
 							</div>
-							<div class="odrDiv">
-								<p class="okTitle">주문이 성공적으로 완료되었습니다.</p>
-								<p class="odrdetail">자세한 구매내역 확인은 주문내역에서 확인하실 수 있습니다.</p>
+							<div class="sbox direction">
+								<i class="bi bi-caret-right"></i>
 							</div>
-							<hr>
-							<div class="inlineDiv">
-								<p class="odrTitle">주문번호</p>
-								<p>DFWE2321321</p>
-							</div>		
-							<div  class="inlineDiv">
-								<p class="odrTitle">주문금액</p>
-								<p>382000원</p>
+							<div class="sbox state col-2">
+								<i class="bi bi-box-seam listIcon"></i><br>
+								배송준비중<br>
+								<span class="pinkNum">2</span>
 							</div>
-						</div>
-						<div class="odr">
-							<button id="odrApply">주문내역확인하기</button>
+							<div class="sbox direction">
+								<i class="bi bi-caret-right"></i>
+							</div>
+							<div class="sbox state col-2">
+								<i class="bi bi-truck listIcon"></i><br>
+								배송중<br>
+								<span class="pinkNum">0</span>
+							</div>
+							<div class="sbox direction">
+								<i class="bi bi-caret-right"></i>
+							</div>
+							<div class="sbox state col-2">
+								<i class="bi bi-house listIcon"></i><br>
+								배송완료<br>
+								<span class="pinkNum">0</span>
+							</div>
+						</div><!-- 주문 상태 박스 -->
+					</div>
+						<div id="OList2"><!-- 주문 배송 조회 박스 -->
+							<div class="filter">
+								<select name="day" class="selectgood">
+									<option value="month">한달</option>
+									<option value="3months">3개월</option>
+									<option value="6months">6개월</option>
+									<option value="1year">1년</option>
+								</select>
+								<select name="stateBar" class="selectgood">
+									<option value="pay">결제완료</option>
+									<option value="ready">배송준비중</option>
+									<option value="ing">배송중</option>
+									<option value="complete">배송완료</option>
+								</select>
+							</div>
+							<div class="product">
+								<div class="row">
+									<div class="col-6 buyDate">
+										2022.03.21
+									</div>
+									<div class="col-6 goDatail">
+										<a href="#" id="goDetail">상세보기 <i class="bi bi-chevron-right detailIcon"></i></a>
+									</div>
+									<hr>
+								</div>
+								<div class="row">
+									<div class="col-3 productPic">
+										<a href="#"><img src="/controller/image/bedding.png"></a>
+									</div>
+									<div class="col-3 productInfo">
+										<a href="#">크라운 구스 력셔리 컬렉션</a>| 1개 <br>
+										<span class="producSpan">구매확정 | 일반택배</span>
+									</div>
+									<div class="col-3 productInfo">
+										1,988,900원 	
+									</div>
+									<div class="col-3 productBtn">
+										<button>배송추적</button><br>
+										<button>리뷰작성</button> 
+									</div>
+								</div> 
+								<div class="row">
+									<div class="col-12 delState">
+										무료배송								
+									</div>
+								</div>
+							</div>
 						</div>
 					</form>
 				</div>

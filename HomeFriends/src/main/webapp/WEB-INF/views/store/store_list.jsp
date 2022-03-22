@@ -9,8 +9,6 @@
 	<!-- 부트스트랩 -->
 	<!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    
-	<title>스토어</title>
 	
 	<link href="/controller/css/header.css" rel="stylesheet">
 	<link href="/controller/css/nav.css" rel="stylesheet">
@@ -21,7 +19,6 @@
 	<script src="/controller/js/nav.js"></script>
 	<script src="/controller/js/home.js"></script>
 	<script src="/controller/js/store/store_list.js"></script>
-	<script src="/controller/js/footer.js"></script>
 	
 	<title>store_list</title>
 	
@@ -35,7 +32,7 @@
 		<div class="row">
 
 			<!-- 좌측 카테고리바 -->
-			<div class="store_list_side-bar col-12 col-md-2">
+			<div class="col-12 col-md-2 store_list_side-bar">
 				<div class="accordion accordion-flush" id="accordionFlushExample">
 				  <div class="accordion-item">
 				    <h2 class="accordion-header" id="flush-headingOne">
@@ -151,35 +148,33 @@
 			</div>
 
 			<!-- 컨텐츠영역 -->
-			<div class="store_list_content col-12 col-md-10">
+			<div class="store_list_content col-12 col-md-9 margin_auto padding_0">
 				<!-- 해당 카테고리 -->
-				<div class="shopListTitle">가구</div>
+				<div class="storeTitle">가구</div><!-- 카테고리타입 가져올것 --><!-- ---------------- -->
 				<!-- 정렬방식 -->
 				<!-- home_list에서 가져옴 -->
 				<div class="row" id="sectionDiv">
-					<ul class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 list_">
+					<ul class="col-3 col-sm-2 col-md-2 col-lg-2 col-xl-2 list_">
 						<li>
-							<button class="list_btn" onclick="listFn(this)">구매순</button>
+							<button class="list_btn" onClick="listFn(this)">무료배송</button>
 						</li>
 					</ul>
-					<ul class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 list_">
-						<li>
-							<button class="list_btn" onclick="listFn(this)">별점순</button>
-						</li>
-					</ul>
-					<ul class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 list_">
-						<li>
-							<button class="list_btn" onclick="listFn(this)">무료배송</button>
-						</li>
-					</ul>
-					<ul class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 list_">
+					<ul class="col-3 col-sm-2 col-md-2 col-lg-2 col-xl-2 list_">
 						<li>
 							<button class="price_btn">가격지정</button>
 						</li>
 					</ul>
-					<div class="crice_box2" style="width: ">
-						
-					</div>
+					<ul class="col-2 col-sm-5 col-md-5 col-lg-6 col-xl-6"></ul>
+					<ul class="col-3 col-sm-2 col-md-2 col-lg-2 col-xl-2 list_">
+						<li>
+							<select class="sort">
+								<option>구매순</option>
+								<option>별점순</option>
+								<option>가격높은순</option>
+								<option>가격낮은순</option>
+							</select>
+						</li>
+					</ul>
 					
 				</div>
 				
@@ -214,8 +209,8 @@
 				<div id="deal">
 					<div class="row shopList">
 						<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop">
-							<img src="/controller/image/shop01.webp" class="shopImg" onclick="">
-							<div class="shopText" onclick="">
+							<img src="/controller/image/shop01.webp" class="shopImg" onClick="">
+							<div class="shopText" onClick="">
 								<div class="shopTitle">
 									<div class="brand">코코도르</div>
 									(1+1) 코코도르 인기 디퓨저 14종
@@ -233,8 +228,8 @@
 						</div>
 
 						<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop">
-							<img src="/controller/image/shop02.webp" class="shopImg" onclick="">
-							<div class="shopText" onclick="">
+							<img src="/controller/image/shop02.webp" class="shopImg" onClick="">
+							<div class="shopText" onClick="">
 								<div class="shopTitle">
 									<div class="brand">픽켄드</div>
 									[10%쿠폰/단독컬러] 정말정말 부드러운 두부이불 차렵이불 세트(SS/Q)
@@ -252,8 +247,8 @@
 						</div>
 
 						<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop">
-							<img src="/controller/image/shop03.webp" class="shopImg" onclick="">
-							<div class="shopText" onclick="">
+							<img src="/controller/image/shop03.webp" class="shopImg" onClick="">
+							<div class="shopText" onClick="">
 								<div class="shopTitle">
 									<div class="brand">미닉스</div>
 									[2만쿠폰] 미닉스 미니건조기
@@ -271,8 +266,8 @@
 						</div>
 
 						<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop">
-							<img src="/controller/image/shop04.webp" class="shopImg" onclick="">
-							<div class="shopText" onclick="">
+							<img src="/controller/image/shop04.webp" class="shopImg" onClick="">
+							<div class="shopText" onClick="">
 								<div class="shopTitle">
 									<div class="brand">노와</div>
 									독일IH 쿡웨어 7P세트 외 주방용품 베스트 모음전

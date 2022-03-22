@@ -1,6 +1,6 @@
-@charset "EUC-KR";
+@charset "UTF-8";
   
-  /*¸ŞÀÎÄÃ·¯:ffb6c1 ÇÎÅ©*/
+  /*ë©”ì¸ì»¬ëŸ¬:ffb6c1 í•‘í¬*/
   
 		section{
 			margin: auto;
@@ -22,13 +22,13 @@
 		}
 		
 		
-		/*input Å×µÎ¸®*/
+		/*input í…Œë‘ë¦¬*/
 		input:focus{
 			outline:4px solid #ffb6c1;
 		}
 		
 	
-		/*¹öÆ°
+		/*ë²„íŠ¼
 		input[type=submit]{
 			width:20%; 
 			height:50px;
@@ -84,7 +84,7 @@
 		 
 		}
 		
-		/*¹öÆ°*/
+		/*ë²„íŠ¼*/
 		#odrApply{
 			border-radius : 8px;
 			width : 40%;
@@ -139,7 +139,7 @@
 		}
 	
 	
-		/* ¹Ìµğ¾î Äõ¸®  CSS */
+		/* ë¯¸ë””ì–´ ì¿¼ë¦¬  CSS */
    		/*========================================================================*/
    		/*========================================================================*/
    		/*========================================================================*/
@@ -257,7 +257,7 @@
 				width: 400px;
 			}
 			
-			/* º»¹® css */
+			/* ë³¸ë¬¸ css */
 			
 			.order_title{
 			font-size: 1.6rem;
@@ -318,13 +318,17 @@
 			}
 			
 			.okTitle{
-				font-size: 1.6rem;
+				font-size: 1.5rem;
 				font-weight:1200;	
 			}
 			
 			.odrdetail{
-				font-size: 0.9rem;
+				font-size: 0.8rem;
 			}
 		
+			#odrApply{
+				font-size: 17px;
+				font-weight:bold;
+			}
 
 		} 
