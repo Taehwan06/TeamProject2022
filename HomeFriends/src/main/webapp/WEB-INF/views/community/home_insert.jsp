@@ -31,6 +31,7 @@
 	<link href="/controller/css/footer.css" rel="stylesheet">
 	<script src="/controller/js/jquery-3.6.0.min.js"></script>
 	<script src="/controller/js/nav.js"></script>
+	<script src="/controller/js/footer.js"></script>
 	
 	
 	<!-- 썸머노트 -->
@@ -41,6 +42,12 @@
 	<style>
 		.dropdown-toggle::after {
 			display:none;
+		}
+		#insertFrm{
+			width: 70%;
+			min-width: 500px;
+			margin-right: auto;
+			margin-left: auto;
 		}
 		.center{
 			text-align: center;
@@ -54,7 +61,7 @@
 			background-color: #eeeeee;
 			cursor: pointer;
 			text-align: center;
-			background-size: cover;
+			background-size: 500px 500px;
 		}
 		#imgText{
 			display: inline-block;
@@ -85,9 +92,6 @@
 			margin-right: auto;
 			margin-left: auto;
 		}
-		#titleArea{
-					
-		}
 		#title{
 			width: 100%;
 			height: 65px;
@@ -110,7 +114,7 @@
 			margin-bottom: 20px;
 			color: red;
 			font-weight: bold;
-			visibility: visible;
+			visibility: hidden;
 		}
 		#summernote::placeholder{
 			font-weight: bold;
@@ -139,6 +143,49 @@
 		
 		
 	</style>
+	
+	<script>
+		
+		function submitFn(){
+			var result = true;
+	
+			var value = document.getElementById("imgUpload").value;
+			var info = document.getElementById("imgUploadInfo");
+			if(value == ""){
+				result = false;
+				info.style.visibility = "visible";
+			}else{
+				info.style.visibility = "hidden";
+			}
+	
+			value = document.getElementById("title").value;
+			info = document.getElementById("titleInfo");
+			if(value == ""){
+				result = false;
+				info.style.visibility = "visible";
+			}else{
+				info.style.visibility = "hidden";
+			}
+			
+			value = document.getElementById("summernote").value;
+			info = document.getElementById("contentInfo");
+			if(value == ""){
+				result = false;
+				info.style.visibility = "visible";
+			}else{
+				info.style.visibility = "hidden";
+			}
+			
+	
+			
+	
+			if(result){
+				document.joinFrm.method = "post";
+				document.joinFrm.action = "#";
+				document.joinFrm.submit();
+			}
+		}
+	</script>
 </head>
 <body>
 	<%@ include file="../header.jsp" %>
@@ -177,7 +224,7 @@
 			<div id="contentInfo">필수 입력 항목입니다.</div>
 			
 			<div id="butttonArea">
-				<input type="button" id="submitButton" value="저장" onclick="">
+				<input type="button" id="submitButton" value="저장" onclick="submitFn()">
 				<input type="button" id="calcelButton" value="취소" onclick="">
 			</div>
 		</form>

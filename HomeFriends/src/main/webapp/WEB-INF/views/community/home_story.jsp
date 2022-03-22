@@ -21,8 +21,9 @@
 	<script src="/controller/js/jquery-3.6.0.min.js"></script>
 	<link href="/controller/css/community/home_story.css" rel="stylesheet">
 	<script src="/controller/js/community/home_story.js"></script>
+	<script src="/controller/js/footer.js"></script>
 		
-	</head>
+</head>
 <body>
 	<%@ include file="../header.jsp" %>
 	<%@ include file="../nav.jsp" %>
@@ -30,7 +31,7 @@
 	<!-- 본문 영역 -->
 	<section id="story_area">
 		<div class="row" id="storyimg">
-			<div class="col-sm-9 col-md-9 col-xg-9 col-xl-9" id="storyimg_area">
+			<div class="col-12 col-sm-9 col-md-9 col-xg-9 col-xl-9" id="storyimg_area">
 				<div id="absolute_">
 					<div id="story_title">보편적인 K-아파트</div>
 					<div id="profile">
@@ -84,7 +85,11 @@
 		<!-- ====================================================================================== -->
 		<!-- ====================================================================================== -->
 		<div class="row storyList">
-			<div class="storyListTitle" onclick="location.href='home_list.do'">오늘의 스토리</div>
+			<div class="storyListTitle">
+				오늘의 스토리
+				<span id="moreview" onclick="location.href='home_list.do'">더보기</span>
+				<div id="clear"></div>
+			</div>
 			<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 story">
 				<img src="/controller/image/story02.webp" class="storyImg" onclick="">
 				<div class="storyText" onclick="">

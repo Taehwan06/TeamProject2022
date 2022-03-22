@@ -203,6 +203,7 @@ $(document).ready(function(){
 	$("#change_content").mouseleave(function(){
 		$("._change").css({"border" : "none", "color" : "black"});
 	});
+	
 });
 
 $(window).resize(function() {

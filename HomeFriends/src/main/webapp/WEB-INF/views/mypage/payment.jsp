@@ -20,6 +20,7 @@
 	<script src="/controller/js/jquery-3.6.0.min.js"></script>
 	<script src="/controller/js/nav.js"></script>
 	<script src="/controller/js/mypage/payment1.js"></script>
+	<script src="/controller/js/footer.js"></script>
 	
 	
 

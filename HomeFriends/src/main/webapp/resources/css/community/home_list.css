@@ -30,6 +30,10 @@ li{
 .storyText{
 	text-align : center;
 }
+#recent{
+	background : #ffb6c1;
+	color : white;
+}
 
 
 /* 미디어 쿼리  CSS */

@@ -19,7 +19,8 @@
 	<link href="/controller/css/footer.css" rel="stylesheet">
 	<script src="/controller/js/jquery-3.6.0.min.js"></script>
 	<link href="/controller/css/store/view.css" rel="stylesheet">
-	<script src="/controller/js/store/view.js"></script>
+	<script src="/controller/js/store/store_view.js"></script>
+	<script src="/controller/js/footer.js"></script>
 	
 </head>
 <body>
