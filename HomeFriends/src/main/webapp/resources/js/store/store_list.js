@@ -2,8 +2,8 @@ $(document).ready( function(){
 	$("#priceSelected").on('click', function() {
 		var start = $("#priceStart").val()*1;
 		var end = $("#priceEnd").val()*1;
-		if (start < 0) {start = 0};
-		if (end <= 0) end = 10**9;	// 대충 있을것같지 않은 최대치 가격
+		if (start < 0) start = 0;
+		if (end <= 0) end = Math.pow(10, 9);
 		alert(start+" ~ "+end);
 	});
 	
@@ -42,6 +42,9 @@ $(document).ready( function(){
 //home_list에서 가져옴 
 //정렬방식 클릭시 색상변경
 function listFn(e){
-	$(".list_btn").css({"background" : "none", "color" : "black"});
-	$(e).css({"background" : "#ffb6c1", "color" : "white"});
+	if($(e).css("color")!="rgb(255, 255, 255)"){
+		$(e).css({"background" : "#ffb6c1", "color" : "white"});
+	}else{
+		$(".list_btn").css({"background" : "none", "color" : "black"});
+	}
 }

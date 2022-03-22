@@ -10,7 +10,7 @@
 	<!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     
-	<title>스토어</title>
+	<title>장바구니</title>
 	
 	<link href="/controller/css/header.css" rel="stylesheet">
 	<link href="/controller/css/nav.css" rel="stylesheet">
@@ -40,10 +40,10 @@
 				</div>
 			</div>
 			<!-- 상품표기 -->
-			<div class="col-12 col-sm-8 col-md-8 padding_right">
+			<div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 padding_right">
 				<div>
 					<!-- 개별 상품목록 -->
-					<ul class="row no_list container border_b">
+					<ul class="row no_list container-fluid border_b">
 						<div class="col-6">
 							<input class="Selection" type="checkbox" name="Selection" value="상품번호3">
 						</div>
