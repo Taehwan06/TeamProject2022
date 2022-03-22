@@ -91,8 +91,7 @@
 			</div>
 			
 			<div id="discountArea">
-				<input type="text" id="discount" name="discount" placeholder="할인율을 입력해주세요.">
-				<div id="discountInfo">필수 입력 항목입니다.</div>
+				<input type="text" id="discount" name="discount" placeholder="할인율을 입력해주세요.">	
 			</div>
 			
 			<div id="discountArea">
