@@ -37,7 +37,11 @@ footer{
 	max-width: 250px;
 	margin-bottom: 20px;
 }
-.Top_btn_{
+.Top_btn{
+   border : none;
+   background : white;
+}
+.Top_btn_, .Top_btn{
    position : fixed;
    bottom : 30px;
    right : 30px;
