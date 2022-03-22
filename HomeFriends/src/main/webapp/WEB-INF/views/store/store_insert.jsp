@@ -60,6 +60,7 @@
 						</label><br>
 						<label for="imgUpload" id="imgLabel">
 							<span id="imgButton">커버 사진 등록</span>
+							
 						</label>
 					</div>
 				</label>
