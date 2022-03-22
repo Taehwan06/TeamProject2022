@@ -99,6 +99,7 @@
 				<div id="discountInfo">필수 입력 항목입니다.</div>
 			</div>
 			
+			
 			<textarea id="summernote" name="content"></textarea>
 			<div id="contentInfo">필수 입력 항목입니다.</div>
 			
