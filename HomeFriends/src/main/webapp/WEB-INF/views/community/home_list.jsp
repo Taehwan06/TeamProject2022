@@ -21,6 +21,7 @@
 	<script src="/controller/js/jquery-3.6.0.min.js"></script>
 	<link href="/controller/css/community/home_list.css" rel="stylesheet">
 	<script src="/controller/js/community/home_list.js"></script>
+	<script src="/controller/js/footer.js"></script>
 
 </head>
 <body>
@@ -30,7 +31,7 @@
 	<!-- 본문 영역 -->
 	<section id="Community_area">
 		<div class="row" id="sectionDiv">
-			<div class="col-2 col-sm-2 col-md-2 col-lg-1 col-xl-1 list_"><button class="list_btn" onclick="listFn(this)">최신글</button></div>
+			<div class="col-2 col-sm-2 col-md-2 col-lg-1 col-xl-1 list_"><button class="list_btn" onclick="listFn(this)" id="recent">최신글</button></div>
 			<div class="col-2 col-sm-2 col-md-2 col-lg-1 col-xl-1 list_"> <button class="list_btn" onclick="listFn(this)">조회수</button></div>
 			<div class="col-2 col-sm-2 col-md-2 col-lg-1 col-xl-1 list_"><button class="list_btn" onclick="listFn(this)">좋아요</button></div>
 		</div>
