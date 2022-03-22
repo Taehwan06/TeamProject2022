@@ -1,19 +1,20 @@
+
 @charset "EUC-KR";
   
-  /*¸ÞÀÎÄÃ·¯:ffb6c1 ÇÎÅ©*/
+  /*ï¿½ï¿½ï¿½ï¿½ï¿½Ã·ï¿½:ffb6c1 ï¿½ï¿½Å©*/
   
-		  section{
+		section{
 			margin: auto;
-			max-width: 1560px;
+			max-width: 1560px;  
 			color:gray;
 		}
 		
-		/*input Å×µÎ¸®*/
+		/*input ï¿½×µÎ¸ï¿½*/
 		input:focus{
 			outline:4px solid #ffb6c1;
 		}
 		
-		/*select È­»ìÇ¥ ¾ø¾Ö´Â ¹æ¹ý*/
+		/*select È­ï¿½ï¿½Ç¥ ï¿½ï¿½ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½*/
 		select{
 			border:none;
 			border-radius:0;
@@ -61,7 +62,14 @@
 		.edit_dummy,.memberEditSubmit{
 			margin-left:30px;
 			margin-bottom:50px;
+		}   
+		
+		.edit_dummy2{
+			margin-left:30px;
+			margin-bottom:2px;
+			
 		}   	
+			
 		
    		
 
@@ -83,7 +91,7 @@
    			font-weight: 800;
    		}
    		
-   		.edit_dummy input[type=text], select{
+   		.edit_dummy input[type=text], select,.edit_dummy2 input[type=text]{
    			text-align:center;
    			color:gray;
 			background:white;
@@ -106,14 +114,18 @@
 			
 		}
 		
-		#nickInput{
+		#nickInput,#emailInput,#BirthInput{
 			width:370px;
 	
 		}
 		
-
+		#AddrInput1, #AddrInput2, #AddrInput3{
+			width:370px;
+		}
+		
+	
 		 .phoneInput{
-			width:120px;
+			width:122px;
 		}
 		
 		input[type=submit]{
@@ -140,7 +152,7 @@
 		}
 	
 		
-		/*¶óµð¿À¹öÆ°css*/
+		/*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ°css*/
 		div.radio-wrap {
 		  display: inline-flex;
 		  align-items: center;
@@ -168,7 +180,7 @@
 		  border: 8px solid #ffb6c1;
 		}
 
-		/* ¹Ìµð¾î Äõ¸®  CSS */
+		/* ï¿½Ìµï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½  CSS */
    		/*========================================================================*/
    		/*========================================================================*/
    		/*========================================================================*/
@@ -297,9 +309,14 @@
 				width:120px;	
 			}
 			
-			#nickInput{
+			#nickInput,#emailInput,#BirthInput{
 				width:320px;
 			}
+			
+			#AddrInput1, #AddrInput2, #AddrInput3{
+				width:320px;
+			}
+			
 			
 			input[type=submit]{
 				width:440px;
@@ -352,7 +369,11 @@
 				
 			}
 			
-			#nickInput{
+			#nickInput,#emailInput,#BirthInput{
+				width:300px;
+			}
+			
+			#AddrInput1, #AddrInput2, #AddrInput3{
 				width:300px;
 			}
 

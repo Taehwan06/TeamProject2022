@@ -11,7 +11,7 @@
 	<!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 	
-	<title>홈 스토리 등록 - Home Friends</title>
+	<title>홈 스토리 수정 - Home Friends</title>
 	
 	
 	<!-- 부트스트랩 -->
@@ -79,7 +79,7 @@
 			<div id="contentInfo">필수 입력 항목입니다.</div>
 			
 			<div id="butttonArea">
-				<input type="button" id="submitButton" value="저장" onclick="submitFn()">
+				<input type="button" id="submitButton" value="수정" onclick="submitFn()">
 				<input type="button" id="calcelButton" value="취소" onclick="">
 			</div>
 		</form>

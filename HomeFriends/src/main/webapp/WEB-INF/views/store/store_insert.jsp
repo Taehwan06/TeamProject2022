@@ -11,7 +11,7 @@
 	<!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 	
-	<title>홈 스토리 등록 - Home Friends</title>
+	<title>상품 등록 - Home Friends</title>
 	
 	
 	<!-- 부트스트랩 -->
@@ -74,6 +74,31 @@
 				<input type="text" id="title" name="title" placeholder="제목을 입력해주세요.">
 				<div id="titleInfo">필수 입력 항목입니다.</div>
 			</div>
+			
+			<div id="productNameArea">
+				<input type="text" id="productName" name="productName" placeholder="상품명을 입력해주세요.">
+				<div id="productNameInfo">필수 입력 항목입니다.</div>
+			</div>
+			
+			<div id="originPriceArea">
+				<input type="text" id="originPrice" name="originPrice" placeholder="할인 전 가격을 입력해주세요.">
+				<div id="originPriceInfo">필수 입력 항목입니다.</div>
+			</div>
+			
+			<div id="salePriceArea">
+				<input type="text" id="salePrice" name="salePrice" placeholder="할인 후 판매 가격을 입력해주세요.">
+				<div id="salePriceInfo">필수 입력 항목입니다.</div>
+			</div>
+			
+			<div id="discountArea">
+				<input type="text" id="discount" name="discount" placeholder="할인율을 입력해주세요.">	
+			</div>
+			
+			<div id="discountArea">
+				<input type="text" id="discount" name="discount" placeholder="할인율을 입력해주세요.">
+				<div id="discountInfo">필수 입력 항목입니다.</div>
+			</div>
+			
 			
 			<textarea id="summernote" name="content"></textarea>
 			<div id="contentInfo">필수 입력 항목입니다.</div>

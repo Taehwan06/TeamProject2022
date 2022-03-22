@@ -1,6 +1,8 @@
 @charset "EUC-KR";
   
-  /*¸ÞÀÎÄÃ·¯:ffb6c1 ÇÎÅ©*/
+  /*ï¿½ï¿½Å©:#ffb6c1; #f2b2b8; 
+  	È¸ï¿½ï¿½:#424242;
+  */
   
 		section{
 			margin: auto;
@@ -10,136 +12,102 @@
 			font-weight: 600;
 		}
 		
-		
-		.bi-cart-check{
-			font-size:8rem;
-			color:#ffb6c1;
+		/*ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½Ú½ï¿½*/
+		.pinkNum{
+			color: #f2b2b8;
 		}
 		
-		.bi-emoji-frown, .bi-cart-x{
-			font-size:8rem;
-			color:#ff4f4b;
-		}
-		
-		
-		/*input Å×µÎ¸®*/
-		input:focus{
-			outline:4px solid #ffb6c1;
-		}
-		
-	
-		/*¹öÆ°
-		input[type=submit]{
-			width:20%; 
-			height:50px;
-			display: inline-block;
-			font-weight: 800;
-			color: white;
-			text-align: center; 
-		 	text-decoration: none;
-			vertical-align: middle;
-			cursor: pointer;
-			background-color: #ffb6c1;
-			padding: 0.375rem 0.75rem;
-			font-size: 1.2rem;
-			border-radius: 0.25rem;
-			border: none;
-		}
-		
-		input[type=submit]:hover{
-			color: #ffb6c1;
-			background-color: white;
-			border: 1px solid #ffb6c1;
-		}*/
-		
-		/*div css*/
-		
-		
-		.odr{ 
-			margin-left:3%;
-			margin-bottom: 50px;
-			text-align:center;
-		}
-		
-		/*.memberdelete_title{
-			font-size: 1.6rem;
-			color: black;
-			margin-top: 40px;
-			margin-bottom: 50px;
-			margin-left:3%;
-			font-weight: 1000;
-		}*/
-		
-		.order_title{
-			font-size: 2rem;
-			font-weight: 800;
-			margin-left:3%;
-			margin-bottom: 30px;
-		}
-		
-		.orderBox{
+		#OList1{
+			margin-top:25px;
 			border: 1px solid #dcdcdc;
 			border-radius: 0.25rem;
 			padding:2%;
-		 
+			height:200px;
+			text-align:center;
+			position: relative;
+			
 		}
 		
-		/*¹öÆ°*/
-		#odrApply{
-			border-radius : 8px;
-			width : 40%;
-			height : 55px;
-			font-size : 20px;
-			font-weight : bold;
-			background-color : white;
-			color : #ffb6c1;
-			border : 2px solid #ffb6c1;
+		#OList2{
+			margin-top:45px;
+			margin-bottom:45px;
+			min-height:600px;
+			border: 1px solid #dcdcdc;
+			border-radius: 0.25rem;
+			padding:2%;
+		
 		}
 		
-		#odrApply:hover{
-			background-color : #ffb6c1;
-			color : white;
-			border:none;
-		}
-		
-		
-		.odrTitle{
-			font-size: 1.4rem;
-			color: #ff8da1;
-		}
-		
-		.okTitle{
-			font-size: 1.8rem;
-			color: #ff4162;
-			font-weight:1000;
-		}
-		
-		.odrdetail{
-			font-size: 1.2rem;
-			color: #222222;
-			font-weight:800;
-		}
-		
-		.odrDiv{
-			border:none;
-			padding:4%;
-			background-color:white;
-		}
-		
-		.inlineDiv{
+		.sbox {
 			display:inline-block;
-			border:none;
-			padding:4%;
-			background-color:white;
 		}
 		
-		#iconDIV{
-			margin-top:50px;
+		.direction{
+			font-size:30px;
+			color:#424242;
+			margin:auto;
+			height:100%;
+			vertical-align: middle;
+		}
+		
+		.state{
+			width:20%;
+			padding:2%;
+			max-width: 350px;
+			font-weight:800;
 			
 		}
 	
+		/* #payOk{
+			margin-left:60px;
+		}
+		 */
+		.listIcon{
+			font-size:35px;
+			color:#424242;
+		}
 	
-		/* ¹Ìµð¾î Äõ¸®  CSS */
+	
+		.selectgood{
+			text-align:center;
+			width:110px;
+			height:40px;
+			background-color:#f5f5f5;
+			border:none;
+			border-radius:10px;
+			color:#757575;
+			font-size:0.9rem;
+			font-weight:700;
+		}
+		
+		/*ï¿½Ö¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¸*/
+		.product{
+			margin:2%;
+		}
+		
+		.buyDate{
+			font-size:1rem;
+		}
+		
+		.goDatail{
+			text-align:right;
+			font-size:0.8rem;
+			margin-bottom:20px;
+		}
+		
+		.delState{
+			padding:1.2%;
+			font-size:0.9rem;
+			color:#757575;
+			text-align:center;
+			background-color:#f5f5f5;
+			border:none;
+			border-radius:10px;
+			height:5%;
+		}
+	
+	
+		/* ï¿½Ìµï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½  CSS */
    		/*========================================================================*/
    		/*========================================================================*/
    		/*========================================================================*/
@@ -257,22 +225,27 @@
 				width: 400px;
 			}
 			
-			/* º»¹® css */
+			/* ï¿½ï¿½ï¿½ï¿½ css */
+			.state{
+				width:18%;
+				font-size:0.8rem;
+				font-weight:1000;
+			}	
 			
-			.order_title{
-			font-size: 1.6rem;
-			color: #222222; 
-			font-weight: 700;
+			
+			.listIcon{
+				font-size:25px;
+				color:#424242;
 			}
 			
-			.okTitle{
-				font-size: 1.6rem;
-				font-weight:1200;	
+			#OList1{
+				height:150px;
 			}
 			
-			.odrdetail{
-				font-size: 0.9rem;
+			.direction{
+				font-size:20px;
 			}
+		
 			
 			
 		}
@@ -311,20 +284,26 @@
 				border-top: 3px solid #ffb6c1; 
 			}
 			
-			.order_title{
-				margin-top:30px;
-				font-size: 1.5rem;
-				font-weight: 1200;
+			/* ï¿½ï¿½ï¿½ï¿½ css */
+			.state{
+				width:16%;
+				font-size:0.65rem;
+				font-weight:600;
+			}	
+			
+			
+			.listIcon{
+				font-size:22px;
+				color:#424242;
 			}
 			
-			.okTitle{
-				font-size: 1.6rem;
-				font-weight:1200;	
+			#OList1{
+				height:120px;
 			}
 			
-			.odrdetail{
-				font-size: 0.9rem;
+			.direction{
+				font-size:15px;
+			
 			}
-		
 
 		} 
