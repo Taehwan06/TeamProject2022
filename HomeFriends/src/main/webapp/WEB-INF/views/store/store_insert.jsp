@@ -75,6 +75,56 @@
 				<div id="titleInfo">필수 입력 항목입니다.</div>
 			</div>
 			
+			<div id="productNameArea">
+				<input type="text" id="productName" name="productName" placeholder="상품명을 입력해주세요.">
+				<div id="productNameInfo">필수 입력 항목입니다.</div>
+			</div>
+			
+			<div id="originPriceArea">
+				<input type="text" id="originPrice" name="originPrice" placeholder="할인 전 가격을 입력해주세요.">
+				<div id="originPriceInfo">필수 입력 항목입니다.</div>
+			</div>
+			
+			<div id="salePriceArea">
+				<input type="text" id="salePrice" name="salePrice" placeholder="할인 후 판매 가격을 입력해주세요.">
+				<div id="salePriceInfo">필수 입력 항목입니다.</div>
+			</div>
+			
+			<div id="discountArea">
+				<input type="text" id="discount" name="discount" placeholder="할인율을 입력해주세요.">	
+			</div>
+			
+			<div id="brandArea">
+				<input type="text" id="brand" name="brand" placeholder="브랜드를 입력해주세요.">
+			</div>
+			
+			<div id="deliveryChargeArea">
+				<input type="text" id="deliveryCharge" name="deliveryCharge" placeholder="배송비를 입력해주세요.">
+				<div id="deliveryChargeInfo">필수 입력 항목입니다.</div>
+			</div>
+			
+			<div id="freeDeliveryArea">
+				<input type="radio" id="freeDelivery" name="freeDelivery" class="freeDelivery">무료배송
+				<input type="radio" id="freeDelivery" name="freeDelivery" class="freeDelivery">유료배송
+				<div id="freeDeliveryInfo">필수 입력 항목입니다.</div>
+			</div>
+			
+			<div id="freeDeliveryArea">
+				<input type="radio" id="freeDelivery" name="freeDelivery" class="freeDelivery">무료배송
+				<input type="radio" id="freeDelivery" name="freeDelivery" class="freeDelivery">유료배송
+				<div id="freeDeliveryInfo">필수 입력 항목입니다.</div>
+			</div>
+			
+			<div id="deliveryChargeArea">
+				<input type="text" id="deliveryCharge" name="deliveryCharge" placeholder="배송비를 입력해주세요.">
+				<div id="deliveryChargeInfo">필수 입력 항목입니다.</div>
+			</div>
+			
+			
+			
+			
+			
+			
 			<textarea id="summernote" name="content"></textarea>
 			<div id="contentInfo">필수 입력 항목입니다.</div>
 			

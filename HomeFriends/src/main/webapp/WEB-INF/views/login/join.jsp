@@ -164,12 +164,15 @@
 				<label for="" class="label">
 					<div name="genderHead" id="genderHead" class="head">성별</div>
 				</label>
-				<label for="gender1" class="label">
+				<label for="gender1" class="labelGender">
 					<input type="radio" name="gender" id="gender1" class="input value gender" value="M" onblur="onBlurFn(this)" placeholder="">남성
 				</label>
-				<label for="gender2" class="label">
+				<label for="gender2" class="labelGender">
 					<input type="radio" name="gender" id="gender2" class="input value gender" value="F" onblur="onBlurFn(this)" placeholder="">여성
-				</label>			
+				</label>
+				<label for="gender3" class="labelGender">
+					<input type="radio" name="gender" id="gender3" class="input value gender" value="N" onblur="onBlurFn(this)" placeholder="">선택 안 함
+				</label>
 			</div>
 			<label for="gender">
 				<div id="genderFoot" class="foot">성별을 입력하세요</div>

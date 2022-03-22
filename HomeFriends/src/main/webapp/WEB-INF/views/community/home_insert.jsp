@@ -65,14 +65,18 @@
 				</label>
 			</div>
 			
-			<div id="imgUploadInfo">필수 입력 항목입니다.</div>
+			<label for="imgUpload" id="imgUploadLabel">
+				<div id="imgUploadInfo">필수 입력 항목입니다.</div>
+			</label>
 			<div id="imgUploadArea">
 				<input type="file" id="imgUpload" name="imgUpload">
 			</div>
 			
 			<div id="titleArea">
 				<input type="text" id="title" name="title" placeholder="제목을 입력해주세요.">
-				<div id="titleInfo">필수 입력 항목입니다.</div>
+				<label for="title">
+					<div id="titleInfo">필수 입력 항목입니다.</div>
+				</label>
 			</div>
 			
 			<textarea id="summernote" name="content"></textarea>

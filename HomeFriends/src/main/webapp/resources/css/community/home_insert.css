@@ -52,6 +52,13 @@
 	margin-right: auto;
 	margin-left: auto;
 }
+label{
+	width: 100%;
+}
+#imgUploadLabel{
+	width: 100%;
+	text-align: center;
+}
 #title{
 	width: 100%;
 	height: 65px;
