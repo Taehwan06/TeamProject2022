@@ -37,7 +37,7 @@
 							<div class="sbox state col-2" id="payOk">
 								<i class="bi bi-credit-card listIcon"></i><br>
 								결제완료<br>
-								<span class="pinkNum">2</span>
+								<span class="pinkNum">0</span>
 							</div>
 							<div class="sbox direction">
 								<i class="bi bi-caret-right"></i>
@@ -45,7 +45,7 @@
 							<div class="sbox state col-2">
 								<i class="bi bi-box-seam listIcon"></i><br>
 								배송준비중<br>
-								<span class="pinkNum">2</span>
+								<span class="pinkNum">0</span>
 							</div>
 							<div class="sbox direction">
 								<i class="bi bi-caret-right"></i>
@@ -61,12 +61,13 @@
 							<div class="sbox state col-2">
 								<i class="bi bi-house listIcon"></i><br>
 								배송완료<br>
-								<span class="pinkNum">0</span>
+								<span class="pinkNum">3</span>
 							</div>
-						</div><!-- 주문 상태 박스 -->
+						</div>
 					</div>
 						<div id="OList2"><!-- 주문 배송 조회 박스 -->
-							<div class="filter">
+				<!-- =============================================== -->
+							<div class="filter"><!-- 필터 -->
 								<select name="day" class="selectgood">
 									<option value="month">한달</option>
 									<option value="3months">3개월</option>
@@ -80,6 +81,7 @@
 									<option value="complete">배송완료</option>
 								</select>
 							</div>
+				<!-- =============================================== -->
 							<div class="product">
 								<div class="row">
 									<div class="col-6 buyDate">
@@ -90,20 +92,20 @@
 									</div>
 									<hr>
 								</div>
-								<div class="row">
-									<div class="col-3 productPic">
+								<div class="row odrNdelBox">
+									<div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3 productPic">
 										<a href="#"><img src="/controller/image/bedding.png"></a>
 									</div>
-									<div class="col-3 productInfo">
-										<a href="#">크라운 구스 력셔리 컬렉션</a>| 1개 <br>
+									<div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-6 productInfo">
+										<a href="#">크라운 구스 력셔리 컬렉션&nbsp;</a>| 1개 <br>
 										<span class="producSpan">구매확정 | 일반택배</span>
 									</div>
-									<div class="col-3 productInfo">
+									<div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3 productInfo">
 										1,988,900원 	
 									</div>
-									<div class="col-3 productBtn">
-										<button>배송추적</button><br>
-										<button>리뷰작성</button> 
+									<div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12 productBtn">
+										<button id="delTrack">배송추적</button>
+										<button id="goReview">리뷰작성</button> 
 									</div>
 								</div> 
 								<div class="row">
@@ -112,11 +114,80 @@
 									</div>
 								</div>
 							</div>
-						</div>
+				<!-- =============================================== -->
+				<!-- =============================================== -->
+							<div class="product">
+								<div class="row">
+									<div class="col-6 buyDate">
+										2022.03.20
+									</div>
+									<div class="col-6 goDatail">
+										<a href="#" id="goDetail">상세보기 <i class="bi bi-chevron-right detailIcon"></i></a>
+									</div>
+									<hr>
+								</div>
+								<div class="row odrNdelBox">
+									<div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3 productPic">
+										<a href="#"><img src="/controller/image/product01.jpg"></a>
+									</div>
+									<div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-6 productInfo">
+										<a href="#">위닉스 ATGE500-JWK&nbsp;</a>| 1개 <br>
+										<span class="producSpan">구매확정 | 일반택배</span>
+									</div>
+									<div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3 productInfo">
+										228,900원 	
+									</div>
+									<div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12 productBtn">
+										<button id="delTrack">배송추적</button>
+										<button id="goReview">리뷰작성</button> 
+									</div>
+								</div> 
+								<div class="row">
+									<div class="col-12 delState">
+										무료배송								
+									</div>
+								</div>
+							</div>
+				<!-- =============================================== -->
+				<!-- =============================================== -->
+							<div class="product">
+								<div class="row">
+									<div class="col-6 buyDate">
+										2022.02.19
+									</div>
+									<div class="col-6 goDatail">
+										<a href="#" id="goDetail">상세보기 <i class="bi bi-chevron-right detailIcon"></i></a>
+									</div>
+									<hr>
+								</div>
+								<div class="row odrNdelBox">
+									<div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3 productPic">
+										<a href="#"><img src="/controller/image/furniture.png"></a>
+									</div>
+									<div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-6 productInfo">
+										<a href="#">패브릭 방수원단 소파&nbsp;</a>| 1개 <br>
+										<span class="producSpan">구매확정 | 일반택배</span>
+									</div>
+									<div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3 productInfo">
+										99,900원 	
+									</div>
+									<div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12 productBtn">
+										<button id="delTrack">배송추적</button>
+										<button id="goReview">리뷰작성</button> 
+									</div>
+								</div> 
+								<div class="row">
+									<div class="col-12 delState">
+										무료배송								
+									</div>
+								</div>
+							</div>
+				<!-- =============================================== -->
+						</div><!-- 주문 배송 조회 박스 닫힘 -->
 					</form>
-				</div>
-			</div>
-	</div>
+				</div><!-- col tag 닫힘 -->
+			</div><!-- row 닫힘 -->
+	</div><!-- container 닫힘 -->
 	</section>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script src="/controller/js/login/join2.js"></script>
