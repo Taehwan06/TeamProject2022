@@ -16,6 +16,16 @@
 			text-decoration:none;
 			color:inherit;
 		}
+
+		.odrNdelBox a:hover{
+			color:inherit;
+		}
+		
+		.odrNdelBox img{
+			width:115px;
+			height:115px;
+			object-fit: cover;
+		}
 		
 		/*위에 있는 박스*/
 		.pinkNum{
@@ -85,6 +95,11 @@
 			font-weight:700;
 		}
 		
+		.selectgood option{
+			height:40px;
+			border-radius:10px;
+		}
+		
 		/*주문배송조회*/
 		.product{
 			margin:2%;
@@ -101,14 +116,15 @@
 		}
 		
 		.delState{
-			padding:1.2%;
+			margin-top:1.8%;
+			padding-top:20px; 
 			font-size:0.9rem;
 			color:#757575;
 			text-align:center;
 			background-color:#f5f5f5;
 			border:none;
 			border-radius:10px;
-			height:5%;
+			height:60px;
 		}
 		
 		#goDetail, .detailIcon{
@@ -119,13 +135,22 @@
 		
 		/*주문배송조회 내용들*/
 		
-		.productPic{
-			text-align:center;
+		.odrNdelBox{
+			display:flex;
+			align-items: center; /*수직정렬*/
+			
 		}
 		
-		.productInfo{
+		.productPic{
+			text-align:center;
+			
+		}
+		
+		.productInfo{ 
 			text-align:center;
 			font-size:1.1rem;
+			font-weight:700;
+			
 		}
 		
 		.producSpan{
@@ -136,6 +161,50 @@
 		.productBtn{
 			text-align:center;
 		}
+		
+		#delTrack{
+			border-radius : 8px;
+			width : 55%;
+			height : 45px;
+			font-size : 1.1rem;
+			font-weight : bold;
+			background-color : white;
+			color : #ffb6c1;
+			border : 2px solid #ffb6c1;
+			margin-bottom:1.5%;
+		
+		}
+		
+		#delTrack:hover{
+			background-color : #fffafa;
+		
+			/* background-color : #ffb6c1;
+			color : white;
+			border:none; */
+		}
+		
+		
+		#goReview{
+			border-radius : 8px;
+			width : 55%;
+			height : 45px;
+			font-size : 1.1rem;
+			font-weight : bold;
+			background-color : #ffb6c1;
+			color : white;
+			border : none;
+		}
+		
+		
+		#goReview:hover{
+			background-color : #ff8da1;
+			/* background-color : white;
+			color : #ffb6c1;
+			border: 2px solid #ffb6c1; */
+		}
+		
+		
+		
 	
 	
 		/* 미디어 쿼리  CSS */
@@ -145,10 +214,6 @@
 		@media screen and (min-width: 1400px){
 			#headerDiv,.navbar{
 				width: 80%;
-			}
-			
-			section{
-				width:90%;
 			}
 			
 			#searchInput{
@@ -173,12 +238,8 @@
 			
 		}
 		@media screen and (min-width: 992px) and (max-width: 1199.99px){
-			#headerDiv, .navbar, footer{
+			#headerDiv, .navbar,section, footer{
 				width: 90%;
-			}
-			
-			section{
-				width:100%;
 			}
 			
 			
@@ -199,19 +260,25 @@
 				width: 80%;
 				margin-left: 20px;
 			}
+			/* 
+			본문
+			#delTrack{
+				font-size:1.1rem;
+			}
+			#goReview{
+				font-size:1.1rem;
+			} */
+			
+			
 		}
 		@media screen and (min-width: 768px) and (max-width: 991.99px){
-			#headerDiv, .navbar, footer{
+			#headerDiv, .navbar, section, footer{
 				width: 95%;
 			}
-			
-			section{
-				width:100%;
-			}
-			
 			#searchInput{
 				width: 89%;
 			}
+			
 			#spaceDiv, .hiddenStory, .hiddenShop{
 				display: none;
 			} 
@@ -223,15 +290,27 @@
 			.categoryUl{
 				padding: 15px 0px 15px 10px;
 			}
+			
+			
+			/*본문*/
+			#delTrack{
+				margin-top:2%;
+				width:49%;
+				/* font-size:1rem; */
+			}
+			#goReview{
+				width:49%;
+				/* font-size:1rem; */
+			}
+			
 		
 		}
 		@media screen and (min-width: 576px) and (max-width: 767.99px){
-			#headerDiv, .navbar, footer{
+			#headerDiv, .navbar, section, footer{
 				width: 98%;
 			}
-			
-			section{
-				width:100%;	
+			#searchFrm{
+				width: 55%;
 			}
 			
 			#searchFrm{
@@ -265,7 +344,7 @@
 			
 			
 			.listIcon{
-				font-size:25px;
+				font-size:35px;
 				color:#424242;
 			}
 			
@@ -276,7 +355,27 @@
 			.direction{
 				font-size:20px;
 			}
-		
+			
+			#delTrack{
+				margin-top:2%;
+				width:48%;
+				/* font-size:1rem; */
+			}
+			#goReview{
+				width:48%;
+				/* font-size:1rem; */
+			}
+			
+			.productPic img{
+				width:85px;
+				height:85px;
+			}
+			
+			.productInfo, .producSpan{
+				font-size:1rem;
+				/* text-align:left; */
+				font-weight:900;
+			}
 			
 			
 		}
@@ -318,13 +417,13 @@
 			/* 본문 css */
 			.state{
 				width:16%;
-				font-size:0.65rem;
-				font-weight:600;
+				font-size:11px;
+				font-weight:bold;
 			}	
 			
 			
 			.listIcon{
-				font-size:22px;
+				font-size:30px;
 				color:#424242;
 			}
 			
@@ -336,5 +435,27 @@
 				font-size:15px;
 			
 			}
+			
+			.odrNdelBox img{
+				width:85px;
+				height:85px;
+				object-fit: cover;
+			}
+			
+			.productInfo {
+				font-size:0.93rem;
+				font-weight:1200;	
+			}
+			
+			#delTrack{
+				margin-top:3%;
+				width:45%;
+			}
+			
+			#goReview{
+				width:45%;
+			}
+			
+			
 
 		} 
