@@ -212,20 +212,3 @@ $(window).resize(function() {
 			$("#subNav2").css({"display" : "none"});
 	}
 });
-
-function locationFn(type){
-	var offset = null;
-	if(type == 'product'){
-		offset = $("#shop_information_area_header").offset();
-		$("html, body").animate({scrollTop: offset.top - 200},400);
-	}else if(type == 'review'){
-		offset = $("#review_area_header").offset();
-		$("html, body").animate({scrollTop: offset.top - 200},400);
-	}else if(type == 'QnA'){
-		offset = $("#QnA_area_header").offset();
-		$("html, body").animate({scrollTop: offset.top - 200},400);
-	}else if(type == 'change'){
-		offset = $("#delivery_area_header").offset();
-		$("html, body").animate({scrollTop: offset.top - 200},400);
-	}
-}
