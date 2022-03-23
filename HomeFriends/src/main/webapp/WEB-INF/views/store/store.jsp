@@ -29,8 +29,15 @@
 	<%@ include file="../header.jsp" %>
 	<%@ include file="../nav.jsp" %>
 	<!-- 본문내용 -->
+	<button class="write_btn">
+		상품등록
+	</button>
 	<section>
-
+		<div class="content_right">
+			<button class="write_btn_">
+				상품등록
+			</button>
+		</div>
 		<!-- 이벤트 베너 -->
 		<div class="row">
 			<img class="col-12" src="/controller/image/store_vn_image.png">
@@ -39,27 +46,40 @@
 		<!-- 상품 카테고리 -->
 		<div class="row category">
 			<div id="furniture" class="category_link col-4 col-sm-2 col-md-2 col-lg-2 col-xl-2">
-				<img class="category_img" src="/controller/image/furniture.png"><br>
-				가구
+				<div class="img_box">
+					<img class="category_img" src="/controller/image/furniture.png"><br>
+				</div>
+					가구
+				
 			</div>
 			<div id="bedding" class="category_link col-4 col-sm-2 col-md-2 col-lg-2 col-xl-2">
-				<img class="category_img" src="/controller/image/bedding.png"><br>
+				<div class="img_box">
+					<img class="category_img" src="/controller/image/bedding.png"><br>
+				</div>
 				침구
 			</div>
 			<div id="appliances" class="category_link col-4 col-sm-2 col-md-2 col-lg-2 col-xl-2">
-				<img class="category_img" src="/controller/image/appliances.png"><br>
+				<div class="img_box">
+					<img id="big_img" class="category_img" src="/controller/image/appliances.png"><br>
+				</div>
 				가전
 			</div>
 			<div id="light" class="category_link col-4 col-sm-2 col-md-2 col-lg-2 col-xl-2">
-				<img class="category_img" src="/controller/image/light.png"><br>
+				<div class="img_box">
+					<img class="category_img" src="/controller/image/light.png"><br>
+				</div>
 				조명
 			</div>
 			<div id="kitchen" class="category_link col-4 col-sm-2 col-md-2 col-lg-2 col-xl-2">
-				<img class="category_img" src="/controller/image/kitchen.png"><br>
+				<div class="img_box">
+					<img class="category_img" src="/controller/image/kitchen.png"><br>
+				</div>
 				주방
 			</div>
 			<div id="daily" class="category_link col-4 col-sm-2 col-md-2 col-lg-2 col-xl-2">
-				<img class="category_img" src="/controller/image/daily.png"><br>
+				<div class="img_box">
+					<img class="category_img" src="/controller/image/daily.png"><br>
+				</div>
 				생활
 			</div>
 
@@ -68,7 +88,11 @@
 		<!-- 컨텐츠 오늘의 딜 -->
 		<div id="deal">
 			<div class="row shopList">
-				<div class="shopListTitle">오늘의 딜</div>
+				<div class="storyListTitle">
+		        오늘의 딜
+			        <span class="moreview" onclick="location.href=''">더보기</span>
+			        <div class="clear"></div>
+		        </div>
 				<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop">
 					<img src="/controller/image/shop01.webp" class="shopImg" onClick="">
 					<div class="shopText" onClick="">
@@ -126,7 +150,7 @@
 					</div>
 				</div>
 
-				<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop">
+				<div id="mdlg_display_none" class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop">
 					<img src="/controller/image/shop04.webp" class="shopImg" onClick="">
 					<div class="shopText" onClick="">
 						<div class="shopTitle">
@@ -150,7 +174,11 @@
 		<!-- 컨텐츠 베스트 상품 -->
 		<div id="deal">
 			<div class="row shopList">
-				<div class="shopListTitle">Best</div>
+				<div class="storyListTitle">
+		        Bast
+			        <span class="moreview" onclick="location.href=''">더보기</span>
+			        <div class="clear"></div>
+		        </div>
 				<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop">
 					<img src="/controller/image/shop01.webp" class="shopImg" onClick="">
 					<div class="shopText" onClick="">
@@ -208,7 +236,7 @@
 					</div>
 				</div>
 
-				<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop">
+				<div id="mdlg_display_none" class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop">
 					<img src="/controller/image/shop04.webp" class="shopImg" onClick="">
 					<div class="shopText" onClick="">
 						<div class="shopTitle">
@@ -232,7 +260,11 @@
 		<!-- 컨텐츠 추천 상품 -->
 		<div id="deal">
 			<div class="row shopList">
-				<div class="shopListTitle">추천상품</div>
+				<div class="storyListTitle">
+		        추천상품
+			        <span class="moreview" onclick="location.href=''">더보기</span>
+			        <div class="clear"></div>
+		        </div>
 				<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop">
 					<img src="/controller/image/shop01.webp" class="shopImg" onClick="">
 					<div class="shopText" onClick="">
@@ -290,7 +322,7 @@
 					</div>
 				</div>
 
-				<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop">
+				<div id="mdlg_display_none" class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop">
 					<img src="/controller/image/shop04.webp" class="shopImg" onClick="">
 					<div class="shopText" onClick="">
 						<div class="shopTitle">
