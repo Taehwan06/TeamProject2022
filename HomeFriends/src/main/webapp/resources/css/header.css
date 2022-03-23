@@ -24,7 +24,9 @@ header{
 	text-align: center;
 }
 
-
+#modalLogo{
+	cursor: pointer;
+}
 #modalSearchFrm{
 	width: 80%;
 	border: 3px solid #ffb6c1;

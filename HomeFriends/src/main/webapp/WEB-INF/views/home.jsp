@@ -10,6 +10,9 @@
 	<!-- 부트스트랩 -->
 	<!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+	<!-- Bootstrap icon CSS-->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css" />
 	
 	<title>홈 프렌즈에 오신걸 환영합니다.</title>
 	
@@ -18,6 +21,7 @@
 	<link href="/controller/css/home.css" rel="stylesheet">
 	<link href="/controller/css/footer.css" rel="stylesheet">
 	<script src="/controller/js/jquery-3.6.0.min.js"></script>
+	<script src="/controller/js/header.js"></script>
 	<script src="/controller/js/nav.js"></script>
 	<script src="/controller/js/home.js"></script>
 	<script src="/controller/js/footer.js"></script>

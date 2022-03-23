@@ -36,15 +36,6 @@ public class HomeController {
 		return "home";
 	}
 	
-	@RequestMapping(value = "/login.do", method = RequestMethod.GET)
-	public String login(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-		
-		
-		
-		return "login/login";
-	}
-	
 	@RequestMapping(value = "/search_result.do", method = RequestMethod.GET)
 	public String search_result(Locale locale, Model model) {
 		
@@ -58,7 +49,7 @@ public class HomeController {
 		
 		return "search_result_none";
 	}
-	
+		
 	@RequestMapping(value = "/last_view.do", method = RequestMethod.GET)
 	public String last_view(Locale locale, Model model) {
 		
