@@ -27,8 +27,7 @@
 <body>
 	<%@ include file="../header.jsp" %>
 	<%@ include file="../nav.jsp" %>
-	<section class="basket_content">
-		<h1 class="page_title">장바구니</h1>
+	<section class="basket_content">	
 		<!-- content -->
 		<form action="#">
 		<div class="row content_box">
@@ -61,20 +60,20 @@
 						<li class="col-9">
 							<ul class="row no_list" style="text-align: center;">
 								<li class="col-6 content_margin">
-									<div class="">
+									<div class="text_left">
 										포근한 이불
 									</div>
 								</li>
-								<li class="col-2 text_center">
-									<div class="absolute_center">
+								<li class="col-3 text_center">
+									<div class="padding_t10">
 										<button type="button" class="btn decreaseQuantity">&#60;</button>
 										<input type="text" class="numberUpDown" class="numberOnly" maxlength="3" size="1" value="1">
 									    <button type="button" class="btn increaseQuantity">&#62;</button>
 								    </div>
 								</li>
-								<li class="col-3 text_center price_val_box" style="text-align: right;">
+								<li class="col-3 text_center price_val_box">
 									<div class="hidden">10000</div>
-									<div class="absolute_center price_val margin_auto"><span>10000</span>원</div>
+									<div class="price_val margin_auto"><span>10000</span>원</div>
 								</li>
 							</ul>
 						</li>
@@ -89,7 +88,7 @@
 								상품금액
 								<br>
 								<div class="bottom_all_price_price">
-									<span>0</span>원
+									<span class="font_size_15px">0</span>원
 								</div>
 							</div>
 						</div>
@@ -101,7 +100,7 @@
 								배송비
 								<br>
 								<div class="bottom_all_price_price">
-									<span>0</span>원
+									<span class="font_size_15px">0</span>원
 								</div>
 							</div>
 						</div>
@@ -113,7 +112,7 @@
 								상품금액
 								<br>
 								<div class="bottom_all_price_price">
-									<span>0</span>원
+									<span class="font_size_15px">0</span>원
 								</div>
 							</div>
 						</div>
