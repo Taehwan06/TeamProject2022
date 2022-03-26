@@ -1,4 +1,5 @@
 @charset "UTF-8";
+@import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
 nav{
 	height: 115px;
 	font-weight: bold;
@@ -58,11 +59,9 @@ nav{
 #categoryLi:hover{
 	color: #ffb6c1;
 }
-#menuLogin{
-	border-left: 1px solid lightgray;
-}
 #menuSearchlist{
 	border-left: 1px solid lightgray;
+	border-right: 1px solid lightgray;
 }
 
 .navSpaceLi{
@@ -119,13 +118,38 @@ nav{
 .hidden{
 	visibility: hidden;
 }
-@media screen and (max-width: 768px){
+
+
+#navProfile{
+	font-size: 30px;
+	font-family: 'Nanum Pen Script', cursive;
+}
+#navProfileImg{
+	width: 25px;
+	height: 25px;
+	border-radius: 50px;
+}
+#navProfile:hover{
+	color: #ffb6c1;
+}
+
+
+
+@media screen and (min-width: 576.01px) and (max-width: 767.99px){
 	#menuSearchlist{
+		border-right: none;
 		border-left: none;
 	}
+	#menuLogout, #navProfile{
+		display: none;
+	}
 }
+
 @media screen and (max-width: 575.99px){
 	nav{
 		height: 50px;
+	}
+	#menuLogout, #navProfile{
+		display: none;
 	}
 }

@@ -9,6 +9,9 @@
 	<!-- 부트스트랩 -->
 	<!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <!-- Bootstrap icon CSS-->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css" />
 	
 	<title>회원 가입</title>
 	
@@ -17,10 +20,16 @@
 	<link href="/controller/css/login/join.css" rel="stylesheet">
 	<link href="/controller/css/footer.css" rel="stylesheet">
 	<script src="/controller/js/jquery-3.6.0.min.js"></script>
+	<script src="/controller/js/header.js"></script>
 	<script src="/controller/js/nav.js"></script>
 	<script src="/controller/js/login/join1.js"></script>
 	<script src="/controller/js/footer.js"></script>
 
+	<script>
+		function sendMailFn(){
+			
+		}
+	</script>
 </head>
 <body>
 	<%@ include file="../header.jsp" %>
@@ -31,7 +40,7 @@
 
 		<form name="joinFrm" id="joinFrm" class="joinFrm" method="post">
 			<div class="title">회원 가입</div>
-	
+			
 			<!-- 아이디 -->
 			<div class="idbtnDiv">
 			</div>
@@ -40,13 +49,13 @@
 					<div name="idHead" id="idHead" class="head">아이디</div>
 				</label>
 				<input type="text" name="id" id="id" class="input value" onblur="onBlurFn(this)" placeholder="예) IU@hanmail.net">
-				<input type="button" name="idbtn" id="idbtn" class="idbtn button" value="인증메일 발송" onclick="">
+				<input type="button" name="idbtn" id="idbtn" class="idbtn button" value="인증메일 발송" onclick="sendMailFn()">
 			</div>
 			
 			<label for="id">
 				<div id="idFoot" class="foot">아이디를 입력하세요</div>
 			</label>
-	
+			
 			<!-- 인증번호 입력 -->
 			<div class="emailArea border">
 				<label for="emailcheck" class="label">
@@ -65,7 +74,7 @@
 				<label for="pwd" class="label">
 					<div name="pwdHead" id="pwdHead" class="head">비밀번호</div>
 				</label>
-				<input type="text" name="pwd" id="pwd" class="input value" onblur="onBlurFn(this)" placeholder="예) abc123!@">
+				<input type="password" name="pass" id="pwd" class="input value" onblur="onBlurFn(this)" placeholder="예) abc123!@">
 			</div>
 			<label for="pwd">
 				<div id="pwdFoot" class="foot">비밀번호를 입력하세요</div>
@@ -76,7 +85,7 @@
 				<label for="pwdcheck" class="label">
 					<div name="pwdcheckHead" id="pwdcheckHead" class="head">비밀번호 확인</div>
 				</label>
-				<input type="text" name="pwdcheck" id="pwdcheck" class="input value" onblur="onBlurFn(this)" placeholder="예) abc123!@">
+				<input type="password" name="pwdcheck" id="pwdcheck" class="input value" onblur="onBlurFn(this)" placeholder="예) abc123!@">
 			</div>
 			<label for="pwdcheck">
 				<div id="pwdcheckFoot" class="foot">비밀번호를 다시 입력하세요</div>
@@ -87,7 +96,7 @@
 				<label for="name" class="label">
 					<div name="nameHead" id="nameHead" class="head">이름</div>
 				</label>
-				<input type="text" name="name" id="name" class="input value"onblur="onBlurFn(this)" placeholder="예) 이지은">
+				<input type="text" name="membername" id="name" class="input value"onblur="onBlurFn(this)" placeholder="예) 이지은">
 			</div>
 			<label for="name">
 				<div id="nameFoot" class="foot">이름을 입력하세요</div>
@@ -98,7 +107,7 @@
 				<label for="nick" class="label">
 					<div name="nickHead" id="nickHead" class="head">닉네임</div>
 				</label>
-				<input type="text" name="nick" id="nick" class="input value" onblur="onBlurFn(this)" placeholder="예) 아이유">
+				<input type="text" name="nick_name" id="nick" class="input value" onblur="onBlurFn(this)" placeholder="예) 아이유">
 			</div>
 			<label for="nick">
 				<div id="nickFoot" class="foot">닉네임을 입력하세요</div>
@@ -183,7 +192,7 @@
 				<label for="recommend" class="label">
 					<div name="recommendHead" id="recommendHead" class="head">추천인</div>
 				</label>
-				<input type="text" name="recommend" id="recommend" class="input value"onblur="onBlurFn(this)" placeholder="예) abc123@naver.com">
+				<input type="text" name="recommender" id="recommend" class="input value"onblur="onBlurFn(this)" placeholder="예) abc123@naver.com">
 			</div>
 			<label for="recommend">
 				<div id="recommendFoot" class="foot">유효하지 않은 회원입니다</div>
@@ -202,6 +211,7 @@
 		
 	</section>
 	
+	<!-- 우편번호 찾기 -->
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script src="/controller/js/login/join2.js"></script>
 

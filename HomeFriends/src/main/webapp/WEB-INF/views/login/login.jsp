@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -9,6 +10,9 @@
 	<!-- 부트스트랩 -->
 	<!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <!-- Bootstrap icon CSS-->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css" />
 	
 	<title>로그인</title>   
 	 
@@ -17,9 +21,18 @@
 	<link href="/controller/css/login/login.css" rel="stylesheet">
 	<link href="/controller/css/footer.css" rel="stylesheet">
 	<script src="/controller/js/jquery-3.6.0.min.js"></script>
+	<script src="/controller/js/header.js"></script>
 	<script src="/controller/js/nav.js"></script>
 	<script src="/controller/js/login/join1.js"></script>
 	<script src="/controller/js/footer.js"></script>
+	
+	<script>
+		function loginFn(){
+			document.loginFrm.method = "post";
+			document.loginFrm.action = "login.do";
+			document.loginFrm.submit();
+		}
+	</script>
 </head>
 <body>
 	<%@ include file="../header.jsp" %>
@@ -32,15 +45,15 @@
 		<div class="row">
 			<div class="col-8" style="float: none; margin:0 auto;">
 				<img class="login_logo" width="180px" src="/controller/image/mainLogo.png">
-				<form>
+				<form name="loginFrm" id="loginFrm">
 					<div>
-						<input type="text" name="id" placeholder="  이메일">
+						<input type="text" name="id" id="id" placeholder="  이메일">
 					</div>
 					<div> 
-						<input type="password" name="password" placeholder="  비밀번호">
+						<input type="password" name="pass" id="pwd" placeholder="  비밀번호">
 					</div>
 					<div>
-						<input type="submit" value="로그인">
+						<input type="button" id="loginButton" value="로그인" onclick="loginFn()">
 					</div>
 				</form>
 				<div>

@@ -52,10 +52,22 @@
 				</div>
 				
 				<div class="col-6 modalMenu modalLoginButton">
-					<input type="button" id="loginBtn" class="modalMenuBtn" onclick="location.href='${pageContext.request.contextPath}/login/login.do'" value="로그인">
+					<c:if test="${loginUser == null}">
+						<input type="button" id="loginBtn" class="modalMenuBtn" onclick="location.href='${pageContext.request.contextPath}/login/login.do'" value="로그인">
+					</c:if>
+					<c:if test="${loginUser != null}">
+						<input type="button" id="loginBtn" class="modalMenuBtn" onclick="location.href='${pageContext.request.contextPath}/login/logout.do'" value="로그아웃">
+					</c:if>
 				</div>
 				<div class="col-6 modalMenu modalLoginButton">
-					<input type="button" id="joinBtn" class="modalMenuBtn" onclick="location.href='${pageContext.request.contextPath}/login/join.do'" value="회원가입">		
+					<c:if test="${loginUser == null}">
+						<input type="button" id="joinBtn" class="modalMenuBtn" onclick="location.href='${pageContext.request.contextPath}/login/join.do'" value="회원가입">
+					</c:if>
+					<c:if test="${loginUser != null}">
+						<div class="" id="modalProfile" onclick="location.href='${pageContext.request.contextPath}/mypage/mypage.do'">
+							<img id="modalProfileImg" src="/controller/image/${loginUser.profile_system}"> ${loginUser.nick_name}
+						</div>
+					</c:if>		
 				</div>
 
 

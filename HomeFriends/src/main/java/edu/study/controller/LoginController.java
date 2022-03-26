@@ -1,7 +1,9 @@
 package edu.study.controller;
 
-import java.util.List;
 import java.util.Locale;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,8 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import edu.study.service.BoardService;
-import edu.study.vo.BoardVO;
+import edu.study.service.MemberService;
+import edu.study.vo.MemberVO;
 import edu.study.vo.SearchVO;
 
 /**
@@ -21,7 +23,7 @@ import edu.study.vo.SearchVO;
 public class LoginController {
 	
 	@Autowired
-	private BoardService boardService;
+	private MemberService memberService;
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -33,10 +35,44 @@ public class LoginController {
 		return "login/join";
 	}
 	
+	@RequestMapping(value = "/join.do", method = RequestMethod.POST)
+	public String join(Locale locale, Model model, MemberVO vo) throws Exception {
+		
+		int result = memberService.insert(vo);
+		
+		model.addAttribute("vo", vo);
+		
+		return "login/join_result";
+	}
+	
 	@RequestMapping(value = "/login.do", method = RequestMethod.GET)
 	public String login(Locale locale, Model model, SearchVO vo) throws Exception {
 		
 		return "login/login";
+	}
+	
+	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
+	public String login(Locale locale, Model model, HttpServletRequest req, MemberVO vo) throws Exception {
+		
+		HttpSession session = req.getSession();
+		MemberVO loginUser = memberService.login(vo);
+		
+		if(loginUser == null) {
+			session.setAttribute("loginUser", null);
+			
+		}else {
+			session.setAttribute("loginUser", loginUser);
+		}
+		
+		return "redirect: /controller/";
+	}
+	
+	@RequestMapping(value = "/logout.do", method = RequestMethod.GET)
+	public String logout(Locale locale, Model model, HttpSession session) throws Exception {
+		
+		session.invalidate();
+		
+		return "redirect: /controller/";
 	}
 	
 	@RequestMapping(value = "/join_result.do", method = RequestMethod.GET)

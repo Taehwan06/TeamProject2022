@@ -149,17 +149,6 @@ function onBlurFn(obj){
 			info.style.color = "green";
 		}
 	}
-	if(id =="sample2_extraAddress"){
-		info = document.getElementById("addrFoot");
-		if(value == ""){
-			info.style.visibility = "visible";
-			info.textContent = "우편번호 찾기를 이용해주세요";
-			info.style.color = "red";
-		}else{
-			info.style.visibility = "hidden";
-			info.style.color = "green";
-		}
-	}
 	if(id =="sample2_detailAddress"){
 		info = document.getElementById("addrFoot");
 		if(value == ""){
@@ -398,19 +387,6 @@ function joinSubmitFn(){
 	}
 
 	value = document.getElementById("sample2_address").value;
-	info = document.getElementById("addrFoot");
-	if(value == ""){
-		result = false;
-		info.style.visibility = "visible";
-		info.textContent = "우편번호 찾기를 이용해주세요";
-		info.style.color = "red";
-	}else{
-		info.style.visibility = "hidden";
-		info.textContent = "";
-		info.style.color = "green";
-	}
-
-	value = document.getElementById("sample2_extraAddress").value;
 	info = document.getElementById("addrFoot");
 	if(value == ""){
 		result = false;

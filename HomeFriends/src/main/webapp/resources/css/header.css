@@ -56,9 +56,6 @@ header{
 }
 
 
-
-
-
 .modalMenu{
 	text-align: center;
 }
@@ -176,6 +173,22 @@ header{
 }
 
 .headerMenu:hover{
+	color: #ffb6c1;
+}
+
+
+
+#modalProfile{
+	font-size: 30px;
+	font-family: 'Nanum Pen Script', cursive;
+	cursor: pointer;
+}
+#modalProfileImg{
+	width: 25px;
+	height: 25px;
+	border-radius: 50px;
+}
+#modalProfile:hover{
 	color: #ffb6c1;
 }
   
