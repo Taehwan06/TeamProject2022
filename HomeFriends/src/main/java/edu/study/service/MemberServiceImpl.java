@@ -23,6 +23,21 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.login(vo);
 	}
 
+	@Override
+	public MemberVO findId(MemberVO vo) throws Exception {
+		return memberDao.findId(vo);
+	}
+
+	@Override
+	public MemberVO findPwd(MemberVO vo) throws Exception {
+		return memberDao.findPwd(vo);
+	}
+
+	@Override
+	public int updateTempPwd(MemberVO vo) throws Exception {
+		return memberDao.updateTempPwd(vo);
+	}
+
 	
 	
 
