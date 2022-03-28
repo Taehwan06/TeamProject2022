@@ -62,7 +62,7 @@
 		}
 		
 		.delivery-icons:hover{ 
-			color: lavender;
+			color: #ff8da1;
 
 		}
 
@@ -169,7 +169,7 @@
 		}
 
 		#mystory_btn button:hover ,#profile_btn button:hover {
-		 	background-color: lavender;
+		 	background-color: #fffafa;
    		 	
 		}
 

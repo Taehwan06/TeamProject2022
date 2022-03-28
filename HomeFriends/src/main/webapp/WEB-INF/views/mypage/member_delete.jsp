@@ -73,7 +73,7 @@
 					</div>
 					<div class="del deleteBtn">
 						<button id="delApply">탈퇴하기</button>
-						<button id="delCancel">취소하기</button>
+						<button type="button" id="delCancel" onclick="location.href='${pageContext.request.contextPath}/mypage/mypage.do'">취소하기</button>
 					</div>
 					</form>
 				</div>
