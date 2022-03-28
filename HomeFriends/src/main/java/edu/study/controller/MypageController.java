@@ -9,8 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import edu.study.service.BoardService;
-import edu.study.vo.BoardVO;
+import edu.study.service.MypageService;
+import edu.study.vo.MemberVO;
 import edu.study.vo.SearchVO;
 
 /**
@@ -21,7 +21,7 @@ import edu.study.vo.SearchVO;
 public class MypageController {
 	
 	@Autowired
-	private BoardService boardService;
+	private MypageService mypageService;
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -30,11 +30,29 @@ public class MypageController {
 	@RequestMapping(value = "/mypage.do", method = RequestMethod.GET)
 	public String mypage(Locale locale, Model model, SearchVO vo) throws Exception {
 		
-		return "mypage/mypage";
+		int midx=1;
+		MemberVO result = mypageService.detail(midx);
+		model.addAttribute("vo", result);
+		
+		return "mypage/mypage"; 
 	}
 	
 	@RequestMapping(value = "/member_modify.do", method = RequestMethod.GET)
-	public String member_modify(Locale locale, Model model, SearchVO vo) throws Exception {
+	public String member_modify(Locale locale, Model model) throws Exception {
+		
+		int midx=1;
+		MemberVO result = mypageService.detail(midx);
+		
+		model.addAttribute("vo", result);
+		
+		return "mypage/member_modify"; 
+	}
+	
+	@RequestMapping(value = "/member_modify.do", method = RequestMethod.POST)
+	public String member_modifyOk(Locale locale, Model model,MemberVO vo) throws Exception {
+		
+		vo.setMidx(1);
+		int result = mypageService.update(vo);	
 		
 		return "mypage/member_modify";
 	}

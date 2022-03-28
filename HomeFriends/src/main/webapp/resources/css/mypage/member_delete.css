@@ -83,9 +83,8 @@
 		}
 		
 		#delApply:hover{
-			background-color : #ffb6c1;
-			color : white;
-			border:none;
+			background-color : #fffafa;
+   		 	
 		}
 		
 		#delCancel{
@@ -100,11 +99,17 @@
 		}
 		
 		#delCancel:hover{
+			background-color : #ff8da1;
+		
+		}
+		
+		
+		/* #delCancel:hover{
 			background-color : white;
 			color : #ffb6c1;
 			border: 2px solid #ffb6c1;
 		}
-		
+		 */
 		
 		.liTitle{
 			font-size: 1.2rem;
