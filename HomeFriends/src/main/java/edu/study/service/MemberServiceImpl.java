@@ -37,7 +37,5 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.updateTempPwd(vo);
 	}
 
-	
-	
 
 }
