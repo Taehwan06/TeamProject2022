@@ -14,7 +14,7 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css" />
 	
-	<title>아이디 찾기</title>
+	<title>아이디 찾기 - 홈 프렌즈</title>
 	
 	<link href="/controller/css/header.css" rel="stylesheet">
 	<link href="/controller/css/nav.css" rel="stylesheet">
@@ -23,9 +23,8 @@
 	<script src="/controller/js/jquery-3.6.0.min.js"></script>
 	<script src="/controller/js/header.js"></script>
 	<script src="/controller/js/nav.js"></script>
+	<script src="/controller/js/login/find_id.js"></script>
 	<script src="/controller/js/footer.js"></script>
-	
-	
 
 </head>
 <body>
@@ -48,26 +47,26 @@
 					<div id="nameFoot" class="foot">이름을 입력하세요</div>
 				</label>
 				
-				<!-- 생년월일 -->
+				<!-- 연락처 ( 생년월일에서 연락처로 수정 ) -->
 				<div class="birthArea border">
 					<label for="birth1" class="label">
-						<div name="birthHead" id="birthHead" class="head">생년월일</div>
+						<div name="birthHead" id="birthHead" class="head">연락처</div>
 					</label>
-					<input type="text" name="birth1" id="birth1" class="birth value" onblur="onBlurFn(this)" placeholder="">년
-					<input type="text" name="birth2" id="birth2" class="birth value" onblur="onBlurFn(this)" placeholder="">월
-					<input type="text" name="birth3" id="birth3" class="birth value" onblur="onBlurFn(this)" placeholder="">일
+					<input type="text" name="phone1" id="birth1" class="birth value" onblur="onBlurFn(this)" placeholder=""> -
+					<input type="text" name="phone2" id="birth2" class="birth value" onblur="onBlurFn(this)" placeholder=""> -
+					<input type="text" name="phone3" id="birth3" class="birth value" onblur="onBlurFn(this)" placeholder="">
 				</div>
 				<label for="birth1">
-					<div id="birthFoot" class="foot">생년월일을 입력하세요</div>
+					<div id="birthFoot" class="foot">연락처를 입력하세요</div>
 				</label>
 				
 				
 				<div class="sectionBtnArea">
-					<input type="button" name="sectionFindBtn" id="sectionFindBtn" class="sectionFindBtn" value="아이디 찾기" onclick=""><br>
+					<input type="button" name="sectionFindBtn" id="sectionFindBtn" class="sectionFindBtn" value="아이디 찾기" onclick="findIdFn()"><br>
 					<div>
-						<a href="#">로그인 |</a>
-						<a href="#">회원 가입 |</a>
-						<a href="#">비밀번호 찾기</a>
+						<a href="${pageContext.request.contextPath}/login/login.do">로그인 |</a>
+						<a href="${pageContext.request.contextPath}/login/join.do">회원 가입 |</a>
+						<a href="${pageContext.request.contextPath}/login/find_pwd.do">비밀번호 찾기</a>
 					</div>
 				</div>
 				

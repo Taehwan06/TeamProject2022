@@ -36,14 +36,15 @@
 	<section>
 		
 		<div class="contents">
-			회원님의 아이디는 <span class="bold">IU@hanmail.net</span>입니다.<br>
+			회원님의 아이디는 <span class="bold">${user.id}</span>입니다.<br>
 		</div>
 		<div class="sectionBtnArea">
-			<input type="button" name="sectionLoginBtn" id="sectionLoginBtn" class="sectionLoginBtn" value="로그인" onclick="">
+			<input type="button" name="sectionLoginBtn" id="sectionLoginBtn" class="sectionLoginBtn" value="로그인" 
+			onclick="location.href='${pageContext.request.contextPath}/login/login.do'">
 			<div>
-				<a href="#">로그인 |</a>
-				<a href="#">회원 가입 |</a>
-				<a href="#">비밀번호 찾기</a>
+				<a href="${pageContext.request.contextPath}/login/join.do">회원 가입 |</a>
+				<a href="${pageContext.request.contextPath}/login/find_id.do">아이디 찾기 |</a>
+				<a href="${pageContext.request.contextPath}/login/find_pwd.do">비밀번호 찾기</a>
 			</div>
 		</div>
 		

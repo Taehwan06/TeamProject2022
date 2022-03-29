@@ -70,6 +70,9 @@ section{
 	text-align: center;
 	visibility: hidden;
 }
+.birthArea{
+	margin-top: 2px;
+}
 .birth{
 	width: 13%;
 	height: 22px;

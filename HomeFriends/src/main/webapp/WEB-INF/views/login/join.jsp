@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -13,7 +14,7 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css" />
 	
-	<title>회원 가입</title>
+	<title>회원 가입 - 홈 프렌즈</title>
 	
 	<link href="/controller/css/header.css" rel="stylesheet">
 	<link href="/controller/css/nav.css" rel="stylesheet">
@@ -27,7 +28,24 @@
 
 	<script>
 		function sendMailFn(){
-			
+			var id = $("#id").val();
+			var idFoot = $("#idFoot");
+			var reg = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+			if(id != null && id != "" && reg.test(id)){
+				$.ajax({
+					url: "",
+					type: "post",
+					data: $("#reSubmitFrm").serialize(),
+					success: function(data){
+						var json = JSON.parse(data.trim());
+						
+						
+						
+					}
+				});
+			}else{
+				
+			}
 		}
 	</script>
 </head>
@@ -202,9 +220,9 @@
 			<div class="submitArea">
 				<input type="button" name="submitbtn" id="submitbtn" class="submitbtn button" onclick="joinSubmitFn()" value="회원 가입"><br>
 				<div>
-					<a href="#">아이디 찾기 |</a>
-					<a href="#">비밀번호 찾기 |</a>
-					<a href="#">로그인</a>
+					<a href="${pageContext.request.contextPath}/login/find_id.do">아이디 찾기 |</a>
+					<a href="${pageContext.request.contextPath}/login/find_pwd.do">비밀번호 찾기 |</a>
+					<a href="${pageContext.request.contextPath}/login/login.do">로그인</a>
 				</div>
 			</div>
 		</form>	

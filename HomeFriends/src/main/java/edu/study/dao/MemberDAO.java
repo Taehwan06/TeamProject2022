@@ -11,6 +11,7 @@ public class MemberDAO {
 
 	@Autowired // 타입으로 의존을 주입하는 어노테이션
 	private SqlSession sqlSession;
+
 	
 	private static final String Namespace = "edu.study.mapper.memberMapper";
 	
@@ -22,6 +23,18 @@ public class MemberDAO {
 		return sqlSession.selectOne(Namespace+".loginMember",vo);
 	}
 	
+	public MemberVO findId(MemberVO vo) throws Exception{
+		return sqlSession.selectOne(Namespace+".findIdMember",vo);
+	}
+	
+	public MemberVO findPwd(MemberVO vo) throws Exception{
+		return sqlSession.selectOne(Namespace+".findPwdMember",vo);
+	}
+	
+	public int updateTempPwd(MemberVO vo) throws Exception{
+		
+		return sqlSession.update(Namespace+".updateTempPwdBoard",vo);
+	}
 	
 }
 

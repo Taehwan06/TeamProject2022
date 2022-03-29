@@ -1,5 +1,5 @@
 function searchFn(){
-	document.searchFrm.method = "get";
-	document.searchFrm.action = "/controller/search_result.do";
+	document.searchFrm.method = "POST";
+	document.searchFrm.action = "/controller/search.do";
 	document.searchFrm.submit();
 }

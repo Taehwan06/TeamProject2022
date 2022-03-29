@@ -52,9 +52,61 @@
 		FROM
 			member
 		WHERE
+			del_yn = "N"
+		AND
 			id = #{id}
 		AND
 			pass = #{pass}
     </select>
+    
+    <select id="findIdMember" resultType="memberVO" parameterType="MemberVO">
+		SELECT
+			id
+		FROM
+			member
+		WHERE
+			del_yn = "N"
+		AND
+			membername = #{membername}
+		AND
+			phone = CONCAT(#{phone1},"-",#{phone2},"-",#{phone3})
+    </select>
+    
+    <select id="findPwdMember" resultType="memberVO" parameterType="MemberVO">
+		SELECT
+			midx,
+    		id,
+    		nick_name,
+    		membername,
+    		birthday,
+    		gender,
+    		phone,
+    		join_date,
+    		mileage,
+    		grade,
+    		del_yn,
+    		blacklist_yn,
+    		follower_cnt,
+    		post_code,
+    		addr,
+    		profile_system
+		FROM
+			member
+		WHERE
+			del_yn = "N"
+		AND
+			membername = #{membername}
+		AND
+			id = #{id}
+    </select>
+    
+    <update id="updateTempPwdBoard" parameterType="MemberVO">
+    	UPDATE 
+    		member
+		SET 
+    	   	pass = #{pass}
+		WHERE 
+         	midx = #{midx}
+    </update>
     
 </mapper>

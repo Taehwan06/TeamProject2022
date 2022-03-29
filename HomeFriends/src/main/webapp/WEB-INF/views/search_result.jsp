@@ -52,44 +52,19 @@
 	           	<div class="clear"></div>
 			</div>
 		</div>
-		
+		${storyList.size()}
 		<div class="row storyList">
-			<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 story">
-				<img src="image/story02.webp" class="storyImg" onclick="">
-				<div class="storyText" onclick="">
-					<div class="storyTitle">내추럴 모던 홈 스타일링</div>
-					<div class="storyWriter">
-						<img class="writerImg" src="image/winter.png">Winter
+			<c:forEach items="${storyList }" var="storyListVo" varStatus="cnt">
+				<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 story">
+					<img src="story_image/${storyListVo.img_system}" class="storyImg" onclick="">
+					<div class="storyText" onclick="">
+						<div class="storyTitle">${storyListVo.title}</div>
+						<div class="storyWriter">
+							<img class="writerImg" src="image/winter.png">${storyListVo.writer}
+						</div>
 					</div>
 				</div>
-			</div>
-			<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 story">
-				<img src="image/story01.webp" class="storyImg" onclick="">
-				<div class="storyText" onclick="">
-					<div class="storyTitle">맥시멀리스트의 싱글라이프</div>
-					<div class="storyWriter">
-						<img class="writerImg" src="image/karina.png">Karina
-					</div>
-				</div>
-			</div>
-			<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 story">
-				<img src="image/story03.webp" class="storyImg" onclick="">
-				<div class="storyText" onclick="">
-					<div class="storyTitle">넓은 거실이 있는 30평대 신혼집</div>
-					<div class="storyWriter">
-						<img class="writerImg" src="image/iu.png">IU
-					</div>
-				</div>
-			</div>
-			<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 story hiddenStory">
-				<img src="image/story02.webp" class="storyImg" onclick="">
-				<div class="storyText" onclick="">
-					<div class="storyTitle">내추럴 모던 홈 스타일링</div>
-					<div class="storyWriter">
-						<img class="writerImg" src="image/winter.png">Winter
-					</div>
-				</div>
-			</div>
+			</c:forEach>	
 		</div>
 
 

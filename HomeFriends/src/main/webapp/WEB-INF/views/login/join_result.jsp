@@ -36,11 +36,12 @@
 	<section>
 		
 		<div class="contents">
-			<span class="bold">아이유</span>님 환영합니다.<br>
+			<span class="bold">${vo.nick_name}</span>님 환영합니다.<br>
 			회원가입이 완료되었습니다. 
 		</div>
 		<div class="sectionBtnArea">
-			<input type="button" name="sectionLoginBtn" id="sectionLoginBtn" class="sectionLoginBtn" value="로그인" onclick="">
+			<input type="button" name="sectionLoginBtn" id="sectionLoginBtn" class="sectionLoginBtn" value="로그인" 
+			onclick="location.href='${pageContext.request.contextPath}/login/login.do'">
 		</div>
 		
 	</section>

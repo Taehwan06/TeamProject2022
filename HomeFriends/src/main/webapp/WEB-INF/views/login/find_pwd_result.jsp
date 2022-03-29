@@ -36,15 +36,16 @@
 	<section>
 		
 		<div class="contents">
-			<span class="bold">IU@hanmail.net</span>으로 임시 비밀번호를 발송했습니다.<br><br>
+			<span class="bold">${user.id}</span>으로 임시 비밀번호를 발송했습니다.<br><br>
 			<span class="red">로그인 후 반드시 비밀번호를 변경해주세요!</span>
 		</div>
 		<div class="sectionBtnArea">
-			<input type="button" name="sectionLoginBtn" id="sectionLoginBtn" class="sectionLoginBtn" value="로그인" onclick="">
+			<input type="button" name="sectionLoginBtn" id="sectionLoginBtn" class="sectionLoginBtn" value="로그인" 
+			onclick="location.href='${pageContext.request.contextPath}/login/login.do'">
 			<div>
-				<a href="#">로그인 |</a>
-				<a href="#">회원 가입 |</a>
-				<a href="#">아이디 찾기</a>
+				<a href="${pageContext.request.contextPath}/login/join.do">회원가입 |</a>
+				<a href="${pageContext.request.contextPath}/login/find_id.do">아이디 찾기 |</a>
+				<a href="${pageContext.request.contextPath}/login/find_pwd.do">비밀번호 찾기</a>
 			</div>
 		</div>
 		

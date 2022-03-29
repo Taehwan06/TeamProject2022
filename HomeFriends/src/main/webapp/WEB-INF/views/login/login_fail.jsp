@@ -39,6 +39,9 @@
 				<div class="col-8" style="float: none; margin:0 auto;">
 					<img class="login_logo" width="180px" src="/controller/image/mainLogo.png">
 					<form name="loginFrm" id="loginFrm">
+						<div class="red">
+							아이디 또는 비밀번호가 틀렸습니다.
+						</div>
 						<div>
 							<input type="text" name="id" id="id" placeholder="  이메일">
 						</div>

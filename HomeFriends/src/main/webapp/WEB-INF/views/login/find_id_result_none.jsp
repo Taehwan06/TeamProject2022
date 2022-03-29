@@ -14,24 +14,19 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css" />
 	
-	<title>비밀번호 재설정</title>
+	<title>홈 프렌즈</title>
 	
 	<link href="/controller/css/header.css" rel="stylesheet">
 	<link href="/controller/css/nav.css" rel="stylesheet">
-	<link href="/controller/css/login/find_pwd.css" rel="stylesheet">
+	<link href="/controller/css/login/find_id_result.css" rel="stylesheet">
 	<link href="/controller/css/footer.css" rel="stylesheet">
 	<script src="/controller/js/jquery-3.6.0.min.js"></script>
 	<script src="/controller/js/header.js"></script>
 	<script src="/controller/js/nav.js"></script>
 	<script src="/controller/js/footer.js"></script>
+
 	
-	<script>
-		function findPwdFn(){
-			document.findFrm.method = "POST";
-			document.findFrm.action = "find_pwd.do";
-			document.findFrm.submit();
-		}
-	</script>
+
 </head>
 <body>
 	<%@ include file="../header.jsp" %>
@@ -41,44 +36,16 @@
 	<section>
 		
 		<div class="contents">
-			<form name="findFrm" id="findFrm" class="findFrm" method="post">
-				<!-- 이름 -->
-				<div class="nameArea border">
-					<label for="name" class="label">
-						<div name="nameHead" id="nameHead" class="head">이름</div>
-					</label>
-					<input type="text" name="membername" id="name" class="input value"onblur="onBlurFn(this)" placeholder="예) 이지은">
-				</div>
-				<label for="name">
-					<div id="nameFoot" class="foot">이름을 입력하세요</div>
-				</label>
-				
-				<!-- 아이디 -->
-				<div class="idbtnDiv">
-				</div>
-				<div class="idArea border">
-					<label for="id" class="label">
-						<div name="idHead" id="idHead" class="head">아이디</div>
-					</label>
-					<input type="text" name="id" id="id" class="input value" onblur="onBlurFn(this)" placeholder="예) IU@hanmail.net">
-				</div>
-				
-				<label for="id">
-					<div id="idFoot" class="foot">아이디를 입력하세요</div>
-				</label>
-				
-				
-				<div class="sectionBtnArea">
-					<input type="button" name="sectionFindBtn" id="sectionFindBtn" class="sectionFindBtn" value="임시 비밀번호 발송" 
-					onclick="findPwdFn()"><br>
-					<div>
-						<a href="${pageContext.request.contextPath}/login/login.do">로그인 |</a>
-						<a href="${pageContext.request.contextPath}/login/join.do">회원 가입 |</a>
-						<a href="${pageContext.request.contextPath}/login/find_id.do">아이디 찾기</a>
-					</div>
-				</div>
-				
-			</form>
+			일치하는 회원 정보가 없습니다.<br>
+		</div>
+		<div class="sectionBtnArea">
+			<input type="button" name="sectionLoginBtn" id="sectionLoginBtn" class="sectionLoginBtn" value="회원 가입" 
+			onclick="location.href='${pageContext.request.contextPath}/login/join.do'">
+			<div>
+				<a href="${pageContext.request.contextPath}/login/login.do">로그인 |</a>
+				<a href="${pageContext.request.contextPath}/login/find_id.do">아이디 찾기 |</a>
+				<a href="${pageContext.request.contextPath}/login/find_pwd.do">비밀번호 찾기</a>
+			</div>
 		</div>
 		
 	</section>
