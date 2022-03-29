@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,26 +39,16 @@
 						회원정보수정
 					</div>
 					<div class="withdrawal">
-						<a href="#">탈퇴하기</a>
+						<a href='${pageContext.request.contextPath}/mypage/member_delete.do'">탈퇴하기</a>
 					</div>
 					<div id="memberEdit_wrap">
-						<form>
+						<form action="member_modify.do" method="post"><!-- form태그 위치 -->
 							<div class="edit_dummy">
 								<div class="Edit edit_member_info">
 									이메일<!--<span class="compulsory">*필수항목</span>-->
 								</div>
 								<div class="Edit edit_member_form">
-									<!-- <input type="text" id="idInput" value="test123" name="id"> @
-									 <select name="email_modify" class="emailInput">
-										<option value="naver">naver.com</option>
-										<option value="hanmail">hanmail.net</option>
-										<option value="daum">daum.net</option>
-										<option value="gmail">gmail.com</option>
-										<option value="nate">nate.com</option>
-										<option value="self">직접입력</option>
-							직접입력 선택시 input[text]로 변경되게끔 추후 script 작성 필요
-									</select>  -->
-									<input type="text" id="emailInput" value="test12@naver.com" name="id" readonly>
+									<input type="text" id="emailInput" value="${vo.id}" name="id" readonly>
 								</div>
 							</div>
 							<div class="edit_dummy">
@@ -64,31 +56,38 @@
 									닉네임<!--<span class="compulsory">*필수항목</span>-->
 								</div>
 								<div class="Edit edit_member_form">
-									<input type="text" id="nickInput" value="코코story" name="nick_name">
+									<input type="text" id="nickInput" value="${vo.nick_name} " name="nick_name">
 								</div>
 							</div>
 							<div class="edit_dummy">
 								<div class="Edit edit_member_info">
 								성별
 								</div>
+								<c:set var="genderInfo" value="${vo.gender}"/>
 								<div class="Edit edit_member_form radio-wrap">
-									<input type="radio" name="gender" value="woman">&nbsp;&nbsp;여성&nbsp;&nbsp;
-									<input type="radio" name="gender" value="man">&nbsp;&nbsp;남성&nbsp;&nbsp;
-									<input type="radio" name="gender" value="nothing" checked>&nbsp;선택 안 함
+									<input type="radio" name="gender" value="woman" <c:if test="${genderInfo=='여성'}">checked</c:if>>&nbsp;&nbsp;여성&nbsp;&nbsp;
+									<input type="radio" name="gender" value="man" <c:if test="${genderInfo=='남성'}">checked</c:if>>&nbsp;&nbsp;남성&nbsp;&nbsp;
+									<input type="radio" name="gender" value="nothing"  <c:if test="${genderInfo=='선택 안 함'}">checked</c:if>>&nbsp;선택 안 함
 								</div>
 							</div>
 							<div class="edit_dummy">
 								<div class="Edit edit_member_info">
 									연락처
 								</div>
+								<!-- jstl-->
+									<c:set var = "phoneInfo" value = "${vo.phone}"/>
+									<c:set var = "phone1" value = "${fn:substring(phoneInfo,0,3)}"/>
+									<c:set var = "phone2" value = "${fn:substring(phoneInfo,4,8)}"/>
+									<c:set var = "phone3" value = "${fn:substring(phoneInfo,9,13)}"/>
+								<!-- jstl-->
 								<div class="Edit edit_member_form">
 									<select name="phone1" id="phone1" class="phoneInput">
-										<option value="010">010</option>
-										<option value="010">011</option>
-										<option value="010">016</option>
+										<option value="010" <c:if test="${phone1 == '010'}">selected</c:if>>010</option>
+										<option value="011" <c:if test="${phone1 == '011'}">selected</c:if>>011</option>
+										<option value="016" <c:if test="${phone1 == '016'}">selected</c:if>>016</option>
 									</select>
-									<input type="text" class="phoneInput" name="phone2" id="phone2" maxlength="4">
-									<input type="text" class="phoneInput" name="phone3" id="phone3" maxlength="4">
+									<input type="text" class="phoneInput" name="phone2" id="phone2" maxlength="4" value="${phone2}">
+									<input type="text" class="phoneInput" name="phone3" id="phone3" maxlength="4" value="${phone3}">
 								</div>
 							</div>
 							<div class="edit_dummy">
@@ -96,7 +95,7 @@
 									생년월일
 								</div>
 								<div class="Edit edit_member_form">
-									<input type="text" id="BirthInput" value="1996년 1월 6일" name="birth" readonly>
+									<input type="text" id="BirthInput" value="${vo.birthday}" name="birth" readonly>
 								</div>
 							</div>
 							<div class="edit_dummy2">
@@ -104,14 +103,14 @@
 									주소
 								</div>
 								<div class="Edit edit_member_form">
-									<input type="text" id="AddrInput1" value="전라북도 전주시 백제대로 34" name="addr1" readonly>
+									<input type="text" id="AddrInput1" value="${vo.post_code}" name="post_code" readonly>
 								</div>
 							</div>
 							<div class="edit_dummy2">
 								<div class="Edit edit_member_info">
 								</div>
 								<div class="Edit edit_member_form">
-									<input type="text" id="AddrInput2" value="이젠컴퓨터학원 4층" name="addr2" readonly>
+									<input type="text" id="AddrInput2" value="${vo.addr}" name="addr" readonly>
 								</div>
 							</div>
 							<div class="edit_dummy">

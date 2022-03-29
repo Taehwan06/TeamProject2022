@@ -38,14 +38,14 @@
 					</div>
 					<div class="col-9 col-lg-12" id="profile_id">
 						<div id="profile_name">
-							이지은
+							${vo.membername} 
 						</div>
 						<div id="profile_follow">
 							<p>팔로워 <strong>100</strong> | 
 							   팔로잉 <strong>110</strong></p>
 						</div>
 						<div id="profile_btn">
-							<button>설정</button>
+							<button onclick="location.href='${pageContext.request.contextPath}/mypage/member_modify.do'">설정</button>
 						</div>
 					</div>
 					<hr>
@@ -66,12 +66,12 @@
 				<div id="mydiv2-1" class="row">
 					<div class="delivery col-4">
 						배송중<br>
-						<a href="#"><i class="bi bi-truck delivery-icons"></i></a><br>
+						<a href='${pageContext.request.contextPath}/mypage/order_list.do'><i class="bi bi-truck delivery-icons"></i></a><br>
 						<strong>3</strong>
 					</div>
 					<div class="delivery col-4">
 						배송완료<br>
-						<a href="#"><i class="bi bi-bag-check-fill delivery-icons"></i></a><br>
+						<a href='${pageContext.request.contextPath}/mypage/order_list.do'><i class="bi bi-bag-check-fill delivery-icons"></i></a><br>
 						<strong>2</strong>
 					</div>
 					<div class="delivery col-4">
