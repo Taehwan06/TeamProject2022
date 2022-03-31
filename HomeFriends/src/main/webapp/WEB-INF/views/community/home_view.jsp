@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -9,14 +10,14 @@
 	<!-- 부트스트랩 -->
 	<!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css" />
 	
 	<title>홈프렌즈 커뮤니티 상세보기 페이지 입니다.</title>
-	
+	<script src="/controller/js/jquery-3.6.0.min.js"></script>
 	<link href="/controller/css/header.css" rel="stylesheet">
 	<link href="/controller/css/nav.css" rel="stylesheet">
 	<link href="/controller/css/home.css" rel="stylesheet">
 	<link href="/controller/css/footer.css" rel="stylesheet">
-	<script src="/controller/js/jquery-3.6.0.min.js"></script>
 	<link href="/controller/css/community/home_view.css" rel="stylesheet">
 	<script src="/controller/js/community/home_story.js"></script>
 	<script src="/controller/js/community/home_view.js"></script>
@@ -29,23 +30,24 @@
 	
 	<!-- 본문 영역 -->
 	<div class="row MainImg">
-		<img src="/controller/image/story06.png">
+		<img src="/controller/upload/file/${vo.img_system }">
 	</div>
 	<section id="story_area">
 		<div class="comm_area">
+			<input type="hidden" id="cbidx" name="cbidx" value="${vo.cbidx }">
 			<div class="row comm_area_">
 				<div class="comm_category">홈 스토리</div>
-				<div class="comm_title">눈길 닿는 곳마다 포토존! 디자이너 부부의 감각적인 집</div>
+				<div class="comm_title">${vo.title }</div>
 				<div class="col-xl-4 storyWriter">
 					<div class="profile">
 						<div class="profile_img">
 							<img class="writerImg" src="/controller/image/karina.png">
 						</div>
 						<div class="profile_name">
-							Karina
+							${vo.writer }
 						</div>
 						<div class="writedate">
-							2022년 3월 21일
+							${vo.write_date }
 						</div>
 					</div>
 				</div>
@@ -77,20 +79,20 @@
 			</div>
 		</div>
 		<div class="content_stats">
-			<div>스크랩<span>186</span></div>
-			<div>댓글<span>40</span></div>
-			<div>조회<span>1,843</span></div>
+			<div>스크랩<span>${vo.scrap_cnt }</span></div>
+			<div>댓글<span>${vo.reply_cnt }</span></div>
+			<div>조회<span>${vo.hit_cnt }</span></div>
 		</div>
 		<div class="footer_profile">
 			<div class="footer_profile_img">
 				<img class="footer_writerImg" src="/controller/image/karina.png">
-				karina
+				${vo.writer }
 				<button>팔로우</button>
 			</div>
 		</div>
 		<div class="reply_area">
 			<div>
-				댓글<span>40</span>
+				댓글<span>${vo.reply_cnt }</span>
 			</div>
 			<div class="row reply_write">
 				<div class="col-xl-1 profile_reply">
@@ -107,7 +109,7 @@
 			</div>
 		</div>
 		<div class="slide_bar">
-			<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-bookmark" viewBox="0 0 16 16">
+			<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-bookmark sideMenu" viewBox="0 0 16 16">
 			  <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
 			</svg>
 		</div>

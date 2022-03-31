@@ -11,14 +11,15 @@
 	<!-- 부트스트랩 -->
 	<!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css" />
 	
 	<title>홈프렌즈 커뮤니티 목록 페이지 입니다.</title>
 	
+	<script src="/controller/js/jquery-3.6.0.min.js"></script>
 	<link href="/controller/css/header.css" rel="stylesheet">
 	<link href="/controller/css/nav.css" rel="stylesheet">
 	<link href="/controller/css/home.css" rel="stylesheet">
 	<link href="/controller/css/footer.css" rel="stylesheet">
-	<script src="/controller/js/jquery-3.6.0.min.js"></script>
 	<link href="/controller/css/community/home_list.css" rel="stylesheet">
 	<script src="/controller/js/community/home_list.js"></script>
 	<script src="/controller/js/footer.js"></script>
@@ -29,6 +30,9 @@
 	<%@ include file="../nav.jsp" %>
 	
 	<!-- 본문 영역 -->
+	<button class="write_btn" onclick="location.href='home_insert.do'">
+		글쓰기
+	</button>
 	<section id="Community_area">
 		<div class="row" id="sectionDiv">
 			<div class="col-2 col-sm-2 col-md-2 col-lg-1 col-xl-1 list_"><button class="list_btn" onclick="listFn(this)" id="recent">최신글</button></div>
@@ -36,189 +40,23 @@
 			<div class="col-2 col-sm-2 col-md-2 col-lg-1 col-xl-1 list_"><button class="list_btn" onclick="listFn(this)">좋아요</button></div>
 		</div>
 		<div class="row" id="sectionDiv">
-			<div class="col-4 col-sm-2 col-md-2 list_all">전체6,138</div>
+			<div class="col-4 col-sm-2 col-md-2 list_all">전체${listCnt}</div>
 		</div>
 		<div class="row storyList">
-			<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 story">
-				<img src="/controller/image/story02.webp" class="storyImg" onclick="">
-				<div class="storyText" onclick="">
-					<div class="storyTitle">내추럴 모던 홈 스타일링</div>
-					<div class="storyWriter">
-						<img class="writerImg" src="/controller/image/winter.png">Winter
-					</div>
-					<div class="likeyView">
-						좋아요56 &middot; 조회3,818 
-					</div>
-				</div>
-			</div>
-			<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 story">
-				<img src="/controller/image/story01.webp" class="storyImg" onclick="">
-				<div class="storyText" onclick="">
-					<div class="storyTitle">맥시멀리스트의 싱글라이프</div>
-					<div class="storyWriter">
-						<img class="writerImg" src="/controller/image/karina.png">Karina
-					</div>
-					<div class="likeyView">
-						좋아요129 &middot; 조회3,101
+			<c:forEach items="${list}" var="vo" varStatus="cnt">
+				<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 story">
+					<img src="/controller/upload/file/${vo.img_system}" class="storyImg" onclick="location.href='home_view.do?cbidx='+${vo.cbidx}">
+					<div class="storyText" onclick="location.href='home_view.do?cbidx='+${vo.cbidx}">
+						<div class="storyTitle">${vo.title }</div>
+						<div class="storyWriter">
+							<img class="writerImg" src="/controller/image/winter.png">${vo.writer }
+						</div>
+						<div class="likeyView">
+							좋아요${vo.scrap_cnt } &middot; 조회${vo.hit_cnt }
+						</div>
 					</div>
 				</div>
-			</div>
-			<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 story">
-				<img src="/controller/image/story03.webp" class="storyImg" onclick="">
-				<div class="storyText" onclick="">
-					<div class="storyTitle">넓은 거실이 있는 30평대 신혼집</div>
-					<div class="storyWriter">
-						<img class="writerImg" src="/controller/image/iu.png">IU
-					</div>
-					<div class="likeyView">
-						좋아요70 &middot; 조회3,196 
-					</div>
-				</div>
-			</div>
-			<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 story hiddenStory">
-				<img src="/controller/image/story02.webp" class="storyImg" onclick="">
-				<div class="storyText" onclick="">
-					<div class="storyTitle">내추럴 모던 홈 스타일링</div>
-					<div class="storyWriter">
-						<img class="writerImg" src="/controller/image/winter.png">Winter
-					</div>
-					<div class="likeyView">
-						좋아요56 &middot; 조회3,818 
-					</div>
-				</div>
-			</div>
-			<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 story">
-				<img src="/controller/image/story01.webp" class="storyImg" onclick="">
-				<div class="storyText" onclick="">
-					<div class="storyTitle">맥시멀리스트의 싱글라이프</div>
-					<div class="storyWriter">
-						<img class="writerImg" src="/controller/image/karina.png">Karina
-					</div>
-					<div class="likeyView">
-						좋아요129 &middot; 조회3,101
-					</div>
-				</div>
-			</div>
-			<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 story">
-				<img src="/controller/image/story03.webp" class="storyImg" onclick="">
-				<div class="storyText" onclick="">
-					<div class="storyTitle">넓은 거실이 있는 30평대 신혼집</div>
-					<div class="storyWriter">
-						<img class="writerImg" src="/controller/image/iu.png">IU
-					</div>
-					<div class="likeyView">
-						좋아요70 &middot; 조회3,196  
-					</div>
-				</div>
-			</div>
-			<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 story hiddenStory">
-				<img src="/controller/image/story02.webp" class="storyImg" onclick="">
-				<div class="storyText" onclick="">
-					<div class="storyTitle">내추럴 모던 홈 스타일링</div>
-					<div class="storyWriter">
-						<img class="writerImg" src="/controller/image/winter.png">Winter
-					</div>
-					<div class="likeyView">
-						좋아요56 &middot; 조회3,818 
-					</div>
-				</div>
-			</div>
-			<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 story">
-				<img src="/controller/image/story01.webp" class="storyImg" onclick="">
-				<div class="storyText" onclick="">
-					<div class="storyTitle">맥시멀리스트의 싱글라이프</div>
-					<div class="storyWriter">
-						<img class="writerImg" src="/controller/image/karina.png">Karina
-					</div>
-					<div class="likeyView">
-						좋아요129 &middot; 조회3,101
-					</div>
-				</div>
-			</div>
-			<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 story">
-				<img src="/controller/image/story03.webp" class="storyImg" onclick="">
-				<div class="storyText" onclick="">
-					<div class="storyTitle">넓은 거실이 있는 30평대 신혼집</div>
-					<div class="storyWriter">
-						<img class="writerImg" src="/controller/image/iu.png">IU
-					</div>
-					<div class="likeyView">
-						좋아요70 &middot; 조회3,196  
-					</div>
-				</div>
-			</div>
-			<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 story hiddenStory">
-				<img src="/controller/image/story02.webp" class="storyImg" onclick="">
-				<div class="storyText" onclick="">
-					<div class="storyTitle">내추럴 모던 홈 스타일링</div>
-					<div class="storyWriter">
-						<img class="writerImg" src="/controller/image/winter.png">Winter
-					</div>
-					<div class="likeyView">
-						좋아요56 &middot; 조회3,818 
-					</div>
-				</div>
-			</div>
-			<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 story">
-				<img src="/controller/image/story01.webp" class="storyImg" onclick="">
-				<div class="storyText" onclick="">
-					<div class="storyTitle">맥시멀리스트의 싱글라이프</div>
-					<div class="storyWriter">
-						<img class="writerImg" src="/controller/image/karina.png">Karina
-					</div>
-					<div class="likeyView">
-						좋아요129 &middot; 조회3,101
-					</div>
-				</div>
-			</div>
-			<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 story">
-				<img src="/controller/image/story03.webp" class="storyImg" onclick="">
-				<div class="storyText" onclick="">
-					<div class="storyTitle">넓은 거실이 있는 30평대 신혼집</div>
-					<div class="storyWriter">
-						<img class="writerImg" src="/controller/image/iu.png">IU
-					</div>
-					<div class="likeyView">
-						좋아요70 &middot; 조회3,196  
-					</div>
-				</div>
-			</div>
-			<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 story hiddenStory">
-				<img src="/controller/image/story02.webp" class="storyImg" onclick="">
-				<div class="storyText" onclick="">
-					<div class="storyTitle">내추럴 모던 홈 스타일링</div>
-					<div class="storyWriter">
-						<img class="writerImg" src="/controller/image/winter.png">Winter
-					</div>
-					<div class="likeyView">
-						좋아요56 &middot; 조회3,818 
-					</div>
-				</div>
-			</div>
-			<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 story">
-				<img src="/controller/image/story01.webp" class="storyImg" onclick="">
-				<div class="storyText" onclick="">
-					<div class="storyTitle">맥시멀리스트의 싱글라이프</div>
-					<div class="storyWriter">
-						<img class="writerImg" src="/controller/image/karina.png">Karina
-					</div>
-					<div class="likeyView">
-						좋아요129 &middot; 조회3,101
-					</div>
-				</div>
-			</div>
-			<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 story">
-				<img src="/controller/image/story03.webp" class="storyImg" onclick="">
-				<div class="storyText" onclick="">
-					<div class="storyTitle">넓은 거실이 있는 30평대 신혼집</div>
-					<div class="storyWriter">
-						<img class="writerImg" src="/controller/image/iu.png">IU
-					</div>
-					<div class="likeyView">
-						좋아요70 &middot; 조회3,196  
-					</div>
-				</div>
-			</div>
+			</c:forEach>
 		</div>
 	</section>
 	

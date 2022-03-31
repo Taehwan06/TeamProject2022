@@ -1,16 +1,21 @@
 package edu.study.controller;
 
+import java.io.File;
 import java.util.List;
 import java.util.Locale;
+import java.util.UUID;
 
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import edu.study.service.BoardService;
-import edu.study.vo.BoardVO;
+import edu.study.service.Community_BoardService;
+import edu.study.vo.Community_BoardVO;
 import edu.study.vo.SearchVO;
 
 /**
@@ -21,7 +26,7 @@ import edu.study.vo.SearchVO;
 public class CommunityController {
 	
 	@Autowired
-	private BoardService boardService;
+	private Community_BoardService Community_boardService;
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -31,16 +36,68 @@ public class CommunityController {
 	public String home_insert(Locale locale, Model model, SearchVO vo) throws Exception {
 		
 		return "community/home_insert";
+		
 	}
 	
+	@RequestMapping(value = "/home_insert.do", method = RequestMethod.POST)
+	public String home_insert(Community_BoardVO boardVO, RedirectAttributes rttr) throws Exception {
+		//로그인 처리
+		/*
+		MemberVO memberVO = (MemberVO) session.getAttribute("adminSession");
+		String nick_ = memberVO.getNick_name();
+		boardVO.setWriter(nick_);
+		
+		boardVO.setContent(boardVO.getContent().replace("\r\n", "<br>"));
+		*/
+		//파일 업로드 처리
+		String fileName = null;
+		String originalFileName = null;
+		String uploadPath = "C:\\Users\\82102\\git\\TeamProject2022\\HomeFriends\\src\\main\\webapp\\resources\\upload\\file\\";
+		MultipartFile uploadFile = boardVO.getUploadFile();
+		if (!uploadFile.isEmpty()) {
+			originalFileName = uploadFile.getOriginalFilename();
+			String ext = FilenameUtils.getExtension(originalFileName);	//확장자 구하기
+			UUID uuid = UUID.randomUUID();	//UUID 구하기
+			fileName=uuid+"."+ext;
+			uploadFile.transferTo(new File(uploadPath + fileName));
+		}
+		boardVO.setFileName(fileName);
+		boardVO.setImg_origin(originalFileName);
+		
+		Community_boardService.insert(boardVO);
+	
+		return "redirect:home_list.do";
+	}
 	@RequestMapping(value = "/home_modify.do", method = RequestMethod.GET)
-	public String home_modify(Locale locale, Model model, SearchVO vo) throws Exception {
+	public String home_modify(Locale locale, Model model, int cbidx) throws Exception {
+		
+		Community_BoardVO vo = Community_boardService.detail(cbidx);
+	      
+	    model.addAttribute("vo",vo);
 		
 		return "community/home_modify";
 	}
 	
+	@RequestMapping(value = "/home_delete.do", method = RequestMethod.GET)
+	public String home_delete(Locale locale, Model model, int cbidx) throws Exception {
+		
+		Community_boardService.delete(cbidx);
+		
+		return "redirect:home_list.do";
+	}
+	
 	@RequestMapping(value = "/home_story.do", method = RequestMethod.GET)
 	public String home_story(Locale locale, Model model, SearchVO vo) throws Exception {
+		
+		List<Community_BoardVO> list = Community_boardService.list(vo);
+		
+		model.addAttribute("list",list);
+		
+		Community_BoardVO Comm_Main = Community_boardService.getCommunity_Mainimage();
+		
+		model.addAttribute("CommMain",Comm_Main);
+		
+		
 		
 		return "community/home_story";
 	}
@@ -48,13 +105,25 @@ public class CommunityController {
 	@RequestMapping(value = "/home_list.do", method = RequestMethod.GET)
 	public String home_list(Locale locale, Model model, SearchVO vo) throws Exception {
 		
+		List<Community_BoardVO> list = Community_boardService.list(vo);
+		
+		model.addAttribute("list",list);
+		
+		int listCnt = Community_boardService.getBoardlistCnt(vo);
+		
+		model.addAttribute("listCnt",listCnt);
+		
 		return "community/home_list";
 	}
 	
 	@RequestMapping(value = "/home_view.do", method = RequestMethod.GET)
-	public String home_view(Locale locale, Model model, SearchVO vo) throws Exception {
+	public String home_view(Locale locale, Model model, int cbidx) throws Exception {
 		
-		return "community/home_view";
+		Community_BoardVO vo = Community_boardService.detail(cbidx);
+	      
+	    model.addAttribute("vo",vo);
+		
+		return "community/home_view.jsp?cbidx="+vo.getCbidx();
 	}
 	
 	@RequestMapping(value = "/following.do", method = RequestMethod.GET)
@@ -86,6 +155,5 @@ public class CommunityController {
 		
 		return "community/qna_modify";
 	}
-	
 	
 }
