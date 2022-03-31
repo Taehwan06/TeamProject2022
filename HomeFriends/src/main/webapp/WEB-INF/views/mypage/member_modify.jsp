@@ -1,7 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -65,9 +65,9 @@
 								</div>
 								<c:set var="genderInfo" value="${vo.gender}"/>
 								<div class="Edit edit_member_form radio-wrap">
-									<input type="radio" name="gender" value="woman" <c:if test="${genderInfo=='여성'}">checked</c:if>>&nbsp;&nbsp;여성&nbsp;&nbsp;
-									<input type="radio" name="gender" value="man" <c:if test="${genderInfo=='남성'}">checked</c:if>>&nbsp;&nbsp;남성&nbsp;&nbsp;
-									<input type="radio" name="gender" value="nothing"  <c:if test="${genderInfo=='선택 안 함'}">checked</c:if>>&nbsp;선택 안 함
+									<input type="radio" name="gender" value="F" <c:if test="${genderInfo =='F'}">checked</c:if>>&nbsp;&nbsp;여성&nbsp;&nbsp;
+									<input type="radio" name="gender" value="M" <c:if test="${genderInfo =='M'}">checked</c:if>>&nbsp;&nbsp;남성&nbsp;&nbsp;
+									<input type="radio" name="gender" value="N"  <c:if test="${genderInfo =='N'}">checked</c:if>>&nbsp;선택 안 함
 								</div>
 							</div>
 							<div class="edit_dummy">
@@ -95,7 +95,7 @@
 									생년월일
 								</div>
 								<div class="Edit edit_member_form">
-									<input type="text" id="BirthInput" value="${vo.birthday}" name="birth" readonly>
+									<input type="text" id="BirthInput" value="${vo.birthday}" name="birthday" readonly>
 								</div>
 							</div>
 							<div class="edit_dummy2">

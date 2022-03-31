@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -35,7 +36,7 @@
 					<div class="del memberdelete_title">
 						회원탈퇴 신청
 					</div>
-					<form>
+					<form action="member_delete.do" method="post"><!-- form start -->
 					<div class="del delete_subtitle">
 						 회원 탈퇴 신청에 앞서 아래 내용을 반드시 확인해주세요
 					</div>
@@ -58,7 +59,7 @@
 								</ul>
 					</div>
 					<div class="del deleteConfirm">
-						  <input type="checkbox" id="check1">
+						  <input type="checkbox" id="check1" name="del_yn" value="Y">
         					<label for="check1"></label>
 							&nbsp;위 내용을 모두 확인하였습니다
 					</div>
@@ -69,9 +70,16 @@
 						홈프렌즈를 떠나는 이유를 자세히 알려주시겠어요? 여러분의 소중한 의견을 반영해 더 좋은 서비스로 꼭 찾아뵙겠습니다.
 					</div>
 					<div class="del deleteBox">
-						<textarea placeholder="자세한 내용을 남겨주시면 서비스 개선에 큰 도움이 됩니다."></textarea>
+						<textarea name="del_cause" placeholder="자세한 내용을 남겨주시면 서비스 개선에 큰 도움이 됩니다."></textarea>
 					</div>
 					<div class="del deleteBtn">
+						<input type="hidden" value="${vo.id}" name="id">
+						<input type="hidden" value="${vo.nick_name} " name="nick_name">
+						<input type="hidden" value="${vo.gender} " name="gender">
+						<input type="hidden" value="${vo.phone} " name="phone">
+						<input type="hidden" value="${vo.birthday} " name="birthday">
+						<input type="hidden" value="${vo.addr}" name="addr">
+						<input type="hidden" value="${vo.post_code}" name="post_code">
 						<button id="delApply">탈퇴하기</button>
 						<button type="button" id="delCancel" onclick="location.href='${pageContext.request.contextPath}/mypage/mypage.do'">취소하기</button>
 					</div>
