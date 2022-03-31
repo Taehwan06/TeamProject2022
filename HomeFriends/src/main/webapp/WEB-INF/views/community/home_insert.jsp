@@ -10,6 +10,7 @@
 	<!-- 부트스트랩 -->
 	<!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css" />
 	
 	<title>홈 스토리 등록 - Home Friends</title>
 	
@@ -24,12 +25,11 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
 	-->
 	
-	
+	<script src="/controller/js/jquery-3.6.0.min.js"></script>
 	<link href="/controller/css/header.css" rel="stylesheet">
 	<link href="/controller/css/nav.css" rel="stylesheet">
 	<link href="/controller/css/community/home_insert.css" rel="stylesheet">
 	<link href="/controller/css/footer.css" rel="stylesheet">
-	<script src="/controller/js/jquery-3.6.0.min.js"></script>
 	<script src="/controller/js/nav.js"></script>
 	<script src="/controller/js/footer.js"></script>
 	<script src="/controller/js/community/home_insert.js"></script>
@@ -40,6 +40,8 @@
 	<script src="/controller/js/summernote/lang/summernote-ko-KR.js"></script>
 	<link rel="stylesheet" href="/controller/css/summernote/summernote-lite.css">
 	
+	
+	
 
 </head>
 <body>
@@ -49,12 +51,13 @@
 	<!-- 본문 영역 -->
 	<section>
 		
-		<form id="insertFrm" name="insertFrm" method="post">
-			<iuput type="hidden" name="midx" value="">
-			
+		<form id="insertFrm" name="insertFrm" action="home_insert.do" method="post" enctype="multipart/form-data">
+			<iuput type="hidden" name="midx" value="1">
+
 			<div class="center">
 				<label for="imgUpload" id="imgLabel">
 					<div id="imgArea">
+						<img id="coverImg" name="coverImg" alt="홈스토리 커버 이미지">
 						<label for="imgUpload" id="imgLabel">
 							<span id="imgText">커버 사진을 추가해주세요.<br>(1:1 비율 권장)</span>
 						</label><br>
@@ -64,12 +67,11 @@
 					</div>
 				</label>
 			</div>
-			
 			<label for="imgUpload" id="imgUploadLabel">
 				<div id="imgUploadInfo">필수 입력 항목입니다.</div>
 			</label>
 			<div id="imgUploadArea">
-				<input type="file" id="imgUpload" name="imgUpload">
+				<input type="file" id="imgUpload" name="uploadFile">
 			</div>
 			
 			<div id="titleArea">
@@ -79,12 +81,15 @@
 				</label>
 			</div>
 			
-			<textarea id="summernote" name="content"></textarea>
+			<div id="textArea">
+				<textarea id="summernote" name="content"></textarea>
+			</div>
+			
 			<div id="contentInfo">필수 입력 항목입니다.</div>
 			
 			<div id="butttonArea">
 				<input type="button" id="submitButton" value="저장" onclick="submitFn()">
-				<input type="button" id="calcelButton" value="취소" onclick="">
+				<input type="button" id="calcelButton" value="취소" onclick="cancelFn()">
 			</div>
 		</form>
 		

@@ -1,7 +1,7 @@
 $(window).scroll(function(){
 	if ($(this).scrollTop() > 700){
-		$('.slide_bar').css({"visibility" : "visible"});
-		$('.slide_bar_').css({"visibility" : "visible"});
+		$('.slide_bar').css({"display" : "block"});
+		$('.slide_bar_').css({"display" : "block"});
 		$('.slide_bar').show();
 		$('.slide_bar_').show();
 	} else{
