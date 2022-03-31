@@ -40,7 +40,7 @@ $(document).ready( function(){
 
 	
 });
-//home_list에서 가져옴 
+
 //정렬방식 클릭시 색상변경
 var free = 0;
 
