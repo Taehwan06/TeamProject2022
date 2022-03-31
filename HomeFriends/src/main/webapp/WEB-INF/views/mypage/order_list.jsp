@@ -192,7 +192,17 @@
 			</div><!-- row 닫힘 -->
 	</div><!-- container 닫힘 -->
 	
-	<%=request.getAttribute("orderList") %>
+	${orderList.size()}
+	
+	<c:if test="${orderList.size() > 0}">
+	
+		<c:forEach items="${orderList}" var="orderListVO" varStatus="cnt">
+		
+			${orderListVO.midx }
+		
+		</c:forEach>
+	
+	</c:if>
 	
 	
 	

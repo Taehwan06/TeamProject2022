@@ -50,8 +50,8 @@ public class MypageDAO {
 		return sqlSession.update(Namespace+".deleteMember",vo);
 	}
 
-	public int orderList(OrderListVO vo) throws Exception{
-		return sqlSession.selectOne(Namespace+".orderList",vo);
+	public List<OrderListVO> orderList(OrderListVO vo) throws Exception{
+		return sqlSession.selectList(Namespace+".orderList",vo);
 	} 
 	 
 	

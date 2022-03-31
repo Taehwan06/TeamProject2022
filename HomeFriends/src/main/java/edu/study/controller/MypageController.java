@@ -83,7 +83,9 @@ public class MypageController {
 	public String order_list(Locale locale, Model model,OrderListVO vo ) throws Exception {
 		
 		vo.setMidx(1);
-		int result = mypageService.orderList(vo);
+		List<OrderListVO> orderList = mypageService.orderList(vo);
+		
+		model.addAttribute("orderList", orderList);
 		
 		return "mypage/order_list";
 		

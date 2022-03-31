@@ -53,9 +53,10 @@ public class MypageServiceImpl implements MypageService {
 	}
 
 	@Override
-	public int orderList(OrderListVO vo) throws Exception {
+	public List<OrderListVO> orderList(OrderListVO vo) throws Exception {
 
-		int result = mypageDao.orderList(vo); 
+		List<OrderListVO> result = mypageDao.orderList(vo); 
+		
 		return result;	
 		
 		
