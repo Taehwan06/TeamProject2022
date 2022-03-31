@@ -1,4 +1,4 @@
-/* 유효성 검사 */
+/* 전역 변수 */
 var idcheck = false;
 var ph1Reg = /\d{2,3}/;
 var ph2Reg = /\d{3,4}/;
@@ -7,7 +7,10 @@ var bir1Reg = /\d{4}/;
 var bir2Reg = /\d{1,2}/;
 var bir3Reg = /\d{1,2}/;
 var spaceReg = /\s/g;
+var emailCheck = false;
 
+/* 유효성 검사 */
+/* ============================================================== */
 function onBlurFn(obj){
 	var value = obj.value;
 	var id = obj.id;
@@ -22,10 +25,8 @@ function onBlurFn(obj){
 	var bir3Val = document.getElementById("birth3").value;
 
 	if(id =="id"){
-		console.log(value);
 		reg = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
 		var info = document.getElementById("idFoot");
-		console.log(parent);
 		if(value == ""){
 			info.style.visibility = "visible";
 			info.textContent = "이메일 주소를 입력하세요";
@@ -261,6 +262,9 @@ function onBlurFn(obj){
 	}
 }
 
+
+/* submit 버튼 */
+/* ============================================================== */
 function joinSubmitFn(){
 	var result = true;
 
@@ -457,9 +461,79 @@ function joinSubmitFn(){
 		result = false;
 	}
 
-	if(result){
+	if(result && emailCheck){
 		document.joinFrm.method = "post";
 		document.joinFrm.action = "join.do";
 		document.joinFrm.submit();
+	}
+}
+
+
+/* 인증번호 발송 */
+/* ============================================================== */
+function sendMailFn(){
+	var id = $("#id").val();
+	var idFoot = $("#idFoot");
+	var reg = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+	
+	if(id != null && id != "" && reg.test(id)){
+		$.ajax({
+			url: "send_number",
+			type: "post",
+			data: "id="+id,
+			success: function(data){
+				var result = data.trim();
+				console.log(result);
+				if(result == "idCheckFail"){
+					idFoot.text("이미 사용 중인 메일 주소입니다.");
+					idFoot.css("color","red");
+					idFoot.css("visibility","visible");
+				}else if(result == "success"){
+					idFoot.text("인증번호가 발송되었습니다.");
+					idFoot.css("color","green");
+					idFoot.css("visibility","visible");
+				}else{
+					idFoot.text("인증번호 발송이 실패했습니다.");
+					idFoot.css("color","red");
+					idFoot.css("visibility","visible");
+				}
+			}
+		});
+	}else{
+		
+	}
+}
+
+
+/* 인증번호 확인 */
+/* ============================================================== */
+function tempNumCheckFn(){
+	var id = $("#id").val();
+	var tempNum = $("#emailcheck").val();
+	var foot = $("#emailFoot");
+	
+	if(tempNum != null && tempNum != "" ){
+		$.ajax({
+			url: "temp_num_check",
+			type: "post",
+			data: "temp_number="+tempNum+"&id="+id,
+			success: function(data){
+				var result = data.trim();
+				console.log(result);
+				if(result == "success"){
+					emailCheck = true;
+					foot.text("이메일 인증이 완료되었습니다.");
+					foot.css("color","green");
+					foot.css("visibility","visible");
+				}else{
+					emailCheck = false;
+					foot.text("인증번호가 일치하지 않습니다.");
+					foot.css("color","red");
+					foot.css("visibility","visible");
+				}
+			}
+		});
+	}else{
+		emailCheck = false;
 	}
 }

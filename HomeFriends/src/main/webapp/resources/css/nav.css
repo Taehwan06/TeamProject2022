@@ -59,10 +59,6 @@ nav{
 #categoryLi:hover{
 	color: #ffb6c1;
 }
-#menuSearchlist{
-	border-left: 1px solid lightgray;
-	border-right: 1px solid lightgray;
-}
 
 .navSpaceLi{
 	width: 14%;
@@ -132,9 +128,71 @@ nav{
 #navProfile:hover{
 	color: #ffb6c1;
 }
+#menuComm{
+	border-right: 1px solid lightgray;
+}
+#menuLogin{
+	border-left: 1px solid lightgray;
+}
+.listDown{
+	margin-left: 20px;
+}
+#searchListLiTitle{
+	font-weight: bold;
+}
+#searchListLiTitle:hover{
+	color: black;
+}
 
 
 
+/* 실시간 검색어 */
+/* ============================================== */
+.absolute{
+	position: absolute;
+	top: 0px;
+}
+.relative{
+	position: relative;
+}
+.searchListUl{
+	border-radius: 10px;
+	padding: 17px 20px 13px 15px;
+	z-index: 5555;
+}
+#searchListUlHidden{
+	display: none;
+}
+.searchListUl:hover{
+	color: black;
+}
+.searchListLi{
+	display: block;
+	margin-left: 10px;
+	text-align: left;
+	font-size: 18px;
+	font-weight: 100;
+	padding: 0px 0px 10px 0px;
+}
+.searchListLi:hover{
+	color: #ffb6c1;
+}
+.searchRank{
+	font-weight: bold;
+	margin-right: 15px;
+}
+
+
+/* 미디어 쿼리 */
+/* ============================================== */
+@media screen and (min-width: 768px) and (max-width: 991.99px){
+	#searchListLiTitle{
+		font-size: 16px;
+	}
+	.searchListUl{
+		padding: 17px 10px 13px 0px;
+	}
+}
 @media screen and (min-width: 576.01px) and (max-width: 767.99px){
 	#menuSearchlist{
 		border-right: none;
@@ -142,6 +200,9 @@ nav{
 	}
 	#menuLogout, #navProfile{
 		display: none;
+	}
+	#searchListLiTitle{
+		font-size: 16px;
 	}
 }
 

@@ -25,6 +25,7 @@
 	<script src="/controller/js/nav.js"></script>
 	<script src="/controller/js/home.js"></script>
 	<script src="/controller/js/footer.js"></script>
+	
 
 </head>
 <body>

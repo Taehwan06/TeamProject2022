@@ -37,7 +37,25 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.updateTempPwd(vo);
 	}
 
-	
-	
+	@Override
+	public int insertTempNum(MemberVO vo) throws Exception {
+		return memberDao.insertTempNum(vo);
+	}
+
+	@Override
+	public int deleteTempNum(String id) throws Exception {
+		return memberDao.deleteTempNum(id);
+	}
+
+	@Override
+	public MemberVO idCheckMember(String id) throws Exception {
+		return memberDao.idCheckMember(id);
+	}
+
+	@Override
+	public MemberVO tempNumCheck(MemberVO vo) throws Exception {
+		return memberDao.tempNumCheck(vo);
+	}
+
 
 }

@@ -40,7 +40,7 @@
 		</div>
 
 		<div class="searchTitle">
-			<span class="bold">검색어</span>에 대한 검색결과
+			<span class="bold">${searchvo.search_value}</span>에 대한 검색결과
 		</div>
 
 		<div class="resultNone">검색 결과가 없습니다.</div>

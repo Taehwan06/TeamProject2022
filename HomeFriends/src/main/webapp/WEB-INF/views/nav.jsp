@@ -15,7 +15,27 @@
 					<li class="navSpaceLi"></li>
 				</ul>		
 			</li>
-			<li class="col-sm-6 col-md-4 mainMenu" id="menuSearchlist">실시간 검색어 영역</li>
+			<li class="col-sm-6 col-md-4 mainMenu" id="menuSearchlist">
+				<ul class="list-unstyled">
+					<li class="" id="searchListHover relative">
+						<ul class="list-unstyled searchListUl absolute">
+							<li class="searchListLi" id="searchListLiTitle">
+								실시간 인기 검색어 순위<i class="bi bi-chevron-down listDown"></i>
+							</li>
+							<li class="">
+								<ul class="list-unstyled" id="searchListUlHidden">
+									<c:forEach items="${searchList}" var="searchListvo" varStatus="cnt">
+										<li class="searchListLi"  
+										onclick="location.href='${pageContext.request.contextPath}/search.do?search_value=${searchListvo.search_value}'">
+											<span class="searchRank">${cnt.count}</span>${searchListvo.search_value}
+										</li>															
+									</c:forEach>
+								</ul>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</li>
 			<c:if test="${loginUser == null}">
 				<li class="col-md-2 mainMenu" id="menuLogin" onclick="location.href='${pageContext.request.contextPath}/login/login.do'">로그인</li>
 			</c:if>

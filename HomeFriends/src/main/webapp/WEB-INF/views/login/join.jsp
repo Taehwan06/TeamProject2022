@@ -26,28 +26,7 @@
 	<script src="/controller/js/login/join1.js"></script>
 	<script src="/controller/js/footer.js"></script>
 
-	<script>
-		function sendMailFn(){
-			var id = $("#id").val();
-			var idFoot = $("#idFoot");
-			var reg = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
-			if(id != null && id != "" && reg.test(id)){
-				$.ajax({
-					url: "",
-					type: "post",
-					data: $("#reSubmitFrm").serialize(),
-					success: function(data){
-						var json = JSON.parse(data.trim());
-						
-						
-						
-					}
-				});
-			}else{
-				
-			}
-		}
-	</script>
+
 </head>
 <body>
 	<%@ include file="../header.jsp" %>
@@ -80,7 +59,7 @@
 					<div name="emailcheckHead" id="emailcheckHead" class="head">인증번호</div>
 				</label>
 				<input type="text" name="emailcheck" id="emailcheck" class="emailcheck input value" onblur="onBlurFn(this)">
-				<input type="button" name="emailbtn" id="emailbtn" class="emailbtn button" value="인증번호 확인" onclick="">
+				<input type="button" name="emailbtn" id="emailbtn" class="emailbtn button" value="인증번호 확인" onclick="tempNumCheckFn()">
 			</div>
 			
 			<label for="emailcheck">

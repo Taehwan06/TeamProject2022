@@ -100,7 +100,7 @@
 			id = #{id}
     </select>
     
-    <update id="updateTempPwdBoard" parameterType="MemberVO">
+    <update id="updateTempPwd" parameterType="MemberVO">
     	UPDATE 
     		member
 		SET 
@@ -108,5 +108,44 @@
 		WHERE 
          	midx = #{midx}
     </update>
+    
+    <select id="idCheckMember" resultType="memberVO" parameterType="String">
+		SELECT
+			midx
+		FROM
+			member
+		WHERE
+			id = #{id}
+    </select>
+    
+    <delete id="deleteTempNum" parameterType="String">
+    	DELETE FROM 
+    		temp
+    	WHERE 
+    		id = #{id}
+    </delete>
+    
+    <insert id="insertTempNum" parameterType="MemberVO">
+    	INSERT INTO temp(
+    		id,
+    		temp_number
+    	) VALUES(
+    		#{id},
+    		#{temp_number}
+       	)
+    </insert>
+    
+    <select id="tempNumCheck" resultType="memberVO" parameterType="MemberVO">
+		SELECT
+			tidx,
+			id,
+			temp_number
+		FROM
+			temp
+		WHERE
+			id = #{id}
+		AND
+			temp_number = #{temp_number}
+    </select>
     
 </mapper>

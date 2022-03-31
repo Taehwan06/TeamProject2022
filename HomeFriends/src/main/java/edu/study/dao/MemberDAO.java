@@ -32,10 +32,25 @@ public class MemberDAO {
 	}
 	
 	public int updateTempPwd(MemberVO vo) throws Exception{
-		
-		return sqlSession.update(Namespace+".updateTempPwdBoard",vo);
+		return sqlSession.update(Namespace+".updateTempPwd",vo);
 	}
 	
+	public int insertTempNum(MemberVO vo) throws Exception{
+		return sqlSession.update(Namespace+".insertTempNum",vo);
+	}
+	
+	public int deleteTempNum(String id) throws Exception{
+		return sqlSession.update(Namespace+".deleteTempNum",id);
+	}
+	
+	public MemberVO idCheckMember(String id) throws Exception{
+		return sqlSession.selectOne(Namespace+".idCheckMember",id);
+	}
+	
+	public MemberVO tempNumCheck(MemberVO vo) throws Exception{
+		return sqlSession.selectOne(Namespace+".tempNumCheck",vo);
+	}
+		
 }
 
 

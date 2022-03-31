@@ -34,9 +34,17 @@ public class MemberVO {
 	private String addr2;
 	private String addr3;
 	private String addr4;
+	private String temp_number;
 	
 	
 	
+	
+	public String getTemp_number() {
+		return temp_number;
+	}
+	public void setTemp_number(String temp_number) {
+		this.temp_number = temp_number;
+	}
 	public int getMidx() {
 		return midx;
 	}

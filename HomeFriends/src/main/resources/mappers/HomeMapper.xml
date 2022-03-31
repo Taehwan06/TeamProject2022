@@ -11,14 +11,69 @@
 			writer,
 			title,
 			midx,
-			img_system,
-			profile_system
+			img_system
 		FROM
 			community_board
 		WHERE
 			del_yn = "N"
 		AND
-			title like '%'||#{searchValue}||'%'
+			title like CONCAT("%",#{search_value},"%");
     </select>
+    
+    <select id="searchStore" resultType="homeStoreVO" parameterType="homeSearchVO">
+		SELECT
+			spidx,
+			writer,
+			title,
+			midx,
+			img_system,
+			brand,
+			origin_price,
+			sale_price,
+			score,
+			discount,
+			review_cnt
+		FROM
+			shopping_product
+		WHERE
+			del_yn = "N"
+		AND
+			title like CONCAT("%",#{search_value},"%");
+    </select>
+    
+    <insert id="insertSearchList" parameterType="homeSearchVO">
+    	INSERT INTO search_list(
+    		search_value
+    	) VALUES(
+    		#{search_value}
+    	)
+    </insert>
+    
+    <update id="deleteSearchList">
+    	UPDATE 
+    		search_list 
+    	SET 
+    		del_yn = "Y" 
+    	WHERE 
+    		search_date <![CDATA[<]]> DATE_SUB(NOW(), INTERVAL 1 DAY)
+    </update>
+    
+    <select id="listSearchList" resultType="HomeSearchVO">
+    	SELECT 
+    		  count(search_value) as cnt
+    		, search_value 
+    	FROM 
+    		search_list 
+    	WHERE 
+    		del_yn = "N" 
+    	GROUP BY 
+    		search_value 
+    	ORDER BY 
+    		cnt desc
+    	LIMIT 
+    		5
+    </select>
+    
+    
     
 </mapper>
