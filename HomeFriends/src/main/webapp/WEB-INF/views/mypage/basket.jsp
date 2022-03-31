@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -49,10 +50,10 @@
 					<ul class="row no_list container-fluid border_b">
 						<div class="col-6">
 							<input class="Selection" type="checkbox" name="Selection" value="상품번호3">
-						</div>
+						</div><!-- 상품삭제 -->
 						<div class="col-6" style="text-align: right; padding-right: 15px;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
-  <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-</svg></div>
+  <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/></svg>
+  						</div>
 						<li class="col-3">
 							<ul class="row no_list">
 							<li class="col-3"></li>
@@ -70,9 +71,9 @@
 								</li>
 								<li class="col-3 text_center">
 									<div class="padding_t10">
-										<button type="button" class="btn decreaseQuantity">&#60;</button>
+										<button type="button" class="btn decreaseQuantity">	- </button>
 										<input type="text" class="numberUpDown" class="numberOnly" maxlength="3" size="1" value="1">
-									    <button type="button" class="btn increaseQuantity">&#62;</button>
+									    <button type="button" class="btn increaseQuantity">&#43;</button>
 								    </div>
 								</li>
 								<li class="col-3 text_center price_val_box">
@@ -92,7 +93,7 @@
 								상품금액
 								<br>
 								<div class="bottom_all_price_price">
-									<span class="font_size_15px">0</span>원
+									<span class="font_size_15px">0</span>&nbsp;원
 								</div>
 							</div>
 						</div>
@@ -104,7 +105,7 @@
 								배송비
 								<br>
 								<div class="bottom_all_price_price">
-									<span class="font_size_15px">0</span>원
+									<span class="font_size_15px">0</span>&nbsp;원
 								</div>
 							</div>
 						</div>
@@ -116,7 +117,7 @@
 								상품금액
 								<br>
 								<div class="bottom_all_price_price">
-									<span class="font_size_15px">0</span>원
+									<span class="font_size_15px">0</span>&nbsp;원
 								</div>
 							</div>
 						</div>
@@ -139,19 +140,19 @@
 							<li class="row text_middle margin_tb10">
 								<span class="col-4">상품수</span>
 								<span class="col-8 sumPriceBox_content_text_right">
-									<strong class="font_size_small">0</strong><span class="font_size_small">개</span>
+									<strong class="font_size_small">0</strong><span class="font_size_small">&nbsp;개</span>
 								</span>
 							</li>
 							<li class="row text_middle margin_tb10">
 								<span class="col-4">금액</span>
 								<span class="col-8 sumPriceBox_content_text_right">
-									<strong class="font_size_small">0</strong><span class="font_size_small">원</span>
+									<strong class="font_size_small">0</strong><span class="font_size_small">&nbsp;원</span>
 								</span>
 							</li>
 							<li class="row text_middle margin_tb10">
 								<span class="col-4">배송비</span>
 								<span class="col-8 sumPriceBox_content_text_right">
-									<strong class="font_size_small">0</strong><span class="font_size_small">원</span>
+									<strong class="font_size_small">0</strong><span class="font_size_small">&nbsp;원</span>
 								</span>
 							</li>
 						</ul>
@@ -159,12 +160,13 @@
 					<div class="row content_margin">
 						<span class="col-5 price_visible">총 결제금액</span>
 						<span class="col-7 sumPriceBox_content_text_right">
-							<strong class="font_size_small">9,000,000</strong><span class="font_size_small">원</span>
+							<strong >9,000,000</strong><span class="font_size_small">&nbsp;원</span>
 						</span>
 					</div>
-					<div class="content_margin">
+					
+				</div>
+				<div class="content_margin">
 						<button type="button" class="sumPriceBox_button">구매하기</button>
-					</div>
 				</div>
 			</div>
 		</div>

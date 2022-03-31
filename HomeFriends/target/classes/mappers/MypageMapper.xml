@@ -55,4 +55,48 @@
 			midx = #{midx}
     </select>
     
+    <update id="modifyMember" parameterType="MemberVO">
+    	UPDATE member 
+    	SET
+    		id = #{id},
+    		nick_name = #{nick_name},
+    		gender = #{gender},
+    		phone = CONCAT(#{phone1},"-",#{phone2},"-",#{phone3}),
+    		addr = #{addr}
+    	WHERE 
+    		midx = #{midx}
+    </update>
+    
+     <update id="deleteMember" parameterType="MemberVO">
+    	UPDATE member 
+    	SET
+    		id = #{id},
+    		nick_name = #{nick_name},
+    		gender = #{gender},
+    		phone = #{phone},
+    		addr = #{addr},
+    		del_yn = #{del_yn},
+    		del_cause = #{del_cause}
+    	WHERE 
+    		midx = #{midx}
+    </update>
+    
+    <select id="orderList" resultType="OrderListVO" parameterType="OrderListVO">
+         SELECT 
+         		olidx,
+         		title,
+         		price,
+         		img_system,
+         		buying_date,
+         		progress,
+         		delivery_status,
+         		review_registration
+           FROM 
+           		order_list
+          WHERE 
+          		midx = #{midx}
+
+    </select>
+    
+    
 </mapper>

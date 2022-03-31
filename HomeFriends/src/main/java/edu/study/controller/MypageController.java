@@ -1,6 +1,7 @@
 package edu.study.controller;
 
 import java.util.List;
+
 import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import edu.study.service.MypageService;
+import edu.study.vo.HomeStoryVO;
 import edu.study.vo.MemberVO;
 import edu.study.vo.SearchVO;
+import edu.study.vo.StoreVO;
+import edu.study.vo.OrderListVO;
 
 /**
  * Handles requests for the application home page.
@@ -54,19 +58,37 @@ public class MypageController {
 		vo.setMidx(1);
 		int result = mypageService.update(vo);	
 		
-		return "mypage/member_modify";
+		return "mypage/mypage";
 	}
 	
 	@RequestMapping(value = "/member_delete.do", method = RequestMethod.GET)
-	public String member_delete(Locale locale, Model model, SearchVO vo) throws Exception {
+	public String member_delete(Locale locale, Model model) throws Exception {
+		int midx=1;
+		MemberVO result = mypageService.detail(midx);
 		
-		return "mypage/member_delete";
+		return "mypage/member_delete"; 
 	}
 	
+	@RequestMapping(value = "/member_delete.do", method = RequestMethod.POST)
+	public String member_deleteOk(Locale locale, Model model, MemberVO vo) throws Exception {
+		
+		vo.setMidx(1);
+		int result = mypageService.delete(vo);	
+		
+		return "mypage/mypage";
+	}
+	
+	
 	@RequestMapping(value = "/order_list.do", method = RequestMethod.GET)
-	public String order_list(Locale locale, Model model, SearchVO vo) throws Exception {
+	public String order_list(Locale locale, Model model) throws Exception {
+		
+		vo.setMidx(1);
+		int result = mypageService.orderList(vo);
+		model.addAttribute("vo", result);
+		
 		
 		return "mypage/order_list";
+		
 	}
 	
 	@RequestMapping(value = "/payment.do", method = RequestMethod.GET)

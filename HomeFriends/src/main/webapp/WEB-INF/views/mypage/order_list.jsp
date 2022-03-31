@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -190,6 +191,11 @@
 				</div><!-- col tag 닫힘 -->
 			</div><!-- row 닫힘 -->
 	</div><!-- container 닫힘 -->
+	
+	<%=request.getAttribute("orderList") %>
+	
+	
+	
 	</section>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script src="/controller/js/login/join2.js"></script>

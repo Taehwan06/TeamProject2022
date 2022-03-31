@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -15,7 +16,6 @@
 
 	<link href="/controller/css/header.css" rel="stylesheet">
 	<link href="/controller/css/nav.css" rel="stylesheet">
-	<link href="/controller/css/login/join.css" rel="stylesheet">
 	<link href="/controller/css/mypage/mypage.css" rel="stylesheet">
 	<link href="/controller/css/footer.css" rel="stylesheet">
 	
