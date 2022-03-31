@@ -34,19 +34,19 @@
 		</div>
 		<div class="row" id="shop_content">
 			<div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-				<img src= "/controller/image/shop05.webp" class="shopImg" onclick="">
+				<img src= "${vo.img_origin}" class="shopImg" onClick="">
 			</div>
 			<div class="col-sm-11 col-md-5 col-lg-5 col-xl-5 content">
 				<div class="row">
-					<div class="col-sm-2 col-md-2 brand">삼익가구</div>
+					<div class="col-sm-2 col-md-2 brand">${vo.brand}</div>
 				</div>
 				<div class="row">
-					<div class="col-12 col-sm-10 col-md-10 shop_subject">마스 3인/4인용 헤드틸팅 아쿠아텍스 소파</div>
+					<div class="col-12 col-sm-10 col-md-10 shop_subject">${vo.title}</div>
 					<div class="col-sm-1 col-md-1"></div>
 				</div>
 				<div class="row price">
-					<div class="col-sm-4 col-md-4 col-lg-3 discount">65%</div>
-					<div class="col-sm-7 col-md-7 original_price">279,000원</div>
+					<div class="col-sm-4 col-md-4 col-lg-3 discount">${vo.discount}%</div>
+					<div class="col-sm-7 col-md-7 original_price">${vo.sale_price}원</div>
 				</div>
 				<div class="row delivery">
 					<div class="col-sm-2 col-md-2 delivery_">배송</div>
@@ -55,16 +55,16 @@
 				<div class="row selectbox">
 					<select class="form-select form-select-lg">
 						<option value="00" selected>상품을 선택하세요.</option>
-						<option value="01" data-image="/shop05.webp">마스 3인용 헤드틸팅 아쿠아텍스 소파</option>
+						<option value="01" data-image="/shop05.webp">${vo.product_name}</option>
 					</select>
 				</div>
 				<div class="row order_price">
 					<div class="col-sm-6 col-md-6 order_price_">주문금액</div>
-					<div class="col-sm-6 col-md-6 order_price__">0원</div>
+					<div class="col-sm-6 col-md-6 order_price__"><span>0</span>원</div>
 				</div>
 				<div class="row btn_area">
-					<div class="col-6 col-sm-6 col-md-6"><button id="basket_btn" onclick="">장바구니</button></div>
-					<div class="col-6 col-sm-6 col-md-6"><button id="buy_btn" onclick="location.href=''">바로구매</button></div>
+					<div class="col-6 col-sm-6 col-md-6"><button id="basket_btn" onClick="">장바구니</button></div>
+					<div class="col-6 col-sm-6 col-md-6"><button id="buy_btn" onClick="location.href=''">바로구매</button></div>
 				</div>
 			</div>
 		</div>
@@ -72,10 +72,10 @@
 		<article>
 			<div class="row information">
 				<div class="col-md-1 col-lg-1 col-xl-1" id="hiddenDiv"></div>
-				<div class="col-3 col-sm-3 col-md-2 col-lg-2 col-xl-1 _product" onclick="locationFn('product')">상품정보</div>
-				<div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-2 _review" onclick="locationFn('review')">리뷰<span>23,406</span></div>
-				<div class="col-3 col-sm-3 col-md-2 col-lg-3 col-xl-2 _QnA" onclick="locationFn('QnA')">문의<span>6,109</span></div>
-				<div class="col-3 col-sm-3 col-md-2 col-lg-2 col-xl-2 _change" onclick="locationFn('change')">배송/환불</div>
+				<div class="col-3 col-sm-3 col-md-2 col-lg-2 col-xl-1 _product" onClick="locationFn('product')">상품정보</div>
+				<div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-2 _review" onClick="locationFn('review')">리뷰<span>${vo.review_cnt}</span></div>
+				<div class="col-3 col-sm-3 col-md-2 col-lg-3 col-xl-2 _QnA" onClick="locationFn('QnA')">문의<span>6,109</span></div>
+				<div class="col-3 col-sm-3 col-md-2 col-lg-2 col-xl-2 _change" onClick="locationFn('change')">배송/환불</div>
 			</div>
 		</article>
 	<section id="Com_area">
@@ -84,12 +84,11 @@
 				<div id="shop_information_area_header">
 					상품정보
 				</div>
-				<div id="shop_information_area">
-					<img src= "/controller/image/information.webp">
-					<img src= "/controller/image/information01.webp">
+				<div id="shop_information_area"><!-- 사이즈지정필요 -->
+					${vo.content}
 				</div>
 				<div id="review_area_header">
-					<div>리뷰 <span>23,404</span></div>
+					<div>리뷰 <span>${vo.review_cnt}</span></div>
 					<div id="reviewwrite">리뷰쓰기</div>
 				</div>
 				<div id="review_area">
@@ -115,7 +114,16 @@
 							</tr>
 							<tr>
 								<td>배송비</td>
-								<td>무료배송</td>
+								<td>
+									<c:choose>
+									    <c:when test="${vo.free_delivery eq 'Y'}">
+									        무료배송
+									    </c:when>
+									    <c:otherwise>
+									        ${vo.delivery_charge}
+									    </c:otherwise>
+									</c:choose>
+								</td>
 							</tr>
 							<tr>
 								<td>도서산간 추가 배송비</td>
@@ -207,7 +215,7 @@
 					<div class="selectbox_">
 						<select class="form-select form-select-lg">
 							<option value="00" selected>상품을 선택하세요.</option>
-							<option value="01"">마스 3인용 헤드틸팅 아쿠아텍스 소파</option>
+							<option value="01"">${vo.product_name}</option>
 						</select>
 					</div>
 					<div class="hidden_area"></div>

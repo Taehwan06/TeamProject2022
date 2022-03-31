@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<!-- JSTL사용하기위한 -->
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,12 +45,12 @@
 				    <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
 				      <div class="accordion-body">
 				      	<ul class="category_ul">
-							<li class="category_link2" id="sofa">소파</li>
-							<li class="category_link2" id="storage">수납장</li>
-							<li class="category_link2" id="chair">의자</li>
-							<li class="category_link2" id="bed">침대</li>
-							<li class="category_link2" id="table">테이블</li>
-							<li class="category_link2" id="dresser">화장대</li>
+							<li class="category_link2" id="11">소파</li>
+							<li class="category_link2" id="12">수납장</li>
+							<li class="category_link2" id="13">의자</li>
+							<li class="category_link2" id="14">침대</li>
+							<li class="category_link2" id="15">테이블</li>
+							<li class="category_link2" id="16">화장대</li>
 						</ul>
 				      </div>
 				    </div>
@@ -62,11 +64,11 @@
 				    <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
 				      <div class="accordion-body">
 				      	<ul class="category_ul">
-							<li class="category_link2" id="led">LED</li>
-							<li class="category_link2" id="short_stand">단스텐드</li>
-							<li class="category_link2" id="long_stand">장스텐드</li>
-							<li class="category_link2" id="mood">무드등</li>
-							<li class="category_link2" id="ceil">천장등</li>
+							<li class="category_link2" id="21">LED</li>
+							<li class="category_link2" id="22">단스텐드</li>
+							<li class="category_link2" id="23">장스텐드</li>
+							<li class="category_link2" id="24">무드등</li>
+							<li class="category_link2" id="25">천장등</li>
 						</ul>
 				      </div>
 				    </div>
@@ -80,11 +82,11 @@
 				    <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
 				      <div class="accordion-body">
 				      	<ul class="category_ul">
-							<li class="category_link2" id="pillow">베게</li>
-							<li class="category_link2" id="bedclothes">이불</li>
-							<li class="category_link2" id="cover">커버</li>
-							<li class="category_link2" id="curtain">커튼</li>
-							<li class="category_link2" id="cushion">쿠션 & 방석</li>
+							<li class="category_link2" id="31">베게</li>
+							<li class="category_link2" id="32">이불</li>
+							<li class="category_link2" id="33">커버</li>
+							<li class="category_link2" id="34">커튼</li>
+							<li class="category_link2" id="35">쿠션 & 방석</li>
 						</ul>
 				      </div>
 				    </div>
@@ -98,11 +100,11 @@
 				    <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
 				      <div class="accordion-body">
 				      	<ul class="category_ul">
-							<li class="category_link2" id="fridge">냉장고</li>
-							<li class="category_link2" id="TV">TV</li>
-							<li class="category_link2" id="washer">세탁기</li>
-							<li class="category_link2" id="airconditioner">에어컨</li>
-							<li class="category_link2" id="vacuum">청소기</li>
+							<li class="category_link2" id="41">냉장고</li>
+							<li class="category_link2" id="42">TV</li>
+							<li class="category_link2" id="43">세탁기</li>
+							<li class="category_link2" id="44">에어컨</li>
+							<li class="category_link2" id="45">청소기</li>
 						</ul>
 					</div>
 				    </div>
@@ -116,12 +118,12 @@
 				    <div id="flush-collapseFive" class="accordion-collapse collapse" aria-labelledby="flush-headingFive" data-bs-parent="#accordionFlushExample">
 				      <div class="accordion-body">
 				      	<ul class="category_ul">
-							<li class="category_link2" id="plate">그릇 & 접시</li>
-							<li class="category_link2" id="pan">냄비 & 프라이팬</li>
-							<li class="category_link2" id="container">보관 용기</li>
-							<li class="category_link2" id="spoon">수저</li>
-							<li class="category_link2" id="dryer">식기건조대</li>
-							<li class="category_link2" id="cup">컵</li>
+							<li class="category_link2" id="51">그릇 & 접시</li>
+							<li class="category_link2" id="52">냄비 & 팬</li>
+							<li class="category_link2" id="53">보관 용기</li>
+							<li class="category_link2" id="54">수저</li>
+							<li class="category_link2" id="55">식기건조대</li>
+							<li class="category_link2" id="56">컵</li>
 						</ul>
 				      </div>
 				    </div>
@@ -135,11 +137,11 @@
 				    <div id="flush-collapseSix" class="accordion-collapse collapse" aria-labelledby="flush-headingSix" data-bs-parent="#accordionFlushExample">
 				      <div class="accordion-body">
 				      	<ul class="category_ul">
-							<li class="category_link2" id="bath">욕실</li>
-							<li class="category_link2" id="towel">수건</li>
-							<li class="category_link2" id="cleaning">청소</li>
-							<li class="category_link2" id="laundry">세탁</li>
-							<li class="category_link2" id="living">생활잡화</li>
+							<li class="category_link2" id="61">욕실</li>
+							<li class="category_link2" id="62">수건</li>
+							<li class="category_link2" id="63">청소</li>
+							<li class="category_link2" id="64">세탁</li>
+							<li class="category_link2" id="65">생활잡화</li>
 						</ul>
 				      </div>
 				    </div>
@@ -150,13 +152,27 @@
 			<!-- 컨텐츠영역 -->
 			<div class="store_list_content col-12 col-md-9 margin_auto padding_0">
 				<!-- 해당 카테고리 -->
-				<div class="storeTitle">가구</div><!-- 카테고리타입 가져올것 --><!-- ---------------- -->
+				<div id="store_main_Title" class="storeTitle">
+					
+					<c:if test="${not empty param.category}">
+						<script>
+							var title = match[${param.category}];
+							$("#store_main_Title").text(title);
+						</script>
+					</c:if>
+					<c:if test="${not empty param.detail}">
+						<script>
+							var title = match[${param.detail}];
+							$("#store_main_Title").text(title);
+						</script>
+					</c:if>
+				</div><!-- 카테고리타입 가져올것 --><!-- ---------------- -->
 				<!-- 정렬방식 -->
 				<!-- home_list에서 가져옴 -->
 				<div class="row" id="sectionDiv">
 					<ul class="col-3 col-sm-2 col-md-2 col-lg-2 col-xl-2 list_">
 						<li>
-							<button class="list_btn" onClick="listFn(this)">무료배송</button>
+							<button id="free" class="list_btn" onClick="listFn(this)">무료배송</button>
 						</li>
 					</ul>
 					<ul class="col-3 col-sm-2 col-md-2 col-lg-2 col-xl-2 list_">
@@ -169,7 +185,7 @@
 						<li>
 							<select class="sort">
 								<option>구매순</option>
-								<option>별점순</option>
+								<option class="">별점순</option>
 								<option>가격높은순</option>
 								<option>가격낮은순</option>
 							</select>
@@ -208,81 +224,27 @@
 				<!-- 컨텐츠 선택카테고리 물품 -->
 				<div id="deal">
 					<div class="row shopList">
-						<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop">
-							<img src="/controller/image/shop01.webp" class="shopImg" onClick="">
-							<div class="shopText" onClick="">
+						<c:forEach items="${list}" var="vo" varStatus="cnt">
+						<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop" onClick="location.href='/controller/store/store_view.do?spidx=${vo.spidx}'">
+							<img src="${vo.img_origin}" class="shopImg">
+							<div class="shopText">
 								<div class="shopTitle">
-									<div class="brand">코코도르</div>
-									(1+1) 코코도르 인기 디퓨저 14종
+									<div class="brand">${vo.brand}</div>
+									${vo.title}
 								</div>
 								<div class="shopPrice">
-									<span class="red">72%</span> 10,900
+									<span class="red">${vo.discount}%</span> ${vo.sale_price}
 								</div>
 								<span class="sky">
 									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
 										<path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
 									</svg>
 								</span>
-								<b>4.7</b> <span class="gray">리뷰 7,391</span>
+								<b>${vo.score}</b> <span class="gray">리뷰 ${vo.review_cnt}</span>
 							</div>
 						</div>
-
-						<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop">
-							<img src="/controller/image/shop02.webp" class="shopImg" onClick="">
-							<div class="shopText" onClick="">
-								<div class="shopTitle">
-									<div class="brand">픽켄드</div>
-									[10%쿠폰/단독컬러] 정말정말 부드러운 두부이불 차렵이불 세트(SS/Q)
-								</div>
-								<div class="shopPrice">
-									<span class="red">47%</span> 46,700
-								</div>
-								<span class="sky">
-									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-										<path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-									</svg>
-								</span>
-								<b>4.7</b> <span class="gray">리뷰 2,732</span>
-							</div>
-						</div>
-
-						<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop">
-							<img src="/controller/image/shop03.webp" class="shopImg" onClick="">
-							<div class="shopText" onClick="">
-								<div class="shopTitle">
-									<div class="brand">미닉스</div>
-									[2만쿠폰] 미닉스 미니건조기
-								</div>
-								<div class="shopPrice">
-									<span class="red">31%</span> 319,000
-								</div>
-								<span class="sky">
-									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-										<path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-									</svg>
-								</span>
-								<b>4.8</b> <span class="gray">리뷰 4,432</span>
-							</div>
-						</div>
-
-						<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop">
-							<img src="/controller/image/shop04.webp" class="shopImg" onClick="">
-							<div class="shopText" onClick="">
-								<div class="shopTitle">
-									<div class="brand">노와</div>
-									독일IH 쿡웨어 7P세트 외 주방용품 베스트 모음전
-								</div>
-								<div class="shopPrice">
-									<span class="red">76%</span> 68,900 외
-								</div>
-								<span class="sky">
-									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-										<path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-									</svg>
-								</span>
-								<b>4.6</b> <span class="gray">리뷰 6,568</span>
-							</div>
-						</div>
+						</c:forEach>
+						
 					</div>
 				</div>
 			</div>

@@ -204,6 +204,11 @@ $(document).ready(function(){
 		$("._change").css({"border" : "none", "color" : "black"});
 	});
 	
+	//-----컨텐츠 이미지 크기조절------------------------------
+	console.log($("#shop_information_area > img"));
+	$("#shop_information_area > img").css('width', '100%');
+	
+	
 });
 
 $(window).resize(function() {
