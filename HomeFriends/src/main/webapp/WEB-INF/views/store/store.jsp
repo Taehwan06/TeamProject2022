@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<!-- JSTL사용하기위한 -->
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,38 +49,37 @@
 
 		<!-- 상품 카테고리 -->
 		<div class="row category">
-			<div id="furniture" class="category_link col-4 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+			<div id="10" class="category_link col-4 col-sm-2 col-md-2 col-lg-2 col-xl-2">
 				<div class="img_box">
 					<img class="category_img" src="/controller/image/furniture.png"><br>
 				</div>
-					가구
-				
+				가구
 			</div>
-			<div id="bedding" class="category_link col-4 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+			<div id="30" class="category_link col-4 col-sm-2 col-md-2 col-lg-2 col-xl-2">
 				<div class="img_box">
 					<img class="category_img" src="/controller/image/bedding.png"><br>
 				</div>
 				침구
 			</div>
-			<div id="appliances" class="category_link col-4 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+			<div id="40" class="category_link col-4 col-sm-2 col-md-2 col-lg-2 col-xl-2">
 				<div class="img_box">
 					<img id="big_img" class="category_img" src="/controller/image/appliances.png"><br>
 				</div>
 				가전
 			</div>
-			<div id="light" class="category_link col-4 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+			<div id="20" class="category_link col-4 col-sm-2 col-md-2 col-lg-2 col-xl-2">
 				<div class="img_box">
 					<img class="category_img" src="/controller/image/light.png"><br>
 				</div>
 				조명
 			</div>
-			<div id="kitchen" class="category_link col-4 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+			<div id="50" class="category_link col-4 col-sm-2 col-md-2 col-lg-2 col-xl-2">
 				<div class="img_box">
 					<img class="category_img" src="/controller/image/kitchen.png"><br>
 				</div>
 				주방
 			</div>
-			<div id="daily" class="category_link col-4 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+			<div id="60" class="category_link col-4 col-sm-2 col-md-2 col-lg-2 col-xl-2">
 				<div class="img_box">
 					<img class="category_img" src="/controller/image/daily.png"><br>
 				</div>
@@ -87,88 +90,35 @@
 
 		<!-- 컨텐츠 오늘의 딜 -->
 		<div id="deal">
+			
 			<div class="row shopList">
 				<div class="storyListTitle">
 		        오늘의 딜
-			        <span class="moreview" onclick="location.href=''">더보기</span>
+			        <span class="moreview" onClick="location.href='store_list.do?type=Discount'">더보기</span>
 			        <div class="clear"></div>
 		        </div>
-				<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop">
-					<img src="/controller/image/shop01.webp" class="shopImg" onClick="">
+		       <c:forEach items="${list.get(0)}" var="vo" end="3" varStatus="cnt">
+				<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop" <c:if test="${cnt.last}">id="mdlg_display_none"</c:if> onClick="location.href='/controller/store/store_view.do?spidx=${vo.spidx}'">
+					<img src="${vo.img_origin}" class="shopImg" onClick="">
 					<div class="shopText" onClick="">
 						<div class="shopTitle">
-							<div class="brand">코코도르</div>
-							(1+1) 코코도르 인기 디퓨저 14종
+							<div class="brand">${vo.brand}</div>
+							${vo.title}
 						</div>
 						<div class="shopPrice">
-							<span class="red">72%</span> 10,900
+							<span class="red">${vo.discount}%</span> ${vo.sale_price}
 						</div>
 						<span class="sky">
 							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
 								<path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
 							</svg>
 						</span>
-						<b>4.7</b> <span class="gray">리뷰 7,391</span>
+						<b>${vo.score}</b> <span class="gray">리뷰 ${vo.review_cnt}</span>
 					</div>
 				</div>
-
-				<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop">
-					<img src="/controller/image/shop02.webp" class="shopImg" onClick="">
-					<div class="shopText" onClick="">
-						<div class="shopTitle">
-							<div class="brand">픽켄드</div>
-							[10%쿠폰/단독컬러] 정말정말 부드러운 두부이불 차렵이불 세트(SS/Q)
-						</div>
-						<div class="shopPrice">
-							<span class="red">47%</span> 46,700
-						</div>
-						<span class="sky">
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-								<path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-							</svg>
-						</span>
-						<b>4.7</b> <span class="gray">리뷰 2,732</span>
-					</div>
-				</div>
-
-				<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop">
-					<img src="/controller/image/shop03.webp" class="shopImg" onClick="">
-					<div class="shopText" onClick="">
-						<div class="shopTitle">
-							<div class="brand">미닉스</div>
-							[2만쿠폰] 미닉스 미니건조기
-						</div>
-						<div class="shopPrice">
-							<span class="red">31%</span> 319,000
-						</div>
-						<span class="sky">
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-								<path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-							</svg>
-						</span>
-						<b>4.8</b> <span class="gray">리뷰 4,432</span>
-					</div>
-				</div>
-
-				<div id="mdlg_display_none" class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop">
-					<img src="/controller/image/shop04.webp" class="shopImg" onClick="">
-					<div class="shopText" onClick="">
-						<div class="shopTitle">
-							<div class="brand">노와</div>
-							독일IH 쿡웨어 7P세트 외 주방용품 베스트 모음전
-						</div>
-						<div class="shopPrice">
-							<span class="red">76%</span> 68,900 외
-						</div>
-						<span class="sky">
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-								<path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-							</svg>
-						</span>
-						<b>4.6</b> <span class="gray">리뷰 6,568</span>
-					</div>
-				</div>
-			</div>
+				</c:forEach>
+			</div>	
+			
 		</div>
 
 		<!-- 컨텐츠 베스트 상품 -->
@@ -176,84 +126,30 @@
 			<div class="row shopList">
 				<div class="storyListTitle">
 		        Bast
-			        <span class="moreview" onclick="location.href=''">더보기</span>
+			        <span class="moreview" onClick="location.href='store_list.do?type=sell_cnt'">더보기</span>
 			        <div class="clear"></div>
 		        </div>
-				<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop">
-					<img src="/controller/image/shop01.webp" class="shopImg" onClick="">
+				 <c:forEach items="${list.get(1)}" var="vo" end="3" varStatus="cnt">
+				<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop" <c:if test="${cnt.last}">id="mdlg_display_none"</c:if> onClick="location.href='/controller/store/store_view.do?spidx=${vo.spidx}'">
+					<img src="${vo.img_origin}" class="shopImg" onClick="">
 					<div class="shopText" onClick="">
 						<div class="shopTitle">
-							<div class="brand">코코도르</div>
-							(1+1) 코코도르 인기 디퓨저 14종
+							<div class="brand">${vo.brand}</div>
+							${vo.title}
 						</div>
 						<div class="shopPrice">
-							<span class="red"></span> 10,900
+							<span class="red">${vo.discount}%</span> ${vo.sale_price}
 						</div>
 						<span class="sky">
 							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
 								<path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
 							</svg>
 						</span>
-						<b>4.7</b> <span class="gray">리뷰 7,391</span>
+						<b>${vo.score}</b> <span class="gray">리뷰 ${vo.review_cnt}</span>
 					</div>
 				</div>
-
-				<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop">
-					<img src="/controller/image/shop02.webp" class="shopImg" onClick="">
-					<div class="shopText" onClick="">
-						<div class="shopTitle">
-							<div class="brand">픽켄드</div>
-							[10%쿠폰/단독컬러] 정말정말 부드러운 두부이불 차렵이불 세트(SS/Q)
-						</div>
-						<div class="shopPrice">
-							<span class="red"></span> 46,700
-						</div>
-						<span class="sky">
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-								<path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-							</svg>
-						</span>
-						<b>4.7</b> <span class="gray">리뷰 2,732</span>
-					</div>
-				</div>
-
-				<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop">
-					<img src="/controller/image/shop03.webp" class="shopImg" onClick="">
-					<div class="shopText" onClick="">
-						<div class="shopTitle">
-							<div class="brand">미닉스</div>
-							[2만쿠폰] 미닉스 미니건조기
-						</div>
-						<div class="shopPrice">
-							<span class="red"></span> 319,000
-						</div>
-						<span class="sky">
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-								<path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-							</svg>
-						</span>
-						<b>4.8</b> <span class="gray">리뷰 4,432</span>
-					</div>
-				</div>
-
-				<div id="mdlg_display_none" class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop">
-					<img src="/controller/image/shop04.webp" class="shopImg" onClick="">
-					<div class="shopText" onClick="">
-						<div class="shopTitle">
-							<div class="brand">노와</div>
-							독일IH 쿡웨어 7P세트 외 주방용품 베스트 모음전
-						</div>
-						<div class="shopPrice">
-							<span class="red"></span> 68,900 외
-						</div>
-						<span class="sky">
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-								<path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-							</svg>
-						</span>
-						<b>4.6</b> <span class="gray">리뷰 6,568</span>
-					</div>
-				</div>
+				</c:forEach>
+				
 			</div>
 		</div>
 
@@ -262,84 +158,30 @@
 			<div class="row shopList">
 				<div class="storyListTitle">
 		        추천상품
-			        <span class="moreview" onclick="location.href=''">더보기</span>
+			        <span class="moreview" onClick="location.href='store_list.do?type=review_cnt'">더보기</span>
 			        <div class="clear"></div>
 		        </div>
-				<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop">
-					<img src="/controller/image/shop01.webp" class="shopImg" onClick="">
+				 <c:forEach items="${list.get(2)}" var="vo" end="3" varStatus="cnt">
+				<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop" <c:if test="${cnt.last}">id="mdlg_display_none"</c:if> onClick="location.href='/controller/store/store_view.do?spidx=${vo.spidx}'">
+					<img src="${vo.img_origin}" class="shopImg" onClick="">
 					<div class="shopText" onClick="">
 						<div class="shopTitle">
-							<div class="brand">코코도르</div>
-							(1+1) 코코도르 인기 디퓨저 14종
+							<div class="brand">${vo.brand}</div>
+							${vo.title}
 						</div>
 						<div class="shopPrice">
-							<span class="red"></span> 10,900
+							<span class="red">${vo.discount}%</span> ${vo.sale_price}
 						</div>
 						<span class="sky">
 							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
 								<path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
 							</svg>
 						</span>
-						<b>4.7</b> <span class="gray">리뷰 7,391</span>
+						<b>${vo.score}</b> <span class="gray">리뷰 ${vo.review_cnt}</span>
 					</div>
 				</div>
-
-				<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop">
-					<img src="/controller/image/shop02.webp" class="shopImg" onClick="">
-					<div class="shopText" onClick="">
-						<div class="shopTitle">
-							<div class="brand">픽켄드</div>
-							[10%쿠폰/단독컬러] 정말정말 부드러운 두부이불 차렵이불 세트(SS/Q)
-						</div>
-						<div class="shopPrice">
-							<span class="red"></span> 46,700
-						</div>
-						<span class="sky">
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-								<path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-							</svg>
-						</span>
-						<b>4.7</b> <span class="gray">리뷰 2,732</span>
-					</div>
-				</div>
-
-				<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop">
-					<img src="/controller/image/shop03.webp" class="shopImg" onClick="">
-					<div class="shopText" onClick="">
-						<div class="shopTitle">
-							<div class="brand">미닉스</div>
-							[2만쿠폰] 미닉스 미니건조기
-						</div>
-						<div class="shopPrice">
-							<span class="red"></span> 319,000
-						</div>
-						<span class="sky">
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-								<path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-							</svg>
-						</span>
-						<b>4.8</b> <span class="gray">리뷰 4,432</span>
-					</div>
-				</div>
-
-				<div id="mdlg_display_none" class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop">
-					<img src="/controller/image/shop04.webp" class="shopImg" onClick="">
-					<div class="shopText" onClick="">
-						<div class="shopTitle">
-							<div class="brand">노와</div>
-							독일IH 쿡웨어 7P세트 외 주방용품 베스트 모음전
-						</div>
-						<div class="shopPrice">
-							<span class="red"></span> 68,900 외
-						</div>
-						<span class="sky">
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-								<path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-							</svg>
-						</span>
-						<b>4.6</b> <span class="gray">리뷰 6,568</span>
-					</div>
-				</div>
+				</c:forEach>
+				
 			</div>
 		</div>
 	</section>

@@ -226,9 +226,21 @@ function submitFn(){
 	}
 	
 	if(result){
-		document.joinFrm.method = "post";
-		document.joinFrm.action = "#";
-		document.joinFrm.submit();
+		var img_style = $("#imgArea").attr("style");
+		/*img_style= img_style.replace(/&/g,"%26");*/
+		img_style= img_style.replace(/\+/g,"%2B");
+		/*img_style= img_style.replace(/=/g,"%3D");*/
+		console.log(img_style);/*
+		console.log($("#insertFrm").serialize());*/
+		$.ajax({
+			type : "POST",
+			url : "store_insert.do",
+			data : $("#insertFrm").serialize()+"&img_style="+img_style,
+			success : function(res) {
+				alert("ok");
+				location.href="store.do";
+			}
+		});
 	}
 }
 
@@ -250,30 +262,50 @@ function readURL(input) {
 	}
 }
 
+function cancelFn(){
+   var isCancel = confirm("이 페이지를 나가면 수정된 사항이 모두 유실됩니다! 그래도 나가시겠어요?");
+   if(isCancel){
+      location.href = "store.do"
+   }
+}
+
+function adjustHeight() {
+   var textEle = $(".note-editable");
+   textEle[0].style.height = 'auto';
+   var textEleHeight = textEle.prop('scrollHeight');
+   textEle.css('height', textEleHeight);
+   textEle.css('overflow', 'hidden');
+};
+
+var textEle = $(".note-editable");
+textEle.on('keyup', function() {
+   adjustHeight();
+});
+
 $(document).ready(function() {
 	
 	$('#summernote').summernote({
-		height: 300,                 // 에디터 높이
-		minHeight: 300,             // 최소 높이
-		maxHeight: null,             // 최대 높이
-		focus: false,                  // 에디터 로딩후 포커스를 맞출지 여부
-		lang: "ko-KR",					// 한글 설정
-		placeholder: '내용을 입력해주세요.',	//placeholder 설정
-		
-		 toolbar: [
-			    // [groupName, [list of button]]
-			    ['fontname', ['fontname']],
-			    ['fontsize', ['fontsize']],
-			    ['style', ['bold', 'italic', 'underline','strikethrough']],
-			    ['color', ['forecolor','color']],
-			    ['para', ['paragraph']],
-			    ['height', ['height']],
-			    ['insert',['picture']]
-			  ],
-			fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋움체','바탕체'],
-			fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72']
-		
-		
-	});
+      width : 750,
+      maxWidth : 750, 
+      minHeight: 300,             // 최소 높이
+      maxHeight: null,             // 최대 높이
+      focus: false,                  // 에디터 로딩후 포커스를 맞출지 여부
+      lang: "ko-KR",               // 한글 설정
+      placeholder: '내용을 입력해주세요.',   //placeholder 설정
+      
+       toolbar: [
+             // [groupName, [list of button]]
+             ['fontname', ['fontname']],
+             ['fontsize', ['fontsize']],
+             ['style', ['bold', 'italic', 'underline','strikethrough']],
+             ['color', ['forecolor','color']],
+             ['para', ['paragraph']],
+             ['height', ['height']],
+             ['insert',['picture']]
+           ],
+         fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋움체','바탕체'],
+         fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72']
+
+   });
 	  
 });

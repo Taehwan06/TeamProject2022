@@ -2,7 +2,7 @@ $(document).ready( function(){
 	//카테고리 클릭시 페이지 이동
 	$(".category_link").click(function(){
 		var id = $(this).attr('id');
-		location.href = 'store_list.jsp?searchType='+id;
+		location.href = 'store_list.do?category='+id;
 	});
 	
 	//화면시작시 카테고리 이미지크기맞게 조정
@@ -21,5 +21,12 @@ $(document).ready( function(){
 		} else{
 			$('.write_btn').hide();
 		}
+	});
+	
+	$(".write_btn_").on('click',function(){
+		location.href = 'store_insert.do';
+	});
+	$(".write_btn").on('click',function(){
+		location.href = 'store_insert.do';
 	});
 });
