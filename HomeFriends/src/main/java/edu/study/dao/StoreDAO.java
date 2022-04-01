@@ -40,7 +40,7 @@ public class StoreDAO {
 		return sqlSession.insert(Namespace+".insertStore",vo);
 	}
 	
-	public int basketIn(BasketVO vo) throws Exception{
+	public int basketIn(StoreVO vo) throws Exception{
 		return sqlSession.insert(Namespace+".basketIn",vo);
 	}
 	

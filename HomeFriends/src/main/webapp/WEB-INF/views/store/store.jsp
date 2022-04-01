@@ -37,13 +37,13 @@
 	<%@ include file="../header.jsp" %>
 	<%@ include file="../nav.jsp" %>
 	<!-- 본문내용 -->
-	<c:if test="${loginUser.grade eq null}">
+	<c:if test="${loginUser.grade ne null}">
 		<button class="write_btn">
 			상품등록
 		</button>
 	</c:if>
 	<section>
-		<c:if test="${loginUser.grade eq null}">
+		<c:if test="${loginUser.grade ne null}">
 		<div class="content_right">
 			<button class="write_btn_">
 				상품등록

@@ -1,9 +1,14 @@
 package edu.study.controller;
 
+import java.net.http.HttpRequest;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.StringTokenizer;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,12 +20,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
+import com.mysql.cj.Session;
+
 import edu.study.service.HomeService;
 import edu.study.service.StoreService;
 import edu.study.vo.BasketVO;
 import edu.study.vo.HomeSearchVO;
 import edu.study.vo.SearchVO;
 import edu.study.vo.StoreVO;
+import edu.study.vo.MemberVO;
 
 /**
  * Handles requests for the application home page.
@@ -34,7 +42,7 @@ public class StoreController {
 	private StoreService storeService;
 	@Autowired
 	private HomeService homeService;
-	
+
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 * @throws Exception 
@@ -187,12 +195,25 @@ public class StoreController {
 	
 	@RequestMapping(value = "/basketIn.do", method = RequestMethod.GET)
 	@ResponseBody
-	public String basketIn(Locale locale, Model model,BasketVO vo) throws Exception {
+	public String basketIn(HttpServletRequest request,Locale locale, Model model,BasketVO vo) throws Exception {
 	
-	
-		int result = storeService.basketIn(vo);
-	
+		StoreVO svo = storeService.detail(vo.getSpidx());
+		HttpSession session = request.getSession();
+
+		MemberVO member = (MemberVO)session.getAttribute("loginUser");
+		System.out.println(member.getMidx());
+		
+		int midx=member.getMidx();
+		
+		svo.setMidx(midx);
+		svo.setCnt(1);
+		svo.setPrice(svo.getSale_price());
+		
+		
+		int result = storeService.basketIn(svo);
+		
 		System.out.println(result);
+		 
 	
 		return result+""; 
 	}
