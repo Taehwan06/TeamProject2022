@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.StringTokenizer;
 
-import org.apache.catalina.connector.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,18 +12,22 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import edu.study.service.HomeService;
 import edu.study.service.StoreService;
-import edu.study.vo.StoreVO;
+import edu.study.vo.BasketVO;
 import edu.study.vo.HomeSearchVO;
 import edu.study.vo.SearchVO;
+import edu.study.vo.StoreVO;
 
 /**
  * Handles requests for the application home page.
  */
 @RequestMapping(value="/store")
 @Controller
+@EnableWebMvc
 public class StoreController {
 	
 	@Autowired
@@ -180,6 +183,20 @@ public class StoreController {
 		
 		return "store/store_view";
 	}
+	
+	
+	@RequestMapping(value = "/basketIn.do", method = RequestMethod.GET)
+	@ResponseBody
+	public String basketIn(Locale locale, Model model,BasketVO vo) throws Exception {
+	
+	
+		int result = storeService.basketIn(vo);
+	
+		System.out.println(result);
+	
+		return result+""; 
+	}
+	
 	
 	@RequestMapping(value = "/category.do", method = RequestMethod.GET)
 	public String category(Locale locale, Model model, SearchVO vo) throws Exception {

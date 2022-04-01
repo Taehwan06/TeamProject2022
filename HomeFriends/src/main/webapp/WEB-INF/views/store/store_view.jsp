@@ -57,7 +57,7 @@
 		</div>
 		<div class="row" id="shop_content">
 			<div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-				<img src= "${vo.img_origin}" class="shopImg" onclick="">
+				<img src= "${vo.img_origin}" class="shopImg" onClick="">
 			</div>
 			<div class="col-sm-11 col-md-5 col-lg-5 col-xl-5 content">
 				<div class="row">
@@ -87,7 +87,7 @@
 				</div>
 				<div class="row btn_area">
 					<div class="col-6 col-sm-6 col-md-6"><button id="basket_btn" onclick="basketInFn()">장바구니</button></div>
-					<div class="col-6 col-sm-6 col-md-6"><button id="buy_btn" onclick="location.href=''">바로구매</button></div>
+					<div class="col-6 col-sm-6 col-md-6"><button id="buy_btn" onclick="paymentInFn()">바로구매</button></div>
 				</div>
 			</div>
 		</div>
@@ -95,10 +95,10 @@
 		<article>
 			<div class="row information">
 				<div class="col-md-1 col-lg-1 col-xl-1" id="hiddenDiv"></div>
-				<div class="col-3 col-sm-3 col-md-2 col-lg-2 col-xl-1 _product" onclick="locationFn('product')">상품정보</div>
-				<div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-2 _review" onclick="locationFn('review')">리뷰<span>${vo.review_cnt}</span></div>
-				<div class="col-3 col-sm-3 col-md-2 col-lg-3 col-xl-2 _QnA" onclick="locationFn('QnA')">문의<span>6,109</span></div>
-				<div class="col-3 col-sm-3 col-md-2 col-lg-2 col-xl-2 _change" onclick="locationFn('change')">배송/환불</div>
+				<div class="col-3 col-sm-3 col-md-2 col-lg-2 col-xl-1 _product" onClick="locationFn('product')">상품정보</div>
+				<div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-2 _review" onClick="locationFn('review')">리뷰<span>${vo.review_cnt}</span></div>
+				<div class="col-3 col-sm-3 col-md-2 col-lg-3 col-xl-2 _QnA" onClick="locationFn('QnA')">문의<span>6,109</span></div>
+				<div class="col-3 col-sm-3 col-md-2 col-lg-2 col-xl-2 _change" onClick="locationFn('change')">배송/환불</div>
 			</div>
 		</article>
 	<section id="Com_area">
@@ -255,6 +255,40 @@
 	</section>
 	
 	<%@ include file="../footer.jsp" %>
+	
+	<script>
+		function basketInFn(){
+			console.log(${spidx});
+			if(${!empty loginUser}){
+				$.ajax({
+					type : "GET",
+					url : "basketIn.do",
+					data : "midx="+${vo.midx}+"&spidx="+${vo.spidx}+"&price="+${vo.sale_price}+"&title="+"${vo.title}"+"&delivery_charge="+${vo.delivery_charge}+"&free_delivery="+"${vo.free_delivery}"+"&cnt=1",
+					success : function(result) {
+						if(result > 0){
+							alert("장바구니에 담겼습니다.");
+						}else{
+							alert("장바구니에 담기지 못했습니다.");
+						}
+						
+					}
+				});
+			}else{
+				alert("로그인 후 이용가능 합니다.");
+			}
+		}
+		
+		function paymentInFn(){
+			console.log(${spidx});
+			if(${!empty loginUser}){
+				location.href="/controller/mypage/payment.do"+"?midx="+${vo.midx}+"&spidx="+${vo.spidx}+"&price="+${vo.sale_price}+"&title="+"${vo.title}"+"&delivery_charge="+${vo.delivery_charge}+"&free_delivery="+"${vo.free_delivery}"+"&cnt=1"
+			}else{
+				alert("로그인 후 이용가능 합니다.");
+			}
+		}
+	
+	</script>
+	
 	<!-- 부트스트랩 -->	
 
 	<!-- Optional JavaScript; choose one of the two! -->

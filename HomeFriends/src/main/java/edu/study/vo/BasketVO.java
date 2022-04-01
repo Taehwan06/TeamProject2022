@@ -1,11 +1,13 @@
 package edu.study.vo;
 
-public class basketVO {
+public class BasketVO {
+
 	private int sbidx;
 	private int midx;
 	private int spidx;
 	private String title;
 	private int cnt;
+	private String price;
 	private String delivery_charge;
 	private String free_delivery;
 	private String img_origin;
@@ -60,9 +62,15 @@ public class basketVO {
 	public void setImg_origin(String img_origin) {
 		this.img_origin = img_origin;
 	}
+	public String getPrice() {
+		return price;
+	}
+	public void setPrice(String price) {
+		this.price = price;
+	}
 	
-	
-	
+		
+		
 
-	
+
 }
