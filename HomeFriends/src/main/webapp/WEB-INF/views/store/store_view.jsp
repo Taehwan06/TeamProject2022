@@ -263,7 +263,7 @@
 				$.ajax({
 					type : "GET",
 					url : "basketIn.do",
-					data : "midx="+${vo.midx}+"&spidx="+${vo.spidx}+"&price="+${vo.sale_price}+"&title="+"${vo.title}"+"&delivery_charge="+${vo.delivery_charge}+"&free_delivery="+"${vo.free_delivery}"+"&cnt=1",
+					data : "midx="+${vo.midx}+"&spidx="+${vo.spidx}+"&cnt=1",
 					success : function(result) {
 						if(result > 0){
 							alert("장바구니에 담겼습니다.");

@@ -14,6 +14,6 @@ public interface StoreService {
 	int update(StoreVO vo) throws Exception;
 	int delete(int spidx) throws Exception;
 	int insert(StoreVO vo) throws Exception;
-	int basketIn(BasketVO vo) throws Exception;
+	int basketIn(StoreVO vo) throws Exception;
 	
 }
