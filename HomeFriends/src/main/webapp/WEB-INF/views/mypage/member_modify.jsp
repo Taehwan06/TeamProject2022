@@ -131,6 +131,7 @@
 							</div>
 							<div class="memberEditSubmit">
 								<input type="submit" value="회원 정보 수정">
+								<input type="hidden" value="${vo.midx}" name="midx">
 							</div>
 						</form>
 					</div>

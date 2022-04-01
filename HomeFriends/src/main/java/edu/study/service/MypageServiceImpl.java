@@ -3,7 +3,6 @@ package edu.study.service;
 import java.util.List;
 
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,6 +38,7 @@ public class MypageServiceImpl implements MypageService {
 	public int update(MemberVO vo) throws Exception {
 		int result = mypageDao.update(vo);
 		return result;
+		
 	}
 
 	@Override

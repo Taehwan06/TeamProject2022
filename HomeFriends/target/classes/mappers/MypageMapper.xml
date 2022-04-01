@@ -57,7 +57,7 @@
     
     <update id="modifyMember" parameterType="MemberVO">
     	UPDATE member 
-    	SET
+    	SET 
     		id = #{id},
     		nick_name = #{nick_name},
     		gender = #{gender},
