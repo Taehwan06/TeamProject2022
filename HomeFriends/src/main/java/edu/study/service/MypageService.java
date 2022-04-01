@@ -18,5 +18,5 @@ public interface MypageService {
 	int delete(MemberVO vo) throws Exception;
 	int insert(MemberVO vo) throws Exception;
 	int count(OrderListVO vo) throws Exception;
-	
+	 
 }

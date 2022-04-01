@@ -1,9 +1,10 @@
 package edu.study.controller;
 
 import java.util.List;
-
-
 import java.util.Locale;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,10 +15,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import edu.study.service.HomeService;
 import edu.study.service.MypageService;
 import edu.study.vo.HomeSearchVO;
-import edu.study.vo.HomeStoryVO;
 import edu.study.vo.MemberVO;
-import edu.study.vo.SearchVO;
 import edu.study.vo.OrderListVO;
+import edu.study.vo.SearchVO;
 
 /**
  * Handles requests for the application home page.
@@ -36,7 +36,7 @@ public class MypageController {
 	 * @throws Exception 
 	 */
 	@RequestMapping(value = "/mypage.do", method = RequestMethod.GET)
-	public String mypage(Locale locale, Model model, SearchVO vo) throws Exception {
+	public String mypage(Locale locale, Model model, SearchVO vo,HttpServletRequest req) throws Exception {
 		
 		int deleteResult = homeService.deleteSearchList();
 		
@@ -44,41 +44,50 @@ public class MypageController {
 		
 		model.addAttribute("searchList", searchList);
 			
-		int midx=1;
-		MemberVO result = mypageService.detail(midx);
-		model.addAttribute("vo", result);
-		
-		return "mypage/mypage"; 
+		HttpSession session = req.getSession(); 
+	    MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
+	      
+	      if(loginUser == null) {
+	         return "home";
+	      }else {
+	    	MemberVO result = mypageService.detail(loginUser.getMidx());
+	  		model.addAttribute("vo", result);
+	         return "mypage/mypage";
+	      }  
 	}
 	
 	@RequestMapping(value = "/member_modify.do", method = RequestMethod.GET)
-	public String member_modify(Locale locale, Model model) throws Exception {
+	public String member_modify(Locale locale, Model model, HttpServletRequest req) throws Exception {
 		
 		int deleteResult = homeService.deleteSearchList();
 		
 		List<HomeSearchVO> searchList = homeService.listSearchList();
 		
 		model.addAttribute("searchList", searchList);
-			
-		int midx=1;
-		MemberVO result = mypageService.detail(midx);
 		
+		HttpSession session = req.getSession(); 
+	    MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
+		
+		MemberVO result = mypageService.detail(loginUser.getMidx());
 		model.addAttribute("vo", result);
 		
 		return "mypage/member_modify"; 
 	}
 	
 	@RequestMapping(value = "/member_modify.do", method = RequestMethod.POST)
-	public String member_modifyOk(Locale locale, Model model,MemberVO vo) throws Exception {
+	public String member_modifyOk(Locale locale, Model model,MemberVO vo, HttpServletRequest req) throws Exception {
 		
 		int deleteResult = homeService.deleteSearchList();
 		
 		List<HomeSearchVO> searchList = homeService.listSearchList();
 		
 		model.addAttribute("searchList", searchList);
-			
-		vo.setMidx(1);
-		int result = mypageService.update(vo);	
+		
+		HttpSession session = req.getSession(); 
+	    MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
+	    
+	    vo.getMidx();
+		int result = mypageService.update(vo);
 		
 		return "mypage/mypage";
 	}

@@ -32,19 +32,16 @@ public class MypageDAO {
 		return sqlSession.selectOne(Namespace+".detailMember",midx);
 	}
 	
-	
+	public int update(MemberVO vo) throws Exception{
+		return sqlSession.update(Namespace+".modifyMember",vo);
+		
+	}
 	
 	
 	public int insert(MemberVO vo) throws Exception{
 		return sqlSession.insert(Namespace+".insertMember",vo);
 	}
 	
-	
-	
-	public int update(MemberVO vo) throws Exception{
-		return sqlSession.update(Namespace+".modifyMember",vo);
-		
-	}
 	
 	public int delete(MemberVO vo) throws Exception{
 		return sqlSession.update(Namespace+".deleteMember",vo);
