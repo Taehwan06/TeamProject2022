@@ -49,7 +49,7 @@
 					<div class="storyText" onclick="location.href='home_view.do?cbidx='+${vo.cbidx}">
 						<div class="storyTitle">${vo.title }</div>
 						<div class="storyWriter">
-							<img class="writerImg" src="/controller/image/winter.png">${vo.writer }
+							<img class="writerImg" src="/controller/image/${vo.profile_system }">${vo.writer }
 						</div>
 						<div class="likeyView">
 							좋아요${vo.scrap_cnt } &middot; 조회${vo.hit_cnt }

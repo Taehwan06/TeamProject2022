@@ -17,6 +17,7 @@ public class Community_BoardVO {
 	private int hit_cnt;
 	private int midx;
 	private int listCnt;
+	private String profile_system;
 	/* 경로 */
 	private String uploadPath;
 	
@@ -139,6 +140,12 @@ public class Community_BoardVO {
 	}
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
+	}
+	public String getProfile_system() {
+		return profile_system;
+	}
+	public void setProfile_system(String profile_system) {
+		this.profile_system = profile_system;
 	}
 	@Override
 	public String toString() {

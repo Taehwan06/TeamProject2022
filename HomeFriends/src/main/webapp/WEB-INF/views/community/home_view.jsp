@@ -41,7 +41,7 @@
 				<div class="col-xl-4 storyWriter">
 					<div class="profile">
 						<div class="profile_img">
-							<img class="writerImg" src="/controller/image/karina.png">
+							<img class="writerImg" src="/controller/image/${vo.profile_system }">
 						</div>
 						<div class="profile_name">
 							${vo.writer }
@@ -60,19 +60,7 @@
 		</div>
 		<div class="row content_area">
 			<div class="row content_img">
-				<div>
-					거실
-				</div>
-				<img src="/controller/image/home_view01.webp">
-				<div>
-					주방
-				</div>
-				<img src="/controller/image/home_view02.webp">
-				<img src="/controller/image/home_view03.webp">
-				<div>
-					침실
-				</div>
-				<img src="/controller/image/home_view04.webp">
+				${vo.content }
 				<div id="footer_img_">
 					<img src="/controller/image/footer_img.PNG">
 				</div>
@@ -85,7 +73,7 @@
 		</div>
 		<div class="footer_profile">
 			<div class="footer_profile_img">
-				<img class="footer_writerImg" src="/controller/image/karina.png">
+				<img class="footer_writerImg" src="/controller/image/${vo.profile_system }">
 				${vo.writer }
 				<button>팔로우</button>
 			</div>

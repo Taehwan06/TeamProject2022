@@ -52,7 +52,6 @@
 	<section>
 		
 		<form id="insertFrm" name="insertFrm" action="home_insert.do" method="post" enctype="multipart/form-data">
-			<iuput type="hidden" name="midx" value="1">
 
 			<div class="center">
 				<label for="imgUpload" id="imgLabel">

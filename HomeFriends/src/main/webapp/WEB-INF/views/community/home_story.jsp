@@ -42,7 +42,7 @@
 						${CommMain.title}
 					</div>
 					<div id="profile">
-						<img class="writerImg" src="/controller/image/winter.png">${CommMain.writer}
+						<img class="writerImg" src="/controller/image/${CommMain.profile_system }">${CommMain.writer}
 					</div>
 				</div>
 				<div id="btn_absolute">
@@ -104,7 +104,7 @@
 						<!-- ${vo.title} -->
 						<div class="storyTitle">${vo.title }</div>
 						<div class="storyWriter">
-							<img class="writerImg" src="/controller/image/winter.png" onclick="">${vo.writer }
+							<img class="writerImg" src="/controller/image/${vo.profile_system }" onclick="">${vo.writer }
 						</div>
 					</div>
 				</div>

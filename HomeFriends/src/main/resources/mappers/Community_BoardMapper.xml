@@ -11,10 +11,13 @@
          		writer,
          		scrap_cnt,
          		hit_cnt,
-         		img_system
-           FROM community_board
+         		img_system,
+         		profile_system
+           FROM community_board c
+           INNER JOIN member m
+           ON c.midx = m.midx
+           
           WHERE 1=1
-            AND del_yn = 'N'
             <if test="searchType != null and searchType.equals('title')">
             	AND subject like '%'||#{searchValue}||'%'
             </if>
@@ -35,13 +38,23 @@
             	AND writer like '%'||#{searchValue}||'%'
             </if>
     </select>
+    
+    <select id="Comm_profileImg" resultType="String">
+    	SELECT profile_system
+    	FROM community_board c
+    	INNER JOIN member m
+    	ON c.midx  = m.midx
+    </select>
     	
     <select id="Comm_mainImg" resultType="Community_boardVO">
     	SELECT cbidx,
     		   title,
     		   writer,
-    		   img_system
-    	FROM community_board
+    		   img_system,
+    		   profile_system
+    	FROM community_board c
+        INNER JOIN member m
+        ON c.midx = m.midx
     	WHERE hit_cnt = (
     	SELECT hit_cnt
     	FROM community_board
@@ -58,8 +71,11 @@
          		scrap_cnt,
          		reply_cnt,
          		img_system,
-         		hit_cnt
-          FROM community_board
+         		hit_cnt,
+         		profile_system
+          FROM community_board c
+          INNER JOIN member m
+          ON c.midx = m.midx
           WHERE cbidx= #{cbidx}
     </select>
     
@@ -88,8 +104,8 @@
     	) VALUES(
     		#{title},
     		#{content},
-    		'세글자',
-    		1,
+    		#{writer},
+    		#{midx},
     		#{img_origin},
     		#{img_system}
     	)

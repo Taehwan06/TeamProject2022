@@ -117,7 +117,7 @@
                <div class="storyText" onclick="">
                   <div class="storyTitle">${vo.title }</div>
                   <div class="storyWriter">
-                     <img class="writerImg" src="image/winter.png">${vo.writer }
+                     <img class="writerImg" src="image/${vo.profile_system }">${vo.writer }
                   </div>
                </div>
             </div>

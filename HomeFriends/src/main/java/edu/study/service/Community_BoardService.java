@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import edu.study.vo.AttatchImageVO;
+
 import edu.study.vo.Community_BoardVO;
 import edu.study.vo.SearchVO;
 

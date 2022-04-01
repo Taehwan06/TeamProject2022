@@ -6,7 +6,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import edu.study.vo.AttatchImageVO;
 import edu.study.vo.Community_BoardVO;
 import edu.study.vo.SearchVO;
 
@@ -53,6 +52,10 @@ public class Community_BoardDAO {
 	public Community_BoardVO Community_Mainimage() throws Exception{
 		
 		return sqlSession.selectOne(Namespace+".Comm_mainImg");
+	}
+	public String profileImg(SearchVO vo) throws Exception {
+		
+		return sqlSession.selectOne(Namespace+".Comm_profileImg", vo);
 	}
 	
 }
