@@ -14,13 +14,14 @@
          		img_system
            FROM community_board
           WHERE 1=1
-            AND del_yn = 'N' 
+            AND del_yn = 'N'
             <if test="searchType != null and searchType.equals('title')">
             	AND subject like '%'||#{searchValue}||'%'
             </if>
             <if test="searchType != null and searchType.equals('writer')">
             	AND writer like '%'||#{searchValue}||'%'
             </if>
+            ORDER BY cbidx desc
     </select>
     
     <select id="Comm_listcnt" resultType="int">
@@ -90,10 +91,10 @@
     		'세글자',
     		1,
     		#{img_origin},
-    		#{fileName}
+    		#{img_system}
     	)
     ]]>
-    <selectKey resultType="integer" keyProperty="cbidx" order="AFTER">
+    <selectKey resultType="int" keyProperty="cbidx" order="AFTER">
     	SELECT MAX(cbidx)
     	  FROM community_board
     </selectKey>

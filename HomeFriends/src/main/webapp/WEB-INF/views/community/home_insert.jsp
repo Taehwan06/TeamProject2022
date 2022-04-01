@@ -72,6 +72,8 @@
 			</label>
 			<div id="imgUploadArea">
 				<input type="file" id="imgUpload" name="uploadFile">
+				<input type="hidden" name="img_origin" id="img_origin" value="">
+				<input type="hidden" name="img_system" id="img_system" value="">
 			</div>
 			
 			<div id="titleArea">

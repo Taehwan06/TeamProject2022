@@ -30,7 +30,7 @@
 	
 	<!-- 본문 영역 -->
 	<div class="row MainImg">
-		<img src="/controller/upload/file/${vo.img_system }">
+		<img src="/controller/upload/${vo.img_system }">
 	</div>
 	<section id="story_area">
 		<div class="comm_area">

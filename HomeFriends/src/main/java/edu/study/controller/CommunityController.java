@@ -1,21 +1,31 @@
 package edu.study.controller;
 
 import java.io.File;
+import java.nio.file.Files;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
 
-import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.google.gson.Gson;
+
 import edu.study.service.Community_BoardService;
 import edu.study.service.HomeService;
+import edu.study.vo.AttatchImageVO;
 import edu.study.vo.Community_BoardVO;
 import edu.study.vo.HomeSearchVO;
 import edu.study.vo.SearchVO;
@@ -34,8 +44,9 @@ public class CommunityController {
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
+	 * @return 
 	 * @throws Exception 
-	 */
+	 */	
 	@RequestMapping(value = "/home_insert.do", method = RequestMethod.GET)
 	public String home_insert(Locale locale, Model model, SearchVO vo) throws Exception {
 		
@@ -48,10 +59,66 @@ public class CommunityController {
 		return "community/home_insert";
 		
 	}
+	@RequestMapping(value = "/uploadAjaxAction", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public String uploadAjaxActionPOST(MultipartFile uploadFile,  Model model, Community_BoardVO boardVO) throws Exception {
+	
+		String uploadFolder = "C:\\Users\\82102\\git\\TeamProject2022\\HomeFriends\\src\\main\\webapp\\resources\\upload";
+		
+		/* 날짜 폴더 경로 */
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		
+		Date date = new Date();
+		
+		String str = sdf.format(date);
+		
+		String datePath = str.replace("-", File.separator);
+		
+		/* 폴더 생성 */
+		File uploadPath = new File(uploadFolder, datePath);
+		
+		if(uploadPath.exists() == false) {
+			uploadPath.mkdirs();
+		}
+		
+		/* 이미지 정보 담는 객체 */
+		AttatchImageVO ivo = new AttatchImageVO();
+		
+		/* Gson 생성 */
+		Gson gson = new Gson();
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		
+		/* 파일 이름 */
+		String uploadFileName = uploadFile.getOriginalFilename();
+		ivo.setFileName(uploadFileName);
+		ivo.setUploadPath(datePath);
+		
+		
+		/* uuid 적용 파일 이름 */
+		String uuid = UUID.randomUUID().toString();
+		ivo.setUuid(uuid);
+		
+		uploadFileName = uuid + "_" + uploadFileName;
+		/* 파일 위치, 파일 이름을 합친 File 객체 */
+		File saveFile = new File(uploadPath, uploadFileName);
+		
+		/* 파일 저장 */
+		uploadFile.transferTo(saveFile);
+		
+		//key-value 형태로 맵에 저장
+		map.put("ivo", ivo);
+		
+		// 맵을 JSON Object를 바꾸고 다시 문자열로 바꿈
+	    String jsonString = gson.toJson(map);
+	                
+	    return jsonString;
+
+	}
 	
 	@RequestMapping(value = "/home_insert.do", method = RequestMethod.POST)
 	public String home_insert(Model model, Community_BoardVO boardVO, RedirectAttributes rttr) throws Exception {
-		
+		System.out.println();
 		int deleteResult = homeService.deleteSearchList();
 		
 		List<HomeSearchVO> searchList = homeService.listSearchList();
@@ -65,24 +132,12 @@ public class CommunityController {
 		
 		boardVO.setContent(boardVO.getContent().replace("\r\n", "<br>"));
 		*/
-		//파일 업로드 처리
-		String fileName = null;
-		String originalFileName = null;
-		String uploadPath = "C:\\Users\\82102\\git\\TeamProject2022\\HomeFriends\\src\\main\\webapp\\resources\\upload\\file\\";
-		MultipartFile uploadFile = boardVO.getUploadFile();
-		if (!uploadFile.isEmpty()) {
-			originalFileName = uploadFile.getOriginalFilename();
-			String ext = FilenameUtils.getExtension(originalFileName);	//확장자 구하기
-			UUID uuid = UUID.randomUUID();	//UUID 구하기
-			fileName=uuid+"."+ext;
-			uploadFile.transferTo(new File(uploadPath + fileName));
-		}
-		boardVO.setFileName(fileName);
-		boardVO.setImg_origin(originalFileName);
 		
 		Community_boardService.insert(boardVO);
+		
+		rttr.addFlashAttribute("insert_result", boardVO.getCbidx());
 	
-		return "redirect:home_list.do";
+		return "redirect:home_view.do?cbidx="+boardVO.getCbidx();
 	}
 	@RequestMapping(value = "/home_modify.do", method = RequestMethod.GET)
 	public String home_modify(Locale locale, Model model, int cbidx) throws Exception {
