@@ -64,31 +64,31 @@
 			</div>
 			<div class="carousel-inner">
 				<div class="carousel-item active">
-					<img src="image/IU01.jfif" class="d-block w-100" alt="...">
+					<img src="/controller/image/IU01.jfif" class="d-block w-100" alt="...">
 				</div>
 				<div class="carousel-item">
-					<img src="image/IU02.jfif" class="d-block w-100" alt="...">
+					<img src="/controller/image/IU02.jfif" class="d-block w-100" alt="...">
 				</div>
 				<div class="carousel-item">
-					<img src="image/IU03.jfif" class="d-block w-100" alt="...">
+					<img src="/controller/image/IU03.jfif" class="d-block w-100" alt="...">
 				</div>
 				<div class="carousel-item">
-					<img src="image/IU04.jfif" class="d-block w-100" alt="...">
+					<img src="/controller/image/IU04.jfif" class="d-block w-100" alt="...">
 				</div>
 				<div class="carousel-item">
-					<img src="image/IU05.jfif" class="d-block w-100" alt="...">
+					<img src="/controller/image/IU05.jfif" class="d-block w-100" alt="...">
 				</div>
 				<div class="carousel-item">
-					<img src="image/IU06.jfif" class="d-block w-100" alt="...">
+					<img src="/controller/image/IU06.jfif" class="d-block w-100" alt="...">
 				</div>
 				<div class="carousel-item">
-					<img src="image/IU07.jfif" class="d-block w-100" alt="...">
+					<img src="/controller/image/IU07.jfif" class="d-block w-100" alt="...">
 				</div>
 				<div class="carousel-item">
-					<img src="image/IU08.jfif" class="d-block w-100" alt="...">
+					<img src="/controller/image/IU08.jfif" class="d-block w-100" alt="...">
 				</div>
 				<div class="carousel-item">
-					<img src="image/IU09.jfif" class="d-block w-100" alt="...">
+					<img src="/controller/image/IU09.jfif" class="d-block w-100" alt="...">
 				</div>
 			</div>
 			<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -106,48 +106,22 @@
 		<!-- ====================================================================================== -->
 		<!-- ====================================================================================== -->
 		<div class="row storyList">
-			<div class="storyListTitle">
-	            오늘의 스토리
-	            <span class="moreview" onclick="location.href='home_list.do'">더보기</span>
-	            <div class="clear"></div>
-	         </div>
-			<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 story">
-				<img src="image/story02.webp" class="storyImg" onclick="">
-				<div class="storyText" onclick="">
-					<div class="storyTitle">내추럴 모던 홈 스타일링</div>
-					<div class="storyWriter">
-						<img class="writerImg" src="image/winter.png">Winter
-					</div>
-				</div>
-			</div>
-			<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 story">
-				<img src="image/story01.webp" class="storyImg" onclick="">
-				<div class="storyText" onclick="">
-					<div class="storyTitle">맥시멀리스트의 싱글라이프</div>
-					<div class="storyWriter">
-						<img class="writerImg" src="image/karina.png">Karina
-					</div>
-				</div>
-			</div>
-			<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 story">
-				<img src="image/story03.webp" class="storyImg" onclick="">
-				<div class="storyText" onclick="">
-					<div class="storyTitle">넓은 거실이 있는 30평대 신혼집</div>
-					<div class="storyWriter">
-						<img class="writerImg" src="image/iu.png">IU
-					</div>
-				</div>
-			</div>
-			<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 story hiddenStory">
-				<img src="image/story02.webp" class="storyImg" onclick="">
-				<div class="storyText" onclick="">
-					<div class="storyTitle">내추럴 모던 홈 스타일링</div>
-					<div class="storyWriter">
-						<img class="writerImg" src="image/winter.png">Winter
-					</div>
-				</div>
-			</div>
-		</div>
+         <div class="storyListTitle">
+               오늘의 스토리
+               <span class="moreview" onclick="location.href='community/home_list.do'">더보기</span>
+               <div class="clear"></div>
+           </div>
+           <c:forEach items="${list}" end="3" var="vo" varStatus="cnt">
+            <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 story">
+               <img src="/controller/upload/${vo.img_system }" class="storyImg" onclick="location.href='home_view.do?cbidx='+${vo.cbidx}">
+               <div class="storyText" onclick="">
+                  <div class="storyTitle">${vo.title }</div>
+                  <div class="storyWriter">
+                     <img class="writerImg" src="image/winter.png">${vo.writer }
+                  </div>
+               </div>
+            </div>
+         </c:forEach>
 
 
 		<!-- 오늘의 딜 영역 -->
@@ -160,7 +134,7 @@
 	            <div class="clear"></div>
 	         </div>
 			<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop">
-				<img src="image/shop01.webp" class="shopImg" onclick="">
+				<img src="/controller/image/shop01.webp" class="shopImg" onclick="">
 				<div class="shopText" onclick="">
 					<div class="shopTitle">
 						<div class="brand">코코도르</div>
@@ -178,7 +152,7 @@
 				</div>
 			</div>
 			<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop">
-				<img src="image/shop02.webp" class="shopImg" onclick="">
+				<img src="/controller/image/shop02.webp" class="shopImg" onclick="">
 				<div class="shopText" onclick="">
 					<div class="shopTitle">
 						<div class="brand">픽켄드</div>
@@ -196,7 +170,7 @@
 				</div>
 			</div>
 			<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop">
-				<img src="image/shop03.webp" class="shopImg" onclick="">
+				<img src="/controller/image/shop03.webp" class="shopImg" onclick="">
 				<div class="shopText" onclick="">
 					<div class="shopTitle">
 						<div class="brand">미닉스</div>
@@ -214,7 +188,7 @@
 				</div>
 			</div>
 			<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop hiddenShop">
-				<img src="image/shop04.webp" class="shopImg" onclick="">
+				<img src="/controller/image/shop04.webp" class="shopImg" onclick="">
 				<div class="shopText" onclick="">
 					<div class="shopTitle">
 						<div class="brand">노와</div>
