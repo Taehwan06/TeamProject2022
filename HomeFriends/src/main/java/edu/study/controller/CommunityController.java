@@ -1,7 +1,6 @@
 package edu.study.controller;
 
 import java.io.File;
-import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -9,10 +8,11 @@ import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,6 +28,7 @@ import edu.study.service.HomeService;
 import edu.study.vo.AttatchImageVO;
 import edu.study.vo.Community_BoardVO;
 import edu.study.vo.HomeSearchVO;
+import edu.study.vo.MemberVO;
 import edu.study.vo.SearchVO;
 
 /**
@@ -48,7 +49,7 @@ public class CommunityController {
 	 * @throws Exception 
 	 */	
 	@RequestMapping(value = "/home_insert.do", method = RequestMethod.GET)
-	public String home_insert(Locale locale, Model model, SearchVO vo) throws Exception {
+	public String home_insert(Locale locale, Model model, SearchVO vo,HttpServletRequest req) throws Exception {
 		
 		int deleteResult = homeService.deleteSearchList();
 		
@@ -56,7 +57,14 @@ public class CommunityController {
 		
 		model.addAttribute("searchList", searchList);
 		
-		return "community/home_insert";
+		HttpSession session = req.getSession(); 
+	    MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
+	    	
+	    if(loginUser == null) {
+	         return "redirect:/login/login.do";
+	      }else {
+	         return "community/home_insert";
+	      }
 		
 	}
 	@RequestMapping(value = "/uploadAjaxAction", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -117,7 +125,7 @@ public class CommunityController {
 	}
 	
 	@RequestMapping(value = "/home_insert.do", method = RequestMethod.POST)
-	public String home_insert(Model model, Community_BoardVO boardVO, RedirectAttributes rttr) throws Exception {
+	public String home_insert(Model model, Community_BoardVO boardVO, RedirectAttributes rttr, HttpServletRequest req) throws Exception {
 		System.out.println();
 		int deleteResult = homeService.deleteSearchList();
 		
@@ -132,6 +140,11 @@ public class CommunityController {
 		
 		boardVO.setContent(boardVO.getContent().replace("\r\n", "<br>"));
 		*/
+		
+		HttpSession session = req.getSession(); 
+	    MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
+	    boardVO.setMidx(loginUser.getMidx());
+	    boardVO.setWriter(loginUser.getNick_name());
 		
 		Community_boardService.insert(boardVO);
 		
@@ -170,7 +183,7 @@ public class CommunityController {
 	}
 	
 	@RequestMapping(value = "/home_story.do", method = RequestMethod.GET)
-	public String home_story(Locale locale, Model model, SearchVO vo) throws Exception {
+	public String home_story(Locale locale, Model model, SearchVO vo,HttpServletRequest req) throws Exception {
 		
 		int deleteResult = homeService.deleteSearchList();
 		
@@ -178,7 +191,7 @@ public class CommunityController {
 		
 		model.addAttribute("searchList", searchList);
 		
-		List<Community_BoardVO> list = Community_boardService.list(vo);
+		List<Community_BoardVO> list = Community_boardService.list();
 		
 		model.addAttribute("list",list);
 		
@@ -186,8 +199,10 @@ public class CommunityController {
 		
 		model.addAttribute("CommMain",Comm_Main);
 		
-		
-		
+		HttpSession session = req.getSession(); 
+	    MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
+	    model.addAttribute("loginUser", loginUser);
+	    
 		return "community/home_story";
 	}
 	

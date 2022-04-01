@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import edu.study.dao.Community_BoardDAO;
-import edu.study.vo.AttatchImageVO;
 import edu.study.vo.Community_BoardVO;
 import edu.study.vo.SearchVO;
 
