@@ -128,6 +128,24 @@ public class MypageController {
 		
 		model.addAttribute("orderList", orderList);
 		
+		vo.setProgress("결제완료");
+		int count = mypageService.count(vo);
+		model.addAttribute("count1", count);
+		
+		vo.setProgress("배송준비중");
+		count = mypageService.count(vo);
+		model.addAttribute("count2", count);
+		
+		vo.setProgress("배송중");
+		count = mypageService.count(vo);
+		model.addAttribute("count3", count);
+		
+		vo.setProgress("배송완료");
+		count = mypageService.count(vo);
+		model.addAttribute("count4", count);
+		
+		
+		
 		return "mypage/order_list";
 		
 	}

@@ -86,6 +86,8 @@
          		olidx,
          		title,
          		price,
+         		cnt,
+         		delivery_charge,
          		img_system,
          		buying_date,
          		progress,
@@ -95,8 +97,18 @@
            		order_list
           WHERE 
           		midx = #{midx}
-
+          ORDER BY buying_date DESC
+          
     </select>
-    
+  
+      
+    <select id="comcount" resultType="int" parameterType="OrderListVO">
+    	SELECT
+    			count(*)
+    	FROM
+    			order_list
+    	WHERE
+    			progress = #{progress}
+    </select>
     
 </mapper>

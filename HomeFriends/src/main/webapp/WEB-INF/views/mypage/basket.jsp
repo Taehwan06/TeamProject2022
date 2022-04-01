@@ -166,7 +166,7 @@
 					
 				</div>
 				<div class="content_margin">
-						<button type="button" class="sumPriceBox_button">구매하기</button>
+						<button type="button" class="sumPriceBox_button" onclick="location.href='${pageContext.request.contextPath}/mypage/payment.do'">구매하기</button>
 				</div>
 			</div>
 		</div>

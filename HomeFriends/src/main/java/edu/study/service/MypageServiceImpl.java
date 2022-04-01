@@ -59,11 +59,15 @@ public class MypageServiceImpl implements MypageService {
 		
 		return result;	
 		
-		
-		/*
-		 * List<OrderListVO> orderList = mypageDao.orderList(vo); return orderList;
-		 */
-		
 	}
+	
+	
+	@Override
+	public int count(OrderListVO vo) throws Exception{
+		int result = mypageDao.count(vo);
+		return result;
+	}
+	
+	
 
 }
