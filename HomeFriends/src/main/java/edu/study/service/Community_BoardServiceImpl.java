@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import edu.study.dao.Community_BoardDAO;
+import edu.study.vo.AttatchImageVO;
 import edu.study.vo.Community_BoardVO;
 import edu.study.vo.SearchVO;
 
@@ -19,6 +20,13 @@ public class Community_BoardServiceImpl implements Community_BoardService {
 	public List<Community_BoardVO> list(SearchVO vo) throws Exception {
 		
 		List<Community_BoardVO> list = Community_boardDao.list(vo);
+		
+		return list;
+	}
+	@Override
+	public List<Community_BoardVO> list() throws Exception {
+		
+		List<Community_BoardVO> list = Community_boardDao.list();
 		
 		return list;
 	}
@@ -43,8 +51,8 @@ public class Community_BoardServiceImpl implements Community_BoardService {
 	@Override
 	public int insert(Community_BoardVO vo) throws Exception {
 		
-		return Community_boardDao.insert(vo);
-		
+	    return Community_boardDao.insert(vo);
+
 	}
 
 	@Override
