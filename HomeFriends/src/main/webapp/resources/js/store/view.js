@@ -205,11 +205,10 @@ $(document).ready(function(){
 		$("._change").css({"border" : "none", "color" : "black"});
 	});
 	
-	console.log(spidx);
 	
 	/* 컨텐츠 이미지사이즈 조절 */
 	
-	$("#shop_information_area img").style.width ="200px";
+	/*$("#shop_information_area img").style.width ="200px";*/
 
 	
 
@@ -240,14 +239,3 @@ let match = {10:"가구", 11:"가구 > 소파", 12:"가구 > 수납장", 13:"가
 			60:"생활", 61:"생활 > 욕실", 62:"생활 > 수건", 63:"생활 > 청소", 64:"생활 > 세탁", 65:"생활 > 생활잡화"};
 			
 			
-function basketInFn(){
-	console.log(spidx);
-	/*$.ajax({
-		type : "GET",
-		url : "basketIn.do",
-		data : "?midx="+midx+"&spidx"+spidx+"&title"+title+"&delivery_charge"+delivery_charge+"&free_delivery"+free_delivery+"&img_origin"+img_origin,
-		success : function(res) {
-			alert("장바구니에 담겼습니다.");
-		}
-	});*/
-}
