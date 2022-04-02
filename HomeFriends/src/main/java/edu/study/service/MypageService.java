@@ -9,7 +9,7 @@ import edu.study.vo.MemberVO;
 import edu.study.vo.SearchVO;
 import edu.study.vo.OrderListVO;
 
-public interface MypageService {
+public interface MypageService { 
 
 	List<MemberVO> list(SearchVO vo) throws Exception;
 	MemberVO detail(int midx) throws Exception;

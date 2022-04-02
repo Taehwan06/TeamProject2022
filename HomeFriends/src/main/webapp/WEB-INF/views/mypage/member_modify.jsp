@@ -108,7 +108,7 @@
 							</div>
 							<div class="edit_dummy2">
 								<div class="Edit edit_member_info">
-								</div>
+								</div> 
 									<c:set var = "addrInfo" value = "${vo.addr}"/>
 									<c:set var = "addr1" value = "${fn:substringBefore(addrInfo,' ')}"/>
 									<c:set var = "addr2" value = "${fn:substringAfter(addrInfo,' ')}"/>

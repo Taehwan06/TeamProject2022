@@ -56,7 +56,7 @@ public class MypageDAO {
 	} 
 	 
 	
-	public int count(OrderListVO vo) throws Exception{
+	public int count(OrderListVO vo) throws Exception{ 
 		return sqlSession.selectOne(Namespace+".comcount",vo);
 	}
 

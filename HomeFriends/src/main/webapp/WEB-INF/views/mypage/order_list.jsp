@@ -87,7 +87,7 @@
 							</div>
 				<!-- =============================================== -->		
 							<div class="product">
-							<%-- <c:forEach var="data" items="${orderList}"> --%>
+							<%-- <c:forEach var="data" items="${orderList}"> --%> 
 							<c:forEach items="${orderList2}" var="orderList2" varStatus="cnt">
 								<div class="row">
 									<div class="col-6 buyDate">

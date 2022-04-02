@@ -152,7 +152,7 @@ public class MypageController {
 		count = mypageService.count(vo);
 		model.addAttribute("count3", count);
 		
-		vo.setProgress("배송완료");
+		vo.setProgress("배송완료"); 
 		count = mypageService.count(vo);
 		model.addAttribute("count4", count);
 

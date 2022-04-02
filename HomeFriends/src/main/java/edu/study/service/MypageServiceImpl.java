@@ -16,10 +16,10 @@ import edu.study.vo.OrderListVO;
 @Service
 public class MypageServiceImpl implements MypageService {
 
-	@Autowired
+	@Autowired 
 	private MypageDAO mypageDao;
 
-	
+	 
 	 @Override
 	 public List<MemberVO> list(SearchVO vo) throws Exception {
 	 
