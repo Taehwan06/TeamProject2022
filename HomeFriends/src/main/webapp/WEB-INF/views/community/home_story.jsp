@@ -22,6 +22,8 @@
 	<link href="/controller/css/footer.css" rel="stylesheet">
 	<link href="/controller/css/community/home_story.css" rel="stylesheet">
 	<script src="/controller/js/community/home_story.js"></script>
+	<script src="/controller/js/header.js"></script>
+	<script src="/controller/js/nav.js"></script>
 	<script src="/controller/js/footer.js"></script>
 		
 </head>

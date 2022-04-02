@@ -30,6 +30,7 @@
 	<link href="/controller/css/nav.css" rel="stylesheet">
 	<link href="/controller/css/community/home_insert.css" rel="stylesheet">
 	<link href="/controller/css/footer.css" rel="stylesheet">
+	<script src="/controller/js/header.js"></script>
 	<script src="/controller/js/nav.js"></script>
 	<script src="/controller/js/footer.js"></script>
 	<script src="/controller/js/community/home_insert.js"></script>

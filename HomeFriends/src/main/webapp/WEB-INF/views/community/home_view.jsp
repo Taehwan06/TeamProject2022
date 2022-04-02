@@ -21,6 +21,8 @@
 	<link href="/controller/css/community/home_view.css" rel="stylesheet">
 	<script src="/controller/js/community/home_story.js"></script>
 	<script src="/controller/js/community/home_view.js"></script>
+	<script src="/controller/js/header.js"></script>
+	<script src="/controller/js/nav.js"></script>
 	<script src="/controller/js/footer.js"></script>
 	
 </head>
@@ -65,6 +67,17 @@
 					<img src="/controller/image/footer_img.PNG">
 				</div>
 			</div>
+		</div>
+		<div class="btn_area">
+			<button type="button" onclick="location.href='home_list.do'">목록</button>
+		<c:if test="${loginUser.midx == vo.midx }">
+			<button type="button" onclick="location.href='home_modify.do?cbidx='+${vo.cbidx}">수정</button>
+			<button type="button" onclick="del()">삭제</button>
+			<form name="delfrm" action="home_delete.do" method="post">
+				<input type="hidden" id="cbidx" name="cbidx" value="${vo.cbidx }">
+			</form>
+		</c:if>
+			
 		</div>
 		<div class="content_stats">
 			<div>스크랩<span>${vo.scrap_cnt }</span></div>

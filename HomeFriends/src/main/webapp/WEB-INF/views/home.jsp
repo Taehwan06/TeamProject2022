@@ -113,7 +113,7 @@
            </div>
            <c:forEach items="${list}" end="3" var="vo" varStatus="cnt">
             <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 story">
-               <img src="/controller/upload/${vo.img_system }" class="storyImg" onclick="location.href='home_view.do?cbidx='+${vo.cbidx}">
+               <img src="/controller/upload/${vo.img_system }" class="storyImg" onclick="location.href='community/home_view.do?cbidx='+${vo.cbidx}">
                <div class="storyText" onclick="">
                   <div class="storyTitle">${vo.title }</div>
                   <div class="storyWriter">
