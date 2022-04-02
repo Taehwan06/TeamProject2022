@@ -3,10 +3,12 @@ package edu.study.service;
 import java.util.List;
 
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import edu.study.dao.MypageDAO;
+import edu.study.vo.BasketVO;
 import edu.study.vo.MemberVO;
 import edu.study.vo.SearchVO;
 import edu.study.vo.OrderListVO;
@@ -61,6 +63,14 @@ public class MypageServiceImpl implements MypageService {
 		
 	}
 	
+	public List<OrderListVO> orderList2(MemberVO vo) throws Exception {
+		
+		List<OrderListVO> list = mypageDao.orderList2(vo);
+		
+		return list;
+	}
+	
+	
 	
 	@Override
 	public int count(OrderListVO vo) throws Exception{
@@ -68,6 +78,7 @@ public class MypageServiceImpl implements MypageService {
 		return result;
 	}
 	
+
 	
 
 }

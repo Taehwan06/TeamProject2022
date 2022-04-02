@@ -128,38 +128,45 @@ public class MypageController {
 	
 	
 	@RequestMapping(value = "/order_list.do", method = RequestMethod.GET)
-	public String order_list(Locale locale, Model model,OrderListVO vo ) throws Exception {
+	public String order_list(Locale locale, Model model,OrderListVO vo, HttpServletRequest req) throws Exception {
 		
 		int deleteResult = homeService.deleteSearchList();
 		
 		List<HomeSearchVO> searchList = homeService.listSearchList();
 		
 		model.addAttribute("searchList", searchList);
-			
-		vo.setMidx(1);
-		List<OrderListVO> orderList = mypageService.orderList(vo);
 		
-		model.addAttribute("orderList", orderList);
+		HttpSession session = req.getSession(); 
+	    MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
 		
-		vo.setProgress("�����Ϸ�");
+	    
+	    vo.setProgress("결제완료");
 		int count = mypageService.count(vo);
 		model.addAttribute("count1", count);
 		
-		vo.setProgress("����غ���");
+		vo.setProgress("배송준비중");
 		count = mypageService.count(vo);
 		model.addAttribute("count2", count);
 		
-		vo.setProgress("�����");
+		vo.setProgress("배송중");
 		count = mypageService.count(vo);
 		model.addAttribute("count3", count);
 		
-		vo.setProgress("��ۿϷ�");
+		vo.setProgress("배송완료");
 		count = mypageService.count(vo);
 		model.addAttribute("count4", count);
+
 		
+	   if(loginUser == null) {
+		        return "redirect:/";
+		   }else {
 		
+			    List<OrderListVO> orderList2 = mypageService.orderList2(loginUser);
+				model.addAttribute("orderList2", orderList2);
+		  	
+		         return "mypage/order_list";
+		   }  
 		
-		return "mypage/order_list";
 		
 	}
 	

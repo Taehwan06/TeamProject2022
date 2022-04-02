@@ -14,9 +14,12 @@ public interface MypageService {
 	List<MemberVO> list(SearchVO vo) throws Exception;
 	MemberVO detail(int midx) throws Exception;
 	List<OrderListVO> orderList(OrderListVO vo) throws Exception;
+	List<OrderListVO> orderList2(MemberVO vo) throws Exception;
+	
 	int update(MemberVO vo) throws Exception;
 	int delete(MemberVO vo) throws Exception;
 	int insert(MemberVO vo) throws Exception;
 	int count(OrderListVO vo) throws Exception;
+	
 	 
 }

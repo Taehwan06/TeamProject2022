@@ -87,10 +87,11 @@
 							</div>
 				<!-- =============================================== -->		
 							<div class="product">
-							<c:forEach var="data" items="${orderList}">
+							<%-- <c:forEach var="data" items="${orderList}"> --%>
+							<c:forEach items="${orderList2}" var="orderList2" varStatus="cnt">
 								<div class="row">
 									<div class="col-6 buyDate">
-										${data.buying_date}
+										${orderList2.buying_date}
 									</div>
 									<div class="col-6 goDatail">
 										<a href="#" id="goDetail">상세보기 <i class="bi bi-chevron-right detailIcon"></i></a>
@@ -99,14 +100,14 @@
 								</div>
 								<div class="row odrNdelBox">
 									<div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3 productPic">
-										<a href="#"><img src="/controller/image/${data.img_system}"></a>
+										<a href="#"><img src="/controller/image/${orderList2.img_system}"></a>
 									</div>
 									<div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-6 productInfo">
-										<a href="#">${data.title}&nbsp;</a>| ${data.cnt} 개 <br>
-										<span class="producSpan">${data.progress} | 일반택배</span>
+										<a href="#">${orderList2.title}&nbsp;</a>| ${orderList2.cnt} 개 <br>
+										<span class="producSpan">${orderList2.progress} | 일반택배</span>
 									</div>
 									<div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3 productInfo">
-										${data.price} 원	
+										${orderList2.price} 원	
 									</div> 
 									<div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12 productBtn">
 										<button id="delTrack">배송추적</button>
@@ -115,13 +116,13 @@
 								</div> 
 								<div class="row">
 									<div class="col-12 delState">
-									  <c:set var = "delMoney" value = "${data.delivery_charge}"/>
+									  <c:set var = "delMoney" value = "${orderList2.delivery_charge}"/>
 									  <c:choose>
 										   <c:when test = "${delMoney eq '0'}">
 										   	 무료배송
 										   </c:when>
 										   <c:when test="${delMoney =! '0'}">
-										   	 유료배송(${data.delivery_charge}원)
+										   	 유료배송(${orderList2.delivery_charge}원)
 										   </c:when>
 									 </c:choose>
 									</div>

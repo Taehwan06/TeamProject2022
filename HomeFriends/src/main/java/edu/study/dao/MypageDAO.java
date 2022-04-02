@@ -50,12 +50,16 @@ public class MypageDAO {
 	public List<OrderListVO> orderList(OrderListVO vo) throws Exception{
 		return sqlSession.selectList(Namespace+".orderList",vo);
 	} 
+	
+	public List<OrderListVO> orderList2(MemberVO vo) throws Exception{
+		return sqlSession.selectList(Namespace+".orderList",vo);
+	} 
 	 
+	
 	public int count(OrderListVO vo) throws Exception{
 		return sqlSession.selectOne(Namespace+".comcount",vo);
 	}
-	
-	
+
 	
 }
 
