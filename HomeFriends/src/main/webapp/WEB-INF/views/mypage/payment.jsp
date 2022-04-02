@@ -14,6 +14,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css" />
 	
+	<!-- iamport.payment.js -->
+	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+	
 	
 	<title>주문/결제 - 홈프렌즈</title>
 	
@@ -28,8 +31,62 @@
 	<script src="/controller/js/mypage/payment1.js"></script>
 	<script src="/controller/js/footer.js"></script>
 	
-	
-
+	<script>
+		var size = ${basketList.size()};
+		var totalPrice = 0;
+		var totalDelivery = 0;
+		<c:forEach items="${basketList}" var="basketListvo" varStatus="cnt">
+			totalPrice += (${basketListvo.price}) * (${basketListvo.cnt});
+			totalDelivery += ${basketListvo.delivery_charge}
+		</c:forEach>
+		
+		var totalPay = totalPrice + totalDelivery;
+		
+		if(totalDelivery == 0){
+			totalDelivery = "무료배송";
+		}else{
+			totalDelivery = totalDelivery+"원";
+		}
+		
+		console.log(totalPrice);
+		console.log(totalDelivery);
+		console.log(totalPay);
+		
+		window.onload = function(){
+			var productAmount = document.getElementById("productAmount");
+			productAmount.value = totalPrice;
+			var deliveryCharge = document.getElementById("deliveryCharge");
+			deliveryCharge.value = totalDelivery;
+			var amount = document.getElementById("amount");
+			amount.value = totalPay;
+		}
+		
+		function iamport(){
+			//가맹점 식별코드
+			IMP.init('imp58059253');
+			IMP.request_pay({
+				pg : 'html5_inicis',
+			    pay_method : 'card',
+			    merchant_uid : 'merchant_' + new Date().getTime(),
+			    name : '상품1' , //결제창에서 보여질 이름
+			    amount : totalPay, //실제 결제되는 가격
+			    buyer_email : 'iamport@siot.do',
+			    buyer_name : '구매자이름',
+			    buyer_tel : '010-1234-5678',
+			    buyer_addr : '서울 강남구 도곡동',
+			    buyer_postcode : '123-456'
+			}, function(rsp) {
+				console.log(rsp);
+			    if ( rsp.success ) {
+			    	location.href="order_success.do";
+			    } else {
+			    	location.href="order_fail.do";
+			    }
+			    alert(msg);
+			});
+		}
+	</script>
+	<script src="/controller/js/mypage/payment2.js"></script>
 </head>
 <body>
 	<%@ include file="../header.jsp" %>
@@ -45,12 +102,12 @@
 			<div class="addrArea">
 				<div class="addrTitle">배송지 정보</div>
 				<div class="addrContents">
-					<div class="addrName">이지은</div>
+					<div class="addrName">${loginUser.membername}</div>
 					<div class="addr">
-						(06173) 서울특별시 강남구 테헤란로103길 17
+						(${loginUser.post_code}) ${loginUser.addr}
 					</div>
 					<div class="addrPhone">
-						010-0001-0001
+						${loginUser.phone}
 					</div>
 					<div class="addrselect">
 						<select name="request" id="request" onchange="selectFn(this)">
@@ -74,105 +131,67 @@
 					<span class="bold orderTitle">주문 상품</span>
 					<span class="orderSub">상품수량 및 옵션변경은 상품상세 또는 장바구니에서 가능합니다.</span>
 				</div>
-				<div class="productArea">
-					<div class="brand">위닉스</div>
-					<div class="productDetail row">
-						<div class="productImgDiv col-4 col-md-4 col-lg-3">
-							<img src="/controller/image/product01.jpg" class="productImg" alt="" onclick="">
-						</div>
-						<div class="col-8 col-md-8 col-lg-9">
-							<div class="row">
-								<div class="productName col-12 col-md-12 col-lg-6">
-									<span class="productLink" onclick="">[1공식인증점] 위닉스 공기청정기 타워프라임 APRM833-JWK 85.8㎡ 1등급</span>
-									<div class="schedule"><span class="blue">3/22(화) 이내</span> 도착예정</div>
-								</div>
-								<div class="productCnt col-4 col-md-4 col-lg-2">
-									<input type="text" id="proCnt1" class="proCnt" value="1" disabled>개
-								</div>
-								<div class="productPrice col-4 col-md-4 col-lg-2">
-									<input type="text" id="proPrice1" class="proPrice" value="11342630" disabled>원
-								</div>
-								<div class="productDelivery col-4 col-md-4 col-lg-2">
-									<input type="text" id="deliCharge1" class="deliCharge" value="무료배송" disabled>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
 				
-				<div class="productArea">
-					<div class="brand">위닉스</div>
-					<div class="productDetail row">
-						<div class="productImgDiv col-4 col-md-4 col-lg-3">
-							<img src="/controller/image/product01.jpg" class="productImg" alt="" onclick="">
-						</div>
-						<div class="col-8 col-md-8 col-lg-9">
-							<div class="row">
-								<div class="productName col-12 col-md-12 col-lg-6">
-									<span class="productLink" onclick="">[1공식인증점] 위닉스 공기청정기 타워프라임 APRM833-JWK 85.8㎡ 1등급</span>
-									<div class="schedule"><span class="blue">3/22(화) 이내</span> 도착예정</div>
-								</div>
-								<div class="productCnt col-4 col-md-4 col-lg-2">
-									<input type="text" id="proCnt2" class="proCnt" value="1" disabled>개
-								</div>
-								<div class="productPrice col-4 col-md-4 col-lg-2">
-									<input type="text" id="proPrice2" class="proPrice" value="11342630" disabled>원
-								</div>
-								<div class="productDelivery col-4 col-md-4 col-lg-2">
-									<input type="text" id="deliCharge2" class="deliCharge" value="무료배송" disabled>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+				<c:forEach items="${basketList}" var="basketListvo" varStatus="cnt">
 				
-				<div class="productArea">
-					<div class="brand">위닉스</div>
-					<div class="productDetail row">
-						<div class="productImgDiv col-4 col-md-4 col-lg-3">
-							<img src="/controller/image/product01.jpg" class="productImg" alt="" onclick="">
-						</div>
-						<div class="col-8 col-md-8 col-lg-9">
-							<div class="row">
-								<div class="productName col-12 col-md-12 col-lg-6">
-									<span class="productLink" onclick="">[1공식인증점] 위닉스 공기청정기 타워프라임 APRM833-JWK 85.8㎡ 1등급<span>
-									<div class="schedule"><span class="blue">3/22(화) 이내</span> 도착예정</div>
-								</div>
-								<div class="productCnt col-4 col-md-4 col-lg-2">
-									<input type="text" id="proCnt3" class="proCnt" value="1" disabled>개
-								</div>
-								<div class="productPrice col-4 col-md-4 col-lg-2">
-									<input type="text" id="proPrice3" class="proPrice" value="11342630" disabled>원
-								</div>
-								<div class="productDelivery col-4 col-md-4 col-lg-2">
-									<input type="text" id="deliCharge3" class="deliCharge" value="무료배송" disabled>
+					<div class="productArea">
+						<div class="brand">${basketListvo.brand}</div>
+						<div class="productDetail row">
+							<div class="productImgDiv col-4 col-md-4 col-lg-3">
+								<img src="/controller/image/${basketListvo.img_system}" class="productImg" alt="" 
+								onclick="location.href='${pageContext.request.contextPath}/store/store_view.do?spidx=${basketListvo.spidx}'">
+							</div>
+							<div class="col-8 col-md-8 col-lg-9">
+								<div class="row">
+									<div class="productName col-12 col-md-12 col-lg-6">
+										<span class="productLink" onclick="location.href='${pageContext.request.contextPath}/store/store_view.do?spidx=${basketListvo.spidx}'">
+											${basketListvo.title}
+										</span>
+										<div class="schedule"><span class="blue">4/8(금) 이내</span> 도착예정</div>
+									</div>
+									<div class="productCnt col-4 col-md-4 col-lg-2">
+										<input type="text" id="proCnt1" class="proCnt" value="${basketListvo.cnt}" disabled>개
+									</div>
+									<div class="productPrice col-4 col-md-4 col-lg-2">
+										<input type="text" id="proPrice1" class="proPrice" value="${basketListvo.price}" disabled>원
+									</div>
+									<div class="productDelivery col-4 col-md-4 col-lg-2">
+										<input type="text" id="deliCharge1" class="deliCharge" 
+											<c:if test="${basketListvo.free_delivery == 'Y'}">
+												value="무료배송"
+											</c:if>
+											<c:if test="${basketListvo.free_delivery == 'N'}">
+												value="${basketListvo.delivery_charge}원"
+											</c:if>
+										disabled>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-				</div>				
+				
+				</c:forEach>
+				
 			</div>	
 		</div>
 		
 		<!-- 결제 금액 -->
 		<div class="paymentArea">
 			<div class="amountArea">
-				<input type="text" id="productAmount" value="12,000,000" disabled>원 +
-				<input type="text" id="deliveryCharge" value="무료 배송" disabled> = 
-				<input type="text" id="amount" value="12,000,000" disabled>원
+				<input type="text" id="productAmount" value="" disabled>원 +
+				<input type="text" id="deliveryCharge" value="" disabled> = 
+				<input type="text" id="amount" value="" disabled>원
 			</div>
 			<div class="agreement">
 				위 내용을 확인하였으며 결제에 동의합니다.
 			</div>
 			<div class="payButtonArea">
-				<input type="button" id="payButton" value="결제하기" onclick="">
+				<input type="button" id="payButton" value="결제하기" onclick="iamport()">
 			</div>
 		</div>
-		
+
 	</section>
 
-	<script src="/controller/js/mypage/payment2.js"></script>
-	
 	<%@ include file="../footer.jsp" %>
 	<!-- 부트스트랩 -->	
 

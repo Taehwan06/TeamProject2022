@@ -12,8 +12,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import edu.study.service.BasketService;
 import edu.study.service.HomeService;
 import edu.study.service.MypageService;
+import edu.study.vo.BasketVO;
 import edu.study.vo.HomeSearchVO;
 import edu.study.vo.MemberVO;
 import edu.study.vo.OrderListVO;
@@ -30,6 +32,8 @@ public class MypageController {
 	private MypageService mypageService;
 	@Autowired
 	private HomeService homeService;
+	@Autowired
+	private BasketService basketService;
 	 
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -48,7 +52,7 @@ public class MypageController {
 	    MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
 	      
 	      if(loginUser == null) {
-	         return "home";
+	         return "redirect:/";
 	      }else {
 	    	MemberVO result = mypageService.detail(loginUser.getMidx());
 	  		model.addAttribute("vo", result);
@@ -137,19 +141,19 @@ public class MypageController {
 		
 		model.addAttribute("orderList", orderList);
 		
-		vo.setProgress("°áÁ¦¿Ï·á");
+		vo.setProgress("ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½");
 		int count = mypageService.count(vo);
 		model.addAttribute("count1", count);
 		
-		vo.setProgress("¹è¼ÛÁØºñÁß");
+		vo.setProgress("ï¿½ï¿½ï¿½ï¿½Øºï¿½ï¿½ï¿½");
 		count = mypageService.count(vo);
 		model.addAttribute("count2", count);
 		
-		vo.setProgress("¹è¼ÛÁß");
+		vo.setProgress("ï¿½ï¿½ï¿½ï¿½ï¿½");
 		count = mypageService.count(vo);
 		model.addAttribute("count3", count);
 		
-		vo.setProgress("¹è¼Û¿Ï·á");
+		vo.setProgress("ï¿½ï¿½Û¿Ï·ï¿½");
 		count = mypageService.count(vo);
 		model.addAttribute("count4", count);
 		
@@ -196,15 +200,28 @@ public class MypageController {
 	}
 	
 	@RequestMapping(value = "/basket.do", method = RequestMethod.GET)
-	public String basket(Locale locale, Model model, SearchVO vo) throws Exception {
+	public String basket(Locale locale, Model model, SearchVO vo, HttpServletRequest req) throws Exception {
 		
 		int deleteResult = homeService.deleteSearchList();
 		
 		List<HomeSearchVO> searchList = homeService.listSearchList();
 		
 		model.addAttribute("searchList", searchList);
+		
+		HttpSession session = req.getSession();
+		MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
+		
+		if(loginUser == null) {
+			return "redirect:/";
+		}else {
+			List<BasketVO> basketListAll = basketService.listBasket(loginUser);
 			
-		return "mypage/basket";
+			model.addAttribute("basketListAll", basketListAll);
+			
+			return "mypage/basket";
+		}
+			
+		
 	}
 	
 	@RequestMapping(value = "/review_list.do", method = RequestMethod.GET)
@@ -289,6 +306,27 @@ public class MypageController {
 		model.addAttribute("searchList", searchList);
 			
 		return "mypage/address_modify";
+	}
+	
+	@RequestMapping(value = "/payment.do", method = RequestMethod.POST)
+	public String payment(Locale locale, Model model, BasketVO vo, HttpServletRequest req) throws Exception {
+		
+		String sbidxStr = vo.getSbidxStr();
+		String[] sbidxArray = sbidxStr.split(",");
+		vo.setSbidxArray(sbidxArray);
+		
+		List<BasketVO> basketList = basketService.listPayFromBasket(vo);
+		
+		model.addAttribute("basketList", basketList);
+		
+		HttpSession session = req.getSession();
+		MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
+		
+		if(loginUser == null) {
+			return "redirect:/";
+		}else {
+			return "mypage/payment";
+		}
 	}
 	
 	

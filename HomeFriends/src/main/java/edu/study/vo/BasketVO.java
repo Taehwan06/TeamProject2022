@@ -7,13 +7,55 @@ public class BasketVO {
 	private int spidx;
 	private String title;
 	private int cnt;
-	private String price;
-	private String delivery_charge;
+
 	private String free_delivery;
 	private String img_origin;
 	
+	private int price;
+	private int delivery_charge;
+
+	private String img_system;
+	private String[] sbidxArray;
+	private String brand;
+	private String sbidxStr;
 	
 	
+	public String getSbidxStr() {
+		return sbidxStr;
+	}
+	public void setSbidxStr(String sbidxStr) {
+		this.sbidxStr = sbidxStr;
+	}
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
+	public int getDelivery_charge() {
+		return delivery_charge;
+	}
+	public void setDelivery_charge(int delivery_charge) {
+		this.delivery_charge = delivery_charge;
+	}
+	public String getImg_system() {
+		return img_system;
+	}
+	public void setImg_system(String img_system) {
+		this.img_system = img_system;
+	}
+	public String[] getSbidxArray() {
+		return sbidxArray;
+	}
+	public void setSbidxArray(String[] sbidxArray) {
+		this.sbidxArray = sbidxArray;
+	}
+	public String getBrand() {
+		return brand;
+	}
+	public void setBrand(String brand) {
+		this.brand = brand;
+	}
 	public int getSbidx() {
 		return sbidx;
 	}
@@ -44,12 +86,6 @@ public class BasketVO {
 	public void setCnt(int cnt) {
 		this.cnt = cnt;
 	}
-	public String getDelivery_charge() {
-		return delivery_charge;
-	}
-	public void setDelivery_charge(String delivery_charge) {
-		this.delivery_charge = delivery_charge;
-	}
 	public String getFree_delivery() {
 		return free_delivery;
 	}
@@ -62,15 +98,4 @@ public class BasketVO {
 	public void setImg_origin(String img_origin) {
 		this.img_origin = img_origin;
 	}
-	public String getPrice() {
-		return price;
-	}
-	public void setPrice(String price) {
-		this.price = price;
-	}
-	
-		
-		
-
-
 }
