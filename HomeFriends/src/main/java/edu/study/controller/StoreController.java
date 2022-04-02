@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
+import com.google.protobuf.DescriptorProtos.SourceCodeInfo.Location;
 import com.mysql.cj.Session;
 
 import edu.study.service.HomeService;
@@ -78,7 +79,15 @@ public class StoreController {
 	}
 	
 	@RequestMapping(value = "/store_insert.do", method = RequestMethod.GET)
-	public String store_insert(Locale locale, Model model, SearchVO vo) throws Exception {
+	public String store_insert(HttpServletRequest request, Locale locale, Model model, SearchVO vo) throws Exception {
+		
+		HttpSession session = request.getSession();
+		MemberVO member = (MemberVO)session.getAttribute("loginUser");
+
+		if(member==null) {return "login/login";}
+		if(!member.getGrade().equals("A")) {return "store/store";}
+
+		
 		
 		int deleteResult = homeService.deleteSearchList();
 		
@@ -89,19 +98,17 @@ public class StoreController {
 		return "store/store_insert";
 	}
 	@RequestMapping(value = "/store_insert.do", method = RequestMethod.POST)
-	public void store_insertOK(Locale locale, Model model, StoreVO vo, @RequestParam String img_style) throws Exception {
+	public @ResponseBody String store_insertOK(HttpServletRequest request, Locale locale, Model model, StoreVO vo, @RequestParam String img_style) throws Exception {
 		
 		int deleteResult = homeService.deleteSearchList();
 		
-		List<HomeSearchVO> searchList = homeService.listSearchList();
-		
-		model.addAttribute("searchList", searchList);
+//		List<HomeSearchVO> searchList = homeService.listSearchList();
+//		
+//		model.addAttribute("searchList", searchList);
 			
 		int idx1 = img_style.indexOf("url(");
 		int idx2 = img_style.lastIndexOf("\"");
 		String new_img_style = img_style.substring(idx1+5, idx2);
-		System.out.println(img_style);
-		System.out.println(new_img_style);
 		vo.setImg_origin(new_img_style);
 		
 		StringTokenizer st = new StringTokenizer(vo.getDetail(), ",");
@@ -116,12 +123,30 @@ public class StoreController {
 		}
 		vo.setDetail(remain);
 		
-		vo.setMidx(1);
-		vo.setWriter("컨트롤러임시작성");
+		
+		HttpSession session = request.getSession();
+		MemberVO member = (MemberVO)session.getAttribute("loginUser");
+		
+		
+			
+		vo.setMidx(member.getMidx());
+		vo.setWriter(member.getMembername());
+	
+		
+
+		
+		
+		
 		
 		
 		int result = storeService.insert(vo);
 		
+		return result+"";
+		
+	}
+	@RequestMapping(value="/test", method = RequestMethod.GET)
+	public @ResponseBody String test() throws Exception {
+	    return "asdf";
 	}
 	
 	@RequestMapping(value = "/store_modify.do", method = RequestMethod.GET)
@@ -201,7 +226,6 @@ public class StoreController {
 		HttpSession session = request.getSession();
 
 		MemberVO member = (MemberVO)session.getAttribute("loginUser");
-		System.out.println(member.getMidx());
 		
 		int midx=member.getMidx();
 		

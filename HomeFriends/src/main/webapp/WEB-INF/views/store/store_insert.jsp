@@ -44,10 +44,17 @@
 	<script src="/controller/js/summernote/lang/summernote-ko-KR.js"></script>
 	<link rel="stylesheet" href="/controller/css/summernote/summernote-lite.css">
 
+
+
+
+	
 </head>
 
 
 <body>
+
+
+
 	<%@ include file="../header.jsp" %>
 	<%@ include file="../nav.jsp" %>
 

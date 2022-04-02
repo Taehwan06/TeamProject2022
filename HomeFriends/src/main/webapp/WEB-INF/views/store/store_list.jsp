@@ -170,6 +170,12 @@
 							$("#store_main_Title").text(title);
 						</script>
 					</c:if>
+					<c:if test="${not empty param.type}">
+						<script>
+							var title = match["${param.type}"];
+							$("#store_main_Title").text(title);
+						</script>
+					</c:if>
 				</div><!-- 카테고리타입 가져올것 --><!-- ---------------- -->
 				<!-- 정렬방식 -->
 				<!-- home_list에서 가져옴 -->
