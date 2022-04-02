@@ -125,21 +125,13 @@ public class CommunityController {
 	}
 	
 	@RequestMapping(value = "/home_insert.do", method = RequestMethod.POST)
-	public String home_insert(Model model, Community_BoardVO boardVO, RedirectAttributes rttr, HttpServletRequest req) throws Exception {
+	public String home_insert(Model model, Community_BoardVO boardVO, HttpServletRequest req) throws Exception {
 		System.out.println();
 		int deleteResult = homeService.deleteSearchList();
 		
 		List<HomeSearchVO> searchList = homeService.listSearchList();
 		
 		model.addAttribute("searchList", searchList);
-		//로그인 처리
-		/*
-		MemberVO memberVO = (MemberVO) session.getAttribute("adminSession");
-		String nick_ = memberVO.getNick_name();
-		boardVO.setWriter(nick_);
-		
-		boardVO.setContent(boardVO.getContent().replace("\r\n", "<br>"));
-		*/
 		
 		HttpSession session = req.getSession(); 
 	    MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
@@ -148,12 +140,11 @@ public class CommunityController {
 		
 		Community_boardService.insert(boardVO);
 		
-		rttr.addFlashAttribute("insert_result", boardVO.getCbidx());
 	
 		return "redirect:home_view.do?cbidx="+boardVO.getCbidx();
 	}
 	@RequestMapping(value = "/home_modify.do", method = RequestMethod.GET)
-	public String home_modify(Locale locale, Model model, int cbidx) throws Exception {
+	public String home_modify(Locale locale, Model model, int cbidx, HttpServletRequest req) throws Exception {
 		
 		int deleteResult = homeService.deleteSearchList();
 		
@@ -167,8 +158,21 @@ public class CommunityController {
 		
 		return "community/home_modify";
 	}
+	@RequestMapping(value = "/home_modify.do", method = RequestMethod.POST)
+	public String home_modify(Locale locale, Model model, Community_BoardVO boardVO) throws Exception {
+		
+		int deleteResult = homeService.deleteSearchList();
+		
+		List<HomeSearchVO> searchList = homeService.listSearchList();
+		
+		model.addAttribute("searchList", searchList);
+		
+		Community_boardService.update(boardVO);
+		
+		return "redirect:home_view.do?cbidx="+boardVO.getCbidx();
+	}
 	
-	@RequestMapping(value = "/home_delete.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/home_delete.do", method = RequestMethod.POST)
 	public String home_delete(Locale locale, Model model, int cbidx) throws Exception {
 		
 		int deleteResult = homeService.deleteSearchList();
