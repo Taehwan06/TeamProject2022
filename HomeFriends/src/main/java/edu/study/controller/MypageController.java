@@ -52,7 +52,7 @@ public class MypageController {
 	    MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
 	      
 	      if(loginUser == null) {
-	         return "redirect:/";
+	         return "redirect:/login/login.do";
 	      }else {
 	    	MemberVO result = mypageService.detail(loginUser.getMidx());
 	  		model.addAttribute("vo", result);
@@ -158,7 +158,7 @@ public class MypageController {
 
 		
 	   if(loginUser == null) {
-		        return "redirect:/";
+		        return "redirect:/login/login.do";
 		   }else {
 		
 			    List<OrderListVO> orderList2 = mypageService.orderList2(loginUser);
@@ -219,7 +219,7 @@ public class MypageController {
 		MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
 		
 		if(loginUser == null) {
-			return "redirect:/";
+			return "redirect:/login/login.do";
 		}else {
 			List<BasketVO> basketListAll = basketService.listBasket(loginUser);
 			
@@ -330,7 +330,7 @@ public class MypageController {
 		MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
 		
 		if(loginUser == null) {
-			return "redirect:/";
+			return "redirect:/login/login.do";
 		}else {
 			return "mypage/payment";
 		}
