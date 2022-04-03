@@ -63,6 +63,7 @@
     		gender = #{gender},
     		phone = CONCAT(#{phone1},"-",#{phone2},"-",#{phone3}),
     		addr = #{addr}
+    		
     	WHERE 
     		midx = #{midx}
     </update>
@@ -106,9 +107,12 @@
     	SELECT
     			count(*)
     	FROM
-    			order_list
+    			order_list 
     	WHERE
     			progress = #{progress}
+    	AND
+    			midx = #{midx}
+    			
     </select>
     
 </mapper>
