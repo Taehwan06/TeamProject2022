@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import edu.study.service.BasketService;
 import edu.study.service.HomeService;
@@ -350,6 +351,61 @@ public class MypageController {
 			return "redirect:/login/login.do";
 		}else {
 			return "mypage/payment";
+		}
+	}
+	
+	
+	@RequestMapping(value = "/deleteOneBasket", method = RequestMethod.POST)
+	@ResponseBody
+	public String deleteOneBasket(Locale locale, Model model, BasketVO vo, HttpServletRequest req) throws Exception {
+		
+		String sbidxStr = req.getParameter("sbidx");
+		int sbidx = Integer.parseInt(sbidxStr);
+		
+		vo.setSbidx(sbidx);
+		
+		int result = basketService.deleteOneBasket(vo);
+		
+		if(result > 0) {
+			return "success";
+		}else {
+			return "fail";
+		}
+	}
+	
+	@RequestMapping(value = "/minusCntBasket", method = RequestMethod.POST)
+	@ResponseBody
+	public String minusCntBasket(Locale locale, Model model, BasketVO vo, HttpServletRequest req) throws Exception {
+		
+		String sbidxStr = req.getParameter("sbidx");
+		int sbidx = Integer.parseInt(sbidxStr);
+		
+		vo.setSbidx(sbidx);
+		
+		int result = basketService.minusCntBasket(vo);
+		
+		if(result > 0) {
+			return "success";
+		}else {
+			return "fail";
+		}
+	}
+	
+	@RequestMapping(value = "/plusCntBasket", method = RequestMethod.POST)
+	@ResponseBody
+	public String plusCntBasket(Locale locale, Model model, BasketVO vo, HttpServletRequest req) throws Exception {
+		
+		String sbidxStr = req.getParameter("sbidx");
+		int sbidx = Integer.parseInt(sbidxStr);
+		
+		vo.setSbidx(sbidx);
+		
+		int result = basketService.plusCntBasket(vo);
+		
+		if(result > 0) {
+			return "success";
+		}else {
+			return "fail";
 		}
 	}
 	

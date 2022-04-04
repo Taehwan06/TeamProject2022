@@ -26,6 +26,18 @@ public class BasketDAO {
 		return sqlSession.selectList(Namespace+".listBasket",vo);
 	}
 	
+	public int deleteOneBasket(BasketVO vo) throws Exception{
+		return sqlSession.delete(Namespace+".deleteOneBasket",vo);
+	}
+	
+	public int plusCntBasket(BasketVO vo) throws Exception{
+		return sqlSession.update(Namespace+".plusCntBasket",vo);
+	}
+	
+	public int minusCntBasket(BasketVO vo) throws Exception{
+		return sqlSession.update(Namespace+".minusCntBasket",vo);
+	}
+	
 	
 }
 

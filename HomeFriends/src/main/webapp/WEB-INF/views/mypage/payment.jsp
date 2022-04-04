@@ -48,10 +48,6 @@
 			totalDelivery = totalDelivery+"원";
 		}
 		
-		console.log(totalPrice);
-		console.log(totalDelivery);
-		console.log(totalPay);
-		
 		window.onload = function(){
 			var productAmount = document.getElementById("productAmount");
 			productAmount.value = totalPrice;

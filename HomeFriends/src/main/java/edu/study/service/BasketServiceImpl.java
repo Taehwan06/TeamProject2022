@@ -31,6 +31,30 @@ public class BasketServiceImpl implements BasketService {
 		
 		return list;
 	}
+
+	@Override
+	public int deleteOneBasket(BasketVO vo) throws Exception {
+		
+		int result = basketDao.deleteOneBasket(vo);
+		
+		return result;
+	}
+
+	@Override
+	public int plusCntBasket(BasketVO vo) throws Exception {
+		
+		int result = basketDao.plusCntBasket(vo);
+		
+		return result;
+	}
+
+	@Override
+	public int minusCntBasket(BasketVO vo) throws Exception {
+
+		int result = basketDao.minusCntBasket(vo);
+		
+		return result;
+	}
 	
 	
 

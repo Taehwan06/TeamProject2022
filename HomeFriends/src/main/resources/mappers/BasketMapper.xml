@@ -22,7 +22,7 @@
 			1 = 1
 		AND(
 		<foreach item="sbidx" index="index" collection="sbidxArray">
-			sbidx = ${sbidx}
+			sbidx = #{sbidx}
 		OR		
 		</foreach>
 			sbidx = 0)
@@ -32,6 +32,7 @@
     
     <select id="listBasket" resultType="BasketVO" parameterType="MemberVO">
 		SELECT
+			sbidx,
 			title,
 			price,
 			cnt,
@@ -44,8 +45,36 @@
 		FROM
 			shopping_basket
 		WHERE
-			midx = ${midx}
+			midx = #{midx}
     </select>
+    
+    
+    <delete id="deleteOneBasket" parameterType="BasketVO">
+    	DELETE FROM 
+    		shopping_basket 
+    	WHERE 
+    		sbidx = #{sbidx};
+    </delete>
+    
+    
+    <update id="plusCntBasket" parameterType="BasketVO">
+    	UPDATE 
+    		shopping_basket 
+    	SET 
+    		cnt = cnt+1
+    	WHERE
+    		sbidx = #{sbidx}
+    </update>
+    
+    
+    <update id="minusCntBasket" parameterType="BasketVO">
+    	UPDATE 
+    		shopping_basket 
+    	SET 
+    		cnt = cnt-1
+    	WHERE
+    		sbidx = #{sbidx}
+    </update>
     
    
     

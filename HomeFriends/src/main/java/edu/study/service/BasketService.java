@@ -9,4 +9,7 @@ public interface BasketService {
 
 	List<BasketVO> listPayFromBasket(BasketVO vo) throws Exception;
 	List<BasketVO> listBasket(MemberVO vo) throws Exception;
+	int deleteOneBasket(BasketVO vo) throws Exception;
+	int plusCntBasket(BasketVO vo) throws Exception;
+	int minusCntBasket(BasketVO vo) throws Exception;
 }
