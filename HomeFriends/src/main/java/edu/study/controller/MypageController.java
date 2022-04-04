@@ -40,7 +40,7 @@ public class MypageController {
 	 * @throws Exception 
 	 */
 	@RequestMapping(value = "/mypage.do", method = RequestMethod.GET)
-	public String mypage(Locale locale, Model model, SearchVO vo,HttpServletRequest req) throws Exception {
+	public String mypage(Locale locale, Model model,OrderListVO vo,HttpServletRequest req) throws Exception {
 		
 		int deleteResult = homeService.deleteSearchList();
 		
@@ -54,6 +54,18 @@ public class MypageController {
 	      if(loginUser == null) {
 	         return "redirect:/login/login.do";
 	      }else {
+	    	  
+	    	vo.setMidx(loginUser.getMidx());
+	    	vo.setProgress("배송중");
+			int count = mypageService.count(vo);
+			model.addAttribute("count3", count);  
+			
+			vo.setMidx(loginUser.getMidx());
+	    	vo.setProgress("배송완료");
+			count = mypageService.count(vo);
+			model.addAttribute("count4", count);  
+	    	  
+	    	  
 	    	MemberVO result = mypageService.detail(loginUser.getMidx());
 	  		model.addAttribute("vo", result);
 	         return "mypage/mypage";
@@ -139,23 +151,6 @@ public class MypageController {
 		HttpSession session = req.getSession(); 
 	    MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
 		
-	    
-	    vo.setProgress("결제완료");
-		int count = mypageService.count(vo);
-		model.addAttribute("count1", count);
-		
-		vo.setProgress("배송준비중");
-		count = mypageService.count(vo);
-		model.addAttribute("count2", count);
-		
-		vo.setProgress("배송중");
-		count = mypageService.count(vo);
-		model.addAttribute("count3", count);
-		
-		vo.setProgress("배송완료"); 
-		count = mypageService.count(vo);
-		model.addAttribute("count4", count);
-
 		
 	   if(loginUser == null) {
 		        return "redirect:/login/login.do";
@@ -163,6 +158,28 @@ public class MypageController {
 		
 			    List<OrderListVO> orderList2 = mypageService.orderList2(loginUser);
 				model.addAttribute("orderList2", orderList2);
+				
+				
+				vo.setMidx(loginUser.getMidx());
+			    vo.setProgress("결제완료");
+				int count = mypageService.count(vo);
+				model.addAttribute("count1", count);
+				
+				vo.setMidx(loginUser.getMidx());
+				vo.setProgress("배송준비중");
+				count = mypageService.count(vo);
+				model.addAttribute("count2", count);
+				
+				vo.setMidx(loginUser.getMidx());
+				vo.setProgress("배송중");
+				count = mypageService.count(vo);
+				model.addAttribute("count3", count);
+				
+				vo.setMidx(loginUser.getMidx());
+				vo.setProgress("배송완료"); 
+				count = mypageService.count(vo);
+				model.addAttribute("count4", count);
+				
 		  	
 		         return "mypage/order_list";
 		   }  

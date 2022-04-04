@@ -62,7 +62,7 @@
     		nick_name = #{nick_name},
     		gender = #{gender},
     		phone = CONCAT(#{phone1},"-",#{phone2},"-",#{phone3}),
-    		addr = #{addr}
+    		addr =  CONCAT(#{addr1}," ",#{addr2}) 
     		
     	WHERE 
     		midx = #{midx}
