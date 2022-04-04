@@ -22,7 +22,12 @@
            	<if test="detail != null">
            		AND detail = #{detail}
            	</if>
-            
+           	<if test="free != null">
+           		AND free_delivery = #{free}
+           	</if>
+           	<if test="priceStart != null and priceEnd != null">
+           		AND sale_price BETWEEN 'priceStart' AND 'priceEnd'
+            </if>
             <!-- 정렬방식 -->
            	<if test="sell_cnt != null and sell_cnt == 'yes'">
            		ORDER BY sell_cnt DESC
@@ -32,6 +37,18 @@
            	</if>
            	<if test="discount != null and discount == 'yes'">
            		ORDER BY discount DESC
+           	</if>
+           	<if test="order != null and order=='sell_cnt'">
+           		ORDER BY sell_cnt DESC
+           	</if>
+           	<if test="order != null and order=='score'">
+           		ORDER BY score DESC
+           	</if>
+           	<if test="order != null and order=='priceUp'">
+           		ORDER BY sale_price
+           	</if>
+           	<if test="order != null and order=='priceDown'">
+           		ORDER BY sale_price DESC
            	</if>
            	
     </select>
@@ -59,6 +76,7 @@
 	    		discount,
 	    		brand,
 	    		free_delivery,
+	    		delivery_charge,
 	    		category,
 	    		detail,
 	    		midx
@@ -73,6 +91,7 @@
 	    		#{discount},
 	    		#{brand},
 	    		#{free_delivery},
+	    		#{delivery_charge},
 	    		#{category},
 	    		#{detail},
 	    		#{midx}

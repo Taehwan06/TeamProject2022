@@ -240,7 +240,7 @@ function submitFn(){
 				
 				console.log(res);
 				if(res>0){
-					alert("상품이 장바구니에 담겼습니다.");
+					alert("상품이 등록되었습니다.");
 					location.href="store.do";
 				}else{
 					alert("실행오류");
