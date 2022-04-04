@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -67,12 +68,12 @@
 					<div class="delivery col-4">
 						배송중<br>
 						<a href='${pageContext.request.contextPath}/mypage/order_list.do'><i class="bi bi-truck delivery-icons"></i></a><br>
-						<strong>3</strong>
+						<strong>${count3}</strong>
 					</div>
 					<div class="delivery col-4">
 						배송완료<br>
 						<a href='${pageContext.request.contextPath}/mypage/order_list.do'><i class="bi bi-bag-check-fill delivery-icons"></i></a><br>
-						<strong>2</strong>
+						<strong>${count4}</strong>
 					</div>
 					<div class="delivery col-4">
 						취소/반품/교환<br>
