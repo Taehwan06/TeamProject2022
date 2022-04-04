@@ -184,8 +184,8 @@
 		</div>
 		</form>
 		<form id="payFrm" name="payFrm">
-			<input type="hidden" name="sbidxStr" value="1,2,3,7">
-			<input type="hidden" name="midx" value="1">
+			<input type="hidden" name="sbidxStr" value="10">
+			<input type="hidden" name="midx" value="2">
 		</form>
 	</section>
 	

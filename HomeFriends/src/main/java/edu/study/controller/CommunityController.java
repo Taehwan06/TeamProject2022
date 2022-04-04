@@ -19,14 +19,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.gson.Gson;
 
 import edu.study.service.Community_BoardService;
+import edu.study.service.Community_ReplyService;
 import edu.study.service.HomeService;
 import edu.study.vo.AttatchImageVO;
 import edu.study.vo.Community_BoardVO;
+import edu.study.vo.Community_ReplyVO;
 import edu.study.vo.HomeSearchVO;
 import edu.study.vo.MemberVO;
 import edu.study.vo.SearchVO;
@@ -42,6 +43,8 @@ public class CommunityController {
 	private Community_BoardService Community_boardService;
 	@Autowired
 	private HomeService homeService;
+	@Autowired
+	private Community_ReplyService replyService;
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -171,7 +174,6 @@ public class CommunityController {
 		
 		return "redirect:home_view.do?cbidx="+boardVO.getCbidx();
 	}
-	
 	@RequestMapping(value = "/home_delete.do", method = RequestMethod.POST)
 	public String home_delete(Locale locale, Model model, int cbidx) throws Exception {
 		
@@ -242,8 +244,40 @@ public class CommunityController {
 		Community_BoardVO vo = Community_boardService.detail(cbidx);
 	      
 	    model.addAttribute("vo",vo);
+	    
+	    //origin_cbridx
+	    int orincbridx = Community_boardService.cbridx();
+	    model.addAttribute("orincbridx", orincbridx+1);
+	    
+	    //댓글 개수
+	    int replycount = replyService.countReplies(cbidx);
+	    model.addAttribute("count", replycount);
+	    
+	    //댓글 조회
+	    List<Community_ReplyVO> reply = replyService.list(cbidx);
+	    model.addAttribute("reply", reply);
 		
-		return "community/home_view.jsp?cbidx="+vo.getCbidx();
+		return "community/home_view.jsp?cbidx="+cbidx;
+	}
+	
+	//댓글 수정 GET
+	@RequestMapping(value="/replyUpdateView", method = RequestMethod.GET)
+	public String replyUpdateView(Community_ReplyVO vo,  Model model) throws Exception {
+		
+		model.addAttribute("replyUpdate", replyService.selectReply(vo.getCbridx()));
+		
+		return "community/replyUpdate";
+	}
+	
+	//댓글 수정 POST
+	@RequestMapping(value="/replyUpdate", method = RequestMethod.POST)
+	public String replyUpdate(Community_ReplyVO vo, Model model) throws Exception {
+		
+		replyService.modify(vo);
+		
+		model.addAttribute("vo", vo);
+		
+		return "redirect:community/home_view.jsp?cbidx="+vo.getCbidx();
 	}
 	
 	@RequestMapping(value = "/following.do", method = RequestMethod.GET)
@@ -305,5 +339,4 @@ public class CommunityController {
 				
 		return "community/qna_modify";
 	}
-	
 }
