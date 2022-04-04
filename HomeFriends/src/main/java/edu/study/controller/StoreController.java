@@ -122,6 +122,10 @@ public class StoreController {
 		   break;
 		}
 		vo.setDetail(remain);
+		if(vo.getFree_delivery()!="N") {
+			vo.setDelivery_charge("0");
+		}
+		
 		
 		
 		HttpSession session = request.getSession();
@@ -131,19 +135,25 @@ public class StoreController {
 			
 		vo.setMidx(member.getMidx());
 		vo.setWriter(member.getMembername());
-	
-		
-
-		
-		
-		
 		
 		
 		int result = storeService.insert(vo);
 		
+		System.out.println(result);
+		
 		return result+"";
 		
 	}
+	
+	@RequestMapping(value="/lookup", method = RequestMethod.GET)
+	public List<StoreVO> lookup(Locale locale, Model model, SearchVO vo) throws Exception {
+		
+		List<StoreVO> list = storeService.list(vo);
+		
+	    return list;
+	}
+	
+	
 	@RequestMapping(value="/test", method = RequestMethod.GET)
 	public @ResponseBody String test() throws Exception {
 	    return "asdf";
@@ -223,18 +233,26 @@ public class StoreController {
 	public String basketIn(HttpServletRequest request,Locale locale, Model model,BasketVO vo) throws Exception {
 	
 		StoreVO svo = storeService.detail(vo.getSpidx());
+		
+		
+		
 		HttpSession session = request.getSession();
 
 		MemberVO member = (MemberVO)session.getAttribute("loginUser");
 		
 		int midx=member.getMidx();
 		
-		svo.setMidx(midx);
-		svo.setCnt(1);
-		svo.setPrice(svo.getSale_price());
+		vo.setMidx(midx);
+		vo.setTitle(svo.getTitle());
+		vo.setCnt(1);
+		vo.setFree_delivery(svo.getFree_delivery());
+		vo.setImg_origin(svo.getImg_origin());
+		vo.setPrice(Integer.parseInt(svo.getSale_price()));
+		vo.setDelivery_charge(Integer.parseInt(svo.getDelivery_charge()));
+		vo.setImg_system("");
+		vo.setBrand(svo.getBrand());
 		
-		
-		int result = storeService.basketIn(svo);
+		int result = storeService.basketIn(vo);
 		
 		System.out.println(result);
 		 

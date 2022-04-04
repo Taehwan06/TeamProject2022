@@ -47,7 +47,7 @@ public class StoreServiceImpl implements StoreService {
 	}
 
 	@Override
-	public int basketIn(StoreVO vo) throws Exception {
+	public int basketIn(BasketVO vo) throws Exception {
 		// TODO Auto-generated method stub
 		return StoreDao.basketIn(vo);
 	}
