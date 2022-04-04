@@ -26,4 +26,6 @@ public interface Community_BoardService {
 	Community_BoardVO getCommunity_Mainimage() throws Exception;
 
 	List<Community_BoardVO> list() throws Exception;
+	
+	int cbridx() throws Exception;
 }

@@ -65,5 +65,11 @@ public class Community_BoardServiceImpl implements Community_BoardService {
 		
 		return Community_boardDao.Community_Mainimage();
 	}
+	
+	@Override
+	public int cbridx() {
+		
+		return Community_boardDao.cbridx();
+	}
 
 }
