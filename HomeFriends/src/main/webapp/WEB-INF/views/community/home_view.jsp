@@ -99,7 +99,7 @@
 		</h1>
 		<!-- 댓글 등록 -->
 		<c:if test="${loginUser != null}">
-			<form id="replyFrm" name="replyFrm" action="/controller/reply/write" method="post">
+			<form id="replyFrm" name="replyFrm" method="post">
 				<input type="hidden" id="origin_cbridx" name="origin_cbridx" value="${orincbridx}">
 				<input type="hidden" id="cbidx" name="cbidx" value="${vo.cbidx }">
 				<input type="hidden" id="midx" name="midx" value="${loginUser.midx }">
@@ -114,13 +114,14 @@
 						</div>
 					</div>
 					<div class="reply_action">
-						<button class="reply_submit" aria-label="등록" type="submit">등록</button>
+						<button class="reply_submit" aria-label="등록" type="button">등록</button>
 					</div>
 				</div>
 			</form>
 		</c:if>
+		<!-- 비로그인시 -->
 		<c:if test="${loginUser == null }">
-			<form id="replyFrm" name="replyFrm">
+			<form id="replyFrm_">
 				<input type="hidden" id="origin_cbridx" name="origin_cbridx" value="${orincbridx}">
 				<input type="hidden" id="cbidx" name="cbidx" value="${vo.cbidx }">
 				<input type="hidden" id="midx" name="midx" value="">
@@ -131,7 +132,7 @@
 				<div class="reply_input">
 					<div class="reply_content">
 						<div class="reply_content_input">
-							<textarea name="content" class="reply_content_input_text reply_content_form_text" placeholder="로그인후 이용 가능합니다." readonly></textarea>
+							<textarea name="content" class="reply_content_input_text reply_content_form_text" placeholder="로그인 후 이용 가능합니다." readonly></textarea>
 						</div>
 					</div>
 					<div class="reply_action">
@@ -144,63 +145,62 @@
 		<ul class="reply_list">
 			<c:forEach items="${reply }" var="reply">
 				<input type="hidden" name="origin_cbridx" value="${reply.cbridx }">
-				<li class="reply_list_item">
+				<li class="reply_list_item reply_list_item${reply.depth }">
 					<article class="reply_item_">
-						<p class="reply_item_content">
+						<p class="reply_item_content reply_item_content${reply.cbridx }">
 							<a class="reply_item_content_writer" href="">${reply.writer }
 								<img class="reply_item_content_writer_image" src="/controller/image/${reply.profile_system }">
 							</a>
-							<span class="reply_item_content_content">${reply.content }</span>
+							<span class="reply_item_content_content reply_item_content_content${reply.cbridx}">${reply.content }</span>
 						</p>
-						<footer class="reply_item_footer">
+						<footer class="reply_item_footer reply_item_footer${reply.depth } reply_item_footer${reply.cbridx }">
 							<time class="reply_item_footer_time">
 								2시간 전
 							</time>
-							<button class="reply_item_footer_reply-btn" type="button">답글 달기</button>
+							<c:if test="${loginUser == null }">
+								<button class="reply_item_footer_reply-btn" type="button" onclick="ReNot()">답글 달기</button>
+							</c:if>
+							<c:if test="${loginUser != null }">
+								<button class="reply_item_footer_reply-btn" type="button" onclick="Re('${reply.cbridx}')">답글 달기</button>
+							</c:if>
 							<c:if test="${loginUser.midx == reply.midx }">
 								<div class="mfdel">
-									<button class="replyUpdate" type="button" onclick="replymodify(this)">수정</button>
-									<button class="replyDelete" type="button" onclick="replydel(this)">삭제</button>
+									<button class="replyUpdate" type="button" onclick="replymodify('${reply.cbridx}','${reply.profile_system }')">수정</button>
+									<button class="replyDelete" type="button" onclick="replydel('${reply.cbridx}')">삭제</button>
 								</div>
-								<form id="replydelfrm" name="replydelfrm" action="/controller/reply/delete" method="post">
+								<!-- 댓글 삭제 -->
+								<form id="replydelfrm${reply.cbridx }" name="replydelfrm" method="post">
 									<input type="hidden" name="cbridx" value="${reply.cbridx }">
 									<input type="hidden" name="cbidx" value="${vo.cbidx }">
 								</form>
 							</c:if>
 						</footer>
-						<form id="reply_Frm" name="reply_Frm" action="/controller/reply/write" method="post">
-							<input type="hidden" id="origin_cbridx" name="origin_cbridx" value="${orincbridx}">
-							<input type="hidden" id="cbidx" name="cbidx" value="${vo.cbidx }">
-							<input type="hidden" id="midx" name="midx" value="${loginUser.midx }">
+						<!-- 댓글의 답글 -->
+						
+						<!-- 답글 작성 -->
+						<form class="reply_Frm" id="reply_Frm${reply.cbridx}" name="reply_Frm" method="post">
+							<input type="hidden" name="origin_cbridx" value="${reply.cbridx}">
+							<input type="hidden" name="cbidx" value="${vo.cbidx }">
+							<input type="hidden" name="midx" value="${loginUser.midx }">
 							<input type="hidden" name="writer" value="${loginUser.nick_name }">
+							<input type="hidden" name="lvl" value="${reply.lvl }">
 							<div class="reply_writer">
 								<img src="/controller/image/${loginUser.profile_system }">
 							</div>
-							<div class="reply_input">
+							<div class="reply_input_">
 								<div class="reply_content">
 									<div class="reply_content_input">
-										<span>@${vo.writer }</span><textarea name="content" class="reply_content_input_text reply_content_form_text_" onkeyup="adjustHeight()"></textarea>
+										<span>@${reply.writer }</span><textarea name="content" class="reply_content_input_text_ reply_content_form_text_${reply.cbridx}" onkeyup="adjust_Height('${reply.cbridx}')"></textarea>
 									</div>
 								</div>
 								<div class="reply_action">
-									<button class="reply_submit" aria-label="등록" type="submit">등록</button>
+									<button class="Rereply_submit" aria-label="등록" type="button" onclick="Reinsert('${reply.cbridx}')">등록</button>
 								</div>
 							</div>
 						</form>
 					</article>
 				</li>
 			</c:forEach>
-			<script>
-				function replymodify(obj){
-					$("#replyFrm").css('display', 'none')
-					$(".reply_item_footer").css('display', 'none');
-					$(".reply_list_item").css('margin-bottom', '50px');
-					var rcontent = $(obj).parent().parent().prev().find("span").text();
-					console.log(rcontent);
-					
-					var html = "<input type='text' name='content' value='"+rcontent+"'><input type='hidden name='origin' value='"+rcontent+"''>";
-				}
-			</script>
 		</ul>
 		<ul class="list-paginator">
 			<li>
