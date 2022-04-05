@@ -55,6 +55,30 @@ public class BasketServiceImpl implements BasketService {
 		
 		return result;
 	}
+
+	@Override
+	public List<BasketVO> CheckedListBasket(BasketVO vo) throws Exception {
+		
+		List<BasketVO> list = basketDao.CheckedListBasket(vo);
+		
+		return list;
+	}
+
+	@Override
+	public int deleteListBasket(BasketVO vo) throws Exception {
+
+		int result = basketDao.deleteListBasket(vo);
+		
+		return result;
+	}
+	
+	@Override
+	public int insertOrderList(BasketVO vo) throws Exception {
+
+		int result = basketDao.insertOrderList(vo);
+		
+		return result;
+	}
 	
 	
 

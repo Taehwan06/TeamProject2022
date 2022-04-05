@@ -500,5 +500,62 @@ public class MypageController {
 		}
 	}
 	
+	@RequestMapping(value = "/CheckedListBasket", method = RequestMethod.POST)
+	@ResponseBody
+	public String CheckedListBasket(Locale locale, Model model, BasketVO vo, HttpServletRequest req) throws Exception {
+		
+		String checkedSbidx = req.getParameter("checkedSbidx");
+		String[] sbidxArray = checkedSbidx.split(",");
+		vo.setSbidxArray(sbidxArray);
+		
+		List<BasketVO> CheckedList = basketService.CheckedListBasket(vo);
+		
+		model.addAttribute("CheckedList", CheckedList);
+		
+		if(CheckedList.size() > 0) {
+			return "success";
+		}else {
+			return "fail";
+		}
+	}
+	
+	@RequestMapping(value = "/deleteListBasket", method = RequestMethod.POST)
+	@ResponseBody
+	public String deleteListBasket(Locale locale, Model model, BasketVO vo, HttpServletRequest req) throws Exception {
+		
+		String sbidxStr = req.getParameter("sbidxStr");
+		String[] sbidxArray = sbidxStr.split(",");
+		vo.setSbidxArray(sbidxArray);
+		
+		int result = basketService.deleteListBasket(vo);
+		
+		if(result > 0) {
+			return "success";
+		}else {
+			return "fail";
+		}
+	}
+	
+	@RequestMapping(value = "/insertOrderList", method = RequestMethod.POST)
+	@ResponseBody
+	public String insertOrderList(Locale locale, Model model, BasketVO vo, HttpServletRequest req) throws Exception {
+		
+		String ordernumber = req.getParameter("ordernumber");
+		vo.setOrdernumber(ordernumber);
+		vo.setPaynumber(ordernumber);
+		
+		String sbidxStr = req.getParameter("sbidxStr");
+		String[] sbidxArray = sbidxStr.split(",");
+		vo.setSbidxArray(sbidxArray);
+		
+		int result = basketService.insertOrderList(vo);
+		
+		if(result > 0) {
+			return "success";
+		}else {
+			return "fail";
+		}
+	}
+	
 	
 }

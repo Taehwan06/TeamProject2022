@@ -27,25 +27,19 @@
 	<script src="/controller/js/home.js"></script>
 	<script src="/controller/js/mypage/basket.js"></script>
 	<script src="/controller/js/footer.js"></script>
-	
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	
 	<script>
 		var productCnt = 0;
 		var totalPrice = 0;
 		var totalDelivery = 0;
-		<c:forEach items="${basketListAll}" var="basketListAllvo" varStatus="cnt">
-			totalPrice += (${basketListAllvo.price}) * (${basketListAllvo.cnt});
-			totalDelivery += ${basketListAllvo.delivery_charge}
-			productCnt += ${basketListAllvo.cnt};
-		</c:forEach>
 		
+		var checkedPrice = 0;
+		var checkedCnt = 0;
+		var checkedDelivery = 0;
+		var checkedPay = 0;
+				
 		var totalPay = totalPrice + totalDelivery;
-		
-		if(totalDelivery == 0){
-			totalDelivery = "무료배송";
-		}else{
-			totalDelivery = totalDelivery+"원";
-		}
 		
 		window.onload = function(){
 			$(".totalPay").text(totalPay);
@@ -55,8 +49,25 @@
 		}
 
 		
-		function deleteOneBasketFn(sbidx){
+		function deleteOneBasketFn(sbidx,cnt,price,delivery){
 			var basket = $("#basket"+sbidx);
+			
+			if($("#Selection"+sbidx).is(":checked")){
+				$("#Selection"+sbidx).prop("checked", false);
+				
+				checkedPrice -= (price*cnt);
+				checkedCnt -= cnt;
+				checkedDelivery -= delivery;
+				checkedPay -= (price*cnt);
+				checkedPay -= delivery;
+				
+				$(".totalPay").text(checkedPay);
+				$(".productCnt").text(checkedCnt);
+				$(".totalPrice").text(checkedPrice);
+				$(".totalDelivery").text(checkedDelivery);
+				
+			}
+			
 			$.ajax({
 				url: "deleteOneBasket",
 				type: "post",
@@ -68,14 +79,43 @@
 					}
 				}
 			});
-		}
-		
-		function selectFn(sbidx){
-			console.log(sbidx);
 			
 		}
 		
-		function minusFn(obj,sbidx,price){
+		function selectFn(){
+			
+			var len = $("input[name='Selection']:checked").length;
+			checkedCnt = 0;
+			checkedPrice = 0;
+			checkedDelivery = 0;
+			checkedPay = 0;
+			
+			if(len > 0){
+			    $("input[name='Selection']:checked").each(function(e){
+			        var value = $(this).val();
+			        var valueAry = value.split(",");
+					
+					var sbidx = valueAry[0];
+					var cnt = parseInt($("#cnt"+sbidx).val());
+					var price = parseInt(valueAry[2]);
+					var delivery = parseInt(valueAry[3]);
+					
+					checkedCnt += cnt;
+					checkedPrice += (price*cnt);
+					checkedDelivery += delivery;
+			        
+			    })
+			}
+			
+			checkedPay = (checkedPrice + checkedDelivery);
+			
+			$(".totalPay").text(checkedPay);
+			$(".productCnt").text(checkedCnt);
+			$(".totalPrice").text(checkedPrice);
+			$(".totalDelivery").text(checkedDelivery);
+		}
+		
+		function minusFn(obj,sbidx,price,delivery){
 			var cnt = parseInt($(obj).next().val());
 			if(cnt > 1){
 				$.ajax({
@@ -84,20 +124,27 @@
 					data: "sbidx="+sbidx,
 					success: function(data){
 						var result = data.trim();
-						if(result = "success"){						
-							productCnt -= 1;
-							totalPrice -= price;
-							totalPay -= price;
-							$(".productCnt").text(productCnt);
-							$(".totalPrice").text(totalPrice);
-							$(".totalPay").text(totalPay);
+						if(result = "success"){
+							if($("#Selection"+sbidx).is(":checked")){
+								
+								checkedPrice -= price;
+								checkedCnt -= 1;
+								checkedDelivery -= delivery;
+								checkedPay -= price;
+								checkedPay -= delivery;
+								
+								$(".totalPay").text(checkedPay);
+								$(".productCnt").text(checkedCnt);
+								$(".totalPrice").text(checkedPrice);
+								$(".totalDelivery").text(checkedDelivery);
+							}
 						}
 					}
 				});
 			}
 		}
 		
-		function plusFn(obj,sbidx,price){
+		function plusFn(obj,sbidx,price,delivery){
 			var cnt = parseInt($(obj).prev().val());
 			if(cnt < 999){
 				$.ajax({
@@ -107,12 +154,19 @@
 					success: function(data){
 						var result = data.trim();
 						if(result = "success"){						
-							productCnt += 1;
-							totalPrice += price;
-							totalPay += price;
-							$(".productCnt").text(productCnt);
-							$(".totalPrice").text(totalPrice);
-							$(".totalPay").text(totalPay);
+							if($("#Selection"+sbidx).is(":checked")){
+								
+								checkedPrice += price;
+								checkedCnt += 1;
+								checkedDelivery += delivery;
+								checkedPay += price;
+								checkedPay += delivery;
+								
+								$(".totalPay").text(checkedPay);
+								$(".productCnt").text(checkedCnt);
+								$(".totalPrice").text(checkedPrice);
+								$(".totalDelivery").text(checkedDelivery);
+							}
 						}
 					}
 				});
@@ -120,6 +174,56 @@
 		}
 		
 		
+		function payFn(){
+			var checkedSbidx = [];
+			var sbidxStr = "";
+			var len = $("input[name='Selection']:checked").length;
+			
+			if(len > 0){
+			    $("input[name='Selection']:checked").each(function(e){
+			        var value = $(this).val();
+			        var valueAry = value.split(",");
+					var sbidx = valueAry[0];
+					
+					checkedSbidx.push(sbidx);
+					sbidxStr += sbidx+",";
+			    })
+			}
+			
+			$("#sbidxStr").val(checkedSbidx);
+			$("#midxHidden").val(${loginUser.midx});
+			
+			console.log(sbidxStr);
+			
+			if(checkedSbidx.length == 0){
+				swal({
+					  text: "구매하실 상품을 선택해주세요.",
+					  button: "확인",
+					});
+			}else{
+				
+				var ordernumber = new Date().getTime();
+				console.log(sbidxStr);
+				
+				$.ajax({
+					url: "insertOrderList",
+					type: "post",
+					data: "ordernumber="+ordernumber+"&sbidxStr="+sbidxStr,
+					success: function(data){
+						var result = data.trim();
+						if(result = "success"){
+							console.log("success");
+						}
+					}
+				});
+				
+				
+//				document.payFrm.method = "post";
+//				document.payFrm.action = "payment.do";
+//				document.payFrm.submit();
+			}
+		}
+			
 	</script>
 </head>
 <body>
@@ -133,7 +237,7 @@
 			<!-- 전체선택 체크박스 -->
 			<div class="checkbox_all">
 				<div>
-					<label><input type="checkbox" name="all" value="all"> 전체선택</label>
+					<label><input type="checkbox" name="all" value="all" onchange="selectFn()"> 전체선택</label>
 				</div>
 			</div>
 			
@@ -151,10 +255,13 @@
 						<!-- 개별 상품목록 -->
 						<ul class="row no_list container-fluid border_b" id="basket${basketListAllvo.sbidx}">
 							<div class="col-6">
-								<input class="Selection" type="checkbox" id="cnt" name="Selection" onchange="selectFn(this)" value="${basketListAllvo.sbidx}">
+								<input class="Selection" type="checkbox" id="Selection${basketListAllvo.sbidx}" name="Selection" 
+								onchange="selectFn()"
+								value="${basketListAllvo.sbidx},${basketListAllvo.cnt},${basketListAllvo.price},${basketListAllvo.delivery_charge}">
 							</div><!-- 상품삭제 -->
 							<div class="col-6" style="text-align: right; padding-right: 15px;">
-								<svg onclick="deleteOneBasketFn(${basketListAllvo.sbidx})" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x deleteButton" viewBox="0 0 16 16">
+								<svg onclick="deleteOneBasketFn(${basketListAllvo.sbidx},${basketListAllvo.cnt},${basketListAllvo.price},${basketListAllvo.delivery_charge})" 
+								xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x deleteButton" viewBox="0 0 16 16">
 	  								<path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
 	  							</svg>
 	  						</div>
@@ -176,10 +283,10 @@
 									<li class="col-3 text_center">
 										<div class="padding_t10">
 											<button type="button" class="btn decreaseQuantity" 
-											onclick="minusFn(this,${basketListAllvo.sbidx},${basketListAllvo.price})">	- </button>
-											<input type="text" class="numberUpDown" class="numberOnly" maxlength="3" size="1" value="${basketListAllvo.cnt}">
+											onclick="minusFn(this,${basketListAllvo.sbidx},${basketListAllvo.price},${basketListAllvo.delivery_charge})">	- </button>
+											<input type="text" class="numberUpDown" class="numberOnly" id="cnt${basketListAllvo.sbidx}" maxlength="3" size="1" value="${basketListAllvo.cnt}">
 										    <button type="button" class="btn increaseQuantity" 
-										    onclick="plusFn(this,${basketListAllvo.sbidx},${basketListAllvo.price})">&#43;</button>
+										    onclick="plusFn(this,${basketListAllvo.sbidx},${basketListAllvo.price},${basketListAllvo.delivery_charge})">&#43;</button>
 									    </div>
 									</li>
 									<li class="col-3 text_center price_val_box">
@@ -261,7 +368,7 @@
 							<li class="row text_middle margin_tb10">
 								<span class="col-4">배송비</span>
 								<span class="col-8 sumPriceBox_content_text_right">
-									<strong class="font_size_small totalDelivery"></strong><span class="font_size_small">&nbsp;</span>
+									<strong class="font_size_small totalDelivery"></strong><span class="font_size_small">&nbsp;원</span>
 								</span>
 							</li>
 						</ul>
@@ -281,18 +388,10 @@
 		</div>
 		</form>
 		<form id="payFrm" name="payFrm">
-			<input type="hidden" name="sbidxStr" value="10">
-			<input type="hidden" name="midx" value="2">
+			<input type="hidden" name="sbidxStr" id="sbidxStr" value="">
+			<input type="hidden" name="midx" id="midxHidden" value="">
 		</form>
 	</section>
-	
-	<script>
-		function payFn(){
-			document.payFrm.method = "post";
-			document.payFrm.action = "payment.do";
-			document.payFrm.submit();
-		}
-	</script>
 	
 	<%@ include file="../footer.jsp" %>
 	

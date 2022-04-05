@@ -35,9 +35,15 @@
 		var size = ${basketList.size()};
 		var totalPrice = 0;
 		var totalDelivery = 0;
+		var titleAry = [];
+		var payTitle = "";
+		var sbidxStr = "";
+		
 		<c:forEach items="${basketList}" var="basketListvo" varStatus="cnt">
 			totalPrice += (${basketListvo.price}) * (${basketListvo.cnt});
-			totalDelivery += ${basketListvo.delivery_charge}
+			totalDelivery += ${basketListvo.delivery_charge};
+			titleAry.push("${basketListvo.title}");
+			sbidxStr += ${basketListvo.sbidx}+",";
 		</c:forEach>
 		
 		var totalPay = totalPrice + totalDelivery;
@@ -47,6 +53,14 @@
 		}else{
 			totalDelivery = totalDelivery+"원";
 		}
+		
+		if(size > 2){
+			payTitle = titleAry[0]+" 외 "+(size-1)+"건";
+		}else{
+			payTitle = titleAry[0];
+		}
+		console.log(sbidxStr);
+		
 		
 		window.onload = function(){
 			var productAmount = document.getElementById("productAmount");
@@ -59,22 +73,35 @@
 		
 		function iamport(){
 			//가맹점 식별코드
-			IMP.init('imp58059253');
+			IMP.init("imp58059253");
 			IMP.request_pay({
-				pg : 'html5_inicis',
-			    pay_method : 'card',
-			    merchant_uid : 'merchant_' + new Date().getTime(),
-			    name : '상품1' , //결제창에서 보여질 이름
+				pg : "html5_inicis",
+			    pay_method : "card",
+			    merchant_uid : "merchant_" + new Date().getTime(),
+			    name : payTitle , //결제창에서 보여질 이름
 			    amount : totalPay, //실제 결제되는 가격
-			    buyer_email : 'iamport@siot.do',
-			    buyer_name : '구매자이름',
-			    buyer_tel : '010-1234-5678',
-			    buyer_addr : '서울 강남구 도곡동',
-			    buyer_postcode : '123-456'
+			    buyer_email : "${loginUser.id}",
+			    buyer_name : "${loginUser.membername}",
+			    buyer_tel : "${loginUser.phone}",
+			    buyer_addr : "${loginUser.addr}",
+			    buyer_postcode : "${loginUser.post_code}"
 			}, function(rsp) {
 				console.log(rsp);
 			    if ( rsp.success ) {
-			    	location.href="order_success.do";
+			    	$.ajax({
+						url: "deleteListBasket",
+						type: "post",
+						data: "sbidxStr="+sbidxStr,
+						success: function(data){
+							var result = data.trim();
+							if(result = "success"){
+								console.log("result = success");
+							}
+						}
+					});
+			    	
+			    	
+			    	
 			    } else {
 			    	location.href="order_fail.do";
 			    }

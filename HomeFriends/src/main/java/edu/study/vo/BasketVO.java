@@ -19,7 +19,22 @@ public class BasketVO {
 	private String brand;
 	private String sbidxStr;
 	
+	private String ordernumber;
+	private String paynumber;
 	
+	
+	public String getOrdernumber() {
+		return ordernumber;
+	}
+	public void setOrdernumber(String ordernumber) {
+		this.ordernumber = ordernumber;
+	}
+	public String getPaynumber() {
+		return paynumber;
+	}
+	public void setPaynumber(String paynumber) {
+		this.paynumber = paynumber;
+	}
 	public String getSbidxStr() {
 		return sbidxStr;
 	}

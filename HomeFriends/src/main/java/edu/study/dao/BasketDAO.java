@@ -38,6 +38,17 @@ public class BasketDAO {
 		return sqlSession.update(Namespace+".minusCntBasket",vo);
 	}
 	
+	public List<BasketVO> CheckedListBasket(BasketVO vo) throws Exception{
+		return sqlSession.selectList(Namespace+".CheckedListBasket",vo);
+	}
+	
+	public int deleteListBasket(BasketVO vo) throws Exception{
+		return sqlSession.delete(Namespace+".deleteListBasket",vo);
+	}
+	
+	public int insertOrderList(BasketVO vo) throws Exception{
+		return sqlSession.delete(Namespace+".insertOrderList",vo);
+	}
 	
 }
 
