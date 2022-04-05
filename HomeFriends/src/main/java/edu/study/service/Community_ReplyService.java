@@ -22,6 +22,12 @@ public interface Community_ReplyService {
 	//댓글 삭제
 	int delete(int cbridx) throws Exception;
 	
+	//답글 작성
+	int Reinsert(Community_ReplyVO vo) throws Exception;
+	
+	//답글 lvl 업데이트
+	int lvlUp(Community_ReplyVO vo) throws Exception;
+	
 	//댓글 페이징
 	List<Community_ReplyVO> getRepliesPaging(int cbidx, PagingVO vo) throws Exception; 
 	

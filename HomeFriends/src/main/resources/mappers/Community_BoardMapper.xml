@@ -18,7 +18,7 @@
            ON c.midx = m.midx
            
           WHERE 1=1
-          AND bdel_yn = 'N'
+          AND c.del_yn = 'N'
             <if test="searchType != null and searchType.equals('title')">
             	AND subject like '%'||#{searchValue}||'%'
             </if>
@@ -31,7 +31,7 @@
     <select id="Comm_listcnt" resultType="int">
     	SELECT count(*) as listCnt
     	FROM community_board
-    	WHERE bdel_yn = 'N' 
+    	WHERE c.del_yn = 'N' 
     		<if test="searchType != null and searchType.equals('title')">
             	AND subject like '%'||#{searchValue}||'%'
             </if>
@@ -61,7 +61,7 @@
     	FROM community_board
     	ORDER BY hit_cnt DESC
     	LIMIT 1)
-    	AND bdel_yn = 'N'
+    	AND c.del_yn = 'N'
     	ORDER BY cbidx DESC
     	LIMIT 1
     </select>
@@ -89,13 +89,12 @@
     	UPDATE community_board
     	   SET title = #{title}
     		  ,content = #{content}
-    		  ,img_system = #{img_system}
          WHERE cbidx = #{cbidx}
     </update>
     
     <update id="Comm_deleteBoard" parameterType="int">
     	UPDATE community_board
-    	   SET bdel_yn = 'Y'
+    	   SET del_yn = 'Y'
     	 WHERE cbidx = #{cbidx}
     </update>
     

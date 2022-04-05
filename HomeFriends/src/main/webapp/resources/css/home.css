@@ -143,6 +143,9 @@ section{
 		width: 80%;
 		margin-left: 20px;
 	}
+	#mdlg_display_none, #mdlg_display_none_{
+		display: none;
+	}
 }
 @media screen and (min-width: 768px) and (max-width: 991.99px){
 	#headerDiv, .navbar, section, footer{
@@ -161,6 +164,9 @@ section{
 	}
 	.categoryUl{
 		padding: 15px 0px 15px 10px;
+	}
+	#mdlg_display_none, #mdlg_display_none_{
+		display: none;
 	}
 }
 @media screen and (min-width: 576.01px) and (max-width: 767.99px){

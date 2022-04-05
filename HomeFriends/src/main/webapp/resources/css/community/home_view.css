@@ -164,7 +164,7 @@ section{
 .reply_area span{
 	color : #ffb6c1;
 }
-#replyFrm, #reply_Frm{
+#replyFrm, #replyFrm_, .reply_Frm{
 	display : flex;
 	position : relative;
 	height : 70px;
@@ -172,13 +172,13 @@ section{
 	margin-bottom : 30px;
 	padding : 5px;
 }
-#reply_Frm{
-	background : #f7f8fa;
+.reply_Frm{
+	margin-top : 25px;
+	margin-bottom : 0;
 	display : none;
 }
 .reply_writer{
 	width : 50px;
-	height : 50px;
 }
 .reply_writer img{
 	width : 50px;
@@ -193,6 +193,16 @@ section{
 	height : 50px;
 	margin-top : 5px;
 	margin-left : 15px;
+	border : 1px solid #dbdbdb;
+	border-radius : 4px;
+}
+.reply_input_{
+	display : flex;
+	position : relative;
+	width : 100%;
+	height : 50px;
+	margin-top : 5px;
+	margin-left : 10px;
 	border : 1px solid #dbdbdb;
 	border-radius : 4px;
 }
@@ -211,7 +221,7 @@ section{
     background: none;
     color: #424242;
     margin: 0;
-    padding: 8px 15px 9px;
+    padding: 12px 15px 9px;
     font-family: inherit;
     font-size: 15px;
     line-height: 1.4;
@@ -221,7 +231,7 @@ section{
     box-sizing: border-box;
     outline : none;
 }
-.reply_content_form_text_{
+.reply_content_input_text_{
 	width : 80%;
 	min-height: 48px;
     border: none;
@@ -251,7 +261,7 @@ section{
 	margin : 0 -7.5px;
 	font-size : 0;
 }
-.reply_submit, .reply_submit_{
+.reply_submit, .reply_submit_, .Rereply_submit{
 	font-size : 15px;
 	font-weight : bold;
 	margin : 0 7.5px;
@@ -268,7 +278,7 @@ section{
     margin-block-end: 1em;
     margin-inline-start: 0px;
     margin-inline-end: 0px;
-    padding-inline-start: 34px;
+    padding-inline-start: 15px;
     list-style : none;
 }
 .reply_list li{
@@ -278,12 +288,15 @@ section{
 .reply_list_item{
 	margin-bottom : 20px;
 }
+.reply_list_item1{
+	margin-left : 65px;
+}
 .reply_item{
 	padding-left : 40px;
 	display : block;
 }
 .reply_item_{
-	padding : 20px 20px 20px 61px;
+	padding : 20px 0 0 61px;
 }
 p{
 	display: block;
@@ -342,16 +355,40 @@ p{
 	margin-left : 20px;
 	font-weight : bold;
 }
-.mfdel{
-	width : 75%;
-	text-align : right;
+.Re{
+	width: 99%;
+    min-height: 48px;
+    background: none;
+    border : 1px solid #dbdbdb;
+    border-radius : 4px;
+    margin: 0;
+    padding: 12px 15px 9px;
+    font-family: inherit;
+    font-size: 15px;
+    line-height: 1.4;
+    resize: none;
+    overflow: hidden;
+    word-wrap: break-word;
+    box-sizing: border-box;
+    outline : none;
 }
-.mfdel button{
+.reply_item_footer0 div{
+	width : 75.5%;
+}
+.mfdel, .mfdel_{
+	width : 73%;
+	text-align : right;
+	margin-left : 25px;
+}
+.mfdel_{
+	width : 95%;
+}
+.mfdel button, .mfdel_ button{
 	background : none;
 	border : none;
 	color : #ffb6c1;
 	font-weight : bold;
-	margin-right : 5px;
+	margin-right : 10px;
 }
 .list-paginator{
 	text-align : center;
