@@ -24,6 +24,7 @@
 	<script src="/controller/js/jquery-3.6.0.min.js"></script>
 	<script src="/controller/js/header.js"></script>
 	<script src="/controller/js/nav.js"></script>
+	<script src="/controller/js/mypage/member_modify.js"></script>
 	<script src="/controller/js/login/join1.js"></script>
 </head>
 <body>
@@ -39,24 +40,31 @@
 						회원정보수정
 					</div>
 					<div class="withdrawal">
-						<a href='${pageContext.request.contextPath}/mypage/member_delete.do'">탈퇴하기</a>
+						<a href='${pageContext.request.contextPath}/mypage/password_check.do'>비밀번호 변경</a>&nbsp;|
+						<a href='${pageContext.request.contextPath}/mypage/member_delete.do'>탈퇴하기</a>
 					</div>
 					<div id="memberEdit_wrap">
-						<form action="member_modify.do" method="post"><!-- form태그 위치 -->
+						<form action="member_modify.do" method="post" onsubmit="return checkForm();"><!-- form태그 위치 -->
 							<div class="edit_dummy">
 								<div class="Edit edit_member_info">
-									이메일<!--<span class="compulsory">*필수항목</span>-->
+									이메일
 								</div>
 								<div class="Edit edit_member_form">
-									<input type="text" id="emailInput" value="${vo.id}" name="id" readonly>
+									<input type="text" id="emailInput" value="${vo.id}" name="id" readonly onclick="impossible('email')">
+								</div>
+								<div class="text-span">
+									<div class="Edit vacantSpan"></div><span id="impossibleSpan">&nbsp;  이메일은 수정이 불가합니다</span>
 								</div>
 							</div>
 							<div class="edit_dummy">
 								<div class="Edit edit_member_info">
-									닉네임<!--<span class="compulsory">*필수항목</span>-->
+									닉네임
 								</div>
 								<div class="Edit edit_member_form">
-									<input type="text" id="nickInput" value="${vo.nick_name} " name="nick_name">
+									<input type="text" id="nickInput" value="${vo.nick_name}" name="nick_name" onchange="guide('nickname')" pattern="^[0-9|a-z|A-Z|ㄱ-ㅎ|ㅏ-ㅣ|가-힣]*$">
+								</div>
+								<div class="text-span">
+									<div class="Edit vacantSpan"></div><span id="guideSpan">&nbsp;&nbsp;</span>
 								</div>
 							</div>
 							<div class="edit_dummy">
@@ -86,8 +94,11 @@
 										<option value="011" <c:if test="${phone1 == '011'}">selected</c:if>>011</option>
 										<option value="016" <c:if test="${phone1 == '016'}">selected</c:if>>016</option>
 									</select>
-									<input type="text" class="phoneInput" name="phone2" id="phone2" maxlength="4" value="${phone2}">
-									<input type="text" class="phoneInput" name="phone3" id="phone3" maxlength="4" value="${phone3}">
+									<input type="text" class="phoneInput" name="phone2" id="phone2" maxlength="4" value="${phone2}" onchange="guide('phone')"  pattern="[0-9]+">
+									<input type="text" class="phoneInput" name="phone3" id="phone3" maxlength="4" value="${phone3}" onchange="guide('phone')"  pattern="[0-9]+">
+								</div>
+								<div class="text-span">
+									<div class="Edit vacantSpan"></div><span id="guideSpan2">&nbsp; 가이드스판2</span>
 								</div>
 							</div>
 							<div class="edit_dummy">
@@ -95,7 +106,10 @@
 									생년월일
 								</div>
 								<div class="Edit edit_member_form">
-									<input type="text" id="BirthInput" value="${vo.birthday}" name="birthday" readonly>
+									<input type="text" id="BirthInput" value="${vo.birthday}" name="birthday" readonly onclick="impossible('birth')">
+								</div>
+								<div class="text-span">
+									<div class="Edit vacantSpan"></div><span id="impossibleSpan2">&nbsp;  생년월일은 수정이 불가합니다</span>
 								</div>
 							</div>
 							<div class="edit_dummy2">
@@ -128,7 +142,7 @@
 									프로필 이미지
 								</div>
 								<div class="Edit edit_member_form imageDiv">
-									<img src="/controller/image/picture.PNG" width="180px">
+									<img src="/controller/image/${vo.profile_system}" width="180px">
 									<!--클릭시 이미지 첨부 가능한 버튼으로 바꿔야함-->
 								</div>
 							</div>

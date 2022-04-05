@@ -39,7 +39,7 @@
 					</div>
 					<div class="col-9 col-lg-12" id="profile_id">
 						<div id="profile_name">
-							${vo.membername} 
+							${vo.nick_name}
 						</div>
 						<div id="profile_follow">
 							<p>팔로워 <strong>100</strong> | 

@@ -32,10 +32,20 @@ public class MypageDAO {
 		return sqlSession.selectOne(Namespace+".detailMember",midx);
 	}
 	
+	public MemberVO checkPwd(MemberVO vo) throws Exception{
+		return sqlSession.selectOne(Namespace+".checkPwd",vo);
+	}
+	
 	public int update(MemberVO vo) throws Exception{
 		return sqlSession.update(Namespace+".modifyMember",vo);
 		
 	}
+	
+
+	public int updatePwd(MemberVO vo) throws Exception{
+		return sqlSession.update(Namespace+".updatePwd",vo);
+	}
+	
 	
 	
 	public int insert(MemberVO vo) throws Exception{
@@ -60,6 +70,8 @@ public class MypageDAO {
 		return sqlSession.selectOne(Namespace+".comcount",vo);
 	}
 
+	
+	
 	
 }
 
