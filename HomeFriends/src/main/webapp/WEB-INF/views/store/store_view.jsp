@@ -45,6 +45,12 @@
 
 	<!-- 본문 영역 -->
 	<section id="Shop_area">
+		<c:if test="${loginUser.grade eq 'A'}">
+			<div id="sv_md">
+				<button onclick="location.href='/controller/store/store_modify.do?spidx=${vo.spidx}'">상품수정</button>
+				<button onclick="/controller/store/store_del.do?spidx=${vo.spidx}">상품삭제</button>
+			</div>
+		</c:if>
 		<div class="row" id="store_category">
 			<div id="store_main_Title" class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
 				<c:if test="${not empty vo.detail}">

@@ -11,6 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
+import com.google.gson.Gson;
 import com.google.protobuf.DescriptorProtos.SourceCodeInfo.Location;
 import com.mysql.cj.Session;
 
@@ -110,7 +114,7 @@ public class StoreController {
 		int idx2 = img_style.lastIndexOf("\"");
 		String new_img_style = img_style.substring(idx1+5, idx2);
 		vo.setImg_origin(new_img_style);
-		
+		vo.setImg_system(new_img_style);
 		StringTokenizer st = new StringTokenizer(vo.getDetail(), ",");
 		String remain = "";
 		while(st.hasMoreTokens()) {
@@ -138,19 +142,25 @@ public class StoreController {
 		
 		
 		int result = storeService.insert(vo);
-		
-		System.out.println(result);
-		
+
 		return result+"";
 		
 	}
 	
-	@RequestMapping(value="/lookup", method = RequestMethod.GET)
-	public List<StoreVO> lookup(Locale locale, Model model, SearchVO vo) throws Exception {
+	@RequestMapping(value="/lookup", method = RequestMethod.GET, produces = "application/text; charset=UTF-8")
+	public @ResponseBody String lookup(Locale locale, Model model, SearchVO vo) throws Exception {
 		
 		List<StoreVO> list = storeService.list(vo);
 		
-	    return list;
+//		ResponseVO<StoreVO> response = new ResponseVO<StoreVO>();
+//		response.setList(list);
+//		HttpHeaders headers = new HttpHeaders();
+//		headers.add("content-type", "application/json; charset=UTF-8");
+//		
+//		return new ResponseEntity<ResponseVO<StoreVO>>(response,headers, HttpStatus.OK);
+		
+		String json = new Gson().toJson(list);
+	    return json;
 	}
 	
 	
@@ -160,15 +170,67 @@ public class StoreController {
 	}
 	
 	@RequestMapping(value = "/store_modify.do", method = RequestMethod.GET)
-	public String store_modify(Locale locale, Model model, SearchVO vo) throws Exception {
+	public String store_modify(HttpServletRequest request, Locale locale, Model model, int spidx) throws Exception {
+		int deleteResult = homeService.deleteSearchList();
+		List<HomeSearchVO> searchList = homeService.listSearchList();
+		
+		HttpSession session = request.getSession();
+		MemberVO member = (MemberVO)session.getAttribute("loginUser");
+
+		if(member==null) {return "login/login";}
+		if(!member.getGrade().equals("A")) {return "store/store_view.do";}
+
+		StoreVO selectOne = storeService.detail(spidx);
+		
+		model.addAttribute("vo",selectOne);
+			
+		return "store/store_modify";
+	}
+	
+	@RequestMapping(value = "/store_modify.do", method = RequestMethod.POST)
+	public @ResponseBody String store_modifyOK(HttpServletRequest request, Locale locale, Model model, StoreVO vo, @RequestParam String img_style) throws Exception {
 		
 		int deleteResult = homeService.deleteSearchList();
 		
-		List<HomeSearchVO> searchList = homeService.listSearchList();
-		
-		model.addAttribute("searchList", searchList);
+//		List<HomeSearchVO> searchList = homeService.listSearchList();
+//		
+//		model.addAttribute("searchList", searchList);
 			
-		return "store/store_modify";
+		int idx1 = img_style.indexOf("url(");
+		int idx2 = img_style.lastIndexOf("\"");
+		String new_img_style = img_style.substring(idx1+5, idx2);
+		vo.setImg_origin(new_img_style);
+		vo.setImg_system(new_img_style);
+		StringTokenizer st = new StringTokenizer(vo.getDetail(), ",");
+		String remain = "";
+		while(st.hasMoreTokens()) {
+		   String cur = st.nextToken();
+		   if (cur.equals("0")) {
+		       continue;
+		    } 
+		   remain = cur;
+		   break;
+		}
+		vo.setDetail(remain);
+		if(vo.getFree_delivery()!="N") {
+			vo.setDelivery_charge("0");
+		}
+		
+		
+		
+		HttpSession session = request.getSession();
+		MemberVO member = (MemberVO)session.getAttribute("loginUser");
+		
+		
+			
+		vo.setMidx(member.getMidx());
+		vo.setWriter(member.getMembername());
+		
+		
+		int result = storeService.update(vo);
+
+		return result+"";
+		
 	}
 	
 	@RequestMapping(value = "/store_list.do", method = RequestMethod.GET)
@@ -189,6 +251,7 @@ public class StoreController {
 				vo.setReview_cnt("yes");
 			}
 		}
+		vo.setOrder("sell_cnt");
 		
 		List<StoreVO> list = storeService.list(vo);
 		
@@ -249,12 +312,11 @@ public class StoreController {
 		vo.setImg_origin(svo.getImg_origin());
 		vo.setPrice(Integer.parseInt(svo.getSale_price()));
 		vo.setDelivery_charge(Integer.parseInt(svo.getDelivery_charge()));
-		vo.setImg_system("");
+		vo.setImg_system(svo.getImg_origin());
 		vo.setBrand(svo.getBrand());
 		
 		int result = storeService.basketIn(vo);
 		
-		System.out.println(result);
 		 
 	
 		return result+""; 
