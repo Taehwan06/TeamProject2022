@@ -12,4 +12,7 @@ public interface BasketService {
 	int deleteOneBasket(BasketVO vo) throws Exception;
 	int plusCntBasket(BasketVO vo) throws Exception;
 	int minusCntBasket(BasketVO vo) throws Exception;
+	List<BasketVO> CheckedListBasket(BasketVO vo) throws Exception;
+	int deleteListBasket(BasketVO vo) throws Exception;
+	int insertOrderList(BasketVO vo) throws Exception;
 }

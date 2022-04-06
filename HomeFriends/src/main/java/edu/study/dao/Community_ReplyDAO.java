@@ -42,6 +42,19 @@ public class Community_ReplyDAO {
 		
 		return sqlSession.update(Namespace+".replyDel", cbridx);
 	}
+	
+	//답글 작성
+	public int Reinsert(Community_ReplyVO vo) throws Exception {
+		
+		return sqlSession.insert(Namespace+".Rereply", vo);
+	}
+	
+	//답글 lvl 업데이트
+	public int lvlUp(Community_ReplyVO vo) throws Exception {
+		
+		return sqlSession.update(Namespace+".lvlUp", vo);
+	}
+	
 	//댓글 페이징
 	public List<Community_ReplyVO> listPaging(int cbidx, PagingVO  vo) throws Exception {
 		

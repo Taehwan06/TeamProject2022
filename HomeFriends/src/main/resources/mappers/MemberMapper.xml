@@ -148,4 +148,30 @@
 			temp_number = #{temp_number}
     </select>
     
+    <select id="refreshMember" resultType="memberVO" parameterType="memberVO">
+		SELECT
+			midx,
+    		id,
+    		nick_name,
+    		membername,
+    		birthday,
+    		gender,
+    		phone,
+    		join_date,
+    		mileage,
+    		grade,
+    		del_yn,
+    		blacklist_yn,
+    		follower_cnt,
+    		post_code,
+    		addr,
+    		profile_system
+		FROM
+			member
+		WHERE
+			del_yn = "N"
+		AND
+			midx = #{midx}
+    </select>
+    
 </mapper>

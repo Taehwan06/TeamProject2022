@@ -7,6 +7,7 @@
 
 	<select id="listPayFromBasket" resultType="BasketVO" parameterType="BasketVO">
 		SELECT
+			sbidx,
 			title,
 			price,
 			cnt,
@@ -76,6 +77,76 @@
     		sbidx = #{sbidx}
     </update>
     
+    
+	<select id="CheckedListBasket" resultType="BasketVO" parameterType="BasketVO">
+		SELECT
+			sbidx,
+			title,
+			price,
+			cnt,
+			delivery_charge,
+			free_delivery,
+			img_origin,
+			img_system,
+			spidx,
+			brand
+		FROM
+			shopping_basket
+		WHERE
+			1 = 1
+		AND(
+		<foreach item="sbidx" index="index" collection="sbidxArray">
+			sbidx = #{sbidx}
+		OR		
+		</foreach>
+			sbidx = 0)
+	</select>
+    
+    
+    <delete id="deleteListBasket" parameterType="BasketVO">
+    	DELETE FROM 
+    		shopping_basket 
+    	WHERE
+			1 = 1
+		AND(
+		<foreach item="sbidx" index="index" collection="sbidxArray">
+			sbidx = #{sbidx}
+		OR
+		</foreach>
+			sbidx = 0)
+    </delete>
+    
+    
+    <insert id="insertOrderList" parameterType="BasketVO">
+    	<foreach item="sbidx" index="index" collection="sbidxArray">
+	    	INSERT INTO order_list(
+				title,
+				price,
+				cnt,
+				delivery_charge,
+				free_delivery,
+				img_origin,
+				img_system,
+				spidx,
+				midx,
+				ordernumber,
+				paynumber
+			) 
+			VALUES(
+				(select title from shopping_basket where sbidx = #{sbidx}),
+				(select price from shopping_basket where sbidx = #{sbidx}),
+				(select cnt from shopping_basket where sbidx = #{sbidx}),
+				(select delivery_charge from shopping_basket where sbidx = #{sbidx}),
+				(select free_delivery from shopping_basket where sbidx = #{sbidx}),
+				(select img_origin from shopping_basket where sbidx = #{sbidx}),
+				(select img_system from shopping_basket where sbidx = #{sbidx}),
+				(select spidx from shopping_basket where sbidx = #{sbidx}),
+				(select midx from shopping_basket where sbidx = #{sbidx}),
+				#{ordernumber},
+				#{paynumber}
+			);
+		</foreach>
+    </insert>
    
     
 </mapper>

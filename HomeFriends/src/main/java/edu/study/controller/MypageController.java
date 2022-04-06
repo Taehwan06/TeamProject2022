@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import edu.study.service.BasketService;
 import edu.study.service.HomeService;
+import edu.study.service.MemberService;
 import edu.study.service.MypageService;
 import edu.study.vo.BasketVO;
 import edu.study.vo.HomeSearchVO;
@@ -35,6 +36,8 @@ public class MypageController {
 	private HomeService homeService;
 	@Autowired
 	private BasketService basketService;
+	@Autowired
+	private MemberService memberService;
 	 
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -105,8 +108,11 @@ public class MypageController {
 	    
 	    vo.getMidx();
 		int result = mypageService.update(vo);
+		loginUser = memberService.refreshMember(vo);
 		
-		return "mypage/mypage";
+		model.addAttribute("loginUser", loginUser);
+		
+		return "redirect: /controller/mypage/mypage.do";
 	}
 	
 	@RequestMapping(value = "/member_delete.do", method = RequestMethod.GET)
@@ -136,7 +142,7 @@ public class MypageController {
 		vo.setMidx(1);
 		int result = mypageService.delete(vo);	
 		
-		return "mypage/mypage";
+		return "redirect: /controller/";
 	}
 	
 	
@@ -249,6 +255,89 @@ public class MypageController {
 		
 	}
 	
+	
+	@RequestMapping(value = "/password_check.do", method = RequestMethod.GET)
+	public String password_check(Locale locale, Model model, SearchVO vo) throws Exception {
+		
+		int deleteResult = homeService.deleteSearchList();
+		
+		List<HomeSearchVO> searchList = homeService.listSearchList();
+		
+		model.addAttribute("searchList", searchList);
+			
+		return "mypage/password_check";
+	}
+	
+
+	@RequestMapping(value = "/password_check.do", method = RequestMethod.POST)
+	public String password_checkOK(Locale locale, Model model,String pass, HttpServletRequest req) throws Exception {
+		
+		int deleteResult = homeService.deleteSearchList();
+		
+		List<HomeSearchVO> searchList = homeService.listSearchList();
+		
+		model.addAttribute("searchList", searchList);
+		
+		HttpSession session = req.getSession(); 
+	    MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
+	    model.addAttribute("loginUser", loginUser);
+	    
+		int Midx = loginUser.getMidx();
+		
+		MemberVO vo = new MemberVO();
+		vo.setMidx(Midx);
+		vo.setPass(pass);
+		
+		MemberVO checkPass = mypageService.checkPwd(vo);
+	    
+		    if(checkPass == null) {
+		    	 return "";
+		    	
+		    }else {
+		    	
+		    	return "mypage/password_modify";
+		    	
+		    }
+
+	}
+	
+	
+	@RequestMapping(value = "/password_modify.do", method = RequestMethod.GET)
+	public String password_modify(Locale locale, Model model, SearchVO vo,  HttpServletRequest req) throws Exception {
+		
+		int deleteResult = homeService.deleteSearchList();
+		
+		List<HomeSearchVO> searchList = homeService.listSearchList();
+		
+		model.addAttribute("searchList", searchList);
+		
+		HttpSession session = req.getSession(); 
+	    MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
+	    
+	    model.addAttribute("loginUser", loginUser);
+			
+		return "mypage/password_modify";
+	}
+	
+	@RequestMapping(value = "/password_modify.do", method = RequestMethod.POST)
+	public String password_modifyOK(Locale locale, Model model, MemberVO vo, HttpServletRequest req) throws Exception {
+		
+		int deleteResult = homeService.deleteSearchList();
+		List<HomeSearchVO> searchList = homeService.listSearchList();
+		model.addAttribute("searchList", searchList);
+		
+		HttpSession session = req.getSession(); 
+	    MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
+	    
+	    vo.getMidx();
+	  	int result = mypageService.updatePwd(vo);
+			
+		return "redirect: /controller/mypage/mypage.do";
+	}
+	
+	
+
+	
 	@RequestMapping(value = "/review_list.do", method = RequestMethod.GET)
 	public String review_list(Locale locale, Model model, SearchVO vo) throws Exception {
 		
@@ -260,6 +349,8 @@ public class MypageController {
 			
 		return "mypage/review_list";
 	}
+		
+	
 	
 	@RequestMapping(value = "/review_insert.do", method = RequestMethod.GET)
 	public String review_insert(Locale locale, Model model, SearchVO vo) throws Exception {
@@ -401,6 +492,63 @@ public class MypageController {
 		vo.setSbidx(sbidx);
 		
 		int result = basketService.plusCntBasket(vo);
+		
+		if(result > 0) {
+			return "success";
+		}else {
+			return "fail";
+		}
+	}
+	
+	@RequestMapping(value = "/CheckedListBasket", method = RequestMethod.POST)
+	@ResponseBody
+	public String CheckedListBasket(Locale locale, Model model, BasketVO vo, HttpServletRequest req) throws Exception {
+		
+		String checkedSbidx = req.getParameter("checkedSbidx");
+		String[] sbidxArray = checkedSbidx.split(",");
+		vo.setSbidxArray(sbidxArray);
+		
+		List<BasketVO> CheckedList = basketService.CheckedListBasket(vo);
+		
+		model.addAttribute("CheckedList", CheckedList);
+		
+		if(CheckedList.size() > 0) {
+			return "success";
+		}else {
+			return "fail";
+		}
+	}
+	
+	@RequestMapping(value = "/deleteListBasket", method = RequestMethod.POST)
+	@ResponseBody
+	public String deleteListBasket(Locale locale, Model model, BasketVO vo, HttpServletRequest req) throws Exception {
+		
+		String sbidxStr = req.getParameter("sbidxStr");
+		String[] sbidxArray = sbidxStr.split(",");
+		vo.setSbidxArray(sbidxArray);
+		
+		int result = basketService.deleteListBasket(vo);
+		
+		if(result > 0) {
+			return "success";
+		}else {
+			return "fail";
+		}
+	}
+	
+	@RequestMapping(value = "/insertOrderList", method = RequestMethod.POST)
+	@ResponseBody
+	public String insertOrderList(Locale locale, Model model, BasketVO vo, HttpServletRequest req) throws Exception {
+		
+		String ordernumber = req.getParameter("ordernumber");
+		vo.setOrdernumber(ordernumber);
+		vo.setPaynumber(ordernumber);
+		
+		String sbidxStr = req.getParameter("sbidxStr");
+		String[] sbidxArray = sbidxStr.split(",");
+		vo.setSbidxArray(sbidxArray);
+		
+		int result = basketService.insertOrderList(vo);
 		
 		if(result > 0) {
 			return "success";

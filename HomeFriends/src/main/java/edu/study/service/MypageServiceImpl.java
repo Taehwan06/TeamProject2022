@@ -35,6 +35,12 @@ public class MypageServiceImpl implements MypageService {
 
 		return mypageDao.detail(midx);
 	}
+	
+	@Override
+	public MemberVO checkPwd(MemberVO vo) throws Exception{
+		return mypageDao.checkPwd(vo);
+	}
+	
 
 	@Override
 	public int update(MemberVO vo) throws Exception {
@@ -42,6 +48,13 @@ public class MypageServiceImpl implements MypageService {
 		return result;
 		
 	}
+	
+	@Override
+	public int updatePwd(MemberVO vo) throws Exception {
+		int result =  mypageDao.updatePwd(vo);
+		return result;
+	}
+	
 
 	@Override
 	public int delete(MemberVO vo) throws Exception {
@@ -78,7 +91,7 @@ public class MypageServiceImpl implements MypageService {
 		return result;
 	}
 	
-
+	
 	
 
 }

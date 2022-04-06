@@ -43,6 +43,20 @@ public class Community_ReplyServiceImpl implements Community_ReplyService {
 		return replyDao.delete(cbridx);
 	}
 	
+	//답글 작성
+	@Override
+	public int Reinsert(Community_ReplyVO vo) throws Exception {
+		
+		return replyDao.Reinsert(vo);
+	}
+	
+	//답글 lvl 업데이트
+	@Override
+	public int lvlUp(Community_ReplyVO vo) throws Exception {
+		
+		return replyDao.lvlUp(vo);
+	}
+	
 	//댓글 페이징
 	@Override
 	public List<Community_ReplyVO> getRepliesPaging(int cbidx, PagingVO vo) throws Exception {

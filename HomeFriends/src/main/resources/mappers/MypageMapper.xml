@@ -5,32 +5,6 @@
  
 <mapper namespace="edu.study.mapper.mypageMapper">
 
-	<insert id="insertMember" parameterType="MemberVO">
-    	INSERT INTO member(
-    		id,
-    		pass,
-    		nick_name,
-    		membername,
-    		birthday,
-    		gender,
-    		phone,
-    		post_code,
-    		addr,
-    		recommender
-    	) VALUES(
-    		#{id},
-    		#{pass},
-    		#{nick_name},
-    		#{membername},
-    		CONCAT(#{birth1},"년 ",#{birth2},"월 ",#{birth3},"일"),
-    		#{gender},
-    		CONCAT(#{phone1},"-",#{phone2},"-",#{phone3}),
-    		#{addr1},
-    		CONCAT(#{addr2}," ",#{addr3}),
-    		#{recommender}
-    	)
-    </insert>
-    
     <select id="detailMember" resultType="MemberVO" parameterType="int">
 		SELECT
 			midx,
@@ -54,6 +28,27 @@
 		WHERE
 			midx = #{midx}
     </select>
+    
+    <select id="checkPwd" parameterType="MemberVO" resultType="MemberVO">
+		SELECT
+			midx
+		FROM
+			member
+		WHERE
+			midx = #{midx}
+		AND
+			pass = #{pass}
+    </select>
+    
+     <update id="updatePwd"  parameterType="MemberVO">
+    	UPDATE 
+    		member
+		SET 
+    	   	pass = #{pass}
+		WHERE 
+         	midx = #{midx}
+    </update>
+    
     
     <update id="modifyMember" parameterType="MemberVO">
     	UPDATE member 
