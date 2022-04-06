@@ -19,14 +19,14 @@
         ON 
         	c.midx = m.midx
 		WHERE
-			bdel_yn = "N"
+			c.del_yn = "N"
 		AND	(
 			title like CONCAT("%",#{search_value},"%")
 		OR	
 			writer like CONCAT("%",#{search_value},"%")
 		OR
 			content like CONCAT("%",#{search_value},"%")
-		);
+		)
     </select>
     
     <select id="searchStore" resultType="homeStoreVO" parameterType="homeSearchVO">
@@ -54,7 +54,7 @@
 			content like CONCAT("%",#{search_value},"%")
 		OR
 			product_name like CONCAT("%",#{search_value},"%")
-		);
+		)
     </select>
     
     <insert id="insertSearchList" parameterType="homeSearchVO">

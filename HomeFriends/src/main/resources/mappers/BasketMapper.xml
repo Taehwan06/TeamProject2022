@@ -50,12 +50,14 @@
     </select>
     
     
-    <delete id="deleteOneBasket" parameterType="BasketVO">
-    	DELETE FROM 
+    <update id="deleteOneBasket" parameterType="BasketVO">
+    	UPDATE 
     		shopping_basket 
+    	SET 
+    		del_yn = "Y" 
     	WHERE 
     		sbidx = #{sbidx};
-    </delete>
+    </update>
     
     
     <update id="plusCntBasket" parameterType="BasketVO">
@@ -103,9 +105,11 @@
 	</select>
     
     
-    <delete id="deleteListBasket" parameterType="BasketVO">
-    	DELETE FROM 
+    <update id="deleteListBasket" parameterType="BasketVO">
+    	UPDATE 
     		shopping_basket 
+    	SET 
+    		del_yn = "Y" 
     	WHERE
 			1 = 1
 		AND(
@@ -114,11 +118,10 @@
 		OR
 		</foreach>
 			sbidx = 0)
-    </delete>
+    </update>
     
     
     <insert id="insertOrderList" parameterType="BasketVO">
-    	<foreach item="sbidx" index="index" collection="sbidxArray">
 	    	INSERT INTO order_list(
 				title,
 				price,
@@ -144,8 +147,7 @@
 				(select midx from shopping_basket where sbidx = #{sbidx}),
 				#{ordernumber},
 				#{paynumber}
-			);
-		</foreach>
+			)
     </insert>
    
     

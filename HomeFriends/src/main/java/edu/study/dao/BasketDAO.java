@@ -27,7 +27,7 @@ public class BasketDAO {
 	}
 	
 	public int deleteOneBasket(BasketVO vo) throws Exception{
-		return sqlSession.delete(Namespace+".deleteOneBasket",vo);
+		return sqlSession.update(Namespace+".deleteOneBasket",vo);
 	}
 	
 	public int plusCntBasket(BasketVO vo) throws Exception{
@@ -43,11 +43,11 @@ public class BasketDAO {
 	}
 	
 	public int deleteListBasket(BasketVO vo) throws Exception{
-		return sqlSession.delete(Namespace+".deleteListBasket",vo);
+		return sqlSession.update(Namespace+".deleteListBasket",vo);
 	}
 	
 	public int insertOrderList(BasketVO vo) throws Exception{
-		return sqlSession.delete(Namespace+".insertOrderList",vo);
+		return sqlSession.insert(Namespace+".insertOrderList",vo);
 	}
 	
 }
