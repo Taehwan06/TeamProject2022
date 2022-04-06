@@ -99,7 +99,7 @@
 	    		#{midx}
 	    	)
 	    ]]>
-	    <selectKey resultType="integer" keyProperty="bidx" order="AFTER">
+	    <selectKey resultType="integer" keyProperty="spidx" order="AFTER">
 	    	SELECT MAX(spidx)
 	    	  FROM shopping_product
 	    </selectKey>
@@ -125,6 +125,15 @@
 	    		  ,midx = #{midx}
 	    		  ,modify_yn = 'Y'
 	    		  ,modify_date = CURRENT_TIMESTAMP
+	         WHERE spidx = #{spidx}
+          ]]>
+    </update>
+    
+    <update id="deleteStore" parameterType="int">
+	    <![CDATA[
+	    	UPDATE shopping_product
+	    	   SET del_yn = 'Y'
+	    	   	  ,del_date = CURRENT_TIMESTAMP
 	         WHERE spidx = #{spidx}
           ]]>
     </update>

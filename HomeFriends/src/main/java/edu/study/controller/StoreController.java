@@ -88,8 +88,8 @@ public class StoreController {
 		HttpSession session = request.getSession();
 		MemberVO member = (MemberVO)session.getAttribute("loginUser");
 
-		if(member==null) {return "login/login";}
-		if(!member.getGrade().equals("A")) {return "store/store";}
+		if(member==null) {return "redirect:/login/login.do";}
+		if(!member.getGrade().equals("A")) {return "redirect:/store/store.do";}
 
 		
 		
@@ -141,9 +141,9 @@ public class StoreController {
 		vo.setWriter(member.getMembername());
 		
 		
-		int result = storeService.insert(vo);
+		storeService.insert(vo);
 
-		return result+"";
+		return vo.getSpidx()+"";
 		
 	}
 	
@@ -177,8 +177,8 @@ public class StoreController {
 		HttpSession session = request.getSession();
 		MemberVO member = (MemberVO)session.getAttribute("loginUser");
 
-		if(member==null) {return "login/login";}
-		if(!member.getGrade().equals("A")) {return "store/store_view.do";}
+		if(member==null) {return "redirect:/login/login.do";}
+		if(!member.getGrade().equals("A")) {return "redirect:/store/store.do";}
 
 		StoreVO selectOne = storeService.detail(spidx);
 		
@@ -231,6 +231,23 @@ public class StoreController {
 
 		return result+"";
 		
+	}
+	
+	@RequestMapping(value = "/store_del.do", method = RequestMethod.GET)
+	public String store_del(HttpServletRequest request, Locale locale, Model model, int spidx) throws Exception {
+		int deleteResult = homeService.deleteSearchList();
+		List<HomeSearchVO> searchList = homeService.listSearchList();
+		
+		HttpSession session = request.getSession();
+		MemberVO member = (MemberVO)session.getAttribute("loginUser");
+
+		if(member==null) {return "redirect:/login/login.do";}
+		if(!member.getGrade().equals("A")) {return "redirect:/store/store.do";}
+
+		int result = storeService.delete(spidx);
+		
+			
+		return "redirect:/store/store.do";
 	}
 	
 	@RequestMapping(value = "/store_list.do", method = RequestMethod.GET)
@@ -307,7 +324,6 @@ public class StoreController {
 		
 		vo.setMidx(midx);
 		vo.setTitle(svo.getTitle());
-		vo.setCnt(1);
 		vo.setFree_delivery(svo.getFree_delivery());
 		vo.setImg_origin(svo.getImg_origin());
 		vo.setPrice(Integer.parseInt(svo.getSale_price()));

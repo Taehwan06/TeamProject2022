@@ -85,7 +85,9 @@ function lookup(){
 	}else{
 		lookupdata += "&price1=0&priceStart=0&priceEnd=99999999999999";
 	}
-	lookupdata += "&order="+order+"&category"+category+"&detail"+detail;
+	console.log("category="+category);
+	console.log("detail="+detail);
+	lookupdata += "&order="+order+"&category="+category+"&detail="+detail;
 	$.ajax({
 		type : "GET",
 		url : "lookup",
@@ -103,7 +105,6 @@ function lookup(){
 			}*/
 
 			for(var i=0; i<jsondata.length; i++){
-				console.log(i);
 				sethtml+="<div class='col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop' onClick='location.href=\'/controller/store/store_view.do?spidx="+jsondata[i].spidx+"\''>";
 				sethtml+="<img src='"+jsondata[i].img_origin+"' class='shopImg'>";
 				sethtml+="<div class='shopText'>";
