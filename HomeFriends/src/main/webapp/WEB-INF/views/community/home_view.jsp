@@ -1,4 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -27,6 +29,7 @@
 	
 </head>
 <body>
+	<input type="hidden" value="${replyvo}">
 	<%@ include file="../header.jsp" %>
 	<%@ include file="../nav.jsp" %>
 	
@@ -49,7 +52,7 @@
 							${vo.writer }
 						</div>
 						<div class="writedate">
-							${vo.write_date }
+							${writeDate }
 						</div>
 					</div>
 				</div>
@@ -155,7 +158,7 @@
 						</p>
 						<footer class="reply_item_footer reply_item_footer${reply.depth } reply_item_footer${reply.cbridx }">
 							<time class="reply_item_footer_time">
-								2시간 전
+								<input type="text" class="time" value="${reply.write_date }">
 							</time>
 							<c:if test="${loginUser == null }">
 								<button class="reply_item_footer_reply-btn" type="button" onclick="ReNot()">답글 달기</button>

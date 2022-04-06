@@ -115,20 +115,4 @@
 		   SET del_yn = 'Y'
 		 WHERE cbridx = #{cbridx}
 	</update>
-	
-	<!-- 선택된 댓글 조회 -->
-	<select id="selectReply" resultType="Community_ReplyVO">
-		SELECT cbidx,
-			   cbridx,
-			   contenr,
-			   writer,
-			   write_date,
-			   r.midx,
-			   profile_system
-		FROM community_reply r
-		INNER JOIN member m
-		ON r.midx = m.midx
-		WHERE r.del_yn = 'N'
-		AND cbridx = #{cbridx}
-	</select>
 </mapper>

@@ -142,8 +142,7 @@ public class CommunityController {
 	    boardVO.setWriter(loginUser.getNick_name());
 		
 		Community_boardService.insert(boardVO);
-		
-	
+
 		return "redirect:home_view.do?cbidx="+boardVO.getCbidx();
 	}
 	@RequestMapping(value = "/home_modify.do", method = RequestMethod.GET)
@@ -221,14 +220,14 @@ public class CommunityController {
 		
 		model.addAttribute("searchList", searchList);
 		
-		List<Community_BoardVO> list = Community_boardService.list(vo);
+		List<Community_BoardVO> list = Community_boardService.list();
 		
 		model.addAttribute("list",list);
 		
-		int listCnt = Community_boardService.getBoardlistCnt(vo);
+		int listCnt = Community_boardService.getBoardlistCnt();
 		
 		model.addAttribute("listCnt",listCnt);
-		
+	    
 		return "community/home_list";
 	}
 	
@@ -246,9 +245,17 @@ public class CommunityController {
 	    model.addAttribute("vo",vo);
 	    
 	    //origin_cbridx
-	    int orincbridx = Community_boardService.cbridx();
-	    model.addAttribute("orincbridx", orincbridx+1);
-	    
+		Integer orincbridx = Community_boardService.cbridx();
+		
+		if(orincbridx == null) {
+			orincbridx=0;
+		}
+		model.addAttribute("orincbridx", orincbridx+1);
+		
+		//작성 시간 가져오기
+		String writeDate = Community_boardService.writeDate(cbidx);
+		model.addAttribute("writeDate", writeDate);
+ 
 	    //댓글 개수
 	    int replycount = replyService.countReplies(cbidx);
 	    model.addAttribute("count", replycount);
@@ -256,28 +263,8 @@ public class CommunityController {
 	    //댓글 조회
 	    List<Community_ReplyVO> reply = replyService.list(cbidx);
 	    model.addAttribute("reply", reply);
-		
+	    
 		return "community/home_view.jsp?cbidx="+cbidx;
-	}
-	
-	//댓글 수정 GET
-	@RequestMapping(value="/replyUpdateView", method = RequestMethod.GET)
-	public String replyUpdateView(Community_ReplyVO vo,  Model model) throws Exception {
-		
-		model.addAttribute("replyUpdate", replyService.selectReply(vo.getCbridx()));
-		
-		return "community/replyUpdate";
-	}
-	
-	//댓글 수정 POST
-	@RequestMapping(value="/replyUpdate", method = RequestMethod.POST)
-	public String replyUpdate(Community_ReplyVO vo, Model model) throws Exception {
-		
-		replyService.modify(vo);
-		
-		model.addAttribute("vo", vo);
-		
-		return "redirect:community/home_view.jsp?cbidx="+vo.getCbidx();
 	}
 	
 	@RequestMapping(value = "/following.do", method = RequestMethod.GET)
