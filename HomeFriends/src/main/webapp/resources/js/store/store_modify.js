@@ -241,7 +241,7 @@ function submitFn(){
 				console.log(res);
 				if(res>0){
 					alert("상품이 수정되었습니다.");
-					location.href="store.do";
+					location.href="store_view.do?spidx="+thisSpidx;
 				}else{
 					alert("실행오류");
 				}
@@ -271,7 +271,7 @@ function readURL(input) {
 function cancelFn(){
    var isCancel = confirm("이 페이지를 나가면 수정된 사항이 모두 유실됩니다! 그래도 나가시겠어요?");
    if(isCancel){
-      location.href = "store.do"
+      location.href = "store_view.do?spidx="+thisSpidx;
    }
 }
 

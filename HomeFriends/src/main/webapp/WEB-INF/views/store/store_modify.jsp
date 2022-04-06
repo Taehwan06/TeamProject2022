@@ -281,7 +281,7 @@
 			
 			<div id="butttonArea">
 				<input type="button" id="submitButton" value="저장" onclick="submitFn()">
-				<input type="button" id="calcelButton" value="취소" onclick="">
+				<input type="button" id="calcelButton" value="취소" onclick="cancelFn()">
 			</div>
 		</form>
 		

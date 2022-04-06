@@ -241,7 +241,7 @@ function submitFn(){
 				console.log(res);
 				if(res>0){
 					alert("상품이 등록되었습니다.");
-					location.href="store.do";
+					location.href="store_view.do?spidx="+res;
 				}else{
 					alert("실행오류");
 				}
