@@ -100,6 +100,8 @@ $(document).ready(function(){
 			}
 		});
 	});
+	
+	console.log($(".time").val());
 });
 /* 댓글 삭제 */
 function replydel(cbridx){
@@ -184,7 +186,7 @@ function Re(orincbridx){
 	
 	form.css("display", "flex");
 	css.css("display", "none");
-	$("#replyFrm").css("display", "flex");	
+	$("#replyFrm").css("display", "flex");
 }
 
 /* 답글 등록 */
@@ -206,3 +208,4 @@ function Reinsert(orincbridx){
 		}
 	});
 }
+
