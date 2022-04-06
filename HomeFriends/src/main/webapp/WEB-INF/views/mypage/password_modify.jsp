@@ -24,8 +24,10 @@
 	<script src="/controller/js/jquery-3.6.0.min.js"></script>
 	<script src="/controller/js/header.js"></script>
 	<script src="/controller/js/nav.js"></script>
-	<script src="/controller/js/mypage/member_modify.js"></script>
+	<script src="/controller/js/mypage/password_modify.js"></script>
 	<script src="/controller/js/login/join1.js"></script>
+	<!-- SweetAlert  -->
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
 	<%@ include file="../header.jsp" %>
@@ -40,7 +42,7 @@
 						비밀번호 변경
 					</div>
 					<div id="memberEdit_wrap">
-						<form action="password_modify.do" method="post"><!-- form태그 위치 -->
+						<form name="modifyFrm"><!-- form태그 위치 -->
 							<div class="edit_dummy">
 								<div class="Edit edit_member_info">
 									새 비밀번호
@@ -61,7 +63,7 @@
 								</div>
 							</div>
 							<div class="memberEditSubmit">
-								<input type="submit" value="비밀번호 변경">
+								<input type="button" id = "passChangeBtn" value="비밀번호 변경" onclick="checkSubmitFn()">
 								<input type="hidden" value="${loginUser.midx}" name="midx">
 							</div>
 						</form>

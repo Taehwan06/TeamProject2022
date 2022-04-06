@@ -37,14 +37,14 @@
 		WHERE
 			midx = #{midx}
 		AND
-			pass = #{pass}
+			pass = SHA2(#{pass},512)
     </select>
     
      <update id="updatePwd"  parameterType="MemberVO">
     	UPDATE 
     		member
 		SET 
-    	   	pass = #{pass}
+    	   	pass = SHA2(#{pass},512)
 		WHERE 
          	midx = #{midx}
     </update>
@@ -66,18 +66,13 @@
      <update id="deleteMember" parameterType="MemberVO">
     	UPDATE member 
     	SET
-    		id = #{id},
-    		nick_name = #{nick_name},
-    		gender = #{gender},
-    		phone = #{phone},
-    		addr = #{addr},
     		del_yn = #{del_yn},
     		del_cause = #{del_cause}
     	WHERE 
     		midx = #{midx}
     </update>
     
-    <select id="orderList" resultType="OrderListVO" parameterType="OrderListVO">
+     <select id="orderList" resultType="OrderListVO" parameterType="OrderListVO">
          SELECT 
          		olidx,
          		title,
@@ -88,7 +83,8 @@
          		buying_date,
          		progress,
          		delivery_status,
-         		review_registration
+         		review_registration,
+         		spidx
            FROM 
            		order_list
           WHERE 
@@ -96,6 +92,7 @@
           ORDER BY buying_date DESC
           
     </select>
+  
   
       
     <select id="comcount" resultType="int" parameterType="OrderListVO">

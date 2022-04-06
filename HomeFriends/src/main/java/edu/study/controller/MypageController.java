@@ -105,44 +105,48 @@ public class MypageController {
 		
 		HttpSession session = req.getSession(); 
 	    MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
-	    
-	    vo.getMidx();
-		int result = mypageService.update(vo);
-		loginUser = memberService.refreshMember(vo);
-		
-		model.addAttribute("loginUser", loginUser);
-		
+	       
+	    int result = mypageService.update(vo);
+	    loginUser = memberService.refreshMember(vo);
+	      
+	    session.setAttribute("loginUser", loginUser);
+	
 		return "redirect: /controller/mypage/mypage.do";
 	}
 	
 	@RequestMapping(value = "/member_delete.do", method = RequestMethod.GET)
-	public String member_delete(Locale locale, Model model) throws Exception {
+	public String member_delete(Locale locale, Model model, HttpServletRequest req) throws Exception {
 		
 		int deleteResult = homeService.deleteSearchList();
-		
 		List<HomeSearchVO> searchList = homeService.listSearchList();
-		
 		model.addAttribute("searchList", searchList);
+		
+		HttpSession session = req.getSession(); 
+	    MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
 			
-		int midx=1;
+	    int midx = loginUser.getMidx();
 		MemberVO result = mypageService.detail(midx);
+		
 		
 		return "mypage/member_delete"; 
 	}
 	
 	@RequestMapping(value = "/member_delete.do", method = RequestMethod.POST)
-	public String member_deleteOk(Locale locale, Model model, MemberVO vo) throws Exception {
+	public String member_deleteOk(Locale locale, Model model, MemberVO vo, HttpServletRequest req) throws Exception {
 		
 		int deleteResult = homeService.deleteSearchList();
-		
 		List<HomeSearchVO> searchList = homeService.listSearchList();
-		
 		model.addAttribute("searchList", searchList);
-			
-		vo.setMidx(1);
+		
+		HttpSession session = req.getSession(); 
+	    MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
+	    int Midx = loginUser.getMidx();
+	    
+		vo.setMidx(Midx);
 		int result = mypageService.delete(vo);	
 		
-		return "redirect: /controller/";
+		session.setAttribute("loginUser", null);
+		return "home";
 	}
 	
 	
@@ -165,7 +169,6 @@ public class MypageController {
 		
 			    List<OrderListVO> orderList2 = mypageService.orderList2(loginUser);
 				model.addAttribute("orderList2", orderList2);
-				
 				
 				vo.setMidx(loginUser.getMidx());
 			    vo.setProgress("결제완료");
@@ -291,14 +294,10 @@ public class MypageController {
 		MemberVO checkPass = mypageService.checkPwd(vo);
 	    
 		    if(checkPass == null) {
-		    	 return "";
-		    	
+		    	 return "mypage/password_check_fail";
 		    }else {
-		    	
 		    	return "mypage/password_modify";
-		    	
 		    }
-
 	}
 	
 	
@@ -332,11 +331,10 @@ public class MypageController {
 	    vo.getMidx();
 	  	int result = mypageService.updatePwd(vo);
 			
-		return "redirect: /controller/mypage/mypage.do";
+		session.setAttribute("loginUser", null);
+		return "redirect: /controller/login/login.do";
 	}
 	
-	
-
 	
 	@RequestMapping(value = "/review_list.do", method = RequestMethod.GET)
 	public String review_list(Locale locale, Model model, SearchVO vo) throws Exception {

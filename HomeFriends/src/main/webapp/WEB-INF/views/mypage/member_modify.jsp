@@ -15,7 +15,6 @@
 	
 	<title>회원정보수정</title>
 	
-		
 	<link href="/controller/css/header.css" rel="stylesheet">
 	<link href="/controller/css/nav.css" rel="stylesheet">
 	<link href="/controller/css/mypage/member_modify.css" rel="stylesheet">
@@ -25,7 +24,7 @@
 	<script src="/controller/js/header.js"></script>
 	<script src="/controller/js/nav.js"></script>
 	<script src="/controller/js/mypage/member_modify.js"></script>
-	<script src="/controller/js/login/join1.js"></script>
+	
 </head>
 <body>
 	<%@ include file="../header.jsp" %>
@@ -142,8 +141,27 @@
 									프로필 이미지
 								</div>
 								<div class="Edit edit_member_form imageDiv">
-									<img src="/controller/image/${vo.profile_system}" width="180px">
-									<!--클릭시 이미지 첨부 가능한 버튼으로 바꿔야함-->
+									<%-- <img src="/controller/image/${vo.profile_system}" width="180px">
+									<!--클릭시 이미지 첨부 가능한 버튼으로 바꿔야함--> --%>
+									<div class="center">
+										<label for="imgUpload" id="imgLabel">
+											<div id="imgArea">
+												<label for="imgUpload" id="imgLabel">
+													<span id="imgText">프로필 사진을 추가해주세요.<br>(1:1 비율 권장)</span>
+												</label><br>
+												<label for="imgUpload" id="imgLabel">
+													<span id="imgButton">프로필 사진 등록</span>
+												</label>
+											</div>
+										</label>
+									</div>
+									<label for="imgUpload">
+										<div id="imgUploadInfo" class="info">필수 입력 항목입니다.</div>
+									</label>
+									<div id="imgUploadArea" class="area">
+										<input type="file" id="imgUpload" name="imgUpload">
+										<button type="button" onclick="imageFn()">버튼</button>
+									</div>		
 								</div>
 							</div>
 							<div class="memberEditSubmit">

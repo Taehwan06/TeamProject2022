@@ -60,17 +60,90 @@ function checkForm() {
 		alert("값을 입력하세요");
 		return false;
 	}else{
-		alert("회원 정보가 수정되었습니다");
+		alert("회원정보가 수정되었습니다");
 		return ture;
 	}
-
-	
-	
-	
-	
-	
-	
-	
-	
 	
 }
+	
+/* 이미지 업로드 */
+
+
+
+function imageFn(){
+	var result = true;
+
+	var value = document.getElementById("imgUpload").value;
+	var info = document.getElementById("imgUploadInfo");
+	
+	if(value == ""){
+		result = false;
+		info.style.visibility = "visible";
+	}else{
+		info.style.visibility = "hidden";
+	}
+
+	if(result){
+		var img_style = $("#imgArea").attr("style");
+		img_style= img_style.replace(/\+/g,"%2B");
+		
+		$.ajax({
+			type : "POST",
+			url : "store_insert.do",
+			data : $("#insertFrm").serialize()+"&img_style="+img_style,
+			success : function(res) {
+				
+				console.log(res);
+				if(res>0){
+					alert("상품이 등록되었습니다.");
+					location.href="store.do";
+				}else{
+					alert("실행오류");
+				}
+			}
+		});
+	}
+}
+
+
+$(function() {
+	$("#imgUpload").on("change", function(){
+	readURL(this);
+	});
+});
+function readURL(input) {
+	if (input.files && input.files[0]) {
+		var reader = new FileReader();
+		reader.onload = function (e) {
+			$("#imgArea").css("background-color", "none");
+			$("#imgArea").css("background-image", "url('"+e.target.result+"')");
+			$("#imgText").css("display", "none");
+			$("#imgButton").css("display", "none");
+		}
+		reader.readAsDataURL(input.files[0]);
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
