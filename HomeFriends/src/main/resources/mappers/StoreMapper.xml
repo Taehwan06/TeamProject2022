@@ -164,6 +164,16 @@
 	    ]]>
     </insert>
     
+    <select id="listqna" resultType="Store_qnaVO" parameterType="int">
+         SELECT *
+         		,date_format(write_date, '%Y-%m-%d') w_day
+         		,date_format(answer_date, '%Y-%m-%d') a_day
+           FROM shopping_qna
+          WHERE 1=1
+            AND del_yn = 'N' 
+           	AND spidx = #{spidx}
+    </select>
+    
     
     
 </mapper>

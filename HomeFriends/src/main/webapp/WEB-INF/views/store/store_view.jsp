@@ -180,7 +180,32 @@
 					<div id="QnAwrite">문의하기</div>
 				</div>
 				<div id="QnA_area">
-					<img src= "/controller/image/QnA.PNG">
+					<ul class="qna_list">
+						<c:forEach items="${qnaList}" var="qna">
+							<li class="qna_list_item">
+								<div>
+									<div>
+										<span class="qna_qa">Q</span> ${qna.writer} <span class="qna_day">${qna.w_day}</span>
+										<c:if test="${loginUser.grade eq 'A' && qna.answer eq 'N'}">
+											<span class="A_write">답변하기</span>
+										</c:if>
+									</div>
+									<div class="qna_content_font qna_q_back">${qna.content}</div>
+								</div>
+								<c:if test="${qna.answer ne 'N'}">
+								<div class="qna_a_area">
+									<div>
+										<span class="qna_qa">A</span> ${qna.answer_writer} <span class="qna_day">${qna.a_day}</span>
+										<c:if test="${loginUser.grade eq 'A'}">
+											<span class="A_write">수정하기</span>
+										</c:if>
+									</div>
+									<div class="qna_content_font qna_a_back">${qna.answer_content}</div>
+								</div>
+								</c:if>
+							</li>
+						</c:forEach>
+					</ul>
 				</div>
 				<div id="delivery_area_header">
 					<div>배송</div>
