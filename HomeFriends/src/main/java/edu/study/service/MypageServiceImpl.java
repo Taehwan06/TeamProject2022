@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import edu.study.dao.MypageDAO;
 import edu.study.vo.BasketVO;
+import edu.study.vo.Community_BoardVO;
 import edu.study.vo.MemberVO;
 import edu.study.vo.SearchVO;
 import edu.study.vo.OrderListVO;
@@ -90,6 +91,28 @@ public class MypageServiceImpl implements MypageService {
 		int result = mypageDao.count(vo);
 		return result;
 	}
+
+
+	@Override
+	public List<OrderListVO> delState(OrderListVO vo) throws Exception {
+		
+		List<OrderListVO> result = mypageDao.delState(vo); 
+		
+		return result;
+	}
+
+
+	@Override
+	public List<Community_BoardVO> viewStory(Community_BoardVO vo) throws Exception {
+		
+		List<Community_BoardVO> result = mypageDao.viewStory(vo); 
+		
+		return result;
+	}
+	
+	
+	
+	
 	
 	
 	

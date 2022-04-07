@@ -18,6 +18,7 @@ import edu.study.service.HomeService;
 import edu.study.service.MemberService;
 import edu.study.service.MypageService;
 import edu.study.vo.BasketVO;
+import edu.study.vo.Community_BoardVO;
 import edu.study.vo.HomeSearchVO;
 import edu.study.vo.MemberVO;
 import edu.study.vo.OrderListVO;
@@ -44,7 +45,7 @@ public class MypageController {
 	 * @throws Exception 
 	 */
 	@RequestMapping(value = "/mypage.do", method = RequestMethod.GET)
-	public String mypage(Locale locale, Model model,OrderListVO vo,HttpServletRequest req) throws Exception {
+	public String mypage(Locale locale, Model model,OrderListVO vo,HttpServletRequest req,Community_BoardVO list) throws Exception {
 		
 		int deleteResult = homeService.deleteSearchList();
 		
@@ -60,8 +61,13 @@ public class MypageController {
 	      }else {
 	    	  
 	    	vo.setMidx(loginUser.getMidx());
-	    	vo.setProgress("배송중");
+		    vo.setProgress("결제완료");
 			int count = mypageService.count(vo);
+			model.addAttribute("count1", count);  	    	    
+	    	  
+	    	vo.setMidx(loginUser.getMidx());
+	    	vo.setProgress("배송중");
+	    	count = mypageService.count(vo);
 			model.addAttribute("count3", count);  
 			
 			vo.setMidx(loginUser.getMidx());
@@ -69,10 +75,16 @@ public class MypageController {
 			count = mypageService.count(vo);
 			model.addAttribute("count4", count);  
 	    	  
-	    	  
 	    	MemberVO result = mypageService.detail(loginUser.getMidx());
 	  		model.addAttribute("vo", result);
-	         return "mypage/mypage";
+	  		
+	  		int Midx = loginUser.getMidx();
+			list.setMidx(Midx);
+	  		
+	  		List<Community_BoardVO> Storylist = mypageService.viewStory(list);
+	  		model.addAttribute("Storylist", Storylist);
+	  		
+	        return "mypage/mypage";
 	      }  
 	}
 	
@@ -194,8 +206,61 @@ public class MypageController {
 		         return "mypage/order_list";
 		   }  
 		
+	}
+	
+	@RequestMapping(value = "/state", method = RequestMethod.GET)
+	
+	public String state(Locale locale, Model model,OrderListVO vo, HttpServletRequest req) throws Exception {
+		
+		int deleteResult = homeService.deleteSearchList();
+		
+		List<HomeSearchVO> searchList = homeService.listSearchList();
+		
+		model.addAttribute("searchList", searchList);
+		
+		HttpSession session = req.getSession(); 
+	    MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
+		
+		
+	   if(loginUser == null) {
+		        return "redirect:/login/login.do";
+		   }else {
+			    String progress = req.getParameter("progress");
+				
+				vo.setProgress(progress);
+				vo.setMidx(loginUser.getMidx());
+			   
+			   	List<OrderListVO> delState = mypageService.delState(vo);
+				model.addAttribute("orderList2", delState);
+				
+				
+			    vo.setProgress("결제완료");
+				int count = mypageService.count(vo);
+				model.addAttribute("count1", count);
+				
+				vo.setMidx(loginUser.getMidx());
+				vo.setProgress("배송준비중");
+				count = mypageService.count(vo);
+				model.addAttribute("count2", count);
+				
+				vo.setMidx(loginUser.getMidx());
+				vo.setProgress("배송중");
+				count = mypageService.count(vo);
+				model.addAttribute("count3", count);
+				
+				vo.setMidx(loginUser.getMidx());
+				vo.setProgress("배송완료"); 
+				count = mypageService.count(vo);
+				model.addAttribute("count4", count);
+				
+		  	
+		        return "mypage/order_list";
+		       
+		   }  
+		
 		
 	}
+	
 	
 	@RequestMapping(value = "/payment.do", method = RequestMethod.GET)
 	public String payment(Locale locale, Model model, SearchVO vo) throws Exception {
