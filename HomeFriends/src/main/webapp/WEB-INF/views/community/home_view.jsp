@@ -1,5 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -148,6 +148,7 @@
 		<ul class="reply_list">
 			<c:forEach items="${reply }" var="reply">
 				<input type="hidden" name="origin_cbridx" value="${reply.cbridx }">
+				<input type="hidden" name="cbridx" value="${reply.cbridx }">
 				<li class="reply_list_item reply_list_item${reply.depth }">
 					<article class="reply_item_">
 						<p class="reply_item_content reply_item_content${reply.cbridx }">
@@ -157,9 +158,7 @@
 							<span class="reply_item_content_content reply_item_content_content${reply.cbridx}">${reply.content }</span>
 						</p>
 						<footer class="reply_item_footer reply_item_footer${reply.depth } reply_item_footer${reply.cbridx }">
-							<time class="reply_item_footer_time">
-								<input type="text" class="time" value="${reply.write_date }">
-							</time>
+							<%@ include file="time.jsp" %>
 							<c:if test="${loginUser == null }">
 								<button class="reply_item_footer_reply-btn" type="button" onclick="ReNot()">답글 달기</button>
 							</c:if>

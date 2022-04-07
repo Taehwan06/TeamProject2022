@@ -25,5 +25,5 @@ public interface Community_BoardService {
 	
 	Integer cbridx() throws Exception;
 
-	String writeDate(int cbidx);
+	String writeDate(int cbidx) throws Exception;
 }
