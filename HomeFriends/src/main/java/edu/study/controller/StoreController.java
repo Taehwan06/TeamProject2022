@@ -34,6 +34,7 @@ import edu.study.vo.HomeSearchVO;
 import edu.study.vo.SearchVO;
 import edu.study.vo.StoreVO;
 import edu.study.vo.MemberVO;
+import edu.study.vo.Store_qnaVO;
 
 /**
  * Handles requests for the application home page.
@@ -246,7 +247,7 @@ public class StoreController {
 
 		int result = storeService.delete(spidx);
 		
-			
+		
 		return "redirect:/store/store.do";
 	}
 	
@@ -268,8 +269,9 @@ public class StoreController {
 				vo.setReview_cnt("yes");
 			}
 		}
-		vo.setOrder("sell_cnt");
-		
+		if(type==null) {
+			vo.setOrder("sell_cnt");
+		}
 		List<StoreVO> list = storeService.list(vo);
 		
 		model.addAttribute("list",list);
@@ -300,9 +302,15 @@ public class StoreController {
 		
 		model.addAttribute("searchList", searchList);
 	
+		
+		
 		StoreVO selectOne = storeService.detail(spidx);
 		
 		model.addAttribute("vo",selectOne);
+		
+		List<Store_qnaVO> qnaList = storeService.qnaList(spidx);
+		
+		model.addAttribute("qnaList",qnaList);
 		
 		return "store/store_view";
 	}

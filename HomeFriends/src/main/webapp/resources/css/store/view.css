@@ -196,6 +196,10 @@ article{
 	float : right;
 	color : #ffb6c1;
 }
+.A_write{
+	font-size: 15px;
+	color : #ffb6c1;
+}
 #change_content_header1, #change_content_header2{
 	font-size : 20px;
 	font-weight : bold;
@@ -308,6 +312,36 @@ article{
 
 .hiddenCnt{
 	display: none;
+}
+
+/*문의영역*/
+#QnA_area ul{
+	list-style: none;
+	padding: 0px;
+	margin: 0px;
+}
+.qna_qa{
+	font-size: 1.5em;
+	font-weight: bold;
+	color: #ffb6c1;
+}
+.qna_content_font{
+	font-size: 15px;
+	padding: 5px;
+}
+.qna_q_back{
+	border : 1px solid #dcdcdc;
+	border-radius: 10px;	
+}
+.qna_a_back{
+	background: #f5f7fa;
+	border-radius: 10px;
+}
+.qna_day{
+	font-size: 10px;
+}
+.qna_a_area{
+	padding-left: 20px;
 }
 
 @media screen and (min-width: 1400px){

@@ -15,6 +15,7 @@
         <typeAlias type="edu.study.vo.StoreVO" alias="StoreVO"/>
         <typeAlias type="edu.study.vo.BasketVO" alias="BasketVO"/>
         <typeAlias type="edu.study.vo.Community_ReplyVO" alias="Community_replyVO"/>
+        <typeAlias type="edu.study.vo.Store_qnaVO" alias="Store_qnaVO"/>
     </typeAliases>
 
 </configuration>

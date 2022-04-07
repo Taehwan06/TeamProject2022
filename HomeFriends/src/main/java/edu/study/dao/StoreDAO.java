@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import edu.study.vo.StoreVO;
 import edu.study.vo.SearchVO;
 import edu.study.vo.BasketVO;
+import edu.study.vo.Store_qnaVO;
 
 @Repository // 컴포넌트 하위에 있는 어노테이션, 외부와 연결 할 때 사용하는 어노테이션
 public class StoreDAO {
@@ -44,6 +45,11 @@ public class StoreDAO {
 	public int basketIn(BasketVO vo) throws Exception{
 		return sqlSession.insert(Namespace+".basketIn",vo);
 	}
+	
+	public List<Store_qnaVO> qnaList(int spidx) throws Exception {
+		return sqlSession.selectList(Namespace+".listqna",spidx);
+	}
+	
 	
 	
 }
