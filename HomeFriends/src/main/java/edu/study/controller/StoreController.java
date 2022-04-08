@@ -1,22 +1,18 @@
 package edu.study.controller;
 
-import java.net.http.HttpRequest;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.StringTokenizer;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,16 +20,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import com.google.gson.Gson;
-import com.google.protobuf.DescriptorProtos.SourceCodeInfo.Location;
-import com.mysql.cj.Session;
 
 import edu.study.service.HomeService;
 import edu.study.service.StoreService;
 import edu.study.vo.BasketVO;
 import edu.study.vo.HomeSearchVO;
+import edu.study.vo.MemberVO;
 import edu.study.vo.SearchVO;
 import edu.study.vo.StoreVO;
-import edu.study.vo.MemberVO;
 import edu.study.vo.Store_qnaVO;
 
 /**
@@ -294,7 +288,31 @@ public class StoreController {
 	 */
 	
 	@RequestMapping(value = "/store_view.do", method = RequestMethod.GET)
-	public String store_view(Locale locale, Model model, int spidx) throws Exception {
+	public String store_view(Locale locale, Model model, int spidx, HttpServletResponse response, HttpServletRequest request) throws Exception {
+		
+		
+		// 최근 본 상품 처리 영역
+		Cookie[] myCookies = request.getCookies();
+		String recentView = null;
+		
+	    for(int i = 0; i < myCookies.length; i++) {
+	    	if(myCookies[i].getName().equals("recentView")) {
+	    		recentView = myCookies[i].getValue();
+	    	}
+	    }
+		if(recentView == null) {
+			recentView = ""+spidx;
+		}else {
+			recentView += "&"+spidx;
+		}
+		
+		Cookie recentViewCookie = new Cookie("recentView", recentView);
+		recentViewCookie.setMaxAge(60*60*24);
+		recentViewCookie.setPath("/"); 
+		response.addCookie(recentViewCookie);
+	    // 최근 본 상품 영역 끝
+	    
+	    
 		
 		int deleteResult = homeService.deleteSearchList();
 		
