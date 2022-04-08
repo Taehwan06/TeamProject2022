@@ -79,6 +79,14 @@ public class BasketServiceImpl implements BasketService {
 		
 		return result;
 	}
+
+	@Override
+	public BasketVO directPayFromProduct(BasketVO vo) throws Exception {
+		
+		BasketVO basketvo = basketDao.directPayFromProduct(vo);
+		
+		return basketvo;
+	}
 	
 	
 

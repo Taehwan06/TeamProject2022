@@ -50,6 +50,10 @@ public class BasketDAO {
 		return sqlSession.insert(Namespace+".insertOrderList",vo);
 	}
 	
+	public BasketVO directPayFromProduct(BasketVO vo) throws Exception{
+		return sqlSession.selectOne(Namespace+".directPayFromProduct",vo);
+	}
+	
 }
 
 

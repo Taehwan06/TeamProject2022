@@ -22,7 +22,15 @@ public class BasketVO {
 	private String ordernumber;
 	private String paynumber;
 	
+	private int sale_price;
 	
+		
+	public int getSale_price() {
+		return sale_price;
+	}
+	public void setSale_price(int sale_price) {
+		this.sale_price = sale_price;
+	}
 	public String getOrdernumber() {
 		return ordernumber;
 	}

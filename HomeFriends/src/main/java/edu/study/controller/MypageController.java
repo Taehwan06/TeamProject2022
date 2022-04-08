@@ -1,5 +1,11 @@
 package edu.study.controller;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -11,7 +17,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import edu.study.service.BasketService;
 import edu.study.service.HomeService;
@@ -609,16 +617,101 @@ public class MypageController {
 		
 		String sbidxStr = req.getParameter("sbidxStr");
 		String[] sbidxArray = sbidxStr.split(",");
-		vo.setSbidxArray(sbidxArray);
 		
-		int result = basketService.insertOrderList(vo);
+		int size = sbidxArray.length;
+		int totalResult = 0;
 		
-		if(result > 0) {
+		for(int i=0; i<size; i++) {
+			vo.setSbidx(Integer.parseInt(sbidxArray[i]));
+			int result = basketService.insertOrderList(vo);
+			totalResult += result;
+		}
+		
+		if(totalResult == size) {
 			return "success";
 		}else {
 			return "fail";
 		}
 	}
 	
+	@RequestMapping(value = "/directPayment.do", method = RequestMethod.GET)
+	public String directPayment(Locale locale, Model model, BasketVO vo, HttpServletRequest req) throws Exception {
+		
+		int midx = Integer.parseInt(req.getParameter("midx"));
+		int spidx = Integer.parseInt(req.getParameter("spidx"));
+		int cnt = Integer.parseInt(req.getParameter("cnt"));
+		
+		HttpSession session = req.getSession();
+		MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
+		
+//		if(midx != loginUser.getMidx()) {
+//			return "redirect:/login/login.do";
+//		}
+		
+		vo.setSpidx(spidx);
+		BasketVO directvo = basketService.directPayFromProduct(vo);
+		directvo.setCnt(cnt);
+		directvo.setMidx(loginUser.getMidx());
+		directvo.setPrice(directvo.getSale_price());
+		
+		List<BasketVO> basketList = new ArrayList<BasketVO>();
+		
+		basketList.add(directvo);
+		
+		model.addAttribute("basketList", basketList);
+		
+		if(loginUser == null) {
+			return "redirect:/login/login.do";
+		}else {
+			return "mypage/payment";
+		}
+	}
+	
+	@RequestMapping(value = "/fileUpload", method = RequestMethod.POST)
+	@ResponseBody
+	public String fileUpload(Locale locale, Model model, HttpServletRequest request, @RequestParam("imgFile") MultipartFile imgFile) throws Exception {
+		
+		
+		String savePath = "C://Users//lth-m//git//TeamProject2022//HomeFriends//src//main//webapp//resources//image";  // 파일이 저장될 프로젝트 안의 폴더 경로
+		//String savePath = request.getServletContext().getRealPath("/resources/image");  // 파일이 저장될 프로젝트 안의 폴더 경로
+		
+	    String originalFilename = imgFile.getOriginalFilename(); // fileName.jpg
+	    String onlyFileName = originalFilename.substring(0, originalFilename.indexOf(".")); // fileName
+	    String extension = originalFilename.substring(originalFilename.indexOf(".")); // .jpg
+	     
+	    String rename = onlyFileName + "_" + getCurrentDayTime() + extension; // fileName_20150721-14-07-50.jpg
+	    String fullPath = savePath + "//" + rename;
+	    
+	    String extension3 = extension.trim();
+	    String extension2 = extension3.toLowerCase();
+	    
+	    if(!extension2.equals(".png") && !extension2.equals(".jfif") && !extension2.equals(".bmp") && !extension2.equals(".rle")
+	    		 && !extension2.equals(".dib") && !extension2.equals(".jpg") && !extension2.equals(".gif") && !extension2.equals(".tif")
+	    		 && !extension2.equals(".tiff") && !extension2.equals(".raw") && !extension2.equals(".webp")) {
+	    	return "fail1";
+	    }else if (!imgFile.isEmpty()) {
+	    	String result = "";
+	        try {
+	            byte[] bytes = imgFile.getBytes();
+	            BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(fullPath)));
+	            stream.write(bytes);
+	            stream.close();
+	           	
+	            result = originalFilename+","+rename;
+	        } catch (Exception e) {
+	        	result = "fail2";
+	        }
+	        
+	        return result;
+	    } else {
+	    	return "fail3";
+	    }
+	}
+	
+	public String getCurrentDayTime(){
+	    long time = System.currentTimeMillis();
+	    SimpleDateFormat dayTime = new SimpleDateFormat("yyyyMMddHHmmss", Locale.KOREA);
+	    return dayTime.format(new Date(time));
+	}
 	
 }

@@ -149,6 +149,24 @@
 				#{paynumber}
 			)
     </insert>
+    
+    
+    <select id="directPayFromProduct" resultType="BasketVO" parameterType="BasketVO">
+		SELECT
+			spidx,
+			title,
+			sale_price,
+			delivery_charge,
+			free_delivery,
+			img_origin,
+			img_system,
+			brand
+		FROM
+			shopping_product
+		WHERE
+			spidx = #{spidx}
+	
+    </select>
    
     
 </mapper>

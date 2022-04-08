@@ -15,4 +15,5 @@ public interface BasketService {
 	List<BasketVO> CheckedListBasket(BasketVO vo) throws Exception;
 	int deleteListBasket(BasketVO vo) throws Exception;
 	int insertOrderList(BasketVO vo) throws Exception;
+	BasketVO directPayFromProduct(BasketVO vo) throws Exception;
 }

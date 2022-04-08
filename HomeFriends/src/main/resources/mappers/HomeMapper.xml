@@ -91,5 +91,29 @@
     </select>
     
     
+    <select id="recentViewStore" resultType="homeStoreVO" parameterType="homeStoreVO">
+    	
+		SELECT
+			spidx,
+			writer,
+			title,
+			midx,
+			img_system,
+			brand,
+			origin_price,
+			sale_price,
+			score,
+			discount,
+			review_cnt
+		FROM
+			shopping_product
+		WHERE
+			1=1
+		AND
+			spidx = #{spidx}
+		
+    </select>
+    
+    
     
 </mapper>

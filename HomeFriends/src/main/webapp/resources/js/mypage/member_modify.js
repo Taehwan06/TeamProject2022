@@ -55,13 +55,26 @@ function checkForm() {
 	var nickInput = document.getElementById("nickInput").value;
 	var phone2 = document.getElementById("phone2").value;
 	var phone3 = document.getElementById("phone3").value;
+	var fileVal = document.getElementById("profile_system").value;
 	
 	if(nickInput == '' || phone2 == '' ||phone3 == ''){
 		alert("값을 입력하세요");
-		return false;
+		//return false;
+	}else if(fileVal == '' || fileVal == null){
+		$("#profile_origin").val("kakao_profile_basic.png");
+		$("#profile_system").val("kakao_profile_basic.png");
+		
+		document.memberModifyFrm.method = "post";
+		document.memberModifyFrm.action = "member_modify.do";
+		document.memberModifyFrm.submit();
+		//return false;
 	}else{
 		alert("회원정보가 수정되었습니다");
-		return ture;
+		//return ture;
+		
+		document.memberModifyFrm.method = "post";
+		document.memberModifyFrm.action = "member_modify.do";
+		document.memberModifyFrm.submit();
 	}
 	
 }
@@ -69,60 +82,6 @@ function checkForm() {
 /* 이미지 업로드 */
 
 
-
-function imageFn(){
-	var result = true;
-
-	var value = document.getElementById("imgUpload").value;
-	var info = document.getElementById("imgUploadInfo");
-	
-	if(value == ""){
-		result = false;
-		info.style.visibility = "visible";
-	}else{
-		info.style.visibility = "hidden";
-	}
-
-	if(result){
-		var img_style = $("#imgArea").attr("style");
-		img_style= img_style.replace(/\+/g,"%2B");
-		
-		$.ajax({
-			type : "POST",
-			url : "store_insert.do",
-			data : $("#insertFrm").serialize()+"&img_style="+img_style,
-			success : function(res) {
-				
-				console.log(res);
-				if(res>0){
-					alert("상품이 등록되었습니다.");
-					location.href="store.do";
-				}else{
-					alert("실행오류");
-				}
-			}
-		});
-	}
-}
-
-
-$(function() {
-	$("#imgUpload").on("change", function(){
-	readURL(this);
-	});
-});
-function readURL(input) {
-	if (input.files && input.files[0]) {
-		var reader = new FileReader();
-		reader.onload = function (e) {
-			$("#imgArea").css("background-color", "none");
-			$("#imgArea").css("background-image", "url('"+e.target.result+"')");
-			$("#imgText").css("display", "none");
-			$("#imgButton").css("display", "none");
-		}
-		reader.readAsDataURL(input.files[0]);
-	}
-}
 
 
 

@@ -25,6 +25,100 @@
 	<script src="/controller/js/nav.js"></script>
 	<script src="/controller/js/mypage/member_modify.js"></script>
 	
+	<style>
+		#imgUploadArea, #imgUpload{
+			visibility: hidden;
+		}
+		#coverImg{
+			cursor: pointer;
+		}
+	</style>
+	
+	<script>
+		
+		function readURL(input) {
+			let regex = new RegExp("(.*?)\.(jpg|png|webp|jfif|bmp|rle|dib|gif|tif|tiff|raw)$");
+			
+			var fileValue = document.getElementById("imgUpload").value;
+			
+			var fileNameAry = fileValue.split("\\");
+			var fileNameBe = fileNameAry[2];
+			var fileName = fileNameBe.toLowerCase();
+			
+			if(regex.test(fileName)){
+				if (input.files && input.files[0]) {
+					var reader = new FileReader();
+					reader.onload = function (e) {
+						$("#coverImg").attr("src", e.target.result);
+						$("#coverImg").css("width", "180px");
+						$("#coverImg").css("height", "auto");
+					}
+					reader.readAsDataURL(input.files[0]);
+				}
+			}else{
+				$("#coverImg").attr("src", "/controller/image/kakao_profile_basic.png");
+				$("#coverImg").css("width", "180px");
+				$("#coverImg").css("height", "auto");
+			}
+		}
+		
+		function imgValCheckFn(){
+			var fileValue = document.getElementById("imgUpload").value;
+		    
+		    console.log("fileValue="+fileValue);
+		    
+		    if(fileValue == "" || fileValue == null){
+		    	$("#coverImg").attr("src", "/controller/image/kakao_profile_basic.png");
+				$("#coverImg").css("width", "180px");
+				$("#coverImg").css("height", "auto");
+		    }
+		}
+		
+		$(function() {
+			$("#imgUpload").on("change", function(){
+				
+				var form = $("#uploadForm")[0];
+			    var formData = new FormData(form);
+			    
+			    $.ajax({
+					url: "fileUpload",
+					type: "post",
+					data: formData,
+					enctype: "multipart/form-data",
+					contentType: false,
+					processData: false,
+					success: function(data){
+						var result = data.trim();
+						
+						if(result == "fail1"){
+							alert("이미지 파일만 등록할 수 있습니다");
+							
+						}else if(result == "fail2"){
+							alert("이미지 변경에 실패했습니다");
+							$("#coverImg").attr("src", "/controller/image/kakao_profile_basic.png");
+							$("#coverImg").css("width", "180px");
+							$("#coverImg").css("height", "auto");
+							
+						}else if(result == "fail3"){
+							alert("변경할 이미지를 선택해 주세요");
+							
+						}else{
+							var resultAry = result.split(",")
+							var profile_origin = resultAry[0];
+							var profile_system = resultAry[1];
+							
+							$("#profile_origin").val(profile_origin);
+							$("#profile_system").val(profile_system);
+							
+						}
+					}
+			    });
+			    readURL(this);
+			});
+		});
+		
+	</script>
+	
 </head>
 <body>
 	<%@ include file="../header.jsp" %>
@@ -43,7 +137,7 @@
 						<a href='${pageContext.request.contextPath}/mypage/member_delete.do'>탈퇴하기</a>
 					</div>
 					<div id="memberEdit_wrap">
-						<form action="member_modify.do" method="post" onsubmit="return checkForm();"><!-- form태그 위치 -->
+						<form name="memberModifyFrm"><!-- form태그 위치 -->
 							<div class="edit_dummy">
 								<div class="Edit edit_member_info">
 									이메일
@@ -136,39 +230,38 @@
 									<input type="text" id="AddrInput3" value="${addr2}" name="addr2" readonly>
 								</div>
 							</div>
+							
+							<input type="hidden" name="profile_origin" id="profile_origin" value="">
+							<input type="hidden" name="profile_system" id="profile_system" value="">
+							<input type="hidden" value="${vo.midx}" name="midx">
+							
 							<div class="edit_dummy">
+							
 								<div class="Edit edit_member_info imageDiv">
 									프로필 이미지
 								</div>
-								<div class="Edit edit_member_form imageDiv">
-									<%-- <img src="/controller/image/${vo.profile_system}" width="180px">
-									<!--클릭시 이미지 첨부 가능한 버튼으로 바꿔야함--> --%>
-									<div class="center">
-										<label for="imgUpload" id="imgLabel">
-											<div id="imgArea">
-												<label for="imgUpload" id="imgLabel">
-													<span id="imgText">프로필 사진을 추가해주세요.<br>(1:1 비율 권장)</span>
-												</label><br>
-												<label for="imgUpload" id="imgLabel">
-													<span id="imgButton">프로필 사진 등록</span>
-												</label>
-											</div>
-										</label>
+								
+								<label for="imgUpload" id="imgLabel">
+									<div id="imgArea" class="Edit edit_member_form imageDiv">
+										<img id="coverImg" name="coverImg" alt="" onclick="imgValCheckFn()"
+										src="/controller/image/${vo.profile_system}" width="180px">
 									</div>
-									<label for="imgUpload">
-										<div id="imgUploadInfo" class="info">필수 입력 항목입니다.</div>
-									</label>
-									<div id="imgUploadArea" class="area">
-										<input type="file" id="imgUpload" name="imgUpload">
-										<button type="button" onclick="imageFn()">버튼</button>
-									</div>		
-								</div>
+								</label>
+								
 							</div>
-							<div class="memberEditSubmit">
-								<input type="submit" value="회원 정보 수정">
-								<input type="hidden" value="${vo.midx}" name="midx">
-							</div>
+							
 						</form>
+						
+						<form name="uploadForm" id="uploadForm" method="post" action="/uploadFile.do" enctype="multipart/form-data">
+							<div id="imgUploadArea">
+								<input type="file" id="imgUpload" name="imgFile">
+							</div>
+						</form>	
+						
+						<div class="memberEditSubmit">
+							<input type="button" id="submitButton" value="회원 정보 수정" onclick="checkForm();">
+						</div>
+						
 					</div>
 				</div>
 
@@ -178,7 +271,7 @@
 	</section>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script src="/controller/js/login/join2.js"></script>
-
+	
 	<%@ include file="../footer.jsp" %>
 	<!-- 부트스트랩 -->	
 

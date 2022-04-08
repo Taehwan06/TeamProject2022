@@ -131,7 +131,7 @@
 			width:122px;
 		}
 		
-		input[type=submit], #submitBtn, #passChangeBtn{
+		#submitButton, #submitBtn, #passChangeBtn{
 			width:500px; 
 			height:50px;
 			display: inline-block;
