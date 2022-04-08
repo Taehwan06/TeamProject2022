@@ -269,6 +269,41 @@ public class MypageController {
 		
 	}
 	
+
+	@RequestMapping(value = "/mypage_allStory.do", method = RequestMethod.GET)
+	public String mypage_allStory(Locale locale, Model model, SearchVO vo, HttpServletRequest req,Community_BoardVO list) throws Exception {
+		
+		int deleteResult = homeService.deleteSearchList();
+		List<HomeSearchVO> searchList = homeService.listSearchList();
+		model.addAttribute("searchList", searchList);
+			
+		HttpSession session = req.getSession(); 
+	    MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
+	      
+	      if(loginUser == null) {
+	         return "redirect:/login/login.do";
+	      }else {
+	    	
+	    	  
+	    	MemberVO result = mypageService.detail(loginUser.getMidx());
+	  		model.addAttribute("vo", result);
+	  		
+	  		int Midx = loginUser.getMidx();
+			list.setMidx(Midx);
+	  		
+	  		List<Community_BoardVO> Storylist = mypageService.viewStory(list);
+	  		model.addAttribute("Storylist", Storylist);
+	  		
+	  		return "mypage/mypage_allStory";
+	      }  
+	}
+			
+		
+	
+	
+	
+	
+	
 	
 	@RequestMapping(value = "/payment.do", method = RequestMethod.GET)
 	public String payment(Locale locale, Model model, SearchVO vo) throws Exception {
