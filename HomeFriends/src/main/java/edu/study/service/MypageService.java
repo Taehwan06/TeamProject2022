@@ -2,9 +2,7 @@ package edu.study.service;
 
 import java.util.List;
 
-
-
-
+import edu.study.vo.Community_BoardVO;
 import edu.study.vo.MemberVO;
 import edu.study.vo.SearchVO;
 import edu.study.vo.OrderListVO;
@@ -16,6 +14,8 @@ public interface MypageService {
 	MemberVO checkPwd(MemberVO vo) throws Exception;
 	List<OrderListVO> orderList(OrderListVO vo) throws Exception;
 	List<OrderListVO> orderList2(MemberVO vo) throws Exception;
+	List<OrderListVO> delState(OrderListVO vo) throws Exception;
+	List<Community_BoardVO> viewStory(Community_BoardVO vo) throws Exception;
 	
 	int update(MemberVO vo) throws Exception;
 	int updatePwd(MemberVO vo) throws Exception;

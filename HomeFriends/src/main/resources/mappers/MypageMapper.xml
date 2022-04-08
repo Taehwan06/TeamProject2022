@@ -92,6 +92,48 @@
           ORDER BY buying_date DESC
           
     </select>
+    
+      <select id="delState" resultType="OrderListVO" parameterType="OrderListVO">
+         SELECT 
+         		olidx,
+         		title,
+         		price,
+         		cnt,
+         		delivery_charge,
+         		img_system,
+         		buying_date,
+         		progress,
+         		delivery_status,
+         		review_registration,
+         		spidx
+           FROM 
+           		order_list
+          WHERE 
+          		midx = #{midx}
+          	
+          	<if test="progress.equals('default')">
+            	AND 
+            		1 = 1 
+            </if>
+            <if test="progress.equals('pay')">
+            	AND 
+            		progress = "결제완료"
+            </if>
+             <if test="progress.equals('ready')">
+            	AND 
+            		progress = "배송준비중"
+            </if>
+             <if test="progress.equals('ing')">
+            	AND 
+            		progress = "배송중"
+            </if>
+             <if test="progress.equals('complete')">
+            	AND 
+            		progress = "배송완료"
+            </if>
+          ORDER BY 
+          		buying_date DESC
+    </select>
   
   
       
@@ -105,6 +147,18 @@
     	AND
     			midx = #{midx}
     			
+    </select>
+    
+    <select id = "viewStory" resultType="Community_BoardVO" parameterType="Community_BoardVO">
+    	SELECT
+    			cbidx,
+    			img_system
+    	FROM
+    			community_board
+    	WHERE
+    			midx = #{midx}
+    	ORDER BY
+    			cbidx DESC
     </select>
     
 </mapper>
