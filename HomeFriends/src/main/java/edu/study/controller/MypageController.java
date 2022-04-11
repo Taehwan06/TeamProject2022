@@ -334,6 +334,37 @@ public class MypageController {
 	    }
 	}
 	
+	@RequestMapping(value = "/detailOrder.do", method = RequestMethod.GET)
+	public String detailOrder(Locale locale, Model model, SearchVO vo, HttpServletRequest request, OrderListVO orderlist) throws Exception {
+
+		HttpSession session = request.getSession(); 
+		MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
+
+	    if(loginUser == null) {
+	         return "redirect:/login/login.do";
+	    }else {
+		
+			int deleteResult = homeService.deleteSearchList();
+			List<HomeSearchVO> searchList = homeService.listSearchList();
+			model.addAttribute("searchList", searchList);
+			
+			int midx = loginUser.getMidx();
+			orderlist.setMidx(midx);
+
+			
+			List<OrderListVO> detailOrder = mypageService.detailOrder(orderlist);
+			model.addAttribute("detailOrder", detailOrder);
+			
+			MemberVO result = mypageService.detail(midx); 
+			model.addAttribute("vo", result);
+	  	
+	  		return "mypage/detailOrder";
+		      
+	    }
+	}
+	
+	
+	
 	
 	@RequestMapping(value = "/payment.do", method = RequestMethod.GET)
 	public String payment(Locale locale, Model model, SearchVO vo, HttpServletRequest request) throws Exception {
