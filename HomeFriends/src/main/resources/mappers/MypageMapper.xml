@@ -49,6 +49,17 @@
          	midx = #{midx}
     </update>
     
+     <update id="updateAddr"  parameterType="MemberVO">
+    	UPDATE 
+    		member
+		SET 
+    	   	post_code = #{post_code},
+    	   	addr = CONCAT(#{addr1}," ",#{addr2}) 
+		WHERE 
+         	midx = #{midx}
+    </update>
+    
+    
     
     <update id="modifyMember" parameterType="MemberVO">
     	UPDATE member 
@@ -57,7 +68,7 @@
     		nick_name = #{nick_name},
     		gender = #{gender},
     		phone = CONCAT(#{phone1},"-",#{phone2},"-",#{phone3}),
-    		addr =  CONCAT(#{addr1}," ",#{addr2}), 
+    		addr =  CONCAT(#{addr1}," ",#{addr2},"",#{addr3}), 
     		profile_origin = #{profile_origin}, 
     		profile_system = #{profile_system} 
     		

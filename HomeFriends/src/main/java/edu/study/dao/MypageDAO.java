@@ -44,6 +44,10 @@ public class MypageDAO {
 		return sqlSession.update(Namespace+".updatePwd",vo);
 	}
 	
+
+	public int updateAddr(MemberVO vo) throws Exception{
+		return sqlSession.update(Namespace+".updateAddr",vo);
+	}
 	
 	
 	public int insert(MemberVO vo) throws Exception{
