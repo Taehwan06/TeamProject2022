@@ -30,6 +30,7 @@ import edu.study.vo.Community_BoardVO;
 import edu.study.vo.HomeSearchVO;
 import edu.study.vo.MemberVO;
 import edu.study.vo.OrderListVO;
+import edu.study.vo.PayInfoVO;
 import edu.study.vo.SearchVO;
 
 /**
@@ -73,17 +74,17 @@ public class MypageController {
 			model.addAttribute("searchList", searchList);
 			
 	    	vo.setMidx(loginUser.getMidx());
-		    vo.setProgress("결제완료");
+		    vo.setProgress("寃곗젣�셿猷�");
 			int count = mypageService.count(vo);
 			model.addAttribute("count1", count);  	    	    
 	    	  
 	    	vo.setMidx(loginUser.getMidx());
-	    	vo.setProgress("배송중");
+	    	vo.setProgress("諛곗넚以�");
 	    	count = mypageService.count(vo);
 			model.addAttribute("count3", count);  
 			
 			vo.setMidx(loginUser.getMidx());
-	    	vo.setProgress("배송완료");
+	    	vo.setProgress("諛곗넚�셿猷�");
 			count = mypageService.count(vo);
 			model.addAttribute("count4", count);  
 	    	  
@@ -223,22 +224,22 @@ public class MypageController {
 				model.addAttribute("orderList2", orderList2);
 				
 				vo.setMidx(loginUser.getMidx());
-			    vo.setProgress("결제완료");
+			    vo.setProgress("寃곗젣�셿猷�");
 				int count = mypageService.count(vo);
 				model.addAttribute("count1", count);
 				
 				vo.setMidx(loginUser.getMidx());
-				vo.setProgress("배송준비중");
+				vo.setProgress("諛곗넚以�鍮꾩쨷");
 				count = mypageService.count(vo);
 				model.addAttribute("count2", count);
 				
 				vo.setMidx(loginUser.getMidx());
-				vo.setProgress("배송중");
+				vo.setProgress("諛곗넚以�");
 				count = mypageService.count(vo);
 				model.addAttribute("count3", count);
 				
 				vo.setMidx(loginUser.getMidx());
-				vo.setProgress("배송완료"); 
+				vo.setProgress("諛곗넚�셿猷�"); 
 				count = mypageService.count(vo);
 				model.addAttribute("count4", count);
 				
@@ -278,22 +279,22 @@ public class MypageController {
 				model.addAttribute("orderList2", delState);
 				
 				
-			    vo.setProgress("결제완료");
+			    vo.setProgress("寃곗젣�셿猷�");
 				int count = mypageService.count(vo);
 				model.addAttribute("count1", count);
 				
 				vo.setMidx(loginUser.getMidx());
-				vo.setProgress("배송준비중");
+				vo.setProgress("諛곗넚以�鍮꾩쨷");
 				count = mypageService.count(vo);
 				model.addAttribute("count2", count);
 				
 				vo.setMidx(loginUser.getMidx());
-				vo.setProgress("배송중");
+				vo.setProgress("諛곗넚以�");
 				count = mypageService.count(vo);
 				model.addAttribute("count3", count);
 				
 				vo.setMidx(loginUser.getMidx());
-				vo.setProgress("배송완료"); 
+				vo.setProgress("諛곗넚�셿猷�"); 
 				count = mypageService.count(vo);
 				model.addAttribute("count4", count);
 				
@@ -879,8 +880,8 @@ public class MypageController {
 	@ResponseBody
 	public String fileUpload(Locale locale, Model model, HttpServletRequest request, @RequestParam("imgFile") MultipartFile imgFile) throws Exception {
 		
-		//String savePath = "C://Users//lth-m//git//TeamProject2022//HomeFriends//src//main//webapp//resources//image";  // 파일이 저장될 프로젝트 안의 폴더 경로
-		String savePath = request.getServletContext().getRealPath("/resources/image");  // 파일이 저장될 프로젝트 안의 폴더 경로
+		//String savePath = "C://Users//lth-m//git//TeamProject2022//HomeFriends//src//main//webapp//resources//image";  // �뙆�씪�씠 ���옣�맆 �봽濡쒖젥�듃 �븞�쓽 �뤃�뜑 寃쎈줈
+		String savePath = request.getServletContext().getRealPath("/resources/image");  // �뙆�씪�씠 ���옣�맆 �봽濡쒖젥�듃 �븞�쓽 �뤃�뜑 寃쎈줈
 		
 	    String originalFilename = imgFile.getOriginalFilename(); // fileName.jpg
 	    String onlyFileName = originalFilename.substring(0, originalFilename.indexOf(".")); // fileName
@@ -919,6 +920,22 @@ public class MypageController {
 	    long time = System.currentTimeMillis();
 	    SimpleDateFormat dayTime = new SimpleDateFormat("yyyyMMddHHmmss", Locale.KOREA);
 	    return dayTime.format(new Date(time));
+	}
+	
+	@RequestMapping(value = "/payConfirm", method = RequestMethod.POST)
+	public String payConfirm(Locale locale, Model model, PayInfoVO payInfovo, HttpServletRequest request) throws Exception {
+		
+		model.addAttribute("payInfovo", payInfovo);
+		
+		if(payInfovo.getErrorMsg() == null || payInfovo.getErrorMsg().equals("")) {
+			
+			return "mypage/order_success";
+						
+		}else {
+			
+			return "mypage/order_fail";
+			
+		}
 	}
 	
 }

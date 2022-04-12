@@ -23,7 +23,8 @@
 	<script src="/controller/js/jquery-3.6.0.min.js"></script>
 	<script src="/controller/js/header.js"></script>
 	<script src="/controller/js/nav.js"></script>
-	<script src="/controller/js/login/join1.js"></script>
+	<script src="/controller/js/footer.js"></script>
+	
 </head>
 <body>
 	<%@ include file="../header.jsp" %>
@@ -46,6 +47,7 @@
 							<div class="odrDiv">
 								<p class="okTitle">죄송합니다.</p>
 								<p class="odrdetail">주문이 정상적으로 처리되지 않았습니다.</p>
+								<p class="odrdetail">실패 사유 : ${payInfovo.errorMsg}</p>
 								<p class="odrdetail">다시 시도해주세요.</p>
 							</div>
 							<!--  <div class="inlineDiv">
@@ -57,16 +59,14 @@
 								<p>382000원</p>
 							</div>-->
 						</div>
-						<div class="odr">
-							<button id="odrApply">장바구니로 돌아가기</button>
-						</div>
 					</form>
 				</div>
 			</div>
-	</div>
+			<div id="returnArea">
+				<input type="button" id="return" value="장바구니로 돌아가기" onclick="location.href='${pageContext.request.contextPath}/mypage/basket.do'">
+			</div>
+		</div>
 	</section>
-	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-	<script src="/controller/js/login/join2.js"></script>
 
 	<%@ include file="../footer.jsp" %>
 	<!-- 부트스트랩 -->	
