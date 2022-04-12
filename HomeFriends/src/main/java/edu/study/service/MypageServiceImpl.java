@@ -58,6 +58,14 @@ public class MypageServiceImpl implements MypageService {
 	
 
 	@Override
+	public int updateAddr(MemberVO vo) throws Exception {
+		int result =  mypageDao.updateAddr(vo);
+		return result;
+	}
+	
+	
+
+	@Override
 	public int delete(MemberVO vo) throws Exception {
 		int result = mypageDao.delete(vo);
 		return result;
@@ -118,7 +126,8 @@ public class MypageServiceImpl implements MypageService {
 		
 		return result;
 	}
-	
+
+
 	
 	
 	
