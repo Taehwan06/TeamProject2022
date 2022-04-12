@@ -191,6 +191,35 @@
 	    		#{writer}
 	    	)
     </insert>
+    <update id="qna_reply" parameterType="Store_qnaVO">
+    	UPDATE shopping_qna
+
+		SET answer = 'Y'
+			,answer_content = #{answer_content}
+			,answer_writer = #{answer_writer}
+			,amidx = #{amidx}
+			,answer_date = CURRENT_TIMESTAMP
+		
+		WHERE sqidx=#{sqidx}
+    
+    </update>
+     <update id="qna_a_del" parameterType="int">
+    	UPDATE shopping_qna
+
+		SET answer = 'N'
+		
+		WHERE sqidx=#{sqidx}
+    
+    </update>
+    <update id="qna_q_del" parameterType="int">
+    	UPDATE shopping_qna
+
+		SET del_yn = 'Y'
+			,del_date = CURRENT_TIMESTAMP
+		
+		WHERE sqidx=#{sqidx}
+    
+    </update>
     
     
     

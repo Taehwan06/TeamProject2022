@@ -458,7 +458,62 @@ public class StoreController {
 		
 		return result+"";
 	}
+	@RequestMapping(value = "/store_qna_q_del.do", method = RequestMethod.POST)
+	public @ResponseBody String store_qna_q_delOK(HttpServletRequest request, Locale locale, Model model, int sqidx, int midx) throws Exception {
+		
+		int deleteResult = homeService.deleteSearchList();
+		
+		List<HomeSearchVO> searchList = homeService.listSearchList();
+		
+		model.addAttribute("searchList", searchList);
+		
+		HttpSession session = request.getSession();
+		MemberVO member = (MemberVO)session.getAttribute("loginUser");
+		
+		int result=0;
+		if(member==null) {return "redirect:/login/login.do";}
+		if(member.getMidx() == midx) {
+			result = storeService.qna_q_del(sqidx);
+		}
+		return result+"";
+	}
 	
+	@RequestMapping(value = "/store_qna_a_insert.do", method = RequestMethod.POST)
+	public @ResponseBody String store_qna_a_insertOK(HttpServletRequest request, Locale locale, Model model, Store_qnaVO vo) throws Exception {
+		
+		int deleteResult = homeService.deleteSearchList();
+		
+		List<HomeSearchVO> searchList = homeService.listSearchList();
+		
+		model.addAttribute("searchList", searchList);
+		
+		HttpSession session = request.getSession();
+		MemberVO member = (MemberVO)session.getAttribute("loginUser");
+		vo.setAmidx(member.getMidx());
+		vo.setAnswer_writer(member.getNick_name());
+		
+		int result = storeService.qna_reply(vo);
+		
+		return result+"";
+	}
+	@RequestMapping(value = "/store_qna_a_del.do", method = RequestMethod.POST)
+	public @ResponseBody String store_qna_a_delOK(HttpServletRequest request, Locale locale, Model model, int sqidx) throws Exception {
+		
+		int deleteResult = homeService.deleteSearchList();
+		
+		List<HomeSearchVO> searchList = homeService.listSearchList();
+		
+		model.addAttribute("searchList", searchList);
+		
+		HttpSession session = request.getSession();
+		MemberVO member = (MemberVO)session.getAttribute("loginUser");
+		int result=0;
+		if(member==null) {return "redirect:/login/login.do";}
+		if(member.getGrade().equals("A")) {
+			result = storeService.qna_a_del(sqidx);
+		}
+		return result+"";
+	}
 	
 	@RequestMapping(value = "/basketIn.do", method = RequestMethod.GET)
 	@ResponseBody
@@ -491,41 +546,6 @@ public class StoreController {
 	}
 	
 	
-	@RequestMapping(value = "/category.do", method = RequestMethod.GET)
-	public String category(Locale locale, Model model, SearchVO vo) throws Exception {
-		
-		int deleteResult = homeService.deleteSearchList();
-		
-		List<HomeSearchVO> searchList = homeService.listSearchList();
-		
-		model.addAttribute("searchList", searchList);
-			
-		return "store/category";
-	}
-	
-	@RequestMapping(value = "/best.do", method = RequestMethod.GET)
-	public String best(Locale locale, Model model, SearchVO vo) throws Exception {
-		
-		int deleteResult = homeService.deleteSearchList();
-		
-		List<HomeSearchVO> searchList = homeService.listSearchList();
-		
-		model.addAttribute("searchList", searchList);
-			
-		return "store/best";
-	}
-	
-	@RequestMapping(value = "/hotdeal.do", method = RequestMethod.GET)
-	public String hotdeal(Locale locale, Model model, SearchVO vo) throws Exception {
-		
-		int deleteResult = homeService.deleteSearchList();
-		
-		List<HomeSearchVO> searchList = homeService.listSearchList();
-		
-		model.addAttribute("searchList", searchList);
-			
-		return "store/hotdeal";
-	}
 	
 	@RequestMapping(value = "/recommend.do", method = RequestMethod.GET)
 	public String recommend(Locale locale, Model model, SearchVO vo) throws Exception {
@@ -550,6 +570,11 @@ public class StoreController {
 			
 		return "store/likey";
 	}
+	
+	
+	
+	
+	
 	
 	@RequestMapping(value = "/event.do", method = RequestMethod.GET)
 	public String event(Locale locale, Model model, SearchVO vo) throws Exception {

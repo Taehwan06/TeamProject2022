@@ -313,6 +313,22 @@ article{
 .hiddenCnt{
 	display: none;
 }
+/*문의Css*/
+/*답변*/
+.A_textarea{
+	width: 100%;
+	border: none;
+	resize: none; 
+	background-color: transparent;
+}
+.A_textarea:focus{
+	outline: none;
+}
+.style_none_button{
+	padding: 0;
+	border: none;
+	background: none;
+}
 
 /*문의영역*/
 #QnA_area ul{
