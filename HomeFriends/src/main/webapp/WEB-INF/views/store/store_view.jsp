@@ -29,6 +29,8 @@
 	<script>
 		var spidx=${vo.spidx};
 		var price=${vo.sale_price};
+		var loginYN=${!empty loginUser};
+		var midx = "${loginUser.midx}";
 	</script>
 	
 	<style>
@@ -93,7 +95,16 @@
 				</div>
 				<div class="row delivery">
 					<div class="col-sm-2 col-md-2 delivery_">배송</div>
-					<div class="col-sm-4 col-md-4 delivery__">배송 상품정보 참고</div>
+					<div class="col-sm-4 col-md-4 delivery__">
+						<c:choose>
+						    <c:when test="${vo.free_delivery eq 'Y'}">
+						        무료배송
+						    </c:when>
+						    <c:otherwise>
+						        ${vo.delivery_charge}원
+						    </c:otherwise>
+						</c:choose>
+					</div>
 				</div>
 				<div class="row selectbox">
 					<select class="form-select form-select-lg">
@@ -176,8 +187,8 @@
 					<img src= "/controller/image/review02.PNG">
 				</div>
 				<div id="QnA_area_header">
-					<div>문의 <span>6,106</span></div>
-					<div id="QnAwrite" onClick="location.href='store_qna_insert.do?spidx=${vo.spidx}'">문의하기</div>
+					<div>문의 <span>${vo.qna_cnt}</span></div>
+					<div id="QnAwrite" onClick="qnaInFn()">문의하기</div>
 				</div>
 				<div id="QnA_area">
 					<ul class="qna_list">
@@ -187,7 +198,10 @@
 									<div>
 										<span class="qna_qa">Q</span> ${qna.writer} <span class="qna_day">${qna.w_day}</span>
 										<c:if test="${loginUser.grade eq 'A' && qna.answer eq 'N'}">
-											<span class="A_write">답변하기</span>
+											<span class="A_write" onclick="A_writeFn(this,${qna.sqidx})">답변하기</span>
+										</c:if>
+										<c:if test="${loginUser.midx eq qna.midx}">
+											<span class="A_write" onclick="Q_delFn(${qna.sqidx})">삭제하기</span>
 										</c:if>
 									</div>
 									<div class="qna_content_font qna_q_back">${qna.content}</div>
@@ -197,7 +211,8 @@
 									<div>
 										<span class="qna_qa">A</span> ${qna.answer_writer} <span class="qna_day">${qna.a_day}</span>
 										<c:if test="${loginUser.grade eq 'A'}">
-											<span class="A_write">수정하기</span>
+											<span class="A_write" onclick="A_modifyFn(this,${qna.sqidx})">수정하기</span>
+											<span class="A_write" onclick="A_delFn(${qna.sqidx})">삭제하기</span>
 										</c:if>
 									</div>
 									<div class="qna_content_font qna_a_back">${qna.answer_content}</div>

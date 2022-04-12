@@ -18,5 +18,8 @@ public interface StoreService {
 	List<Store_qnaVO> qnaList(int spidx) throws Exception;
 	int qna_cnt(int spidx) throws Exception;
 	int qnaIn(Store_qnaVO vo) throws Exception;
+	int qna_reply(Store_qnaVO vo) throws Exception;
+	int qna_a_del(int sqidx) throws Exception;
+	int qna_q_del(int sqidx) throws Exception;
 	
 }
