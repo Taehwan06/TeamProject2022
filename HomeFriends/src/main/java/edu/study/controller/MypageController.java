@@ -29,6 +29,7 @@ import edu.study.vo.BasketVO;
 import edu.study.vo.Community_BoardVO;
 import edu.study.vo.HomeSearchVO;
 import edu.study.vo.MemberVO;
+import edu.study.vo.MyContentVO;
 import edu.study.vo.OrderListVO;
 import edu.study.vo.PayInfoVO;
 import edu.study.vo.SearchVO;
@@ -380,6 +381,68 @@ public class MypageController {
 		      
 	    }
 	}
+	
+	
+
+	@RequestMapping(value = "/my_comment.do", method = RequestMethod.GET)
+	public String my_comment(Locale locale, Model model, SearchVO vo, HttpServletRequest request ,MyContentVO list) throws Exception {
+
+		HttpSession session = request.getSession(); 
+		MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
+
+	    if(loginUser == null) {
+	         return "redirect:/login/login.do";
+	    }else {
+		
+			int deleteResult = homeService.deleteSearchList();
+			List<HomeSearchVO> searchList = homeService.listSearchList();
+			model.addAttribute("searchList", searchList);
+			    	  
+	    	MemberVO result = mypageService.detail(loginUser.getMidx());
+	  		model.addAttribute("vo", result);
+	  		
+	  		int Midx = loginUser.getMidx();
+			list.setMidx(Midx);
+	  		
+	  		List<MyContentVO> Commentlist = mypageService.mycomment(list);
+	  		model.addAttribute("Commentlist", Commentlist);
+	  		
+	  		return "mypage/my_comment";
+		      
+	    }
+	}
+	
+
+	@RequestMapping(value = "/my_QnA.do", method = RequestMethod.GET)
+	public String my_QnA(Locale locale, Model model, SearchVO vo, HttpServletRequest request ,MyContentVO list) throws Exception {
+
+		HttpSession session = request.getSession(); 
+		MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
+
+	    if(loginUser == null) {
+	         return "redirect:/login/login.do";
+	    }else {
+		
+			int deleteResult = homeService.deleteSearchList();
+			List<HomeSearchVO> searchList = homeService.listSearchList();
+			model.addAttribute("searchList", searchList);
+			    	  
+	    	MemberVO result = mypageService.detail(loginUser.getMidx());
+	  		model.addAttribute("vo", result);
+	  		
+	  		int Midx = loginUser.getMidx();
+			list.setMidx(Midx);
+	  		
+	  		List<MyContentVO> Commentlist = mypageService.mycomment(list);
+	  		model.addAttribute("Commentlist", Commentlist);
+	  		
+	  		return "mypage/my_QnA";
+		      
+	    }
+	}
+	
+	
+	
 	
 	@RequestMapping(value = "/detailOrder.do", method = RequestMethod.GET)
 	public String detailOrder(Locale locale, Model model, SearchVO vo, HttpServletRequest request, OrderListVO orderlist) throws Exception {
@@ -927,7 +990,8 @@ public class MypageController {
 	public String fileUpload(Locale locale, Model model, HttpServletRequest request, @RequestParam("imgFile") MultipartFile imgFile) throws Exception {
 		
 		//String savePath = "C://Users//lth-m//git//TeamProject2022//HomeFriends//src//main//webapp//resources//image";  // 파일이 저장될 프로젝트 안의 폴더 경로
-		String savePath = request.getServletContext().getRealPath("/resources/image");  // 파일이 저장될 프로젝트 안의 폴더 경로
+		//String savePath = request.getServletContext().getRealPath("/resources/image");  // 파일이 저장될 프로젝트 안의 폴더 경로
+		String savePath ="C://Users//MYCOM//git//TeamProject2022//HomeFriends//src//main//webapp//resources//image";
 		
 	    String originalFilename = imgFile.getOriginalFilename(); // fileName.jpg
 	    String onlyFileName = originalFilename.substring(0, originalFilename.indexOf(".")); // fileName
