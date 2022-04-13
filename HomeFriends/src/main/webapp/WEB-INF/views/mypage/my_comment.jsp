@@ -13,11 +13,11 @@
    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css" />
 
-	<title>나의 홈스토리</title>
+	<title>내가 작성한 댓글 보기</title>
 
 	<link href="/controller/css/header.css" rel="stylesheet">
 	<link href="/controller/css/nav.css" rel="stylesheet">
-	<link href="/controller/css/mypage/mypage.css" rel="stylesheet">
+	<link href="/controller/css/mypage/my_comment.css" rel="stylesheet">
 	<link href="/controller/css/footer.css" rel="stylesheet">
 	
 	<script src="/controller/js/jquery-3.6.0.min.js"></script>
@@ -65,16 +65,31 @@
 <!-- ===============================================================프로필영역================================================================ -->
 <!-- ==================================================================================================================================== -->
 			<div class="col-12 col-lg-9 mydiv2">
-				<div class="mydivtitle mydiv2-2">나의 홈스토리</div>
-				<div id="AllstoryDiv">	
-					<c:forEach items="${Storylist}" var="vo" varStatus="cnt">
-						<div id ="myStoryDiv">
-							<input type="hidden" value="${vo.cbidx}">
-							<a href="/controller/community/home_view.do?cbidx=${vo.cbidx}&nowPage=1"><img class="all_homestroy_img" src="/controller/upload/${vo.img_system}"><br><span>${vo.title} </span></a>
-						</div>	
-					</c:forEach>	
-					
-				</div>
+				<div class="mydivtitle mydiv2-2">나의 댓글</div>
+				<div class="mydivVacant"></div>
+			<c:forEach items="${Commentlist}" var="vo" varStatus="cnt">
+				<div id="mycomment">	
+					<div class="row">
+						<div class="col-8">
+							<p class="p1">
+								<i class="bi bi-chat chat"></i> 
+								<a href="/controller/community/home_view.do?cbidx=${vo.cbidx}&nowPage=1#reply_area">${vo.content}</a>
+							</p>
+							<p class="p2">${vo.title}</p> 
+							<p class="p3">
+								<strong>${vo.writer}</strong>
+								${vo.write_date}&nbsp;&#183; 
+								댓글&nbsp;${vo.reply_cnt}&nbsp;&#183; 
+								조회&nbsp;${vo.hit_cnt}
+							</p>	
+						</div>
+						<div class="col-4 comment2">
+							<a href="/controller/community/home_view.do?cbidx=${vo.cbidx}&nowPage=1"><img src="/controller/image/${vo.img_origin}"></a>
+						</div>
+						<div class="mydivVacant"></div>
+					</div>
+				</div>	
+			</c:forEach>
 			</div>
 		</div>
 		<br><br><br><br>

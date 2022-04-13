@@ -2,12 +2,14 @@ package edu.study.dao;
 
 import java.util.List;
 
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import edu.study.vo.Community_BoardVO;
 import edu.study.vo.MemberVO;
+import edu.study.vo.MyContentVO;
 import edu.study.vo.SearchVO;
 import edu.study.vo.OrderListVO;
 
@@ -83,6 +85,11 @@ public class MypageDAO {
 	public List<OrderListVO> detailOrder(OrderListVO vo) throws Exception{ 
 		return sqlSession.selectList(Namespace+".detailOrder",vo);
 	}
+	
+	public List<MyContentVO> mycomment(MyContentVO vo) throws Exception{ 
+		return sqlSession.selectList(Namespace+".mycomment",vo);
+	}
+	
 	
 }
 

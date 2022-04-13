@@ -13,11 +13,11 @@
    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css" />
 
-	<title>나의 홈스토리</title>
+	<title>나의 문의</title>
 
 	<link href="/controller/css/header.css" rel="stylesheet">
 	<link href="/controller/css/nav.css" rel="stylesheet">
-	<link href="/controller/css/mypage/mypage.css" rel="stylesheet">
+	<link href="/controller/css/mypage/my_QnA.css" rel="stylesheet">
 	<link href="/controller/css/footer.css" rel="stylesheet">
 	
 	<script src="/controller/js/jquery-3.6.0.min.js"></script>
@@ -65,16 +65,29 @@
 <!-- ===============================================================프로필영역================================================================ -->
 <!-- ==================================================================================================================================== -->
 			<div class="col-12 col-lg-9 mydiv2">
-				<div class="mydivtitle mydiv2-2">나의 홈스토리</div>
-				<div id="AllstoryDiv">	
-					<c:forEach items="${Storylist}" var="vo" varStatus="cnt">
-						<div id ="myStoryDiv">
-							<input type="hidden" value="${vo.cbidx}">
-							<a href="/controller/community/home_view.do?cbidx=${vo.cbidx}&nowPage=1"><img class="all_homestroy_img" src="/controller/upload/${vo.img_system}"><br><span>${vo.title} </span></a>
-						</div>	
-					</c:forEach>	
-					
+				<div class="mydivtitle mydiv2-2">나의 문의</div>
+				<div class="mydivVacant"></div>
+				
+				<div id="mycomment">	
+					<div class="row">
+						<div class="col-8">
+							<p class="p1">
+							<i class="bi bi-question-circle-fill chat"></i>
+								배송은 언제쯤 받아볼 수 있나요?
+							</p>
+							<p class="p3">
+								<strong>바자르</strong>&nbsp;
+								모로코 로맨틱 광목 가리개 커튼(창문형/긴창형)&nbsp;&#183;&nbsp;
+								2022-04-12
+							</p>	
+						</div>
+						<div class="col-4 comment2">
+							<img src="/controller/image/curtain01.jpg">
+						</div>
+						<div class="mydivVacant"></div>
+					</div>
 				</div>
+			
 			</div>
 		</div>
 		<br><br><br><br>
