@@ -12,7 +12,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css" />
 	
-	<title>상품 문의</title>
+	<title>상품 문의 수정</title>
 	
 	
 	<!-- 부트스트랩 -->
@@ -33,7 +33,7 @@
 	<script src="/controller/js/header.js"></script>
 	<script src="/controller/js/nav.js"></script>
 	<script src="/controller/js/footer.js"></script>
-	<script src="/controller/js/store/store_qna_insert.js"></script>
+	<script src="/controller/js/store/store_qna_modify.js"></script>
 	
 	<!-- 썸머노트 -->
 	<script src="/controller/js/summernote/summernote-lite.js"></script>
@@ -41,6 +41,7 @@
 	<link rel="stylesheet" href="/controller/css/summernote/summernote-lite.css">
 	<script>
 		var spidx = "${param.spidx}";
+		var sqidx = "${qna_vo.sqidx}";
 	</script>
 	
 
@@ -58,10 +59,10 @@
 				<div id="product_title" class="col-8 col-md-8"><c:out value="${vo.product_name}"/></div>
 			</div>
 			
-			<h2 id="page_sub_title">상품문의</h2>
+			<h2 id="page_sub_title">상품 문의 수정</h2>
 			
 			<div id="textArea">
-				<textarea id="summernote" name="content"></textarea>
+				<textarea id="summernote" name="content"><c:out value="${qna_vo.content}"/></textarea>
 			</div>
 			
 			<div id="contentInfo">필수 입력 항목입니다.</div>

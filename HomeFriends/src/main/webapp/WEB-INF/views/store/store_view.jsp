@@ -112,29 +112,7 @@
 						<option value="01" data-image="/shop05.webp" onClick="">${vo.product_name}</option>
 					</select>
 				</div>
-				<%-- <div> 만들다가 말음 상품선택및 갯수선택박스
-					<h2>selectValue</h2>
-					<button class="selling-option-item__delete" type="button" aria-label="삭제">
-						<svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor" preserveAspectRatio="xMidYMid meet">
-							<path fill-rule="nonzero" d="M6 4.6L10.3.3l1.4 1.4L7.4 6l4.3 4.3-1.4 1.4L6 7.4l-4.3 4.3-1.4-1.4L4.6 6 .3 1.7 1.7.3 6 4.6z">
-							</path>
-						</svg>
-					</button>
-					<select class="form-control">
-						<option value="1">1</option>
-						<option value="2">2</option>
-						<option value="3">3</option>
-						<option value="4">4</option>
-						<option value="5">5</option>
-						<option value="6">6</option>
-						<option value="7">7</option>
-						<option value="8">8</option>
-						<option value="9">9</option>
-						<option value="10">10+</option>
-					</select>
-					<input type="number" value="1">
-					<div><span>${vo.sale_price}</span>원</div>
-				</div> --%>
+				
 				<div class="row order_price">
 					<div class="col-sm-6 col-md-6 order_price_">
 						<select id="selectCnt" class="form-control" style="width: 70px; text-align: center;" onChange="cntFn()">
@@ -180,11 +158,44 @@
 				</div>
 				<div id="review_area_header">
 					<div>리뷰 <span>${vo.review_cnt}</span></div>
-					<div id="reviewwrite">리뷰쓰기</div>
+					<div id="reviewwrite" onclick="location.href='store_review_insert.do?spidx=50'">리뷰쓰기</div>
 				</div>
 				<div id="review_area">
 					<img src= "/controller/image/review01.PNG">
 					<img src= "/controller/image/review02.PNG">
+					
+					
+					
+					<form class="mb-3" name="myform" id="myform" method="post">
+						<fieldset>
+							<span class="text-bold">별점을 선택해주세요</span>
+							<input type="radio" name="reviewStar" value="5" id="rate1"><label
+								for="rate1">★</label>
+							<input type="radio" name="reviewStar" value="4" id="rate2"><label
+								for="rate2">★</label>
+							<input type="radio" name="reviewStar" value="3" id="rate3"><label
+								for="rate3">★</label>
+							<input type="radio" name="reviewStar" value="2" id="rate4"><label
+								for="rate4">★</label>
+							<input type="radio" name="reviewStar" value="1" id="rate5"><label
+								for="rate5">★</label>
+						</fieldset>
+						<div>
+							<textarea class="col-auto form-control" type="text" id="reviewContents"
+									  placeholder="좋은 수강평을 남겨주시면 Cocolo에 큰 힘이 됩니다! 포인트 5000p도 지급!!"></textarea>
+						</div>
+					</form>	
+					
+					
+					
+					<%-- <ul class="review_list">
+					
+						<c:forEach items="${reviewList}" var="review">
+							<li class="review_list_item">
+								
+							</li>
+						</c:forEach>
+					</ul> --%>
 				</div>
 				<div id="QnA_area_header">
 					<div>문의 <span>${vo.qna_cnt}</span></div>
@@ -199,6 +210,9 @@
 										<span class="qna_qa">Q</span> ${qna.writer} <span class="qna_day">${qna.w_day}</span>
 										<c:if test="${loginUser.grade eq 'A' && qna.answer eq 'N'}">
 											<span class="A_write" onclick="A_writeFn(this,${qna.sqidx})">답변하기</span>
+										</c:if>
+										<c:if test="${loginUser.midx eq qna.midx}">
+											<span class="A_write" onclick="Q_modifyFn(${qna.sqidx})">수정하기</span>
 										</c:if>
 										<c:if test="${loginUser.midx eq qna.midx}">
 											<span class="A_write" onclick="Q_delFn(${qna.sqidx})">삭제하기</span>
