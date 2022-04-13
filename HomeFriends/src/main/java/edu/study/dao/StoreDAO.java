@@ -66,6 +66,12 @@ public class StoreDAO {
 	public int qna_q_del(int sqidx) throws Exception {
 		return sqlSession.update(Namespace+".qna_q_del",sqidx);
 	}
+	public Store_qnaVO qna_detail(int sqidx) throws Exception {
+		return sqlSession.selectOne(Namespace+".qna_detail",sqidx);
+	}
+	public int qna_modify(Store_qnaVO vo) throws Exception {
+		return sqlSession.update(Namespace+".qna_modify",vo);
+	}
 	
 	
 }

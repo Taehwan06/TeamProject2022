@@ -85,7 +85,7 @@ public class StoreController {
 				for (int i = size - 1, j = 0; i >= 0; i--, j++) {
 					reverseSpidxAry[j] = spidxAryDup[i];
 				}
-				LinkedHashSet<String> linkedHashSet = new LinkedHashSet<>(Arrays.asList(reverseSpidxAry));
+				LinkedHashSet<String> linkedHashSet = new LinkedHashSet<String>(Arrays.asList(reverseSpidxAry));
 				
 				String[] spidxAry = linkedHashSet.toArray(new String[0]);
 			
@@ -337,7 +337,7 @@ public class StoreController {
 						for (int i = size - 1, j = 0; i >= 0; i--, j++) {
 							reverseSpidxAry[j] = spidxAryDup[i];
 						}
-						LinkedHashSet<String> linkedHashSet = new LinkedHashSet<>(Arrays.asList(reverseSpidxAry));
+						LinkedHashSet<String> linkedHashSet = new LinkedHashSet<String>(Arrays.asList(reverseSpidxAry));
 						
 						String[] spidxAry = linkedHashSet.toArray(new String[0]);
 					
@@ -429,6 +429,42 @@ public class StoreController {
 		return "store/store_view";
 	}
 	
+	@RequestMapping(value = "/store_review_insert.do", method = RequestMethod.GET)
+	public String store_review_insert(Locale locale, Model model, int spidx) throws Exception {
+		
+		int deleteResult = homeService.deleteSearchList();
+		
+		List<HomeSearchVO> searchList = homeService.listSearchList();
+		
+		model.addAttribute("searchList", searchList);
+		
+		StoreVO selectOne = storeService.detail(spidx);
+		
+		model.addAttribute("vo", selectOne);	
+		
+		model.addAttribute("spidx", spidx);	
+		return "store/store_review_insert";
+	}
+	@RequestMapping(value = "/store_review_insert.do", method = RequestMethod.POST)
+	public @ResponseBody String store_review_insertOK(HttpServletRequest request, Locale locale, Model model, Store_qnaVO vo) throws Exception {
+		
+		int deleteResult = homeService.deleteSearchList();
+		
+		List<HomeSearchVO> searchList = homeService.listSearchList();
+		
+		model.addAttribute("searchList", searchList);
+		
+		HttpSession session = request.getSession();
+		MemberVO member = (MemberVO)session.getAttribute("loginUser");
+		vo.setMidx(member.getMidx());
+		vo.setWriter(member.getNick_name());
+		
+		int result = storeService.qnaIn(vo);
+		
+		return result+"";
+	}
+	
+	
 	@RequestMapping(value = "/store_qna_insert.do", method = RequestMethod.GET)
 	public String store_qna_insert(Locale locale, Model model, int spidx) throws Exception {
 		
@@ -437,6 +473,11 @@ public class StoreController {
 		List<HomeSearchVO> searchList = homeService.listSearchList();
 		
 		model.addAttribute("searchList", searchList);
+		
+		StoreVO selectOne = storeService.detail(spidx);
+		
+		model.addAttribute("vo", selectOne);	
+		
 		model.addAttribute("spidx", spidx);	
 		return "store/store_qna_insert";
 	}
@@ -458,6 +499,44 @@ public class StoreController {
 		
 		return result+"";
 	}
+	@RequestMapping(value = "/store_qna_modify.do", method = RequestMethod.GET)
+	public String store_qna_modify(Locale locale, Model model, int spidx, int sqidx) throws Exception {
+		
+		int deleteResult = homeService.deleteSearchList();
+		
+		List<HomeSearchVO> searchList = homeService.listSearchList();
+		
+		model.addAttribute("searchList", searchList);
+		
+		StoreVO selectOne = storeService.detail(spidx);
+		model.addAttribute("vo", selectOne);	
+		
+		Store_qnaVO qna_vo = storeService.qna_detail(sqidx);
+		model.addAttribute("qna_vo", qna_vo);
+		
+		
+		model.addAttribute("spidx", spidx);	
+		return "store/store_qna_modify";
+	}
+	@RequestMapping(value = "/store_qna_modify.do", method = RequestMethod.POST)
+	public @ResponseBody String store_qna_modifyOK(HttpServletRequest request, Locale locale, Model model, Store_qnaVO vo) throws Exception {
+		
+		int deleteResult = homeService.deleteSearchList();
+		
+		List<HomeSearchVO> searchList = homeService.listSearchList();
+		
+		model.addAttribute("searchList", searchList);
+		
+		HttpSession session = request.getSession();
+		MemberVO member = (MemberVO)session.getAttribute("loginUser");
+		vo.setMidx(member.getMidx());
+		vo.setWriter(member.getNick_name());
+		
+		int result = storeService.qna_modify(vo);
+		
+		return result+"";
+	}
+	
 	@RequestMapping(value = "/store_qna_q_del.do", method = RequestMethod.POST)
 	public @ResponseBody String store_qna_q_delOK(HttpServletRequest request, Locale locale, Model model, int sqidx, int midx) throws Exception {
 		

@@ -15,13 +15,13 @@ function submitFn(){
 	if(result){
 		$.ajax({
 			type : "POST",
-			url : "store_qna_insert.do",
-			data : $("#insertFrm").serialize()+"&spidx="+spidx,
+			url : "store_qna_modify.do",
+			data : $("#insertFrm").serialize()+"&sqidx="+sqidx,
 			success : function(res) {
 				
 				console.log(res);
 				if(res>0){
-					alert("상품문의가 등록되었습니다.");
+					alert("상품문의가 수정되었습니다.");
 					location.href="store_view.do?spidx="+spidx;
 				}else{
 					alert("실행오류");

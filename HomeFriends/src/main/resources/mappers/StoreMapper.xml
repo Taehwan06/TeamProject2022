@@ -174,8 +174,18 @@
            	AND spidx = #{spidx}
     </select>
     
+    <select id="qna_detail" resultType="Store_qnaVO" parameterType="int">
+         SELECT *
+         		,date_format(write_date, '%Y-%m-%d') w_day
+         		,date_format(answer_date, '%Y-%m-%d') a_day
+           FROM shopping_qna
+          WHERE 1=1
+            AND del_yn = 'N' 
+           	AND sqidx = #{sqidx}
+    </select>
+    
     <select id="qna_cnt" resultType="int" parameterType="int">
-	    	select count(*) from shopping_qna where spidx = #{spidx}
+	    	select count(*) from shopping_qna where del_yn = 'N' AND spidx = #{spidx}
     </select>
     
     <insert id="insertqna" parameterType="Store_qnaVO">
@@ -191,6 +201,15 @@
 	    		#{writer}
 	    	)
     </insert>
+    <update id="qna_modify" parameterType="Store_qnaVO">
+    	UPDATE shopping_qna
+
+		SET content = #{content}
+			,modify_yn = 'Y'
+			,modify_date = CURRENT_TIMESTAMP
+		
+		WHERE sqidx=#{sqidx}
+    </update>
     <update id="qna_reply" parameterType="Store_qnaVO">
     	UPDATE shopping_qna
 
@@ -221,6 +240,14 @@
     
     </update>
     
+    <!-- 리뷰작업중 미완료상태 -->
+    <select id="temp" resultType="Store_reviewVO" parameterType="int">
+    	SELECT sr.*, m.profile_origin, m.profile_system, m.nick_name
+		FROM shopping_review sr
+		INNER JOIN member m
+		ON sr.midx = m.midx
+		where sr.spidx = #{spidx} and sr.del_yn='N';
+    </select>
     
     
 </mapper>

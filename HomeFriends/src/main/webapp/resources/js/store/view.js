@@ -275,6 +275,13 @@ function qnaInFn(){
 		alert("로그인 후 이용하여 주세요.");
 	}
 }
+function Q_modifyFn(sqidx){
+	if(loginYN){
+		location.href="store_qna_modify.do?spidx="+spidx+"&sqidx="+sqidx;
+	}else{
+		alert("로그인 후 이용하여 주세요.");
+	}
+}
 
 //답변작성란출력
 function A_writeFn(obj,sqidx){
