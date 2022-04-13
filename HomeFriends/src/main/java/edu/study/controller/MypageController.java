@@ -4,6 +4,8 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -811,10 +813,10 @@ public class MypageController {
 	
 	@RequestMapping(value = "/payment.do", method = RequestMethod.POST)
 	public String payment(Locale locale, Model model, BasketVO vo, HttpServletRequest request) throws Exception {
-
-		HttpSession session = request.getSession(); 
+		
+		HttpSession session = request.getSession();
 		MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
-
+		
 	    if(loginUser == null) {
 	         return "redirect:/login/login.do";
 	    }else {
@@ -823,12 +825,59 @@ public class MypageController {
 			String[] sbidxArray = sbidxStr.split(",");
 			vo.setSbidxArray(sbidxArray);
 			
+			session.setAttribute("BasketVO", vo);
+			
 			List<BasketVO> basketList = basketService.listPayFromBasket(vo);
 			
-			model.addAttribute("basketList", basketList);
+			LocalDateTime now = LocalDateTime.now(); 
+			String ordernumber = now.format(DateTimeFormatter.ofPattern("YYMMddHHmmss"));
 			
-			return "mypage/payment";
-		
+			int midx = loginUser.getMidx();
+			String midxStr = Integer.toString(midx);
+			if(midx < 10) {
+				ordernumber += "000" + midxStr;
+			}else if(midx < 100 && midx > 9) {
+				ordernumber += "00" + midxStr;
+			}else if(midx < 1000 && midx > 99) {
+				ordernumber += "0" + midxStr;
+			}else {
+				ordernumber += midxStr;
+			}
+			
+			System.out.println("ordernumberCon1="+ordernumber);
+			
+			int paidAmount = 0;
+			
+			for(int i = 0; i < basketList.size(); i++) {
+			   
+			   int price = basketList.get(i).getPrice();
+			   int cnt = basketList.get(i).getCnt();
+			   
+			   paidAmount += (price * cnt);
+			}
+			
+			PayInfoVO payInfovo = new PayInfoVO();
+			payInfovo.setMidx(loginUser.getMidx());
+			payInfovo.setAmount(Integer.toString(paidAmount));
+			payInfovo.setPaynumber(ordernumber);
+			
+			model.addAttribute("payInfovo", payInfovo);
+			
+			System.out.println("ordernumberCon2="+ordernumber);
+			
+			int insertPaymentResult = basketService.insertPaymentInfo(payInfovo);
+			
+			if(insertPaymentResult > 0) {
+				model.addAttribute("basketList", basketList);
+				
+				return "mypage/payment";
+			}else {
+				payInfovo.setErrorMsg("비정상적인 접근 error01"); // 주문 목록 불러오기 실패
+				model.addAttribute("payInfovo", payInfovo);
+				
+				return "mypage/order_fail";
+			}
+			
 	    }
 	}
 	
@@ -906,49 +955,39 @@ public class MypageController {
 		}
 	}
 	
-	@RequestMapping(value = "/deleteListBasket", method = RequestMethod.POST)
-	@ResponseBody
-	public String deleteListBasket(Locale locale, Model model, BasketVO vo, HttpServletRequest request) throws Exception {
-		
-		String sbidxStr = request.getParameter("sbidxStr");
-		String[] sbidxArray = sbidxStr.split(",");
-		vo.setSbidxArray(sbidxArray);
-		
-		int result = basketService.deleteListBasket(vo);
-		
-		if(result > 0) {
-			return "success";
-		}else {
-			return "fail";
-		}
-	}
+	/*
+	 * @RequestMapping(value = "/deleteListBasket", method = RequestMethod.POST)
+	 * 
+	 * @ResponseBody public String deleteListBasket(Locale locale, Model model,
+	 * BasketVO vo, HttpServletRequest request) throws Exception {
+	 * 
+	 * String sbidxStr = request.getParameter("sbidxStr"); String[] sbidxArray =
+	 * sbidxStr.split(","); vo.setSbidxArray(sbidxArray);
+	 * 
+	 * int result = basketService.deleteListBasket(vo);
+	 * 
+	 * if(result > 0) { return "success"; }else { return "fail"; } }
+	 */
 	
-	@RequestMapping(value = "/insertOrderList", method = RequestMethod.POST)
-	@ResponseBody
-	public String insertOrderList(Locale locale, Model model, BasketVO vo, HttpServletRequest request) throws Exception {
-		
-		String ordernumber = request.getParameter("ordernumber");
-		vo.setOrdernumber(ordernumber);
-		vo.setPaynumber(ordernumber);
-		
-		String sbidxStr = request.getParameter("sbidxStr");
-		String[] sbidxArray = sbidxStr.split(",");
-		
-		int size = sbidxArray.length;
-		int totalResult = 0;
-		
-		for(int i=0; i<size; i++) {
-			vo.setSbidx(Integer.parseInt(sbidxArray[i]));
-			int result = basketService.insertOrderList(vo);
-			totalResult += result;
-		}
-		
-		if(totalResult == size) {
-			return "success";
-		}else {
-			return "fail";
-		}
-	}
+	/*
+	 * @RequestMapping(value = "/insertOrderList", method = RequestMethod.POST)
+	 * 
+	 * @ResponseBody public String insertOrderList(Locale locale, Model model,
+	 * BasketVO vo, HttpServletRequest request) throws Exception {
+	 * 
+	 * String ordernumber = request.getParameter("ordernumber");
+	 * vo.setOrdernumber(ordernumber); vo.setPaynumber(ordernumber);
+	 * 
+	 * String sbidxStr = request.getParameter("sbidxStr"); String[] sbidxArray =
+	 * sbidxStr.split(",");
+	 * 
+	 * int size = sbidxArray.length; int totalResult = 0;
+	 * 
+	 * for(int i=0; i<size; i++) { vo.setSbidx(Integer.parseInt(sbidxArray[i])); int
+	 * result = basketService.insertOrderList(vo); totalResult += result; }
+	 * 
+	 * if(totalResult == size) { return "success"; }else { return "fail"; } }
+	 */
 	
 	@RequestMapping(value = "/directPayment.do", method = RequestMethod.GET)
 	public String directPayment(Locale locale, Model model, BasketVO vo, HttpServletRequest request) throws Exception {
@@ -1035,17 +1074,80 @@ public class MypageController {
 	@RequestMapping(value = "/payConfirm", method = RequestMethod.POST)
 	public String payConfirm(Locale locale, Model model, PayInfoVO payInfovo, HttpServletRequest request) throws Exception {
 		
+		HttpSession session = request.getSession();
+		MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
+		
 		model.addAttribute("payInfovo", payInfovo);
 		
 		if(payInfovo.getErrorMsg() == null || payInfovo.getErrorMsg().equals("")) {
 			
-			return "mypage/order_success";
-						
+			payInfovo.setMidx(loginUser.getMidx());
+//			payInfovo.setPaynumber(payInfovo.getMerchantUid());
+			payInfovo.setAmount(payInfovo.getPaidAmount());
+			
+			System.out.println("paynumber="+payInfovo.getPaynumber());
+			System.out.println("amount="+payInfovo.getAmount());
+			System.out.println("midx="+payInfovo.getMidx());
+			
+			PayInfoVO checkvo = basketService.payConfirm(payInfovo);
+			
+			System.out.println("checkvo="+checkvo);
+			
+			if(checkvo != null) {
+				
+				// insertOrderList
+				String ordernumber = payInfovo.getMerchantUid();
+					
+				BasketVO basketvo = (BasketVO)session.getAttribute("BasketVO");
+				
+				basketvo.setOrdernumber(ordernumber);
+				basketvo.setPaynumber(ordernumber);
+				
+				String[] sbidxArray = basketvo.getSbidxArray();
+				
+				int size = sbidxArray.length;
+				int totalResult = 0;
+				
+				for(int i=0; i<size; i++) {
+					basketvo.setSbidx(Integer.parseInt(sbidxArray[i]));
+					int result = basketService.insertOrderList(basketvo);
+					totalResult += result;
+				}
+				
+				if(totalResult != size) {
+					payInfovo.setErrorMsg("비정상적인 접근 error02"); // 주문 내역에 추가 실패
+					model.addAttribute("payInfovo", payInfovo);
+					
+					return "mypage/order_fail";
+				}
+				
+				
+				// deleteBasketList
+				int result = basketService.deleteListBasket(basketvo);
+				
+				if(result < 1) {
+					payInfovo.setErrorMsg("비정상적인 접근 error03"); // 장바구니 목록에서 삭제 실패
+					model.addAttribute("payInfovo", payInfovo);
+					
+					return "mypage/order_fail";
+				}
+				
+				
+				return "mypage/order_success"; 
+				
+			}else {
+				payInfovo.setErrorMsg("비정상적인 접근 error04"); // 결제 정보 검증 실패
+				model.addAttribute("payInfovo", payInfovo);
+				
+				return "mypage/order_fail";
+			}
+		
 		}else {
 			
 			return "mypage/order_fail";
 			
 		}
+		
 	}
 	
 }
