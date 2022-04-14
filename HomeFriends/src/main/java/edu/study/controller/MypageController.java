@@ -32,6 +32,7 @@ import edu.study.vo.Community_BoardVO;
 import edu.study.vo.HomeSearchVO;
 import edu.study.vo.MemberVO;
 import edu.study.vo.MyContentVO;
+import edu.study.vo.MyQnaVO;
 import edu.study.vo.OrderListVO;
 import edu.study.vo.PayInfoVO;
 import edu.study.vo.SearchVO;
@@ -416,7 +417,7 @@ public class MypageController {
 	
 
 	@RequestMapping(value = "/my_QnA.do", method = RequestMethod.GET)
-	public String my_QnA(Locale locale, Model model, SearchVO vo, HttpServletRequest request ,MyContentVO list) throws Exception {
+	public String my_QnA(Locale locale, Model model, SearchVO vo, HttpServletRequest request ,MyQnaVO list) throws Exception {
 
 		HttpSession session = request.getSession(); 
 		MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
@@ -435,8 +436,8 @@ public class MypageController {
 	  		int Midx = loginUser.getMidx();
 			list.setMidx(Midx);
 	  		
-	  		List<MyContentVO> Commentlist = mypageService.mycomment(list);
-	  		model.addAttribute("Commentlist", Commentlist);
+	  		List<MyQnaVO> QnAlist = mypageService.myquestion(list);
+	  		model.addAttribute("QnAlist", QnAlist);
 	  		
 	  		return "mypage/my_QnA";
 		      
