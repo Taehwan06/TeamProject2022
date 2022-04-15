@@ -424,8 +424,11 @@ public class StoreController {
 		model.addAttribute("vo",selectOne);
 		//문의글 가져오기
 		List<Store_qnaVO> qnaList = storeService.qnaList(spidx);
-		
 		model.addAttribute("qnaList",qnaList);
+		//리뷰 가져오기
+		List<Store_reviewVO> reviewList = storeService.store_reviewList(spidx);
+		model.addAttribute("reviewList",reviewList);
+
 		
 		return "store/store_view";
 	}
@@ -448,13 +451,13 @@ public class StoreController {
 	}
 	@RequestMapping(value = "/store_review_insert.do", method = RequestMethod.POST)
 	public @ResponseBody String store_review_insertOK(HttpServletRequest request, Locale locale, Model model, Store_reviewVO vo,  @RequestParam String img_style) throws Exception {
-		
+	
 		int deleteResult = homeService.deleteSearchList();
 		
 		List<HomeSearchVO> searchList = homeService.listSearchList();
 		
 		model.addAttribute("searchList", searchList);
-		if(img_style != null && img_style.equals("")) {
+		if(img_style != null && !img_style.equals("") && !img_style.equals("undefined")) {
 			int idx1 = img_style.indexOf("url(");
 			int idx2 = img_style.lastIndexOf("\"");
 			String new_img_style = img_style.substring(idx1+5, idx2);
@@ -468,8 +471,56 @@ public class StoreController {
 		vo.setWriter(member.getNick_name());
 		
 		int result = storeService.store_review_insert(vo);
+		
+		//상품 별점 및 리뷰갯수 갱신
+		StoreVO svo = new StoreVO();
+		svo = storeService.store_review_cnt(vo.getSpidx());
+		svo.setSpidx(vo.getSpidx());
+		double score = svo.getScore()/svo.getReview_cnt();
+		
+		score = Math.round(score * 10) / 10.0;
+
+		svo.setScore(score);
+		storeService.store_review_change(svo);
+		
 		return result+"";
 	}
+	
+	@RequestMapping(value = "/store_review_del.do", method = RequestMethod.POST)
+	public @ResponseBody String store_review_delOK(HttpServletRequest request, Locale locale, Model model,int spidx, int sridx, int midx) throws Exception {
+		
+		int deleteResult = homeService.deleteSearchList();
+		
+		List<HomeSearchVO> searchList = homeService.listSearchList();
+		
+		model.addAttribute("searchList", searchList);
+		
+		HttpSession session = request.getSession();
+		MemberVO member = (MemberVO)session.getAttribute("loginUser");
+		
+		int result=0;
+		if(member==null) {return "redirect:/login/login.do";}
+		if(member.getMidx() == midx) {
+			result = storeService.store_review_del(sridx);
+		}
+		
+		//상품 별점 및 리뷰갯수 갱신
+		StoreVO svo = new StoreVO();
+		svo = storeService.store_review_cnt(spidx);
+		svo.setSpidx(spidx);
+		double score = svo.getScore()/svo.getReview_cnt();
+		
+		score = Math.round(score * 10) / 10.0;
+
+		svo.setScore(score);
+		storeService.store_review_change(svo);
+		//--
+		
+		
+		return result+"";
+	}
+	
+	
 	
 	
 	@RequestMapping(value = "/store_qna_insert.do", method = RequestMethod.GET)

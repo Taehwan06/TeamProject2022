@@ -32,7 +32,7 @@ function submitFn(){
 		/*
 		console.log($("#insertFrm").serialize());*/
 		var content =$("#reviewContents").val();
-		content = content.replace(/(<br>|<brV>|<br V>)/g,'\r\n');
+		content = content.replace(/(\n|\r\n)/g,'<br>');
 		var score = $("input:radio[name='score']:checked").val( );
 		$.ajax({
 			type : "POST",

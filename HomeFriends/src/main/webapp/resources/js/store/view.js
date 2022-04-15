@@ -211,6 +211,7 @@ $(document).ready(function(){
 	/*$("#shop_information_area img").style.width ="200px";*/
 
 	
+	
 
 });
 
@@ -251,6 +252,21 @@ function delFn(){
 	}
 }	
 
+//textarea크기 자동조절
+function adjustHeight() {
+   var textEle = $(".A_textarea");
+   textEle[0].style.height = 'auto';
+   var textEleHeight = textEle.prop('scrollHeight');
+   textEle.css('height', textEleHeight);
+   textEle.css('overflow', 'hidden');
+};
+
+var textEle = $(".A_textarea");
+textEle.on('keyup', function() {
+   adjustHeight();
+});
+
+
 function cntFn(){
 	var selectCnt = $('#selectCnt option:selected').val();
 	if(selectCnt == 10){
@@ -261,6 +277,7 @@ function cntFn(){
 	var sum_price = selectCnt*price;
 	$('.sum_price').text(sum_price);
 }	
+
 function cntFn2(){
 	var selectCnt = $('.hiddenCnt').val();
 	$('#cnt').val(selectCnt);
@@ -268,6 +285,36 @@ function cntFn2(){
 	var sum_price = selectCnt*price;
 	$('.sum_price').text(sum_price);
 }
+
+
+function R_delFn(sridx){
+	var isCancel = false;
+	var tx1 = confirm("리뷰를 삭제하시겠습니까?");
+	if(tx1){
+		isCancel = confirm("확인을 누르면 리뷰가 삭제됩니다.");
+	}
+	
+	if(isCancel){
+		$.ajax({
+			type : "POST",
+			url : "store_review_del.do",
+			data : "sridx="+sridx+"&spidx="+spidx+"&midx="+midx,
+			success : function(res) {
+				console.log(res);
+				if(res>0){
+					alert("리뷰가 삭제되었습니다.");
+					location.reload();
+				}else{
+					alert("실행오류");
+				}
+			}
+		});
+	}
+}
+
+
+
+
 function qnaInFn(){
 	if(loginYN){
 		location.href="store_qna_insert.do?spidx="+spidx;
@@ -299,6 +346,19 @@ function A_writeFn(obj,sqidx){
 				+"</div>"
 				+"</div>"
 	$(obj).parent().parent().after(html);
+	
+	function adjustHeight() {
+	   var textEle = $(".A_textarea");
+	   textEle[0].style.height = 'auto';
+	   var textEleHeight = textEle.prop('scrollHeight');
+	   textEle.css('height', textEleHeight);
+	   textEle.css('overflow', 'hidden');
+	};
+	
+	var textEle = $(".A_textarea");
+	textEle.on('keyup', function() {
+	   adjustHeight();
+	});
 }
 function A_modifyFn(obj,sqidx){
 	$(".qna_a_area_").remove();
@@ -318,7 +378,29 @@ function A_modifyFn(obj,sqidx){
 				+"</div>"
 	$(obj).parent().parent().after(html);
 	$(obj).parent().parent().remove();
+	
+	
+	var textEle = $(".A_textarea");
+    textEle[0].style.height = 'auto';
+    var textEleHeight = textEle.prop('scrollHeight');
+    textEle.css('height', textEleHeight);
+    textEle.css('overflow', 'hidden');
+	
+	function adjustHeight() {
+	   textEle = $(".A_textarea");
+	   textEle[0].style.height = 'auto';
+	   textEleHeight = textEle.prop('scrollHeight');
+	   textEle.css('height', textEleHeight);
+	   textEle.css('overflow', 'hidden');
+	};
+	
+	var textEle = $(".A_textarea");
+	textEle.on('keyup', function() {
+	   adjustHeight();
+	});
 }
+
+
 
 function A_insert(sqidx){
 	var content = $(".A_textarea").val();
