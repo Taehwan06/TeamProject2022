@@ -33,26 +33,6 @@ public class FollowController {
 	 * @throws Exception 
 	 */	
 	
-	//팔로우 요청
-	@RequestMapping(value = "/follow", method = RequestMethod.POST)
-	@ResponseBody
-	public String follow(int midx, HttpSession session, Model model) throws Exception {
-		
-		System.out.println("/follow/" + midx + " : 팔로우 요청");
-		
-		Object object = session.getAttribute("loginUser");
-		MemberVO activeUser = (MemberVO)object;
-		MemberVO passiveUser = memberService.inquiryOfUserByMidx(midx);
-		
-		FollowVO follow = new FollowVO();
-		follow.setActiveUser(activeUser.getMidx());
-		follow.setPassiveUser(passiveUser.getMidx());
-		
-		followService.follow(follow);
-		
-		return "FollowOK";
-	}
-	
 	//언팔로우 요청
 	@RequestMapping(value="/unfollow", method = RequestMethod.POST)
 	@ResponseBody
@@ -65,8 +45,8 @@ public class FollowController {
 		MemberVO passiveUser = memberService.inquiryOfUserByMidx(midx);
 		
 		FollowVO follow = new FollowVO();
-		follow.setActiveUser(activeUser.getMidx());
-		follow.setPassiveUser(passiveUser.getMidx());
+		follow.setMidx(activeUser.getMidx());
+		follow.setFmidx(passiveUser.getMidx());
 		
 		followService.unfollow(follow);
 		
