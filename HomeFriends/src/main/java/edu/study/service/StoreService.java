@@ -26,4 +26,8 @@ public interface StoreService {
 	int qna_modify(Store_qnaVO vo) throws Exception;
 	int store_review_insert(Store_reviewVO vo) throws Exception;
 	
+	List<Store_reviewVO> store_reviewList(int spidx) throws Exception;
+	StoreVO store_review_cnt(int spidx) throws Exception;
+	int store_review_change(StoreVO vo) throws Exception;
+	int store_review_del(int sridx) throws Exception;
 }

@@ -160,39 +160,57 @@
 					<div>리뷰 <span>${vo.review_cnt}</span></div>
 					<div id="reviewwrite" onclick="location.href='store_review_insert.do?spidx=50'">리뷰쓰기</div>
 				</div>
-				<div id="review_area">
-					<img src= "/controller/image/review01.PNG">
-					<img src= "/controller/image/review02.PNG">
+				<div id="review_area">							
+					<section id="reply_area">
+
 					
-					
-					
-					
-					
-					
-					
-					<ul class="review_list">
-					
-						<%-- <c:forEach items="${reviewList}" var="review"> --%>
-							<li class="reply_list_item">
-							<article class="reply_item_">
-								<p class="reply_item_content">
-									<a class="reply_item_content_writer" href="">${rvo.writer }
-										<img class="reply_item_content_writer_image" src="/controller/image/${rvo.profile_system }">
-									</a>
-									<span class="reply_item_content_content">${rvo.content }</span>
-								</p>
-								<footer class="reply_item_footer">
-									<c:if test="${loginUser.midx == rvo.midx }">
-										<div class="mfdel">
-											<button class="replyUpdate" type="button" onclick="">수정</button>
-											<button class="replyDelete" type="button" onclick="">삭제</button>
-										</div>
+						<ul class="reply_list">
+							<c:forEach items="${reviewList}" var="rvo">
+								<li class="reply_list_item">
+									<article class="reply_item_">
+										<p class="reply_item_content">
+											<a class="reply_item_content_writer" href="">${rvo.nick_name}
+												<img class="reply_item_content_writer_image" src="/controller/image/${rvo.profile_system }">
+											</a>
+											<time class="reply_item_footer_time">
+												<c:if test="${rvo.modify_yn == 'N' }">
+													${rvo.write_date}
+												</c:if>
+												<c:if test="${rvo.modify_yn == 'Y'}">
+													${rvo.modify_date}(수정됨)
+												</c:if>
+											</time>
+											<c:if test="${loginUser.midx eq rvo.midx}">
+												<span class="A_write" onclick="R_modifyFn(${rvo.sridx})">수정하기</span>
+												<span class="A_write" onclick="R_delFn(${rvo.sridx})">삭제하기</span>
+											</c:if>
+										</p>
+										<footer class="reply_item_footer">
+											<div style="position: absolute;top: 0px;">
+											<c:set var="star" value="${rvo.score}" />
+											<span class="sky">
+											<c:forEach begin="0" end="4" varStatus="status">
+												<c:if test="${status.index < star}">
+												<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+													<path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+												</svg>
+												</c:if>
+											</c:forEach>
+											</span>
+											</div>
+										</footer>
+										
+									</article>
+									<div style="margin:30px 0px 0 20px;">
+									<c:if test="${not empty rvo.img_origin && rvo.img_origin ne ''}">
+										<div style="padding: 5px; width: 150px; height: 150px;"><img alt="" src="${rvo.img_origin}" style="width: 100%; height: 100%;border-radius: 5px;"> </div>
 									</c:if>
-								</footer>
-							</article>
-						</li>
-						<%-- </c:forEach> --%>
-					</ul>
+										<div style="padding: 10px;">${rvo.content}</div>
+									</div>
+								</li>
+							</c:forEach>
+						</ul>
+					</section>
 				</div>
 				<div id="QnA_area_header">
 					<div>문의 <span>${vo.qna_cnt}</span></div>
@@ -210,8 +228,6 @@
 										</c:if>
 										<c:if test="${loginUser.midx eq qna.midx}">
 											<span class="A_write" onclick="Q_modifyFn(${qna.sqidx})">수정하기</span>
-										</c:if>
-										<c:if test="${loginUser.midx eq qna.midx}">
 											<span class="A_write" onclick="Q_delFn(${qna.sqidx})">삭제하기</span>
 										</c:if>
 									</div>
@@ -389,7 +405,7 @@
 		function paymentInFn(){
 			console.log(${spidx});
 			if(${!empty loginUser}){
-				location.href="/controller/mypage/payment.do"+"?midx="+"${loginUser.midx}"+"&spidx="+${vo.spidx}+"&cnt="+cnt;
+				location.href="/controller/mypage/directPayment.do"+"?midx="+"${loginUser.midx}"+"&spidx="+${vo.spidx}+"&cnt="+cnt;
 			}else{
 				alert("로그인 후 이용가능 합니다.");
 			}

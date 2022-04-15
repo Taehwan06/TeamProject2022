@@ -240,14 +240,33 @@
     
     </update>
     
-    <!-- 리뷰작업중 미완료상태 -->
-    <select id="temp" resultType="Store_reviewVO" parameterType="int">
+	<!-- 리뷰리스트 -->
+    <select id="store_reviewList" resultType="Store_reviewVO" parameterType="int">
     	SELECT sr.*, m.profile_origin, m.profile_system, m.nick_name
 		FROM shopping_review sr
 		INNER JOIN member m
 		ON sr.midx = m.midx
 		where sr.spidx = #{spidx} and sr.del_yn='N';
     </select>
+    
+    <!-- 게시글 별점의 합 및 갯수 가져오기 -->
+    <select id="store_review_cnt" resultType="StoreVO" parameterType="int">
+    	SELECT count(*) as review_cnt, 
+    		   sum(score) as score
+		FROM shopping_review
+		where spidx = #{spidx} and del_yn='N';
+    </select>
+    
+    <!-- 리뷰갯수 및 별점 갱신 -->
+     <update id="store_review_change" parameterType="StoreVO">
+    	UPDATE shopping_product
+
+		SET score = #{score}
+			,review_cnt = #{review_cnt}
+		
+		WHERE spidx=#{spidx} and del_yn='N';
+    </update>
+    
     
     <insert id="store_review_insert" parameterType="Store_reviewVO">
 	    	INSERT INTO shopping_review(
@@ -272,6 +291,16 @@
 	    		</if>
 	    	)
     </insert>
+    
+    <!-- 리뷰삭제 -->
+    <update id="store_review_del" parameterType="int">
+    	UPDATE shopping_review
+
+		SET del_yn = 'Y'
+			,del_date = CURRENT_TIMESTAMP
+		
+		WHERE sridx=#{sridx}
+    </update>
     
     
 </mapper>
