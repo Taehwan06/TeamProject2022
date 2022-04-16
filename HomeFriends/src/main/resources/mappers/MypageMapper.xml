@@ -248,5 +248,36 @@
     		Q.del_yn = "N"
     </select>
     
+    <select id="ReviewCount" resultType="int" parameterType="Store_reviewVO">
+    	SELECT 
+    		count(*) 
+    	FROM 
+    		shopping_review 
+    	WHERE 
+    		midx = #{midx}
+    </select>
+    
+     <select id="myreview" resultType="Store_reviewVO" parameterType="Store_reviewVO">
+    	SELECT
+    		 R.content, 
+    		 R.write_date, 
+    		 R.del_yn, 
+    		 P.title,
+    		 P.img_system,
+    		 P.img_origin,
+    		 R.spidx,
+    		 R.score
+		FROM 
+			shopping_review R
+		INNER JOIN 
+			shopping_product P
+		ON 
+			R.spidx = P.spidx
+		WHERE 
+			R.midx = #{midx}
+    	AND
+    		R.del_yn = "N"
+    </select>
+    
     
 </mapper>

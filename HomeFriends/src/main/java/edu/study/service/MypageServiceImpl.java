@@ -14,6 +14,7 @@ import edu.study.vo.MemberVO;
 import edu.study.vo.MyContentVO;
 import edu.study.vo.MyQnaVO;
 import edu.study.vo.SearchVO;
+import edu.study.vo.Store_reviewVO;
 import edu.study.vo.OrderListVO;
 
 @Service
@@ -141,6 +142,21 @@ public class MypageServiceImpl implements MypageService {
 	@Override
 	public List<MyQnaVO> myquestion(MyQnaVO vo) throws Exception {
 		List<MyQnaVO> result = mypageDao.myquestion(vo); 
+		return result;
+	}
+
+
+	@Override
+	public int ReviewCount(Store_reviewVO vo) throws Exception {
+		int result = mypageDao.ReviewCount(vo);
+		return result;
+	}
+
+
+	@Override
+	public List<Store_reviewVO> myreview(Store_reviewVO vo) throws Exception {
+
+		List<Store_reviewVO> result = mypageDao.myreview(vo); 
 		return result;
 	}
 
