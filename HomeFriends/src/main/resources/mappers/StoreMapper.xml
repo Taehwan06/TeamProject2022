@@ -6,7 +6,18 @@
 <mapper namespace="edu.study.mapper.storeMapper">
 
 	<select id="listStore" resultType="StoreVO" parameterType="SearchVO">
-         SELECT *
+         SELECT spidx
+         		,title
+         		,content
+         		,product_name
+         		,sale_price
+         		,brand
+         		,score
+         		,discount
+         		,review_cnt
+         		,img_origin
+         		,category
+         		,detail
            FROM shopping_product
           WHERE 1=1
             AND del_yn = 'N' 
@@ -49,6 +60,9 @@
            	</if>
            	<if test='order != null and order != "" and order=="priceDown"'>
            		ORDER BY sale_price 
+           	</if>
+           	<if test='page != null and page != "" and page.equals("store")'>
+           		Limit 4 
            	</if>
            	
     </select>
@@ -175,9 +189,17 @@
     </select>
     
     <select id="qna_detail" resultType="Store_qnaVO" parameterType="int">
-         SELECT *
-         		,date_format(write_date, '%Y-%m-%d') w_day
-         		,date_format(answer_date, '%Y-%m-%d') a_day
+         SELECT sqidx
+         		,cotent
+         		,writer
+         		,date_format(write_date, '%Y-%m-%d') as write_date
+         		,modify_yn
+         		,date_format(modify_date, '%Y-%m-%d') as modify_date
+         		,answer
+         		,answer_content
+         		,answer_writer
+         		,date_format(answer_date, '%Y-%m-%d') as answer_date
+         		,spidx
            FROM shopping_qna
           WHERE 1=1
             AND del_yn = 'N' 
@@ -240,13 +262,36 @@
     
     </update>
     
-	<!-- 리뷰리스트 -->
+	<!-- 리뷰리스트 조회 -->
     <select id="store_reviewList" resultType="Store_reviewVO" parameterType="int">
-    	SELECT sr.*, m.profile_origin, m.profile_system, m.nick_name
+    	SELECT sr.sridx
+    			,sr.content
+    			,sr.writer
+    			,date_format(sr.write_date, '%Y-%m-%d') as write_date
+    			,sr.modify_yn
+    			,date_format(sr.modify_date, '%Y-%m-%d') as modify_date
+    			,sr.img_origin
+    			,sr.score
+    			,sr.spidx
+    			,sr.midx
+    			,m.profile_origin
+    			,m.profile_system
+    			,m.nick_name
 		FROM shopping_review sr
 		INNER JOIN member m
 		ON sr.midx = m.midx
 		where sr.spidx = #{spidx} and sr.del_yn='N';
+    </select>
+    
+    <!-- 단일리뷰 조회 -->
+    <select id="store_review_Detail" resultType="Store_reviewVO" parameterType="int">
+    	SELECT sr.sridx
+    			,sr.content
+    			,sr.img_origin
+    			,sr.score
+    			,sr.spidx
+		FROM shopping_review sr 
+		where sr.sridx = #{sridx} and sr.del_yn='N';
     </select>
     
     <!-- 게시글 별점의 합 및 갯수 가져오기 -->
@@ -267,6 +312,19 @@
 		WHERE spidx=#{spidx} and del_yn='N';
     </update>
     
+    <!-- 리뷰 수정 -->
+    <update id="store_review_modify" parameterType="Store_reviewVO">
+    	UPDATE shopping_review
+
+		SET content = #{content}
+			,score = #{score}
+			,img_origin = #{img_origin}
+	    	,img_system = #{img_system}
+			,modify_yn = 'Y'
+			,modify_date = CURRENT_TIMESTAMP
+		
+		WHERE sridx=#{sridx}
+    </update>
     
     <insert id="store_review_insert" parameterType="Store_reviewVO">
 	    	INSERT INTO shopping_review(

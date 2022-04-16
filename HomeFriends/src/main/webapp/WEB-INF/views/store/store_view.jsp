@@ -81,17 +81,17 @@
 				<div class="row">
 					<div class="col-12 col-sm-10 col-md-10 shop_subject">${vo.title}</div>
 					<div class="col-sm-2 col-md-2">
-					<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+					<!--좋아요기능 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
 					  <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
 					</svg>
 					<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
 					  <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
-					</svg>
+					</svg> -->
 					</div>
 				</div>
 				<div class="row price">
 					<div class="col-sm-4 col-md-4 col-lg-3 discount">${vo.discount}%</div>
-					<div class="col-sm-7 col-md-7 original_price">${vo.sale_price}원</div>
+					<div class="col-sm-7 col-md-7 original_price"> ${vo.sale_price}원</div>
 				</div>
 				<div class="row delivery">
 					<div class="col-sm-2 col-md-2 delivery_">배송</div>
@@ -222,7 +222,7 @@
 							<li class="qna_list_item">
 								<div>
 									<div>
-										<span class="qna_qa">Q</span> ${qna.writer} <span class="qna_day">${qna.w_day}</span>
+										<span class="qna_qa">Q</span> ${qna.writer} <span class="qna_day">${qna.write_date}</span>
 										<c:if test="${loginUser.grade eq 'A' && qna.answer eq 'N'}">
 											<span class="A_write" onclick="A_writeFn(this,${qna.sqidx})">답변하기</span>
 										</c:if>
@@ -236,7 +236,7 @@
 								<c:if test="${qna.answer ne 'N'}">
 								<div class="qna_a_area">
 									<div>
-										<span class="qna_qa">A</span> ${qna.answer_writer} <span class="qna_day">${qna.a_day}</span>
+										<span class="qna_qa">A</span> ${qna.answer_writer} <span class="qna_day">${qna.answer_date}</span>
 										<c:if test="${loginUser.grade eq 'A'}">
 											<span class="A_write" onclick="A_modifyFn(this,${qna.sqidx})">수정하기</span>
 											<span class="A_write" onclick="A_delFn(${qna.sqidx})">삭제하기</span>

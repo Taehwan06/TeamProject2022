@@ -60,7 +60,7 @@ public class StoreController {
 		model.addAttribute("searchList", searchList);
 			
 		List<List> list = new ArrayList<List>();
-		
+		vo.setPage("store");
 		vo.setDiscount("yes");
 		List<StoreVO> list1 = storeService.list(vo);
 		vo.setSell_cnt("yes");
@@ -434,13 +434,18 @@ public class StoreController {
 	}
 	
 	@RequestMapping(value = "/store_review_insert.do", method = RequestMethod.GET)
-	public String store_review_insert(Locale locale, Model model, int spidx) throws Exception {
+	public String store_review_insert(HttpServletRequest request, Locale locale, Model model, int spidx) throws Exception {
 		
 		int deleteResult = homeService.deleteSearchList();
 		
 		List<HomeSearchVO> searchList = homeService.listSearchList();
 		
 		model.addAttribute("searchList", searchList);
+		
+		HttpSession session = request.getSession();
+		MemberVO member = (MemberVO)session.getAttribute("loginUser");
+
+		if(member==null) {return "redirect:/login/login.do";}
 		
 		StoreVO selectOne = storeService.detail(spidx);
 		
@@ -485,7 +490,58 @@ public class StoreController {
 		
 		return result+"";
 	}
+	//리뷰수정
+	@RequestMapping(value = "/store_review_modify.do", method = RequestMethod.GET)
+	public String store_store_modify(HttpServletRequest request, Locale locale, Model model, int spidx, int sridx) throws Exception {
+		int deleteResult = homeService.deleteSearchList();
+		List<HomeSearchVO> searchList = homeService.listSearchList();
+		
+		HttpSession session = request.getSession();
+		MemberVO member = (MemberVO)session.getAttribute("loginUser");
+
+		if(member==null) {return "redirect:/login/login.do";}
+		if(!member.getGrade().equals("A")) {return "redirect:/store/store.do";}
+
+		StoreVO selectOne = storeService.detail(spidx);
+		
+		model.addAttribute("vo", selectOne);	
+		
+		Store_reviewVO selectReview = storeService.store_review_Detail(sridx);
+		model.addAttribute("rvo",selectReview);
+			
+		return "store/store_review_modify";
+	}
 	
+	@RequestMapping(value = "/store_review_modify.do", method = RequestMethod.POST)
+	public @ResponseBody String store_store_modifyOK(HttpServletRequest request, Locale locale, Model model, Store_reviewVO vo, @RequestParam String img_style) throws Exception {
+		
+		int deleteResult = homeService.deleteSearchList();
+		
+//		List<HomeSearchVO> searchList = homeService.listSearchList();
+//		
+//		model.addAttribute("searchList", searchList);
+			
+		int idx1 = img_style.indexOf("url(");
+		int idx2 = img_style.lastIndexOf("\"");
+		String new_img_style = img_style.substring(idx1+5, idx2);
+		vo.setImg_origin(new_img_style);
+		vo.setImg_system(new_img_style);
+		
+		HttpSession session = request.getSession();
+		MemberVO member = (MemberVO)session.getAttribute("loginUser");
+		
+		
+			
+		vo.setMidx(member.getMidx());
+		vo.setWriter(member.getMembername());
+		
+		
+		int result = storeService.store_review_modify(vo);
+
+		return result+"";
+		
+	}
+	//리뷰삭제
 	@RequestMapping(value = "/store_review_del.do", method = RequestMethod.POST)
 	public @ResponseBody String store_review_delOK(HttpServletRequest request, Locale locale, Model model,int spidx, int sridx, int midx) throws Exception {
 		
