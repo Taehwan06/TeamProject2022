@@ -9,6 +9,7 @@ public class Store_reviewVO {
 	private String writer;
 	private String write_date;
 	private String modify_yn;
+	private String modify_date;
 	private String img_origin;
 	private String img_system;
 	private double score;
@@ -76,6 +77,12 @@ public class Store_reviewVO {
 	}
 	public void setModify_yn(String modify_yn) {
 		this.modify_yn = modify_yn;
+	}
+	public String getModify_date() {
+		return modify_date;
+	}
+	public void setModify_date(String modify_date) {
+		this.modify_date = modify_date;
 	}
 	public String getImg_origin() {
 		return img_origin;

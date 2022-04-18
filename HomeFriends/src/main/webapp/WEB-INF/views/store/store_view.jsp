@@ -14,7 +14,7 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css" />
 	
-	<title>홈프렌즈 상품 상세보기 페이지 입니다.</title>
+	<title>${vo.title} - 홈프렌즈</title>
 	
 	<link href="/controller/css/header.css" rel="stylesheet">
 	<link href="/controller/css/nav.css" rel="stylesheet">
@@ -155,10 +155,11 @@
 				</div>
 				<div id="shop_information_area"><!-- 사이즈지정필요 -->
 					${vo.content}
+					<button id="moreview_button" class="moreview" onclick="moreview()">더보기</button>
 				</div>
 				<div id="review_area_header">
 					<div>리뷰 <span>${vo.review_cnt}</span></div>
-					<div id="reviewwrite" onclick="location.href='store_review_insert.do?spidx=50'">리뷰쓰기</div>
+					<div id="reviewwrite" onclick="location.href='store_review_insert.do?spidx=${vo.spidx}'">리뷰쓰기</div>
 				</div>
 				<div id="review_area">							
 					<section id="reply_area">

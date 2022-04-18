@@ -208,12 +208,15 @@ $(document).ready(function(){
 	
 	/* 컨텐츠 이미지사이즈 조절 */
 	
-	/*$("#shop_information_area img").style.width ="200px";*/
-
-	
-	
+	$("#shop_information_area img").css("width","100%");
+	/*$("#shop_information_area").children("p").children("img").css("width","100%");*/
 
 });
+
+function moreview(){
+	$("#shop_information_area").css("height","auto");
+	$("#moreview_button").css("display","none");
+}
 
 function locationFn(type){
 	var offset = null;
