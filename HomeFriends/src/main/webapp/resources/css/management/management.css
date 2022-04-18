@@ -8,71 +8,34 @@ section{
 	font-size: 25px;
 	margin-bottom: 20px;
 }
-#sectionSearchType{
-	width: 100px;
-	height: 30px;
-	border: 1px solid lightgray;
-	border-radius: 5px;
-}
-#sectionSearchType:focus{
-	outline: 2px solid #ffb6c1;
-	border: 2px solid #ffb6c1;
-}
-#sectionSearchValue{
-	width: 200px;
-	height: 30px;
-	border: 1px solid lightgray;
-	border-radius: 5px;
-}
-#sectionSearchValue:focus{
-	outline: 2px solid #ffb6c1;
-	border: 2px solid #ffb6c1;
-}
-#sectionSearchButton{
-	width: 50px;
-	height: 30px;
-	border: 2px solid #ffb6c1;
-	border-radius: 5px;
-	background-color: #ffb6c1;
-	color: white;
-	font-weight: bold;
-}
-#sectionSearchButton:hover{
-	background-color: white;
-	color: #ffb6c1;
-	font-weight: bold;
-}
 
-
-.memberTable{
+#buttonArea{
 	text-align: center;
-	margin-top: 10px;
+	margin-top: 100px;
+	margin-bottom: 200px;
+	margin-right: 10px;
+	margin-left: 10px;
 }
-tbody tr:hover{
-	background-color: #ffe3ee;
+.button{
+	width: 300px;
+	height: 50px;
+	border: 2px solid #ffb6c1;
+	border-radius: 5px;
+	background-color: white;
+	color: #ffb6c1;
+	font-weight: bold;
+	margin: 5px;
+	font-size: 20px;
 }
-tbody td{
-	cursor: pointer;
+.button:hover{
+	background-color: #ffb6c1;
+	color: white;
+	font-weight: bold;
+}
+#memberInfo{
+	margin-bottom: 20px;
 }
 
-.pink{
-	margin-top: 30px;
-}
-.pink a{
-	color: #ffb6c1;
-	background-color: white;
-	border: 2px solid #ffb6c1;
-	border-radius: 5px;
-}
-.pink a:hover{
-	color: white;
-	background-color: #ffb6c1;
-	border: 2px solid #ffb6c1;
-	border-radius: 5px;
-}
-.pink li{
-	margin: 3px;
-}
 
 /* 페이징 영역  CSS */
 /*========================================================================*/
@@ -93,6 +56,7 @@ tbody td{
 .list-paginator{
 	text-align : center;
 	margin-top: 30px;
+	margin-bottom: 50px;
 }
 .list-paginator a{
 	color: #ffb6c1;
@@ -126,32 +90,6 @@ tbody td{
 	background-color : #ffb6c1;
 	color : white;
 	text-decoration : none;
-}
-
-
-
-
-/* 버튼 영역  CSS */
-#buttonArea{
-	text-align: right;
-	margin-bottom: 40px;
-	margin-right: 10px;
-	margin-left: 10px;
-}
-.button{
-	width: 120px;
-	height: 30px;
-	border: 2px solid #ffb6c1;
-	border-radius: 5px;
-	background-color: #ffb6c1;
-	color: white;
-	font-weight: bold;
-	margin: 5px;
-}
-.button:hover{
-	background-color: white;
-	color: #ffb6c1;
-	font-weight: bold;
 }
 
 
@@ -213,6 +151,9 @@ tbody td{
 	.categoryUl{
 		padding: 15px 0px 15px 10px;
 	}
+	.recent{
+		display: none;
+	}
 }
 @media screen and (min-width: 576px) and (max-width: 767.99px){
 	#headerDiv, .navbar, section, footer{
@@ -238,7 +179,7 @@ tbody td{
 	.sidebar_menu{
 		width: 400px;
 	}
-	.birth{
+	.recent, .join{
 		display: none;
 	}
 }
@@ -256,7 +197,7 @@ tbody td{
 		width: 100%;
 		max-width: 400px;
 	}
-	.delyn, .birth{
+	.recent, .join{
 		display: none;
 	}
 }
