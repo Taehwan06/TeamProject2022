@@ -163,8 +163,6 @@
 				</div>
 				<div id="review_area">							
 					<section id="reply_area">
-
-					
 						<ul class="reply_list">
 							<c:forEach items="${reviewList}" var="rvo">
 								<li class="reply_list_item">
@@ -210,6 +208,60 @@
 									</div>
 								</li>
 							</c:forEach>
+						</ul>
+						
+						<!-- 페이징 처리 -->
+						<ul class="list-paginator">
+							<li>
+								<a class="list-paginator_first" href="">
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-double-left" viewBox="0 0 16 16">
+									  <path fill-rule="evenodd" d="M8.354 1.646a.5.5 0 0 1 0 .708L2.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+									  <path fill-rule="evenodd" d="M12.354 1.646a.5.5 0 0 1 0 .708L6.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+									</svg>
+								</a>
+							</li>
+							<%-- <c:if test="${pvo.nowPage != pvo.startPage}"> --%>
+								<li>
+									<a class="list-paginator_prev" href="">
+										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+										  <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+										</svg>
+									</a>
+								</li>
+							<%-- </c:if> --%>
+							<!-- 페이지 블럭 처음부터 마지막 블럭까지 1씩 증가하는 페이지 출력 -->
+							<%-- <c:forEach var="num" begin="${pvo.startPage }" end="${pvo.endPage }"> --%>
+								<%-- <c:choose>
+									<c:when test="${num == pvo.nowPage }"> --%>
+										<li>
+											<button class="list-paginator_page sm selected" type="button">${num }1</button>
+										</li>
+									<%-- </c:when>
+									<c:otherwise> --%>
+										<li>
+											<span onclick="review_paging(1)">${num }1</span>
+											<span onclick="review_paging(2)">${num }2</span>
+										</li>
+									<%-- </c:otherwise>
+								</c:choose> --%>
+							<%-- </c:forEach> --%>
+							<%-- <c:if test="${pvo.nowPage != pvo.lastPage}"> --%>
+								<li>
+									<a class="list-paginator_next" href="">
+										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+										  <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+										</svg>
+									</a>
+								</li>
+							<%-- </c:if> --%>
+							<li>
+								<a class="list-paginator_last" href="">
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-double-right" viewBox="0 0 16 16">
+									  <path fill-rule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z"/>
+									  <path fill-rule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z"/>
+									</svg>
+								</a>
+							</li>
 						</ul>
 					</section>
 				</div>

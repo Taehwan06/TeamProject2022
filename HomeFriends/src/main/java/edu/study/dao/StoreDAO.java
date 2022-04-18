@@ -1,16 +1,19 @@
 package edu.study.dao;
 
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import edu.study.vo.StoreVO;
-import edu.study.vo.SearchVO;
 import edu.study.vo.BasketVO;
+import edu.study.vo.SearchVO;
+import edu.study.vo.StorePagingVO;
+import edu.study.vo.StoreVO;
 import edu.study.vo.Store_qnaVO;
 import edu.study.vo.Store_reviewVO;
 
@@ -94,6 +97,16 @@ public class StoreDAO {
 	}
 	public int store_review_modify(Store_reviewVO vo) throws Exception {
 		return sqlSession.update(Namespace+".store_review_modify",vo);
+	}
+	
+	//페이징
+	public int review_count(int spidx) throws Exception{
+		return sqlSession.selectOne(Namespace+".review_count",spidx);
+	}
+	public List<Store_reviewVO> reviewList(StorePagingVO vo) throws Exception {
+		
+		
+		return sqlSession.selectList(Namespace+".reviewList",vo);
 	}
 	
 }

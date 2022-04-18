@@ -288,7 +288,8 @@
 		FROM shopping_review sr
 		INNER JOIN member m
 		ON sr.midx = m.midx
-		where sr.spidx = #{spidx} and sr.del_yn='N';
+		where sr.spidx = #{spidx} and sr.del_yn='N'
+		Limit 4 ;
     </select>
     
     <!-- 단일리뷰 조회 -->
@@ -368,5 +369,34 @@
 		WHERE sridx=#{sridx}
     </update>
     
+    <!-- 페이징을 위한 쿼리들 -->
+    <!-- 데이터 카운트 쿼리 -->
+    <select id="review_count" resultType="int" parameterType="int">
+    	SELECT count(*) 
+		FROM shopping_review
+		where spidx = #{spidx} and del_yn='N';
+    </select>
     
+    <select id="reviewList" resultType="Store_reviewVO" parameterType="StorePagingVO">
+    	SELECT review.* FROM
+		(SELECT @rownum := @rownum+1 as rownum
+				,sr.sridx 
+				,sr.content 
+				,sr.writer 
+				,date_format(sr.write_date, '%Y-%m-%d') as write_date 
+				,sr.modify_yn 
+				,date_format(sr.modify_date, '%Y-%m-%d') as modify_date 
+				,sr.img_origin 
+				,sr.score 
+				,sr.spidx 
+				,sr.midx 
+				,m.profile_origin 
+				,m.profile_system 
+				,m.nick_name 
+		FROM shopping_review sr INNER JOIN member m ON sr.midx = m.midx 
+				,(SELECT @rownum:=0) rn
+		where sr.spidx = #{spidx} 
+				and sr.del_yn='N') review
+		WHERE rownum BETWEEN #{start} AND #{end};
+    </select>
 </mapper>

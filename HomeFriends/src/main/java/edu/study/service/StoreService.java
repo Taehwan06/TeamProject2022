@@ -2,9 +2,10 @@ package edu.study.service;
 
 import java.util.List;
 
-import edu.study.vo.StoreVO;
-import edu.study.vo.SearchVO;
 import edu.study.vo.BasketVO;
+import edu.study.vo.SearchVO;
+import edu.study.vo.StorePagingVO;
+import edu.study.vo.StoreVO;
 import edu.study.vo.Store_qnaVO;
 import edu.study.vo.Store_reviewVO;
 
@@ -32,4 +33,6 @@ public interface StoreService {
 	int store_review_change(StoreVO vo) throws Exception;
 	int store_review_del(int sridx) throws Exception;
 	int store_review_modify(Store_reviewVO vo) throws Exception;
+	int review_count(int spidx) throws Exception;
+	List<Store_reviewVO> reviewList(StorePagingVO vo) throws Exception;
 }

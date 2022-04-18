@@ -26,9 +26,12 @@ import com.google.gson.Gson;
 import edu.study.service.HomeService;
 import edu.study.service.StoreService;
 import edu.study.vo.BasketVO;
+import edu.study.vo.Community_ReplyVO;
 import edu.study.vo.HomeSearchVO;
 import edu.study.vo.MemberVO;
+import edu.study.vo.PagingVO;
 import edu.study.vo.SearchVO;
+import edu.study.vo.StorePagingVO;
 import edu.study.vo.StoreVO;
 import edu.study.vo.Store_qnaVO;
 import edu.study.vo.Store_reviewVO;
@@ -206,9 +209,19 @@ public class StoreController {
 	}
 	
 	
-	@RequestMapping(value="/test", method = RequestMethod.GET)
-	public @ResponseBody String test() throws Exception {
-	    return "asdf";
+	@RequestMapping(value="/review_paging", method = RequestMethod.GET, produces = "application/text; charset=UTF-8")
+	public @ResponseBody String paging(Locale locale, Model model,StorePagingVO vo) throws Exception {
+		
+		int total = storeService.review_count(vo.getSpidx());
+  	    PagingVO pvo = new PagingVO(total,vo.getNowPage(), 4);
+  	    int start = pvo.getStart();
+  	    vo.setStart(start);
+  	    int end = pvo.getEnd();
+  	    vo.setEnd(end);
+  	    List<Store_reviewVO> list = storeService.reviewList(vo);
+  	    
+		String json = new Gson().toJson(list);
+	    return json;
 	}
 	
 	@RequestMapping(value = "/store_modify.do", method = RequestMethod.GET)
