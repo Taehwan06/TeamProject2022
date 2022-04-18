@@ -11,6 +11,7 @@ import edu.study.vo.Store_qnaVO;
 import edu.study.vo.Store_reviewVO;
 import edu.study.vo.BasketVO;
 import edu.study.vo.SearchVO;
+import edu.study.vo.StorePagingVO;
 
 
 @Service
@@ -141,6 +142,18 @@ public class StoreServiceImpl implements StoreService {
 	public int store_review_modify(Store_reviewVO vo) throws Exception {
 		// TODO Auto-generated method stub
 		return StoreDao.store_review_modify(vo);
+	}
+
+	@Override
+	public int review_count(int spidx) throws Exception {
+		// TODO Auto-generated method stub
+		return StoreDao.review_count(spidx);
+	}
+
+	@Override
+	public List<Store_reviewVO> reviewList(StorePagingVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return StoreDao.reviewList(vo);
 	}
 
 	

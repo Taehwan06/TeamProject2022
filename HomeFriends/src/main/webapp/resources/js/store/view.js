@@ -487,4 +487,17 @@ function Q_delFn(sqidx){
 function page_reload(){
 	location.reload();
 }
+
+function review_paging(nowPage){
+		$.ajax({
+			type : "get",
+			url : "review_paging",
+			data : "spidx="+spidx+"&nowPage="+nowPage,
+			success : function(res) {
+				console.log(res);
+				console.log(res[0]);
+			}
+		});
+
+}
 			
