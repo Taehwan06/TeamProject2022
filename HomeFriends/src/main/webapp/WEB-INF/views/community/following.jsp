@@ -49,7 +49,7 @@
 						<div class="com_title row">
 							${blist.title }
 						</div>
-						<div class="com_content row" onclick="location.href='home_view.do?cbidx=${blist.cbidx}&nowPage=1'">
+						<div class="com_content row" onclick="location.href='home_view.do?cbidx=${blist.cbidx}&fmidx=${blist.midx }&nowPage=1'">
 							${blist.content }
 						</div>
 					</c:forEach>
@@ -87,7 +87,7 @@
 					<div class="row">
 						<c:forEach items="${mlist.bvo }" var="blist">
 							<div class="followingImgDiv col-3">
-								<img src="/controller/upload/${blist.img_system }" alt="게시글 사진" class="followingImg" onclick="location.href='home_view.do?cbidx=${blist.cbidx}&nowPage=1'">
+								<img src="/controller/upload/${blist.img_system }" alt="게시글 사진" class="followingImg" onclick="location.href='home_view.do?cbidx=${blist.cbidx}&fmidx=${blist.midx }&nowPage=1'">
 							</div>
 						</c:forEach>
 					</div>

@@ -25,6 +25,8 @@
         <typeAlias type="edu.study.vo.MyQnaVO" alias="MyQnaVO"/>
         <typeAlias type="edu.study.vo.ManagementMemberVO" alias="ManagementMemberVO"/>
         <typeAlias type="edu.study.vo.StatsVO" alias="StatsVO"/>
+        <typeAlias type="edu.study.vo.ScrapVO" alias="ScrapVO"/>
+        <typeAlias type="edu.study.vo.StorePagingVO" alias="StorePagingVO"/>
     </typeAliases>
 
 </configuration>

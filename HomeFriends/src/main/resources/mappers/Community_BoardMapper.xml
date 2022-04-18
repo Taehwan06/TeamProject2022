@@ -164,4 +164,12 @@
     	 WHERE midx = #{midx}
     	   AND fmidx = #{fmidx}
     </select>
+    
+    <!-- 스크랩 유무 조회 -->
+    <select id="isScrap" resultType="int" parameterType="scrapVO">
+    	SELECT COUNT(*)
+    	  FROM scrap
+    	 WHERE cbidx = #{cbidx}
+    	   AND midx = #{midx}
+    </select>
 </mapper>

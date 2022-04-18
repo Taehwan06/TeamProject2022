@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import edu.study.vo.Community_BoardVO;
 import edu.study.vo.FollowVO;
+import edu.study.vo.ScrapVO;
 import edu.study.vo.SearchVO;
 
 @Repository
@@ -87,6 +88,12 @@ public class Community_BoardDAO {
 	public int isFollow(FollowVO fvo) {
 		
 		return sqlSession.selectOne(Namespace+".isFollow", fvo);
+	}
+	
+	//스크랩 유무 조회
+	public int isScrap(ScrapVO scrap) {
+		
+		return sqlSession.selectOne(Namespace+".isScrap", scrap);
 	}
 }
 
