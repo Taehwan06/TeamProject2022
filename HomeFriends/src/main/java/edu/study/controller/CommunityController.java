@@ -37,6 +37,7 @@ import edu.study.vo.FollowVO;
 import edu.study.vo.HomeSearchVO;
 import edu.study.vo.MemberVO;
 import edu.study.vo.PagingVO;
+import edu.study.vo.ScrapVO;
 import edu.study.vo.SearchVO;
 
 /**
@@ -333,6 +334,16 @@ public class CommunityController {
   	    int isFollow = Community_boardService.isFollow(fvo);
   	    
   	    model.addAttribute("isFollow", isFollow);
+  	    
+  	    //스크랩 유무 조회
+  	    ScrapVO scrap = new ScrapVO();
+  	    
+  	    scrap.setMidx(midx);
+  	    scrap.setCbidx(cbidx);
+  	    
+  	    int isScrap = Community_boardService.isScrap(scrap);
+  	    
+  	    model.addAttribute("isScrap", isScrap);
 	    
 		return "community/home_view";
 	}
@@ -397,8 +408,6 @@ public class CommunityController {
         HttpSession session = req.getSession();
         session.setAttribute("nowUri", nowUri);
 		
-		System.out.println("/follow/" + midx + " : 팔로우 요청");
-		
 		MemberVO activeUser = (MemberVO)session.getAttribute("loginUser");
 		MemberVO passiveUser = memberService.inquiryOfUserByMidx(midx);
 		
@@ -408,24 +417,24 @@ public class CommunityController {
 		follow.setFmidx_nick(passiveUser.getNick_name());
 		
 		followService.follow(follow);
-		
-		MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
-		
-		if(loginUser == null) {
-           return "redirect:/login/login.do";
-        }else {
-           return "FollowOK";
-        }
+
+        return "FollowOK";
 	}
 	
 	@RequestMapping(value = "/scrap.do", method = RequestMethod.GET)
-	public String scrap(Locale locale, Model model, SearchVO vo) throws Exception {
+	public String scrap(Locale locale, Model model, SearchVO vo, HttpServletRequest request) throws Exception {
 		
 		int deleteResult = homeService.deleteSearchList();
 		
 		List<HomeSearchVO> searchList = homeService.listSearchList();
 		
 		model.addAttribute("searchList", searchList);
+		
+		HttpSession session = request.getSession();
+		
+		MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
+		
+		int midx = loginUser.getMidx();
 				
 		return "community/scrap";
 	}

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import edu.study.vo.Community_BoardVO;
 import edu.study.vo.FollowVO;
+import edu.study.vo.ScrapVO;
 import edu.study.vo.SearchVO;
 
 @Service("Community_BoardService")
@@ -31,4 +32,6 @@ public interface Community_BoardService {
 	List<Community_BoardVO> blist() throws Exception;
 	
 	int isFollow (FollowVO fvo) throws Exception;
+	
+	int isScrap (ScrapVO scrap) throws Exception;
 }
