@@ -81,7 +81,7 @@
 						<c:forEach items="${Storylist}" var="vo" varStatus="cnt">
 							<div id ="myStoryDiv">
 								<input type="hidden" value="${vo.cbidx}">
-								<a href="/controller/community/home_view.do?cbidx=${vo.cbidx}&nowPage=1"><img class="all_homestroy_img" src="/controller/upload/${vo.img_system}"><br><span>${vo.title} </span></a>
+								<a href="/controller/community/home_view.do?cbidx=${vo.cbidx}&fmidx=${vo.midx}&nowPage=1"><img class="all_homestroy_img" src="/controller/upload/${vo.img_system}"><br><span>${vo.title} </span></a>
 							</div>	
 						</c:forEach>	
 					</div>

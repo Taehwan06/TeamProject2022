@@ -3,6 +3,7 @@ package edu.study.service;
 import java.util.List;
 
 import edu.study.vo.Community_BoardVO;
+import edu.study.vo.FollowVO;
 import edu.study.vo.MemberVO;
 import edu.study.vo.MyContentVO;
 import edu.study.vo.MyQnaVO;
@@ -32,6 +33,7 @@ public interface MypageService {
 	int insert(MemberVO vo) throws Exception;
 	int count(OrderListVO vo) throws Exception;
 	int ReviewCount(Store_reviewVO vo) throws Exception;
+	int following_cnt(FollowVO vo) throws Exception;
 	
 		
 	

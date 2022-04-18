@@ -236,7 +236,9 @@
     		P.brand,
     		P.img_system, 
     		P.img_origin,
-    		Q.spidx
+    		Q.spidx,
+    		Q.answer_content,
+    		Q.answer
   		FROM 
   		 	shopping_product P
   		INNER JOIN 
@@ -269,6 +271,7 @@
     		 P.img_system,
     		 P.img_origin,
     		 R.spidx,
+    		 R.sridx,
     		 R.score
 		FROM 
 			shopping_review R
@@ -284,5 +287,23 @@
     		R.write_date DESC	
     </select>
     
+    <!-- 팔로잉 -->
+    <select id="following_cnt" resultType="int" parameterType="FollowVO">
+   	 	SELECT 
+   	 		count(*) 
+   	 	FROM 
+   	 		follow 
+   	 	WHERE 
+   	 		midx = #{midx}
+    </select>
     
+    <!-- 팔로워 -->
+    <select id="follower_cnt" resultType="int" parameterType="FollowVO">
+   	 	SELECT 
+   	 		count(*) 
+   	 	FROM 
+   	 		follow 
+   	 	WHERE 
+   	 		fmidx = #{fmidx}
+    </select>
 </mapper>
