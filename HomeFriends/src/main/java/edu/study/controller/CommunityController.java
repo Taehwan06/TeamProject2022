@@ -256,12 +256,12 @@ public class CommunityController {
 	}
 	
 	@RequestMapping(value = "/home_view.do", method = RequestMethod.GET)
-	public String home_view(Locale locale, Model model, int cbidx, int nowPage, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public String home_view(Locale locale, Model model, int cbidx, int nowPage, HttpServletRequest request, HttpServletResponse response, int fmidx) throws Exception {
 		
 		String nowUri = request.getRequestURI();
 	      
 	    HttpSession session = request.getSession();
-	    session.setAttribute("nowUri", nowUri+"?cbidx="+cbidx+"&nowPage=1");
+	    session.setAttribute("nowUri", nowUri+"?cbidx="+cbidx+"&fmidx="+fmidx+"&nowPage=1");
 		
 		int deleteResult = homeService.deleteSearchList();
 		
@@ -280,10 +280,6 @@ public class CommunityController {
 			orincbridx=0;
 		}
 		model.addAttribute("orincbridx", orincbridx+1);
-		
-		//댓글 개수
-	    int replycount = replyService.count(cbidx);
-	    model.addAttribute("count", replycount);
 	    
 	    //쿠키생성
 	    Cookie oldCookie = null;
@@ -320,6 +316,23 @@ public class CommunityController {
   	    List<Community_ReplyVO> reply = replyService.list(cbidx, start, end);
   	    model.addAttribute("reply", reply);
   	    model.addAttribute("pvo", pvo);
+  	    
+  	    //팔로우 유무 조회
+  	    MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
+  	    int midx = 0;
+  	    
+  	    if(loginUser != null) {
+  	    	midx = loginUser.getMidx();
+  	    }
+  	    model.addAttribute("midx", midx);
+  	    FollowVO fvo = new FollowVO();
+  	    
+  	    fvo.setMidx(midx);
+  	    fvo.setFmidx(fmidx);
+  	    
+  	    int isFollow = Community_boardService.isFollow(fvo);
+  	    
+  	    model.addAttribute("isFollow", isFollow);
 	    
 		return "community/home_view";
 	}
@@ -377,7 +390,12 @@ public class CommunityController {
 	
 	@RequestMapping(value = "/follow", method = RequestMethod.POST)
 	@ResponseBody
-	public String follow(int midx, HttpSession session, Model model) throws Exception {
+	public String follow(int midx, Model model, HttpServletRequest req) throws Exception {
+		
+		String nowUri = req.getRequestURI();
+	      
+        HttpSession session = req.getSession();
+        session.setAttribute("nowUri", nowUri);
 		
 		System.out.println("/follow/" + midx + " : 팔로우 요청");
 		
@@ -391,7 +409,13 @@ public class CommunityController {
 		
 		followService.follow(follow);
 		
-		return "FollowOK";
+		MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
+		
+		if(loginUser == null) {
+           return "redirect:/login/login.do";
+        }else {
+           return "FollowOK";
+        }
 	}
 	
 	@RequestMapping(value = "/scrap.do", method = RequestMethod.GET)

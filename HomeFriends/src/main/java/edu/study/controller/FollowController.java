@@ -1,5 +1,6 @@
 package edu.study.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,58 @@ public class FollowController {
 	 * Simply selects the home view to render by returning its name.
 	 * @return 
 	 * @throws Exception 
-	 */	
+	 */
+	
+	//팔로우 요청
+	@RequestMapping(value="/followC", method = RequestMethod.POST)
+	@ResponseBody
+	public String followC(int fmidx, HttpServletRequest req, Model model) throws Exception {
+		
+		String nowUri = req.getRequestURI();
+	      
+        HttpSession session = req.getSession();
+        session.setAttribute("nowUri", nowUri);
+		
+		System.out.println("/followC/" + fmidx + " : 팔로우 요청");
+		
+		Object object = session.getAttribute("loginUser");
+		MemberVO activeUser = (MemberVO)object;
+		MemberVO passiveUser = memberService.inquiryOfUserByMidx(fmidx);
+		
+		FollowVO follow = new FollowVO();
+		follow.setMidx(activeUser.getMidx());
+		follow.setFmidx(passiveUser.getMidx());
+		
+		followService.follow(follow);
+		
+		MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
+		
+		if(loginUser == null) {
+           return "redirect:/login/login.do";
+        }else {
+           return "FollowOK";
+        }
+	}
+	
+	//언팔로우 요청
+		@RequestMapping(value="/unfollowC", method = RequestMethod.POST)
+		@ResponseBody
+		public String unfollowC(int fmidx, HttpSession session, Model model) throws Exception {
+			
+			System.out.println("/unfollowC/" + fmidx + " : 언팔로우 요청");
+			
+			Object object = session.getAttribute("loginUser");
+			MemberVO activeUser = (MemberVO)object;
+			MemberVO passiveUser = memberService.inquiryOfUserByMidx(fmidx);
+			
+			FollowVO follow = new FollowVO();
+			follow.setMidx(activeUser.getMidx());
+			follow.setFmidx(passiveUser.getMidx());
+			
+			followService.unfollow(follow);
+			
+			return "UnFollowOK";
+		}
 	
 	//언팔로우 요청
 	@RequestMapping(value="/unfollow", method = RequestMethod.POST)
