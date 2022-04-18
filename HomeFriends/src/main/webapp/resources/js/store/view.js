@@ -286,6 +286,14 @@ function cntFn2(){
 	$('.sum_price').text(sum_price);
 }
 
+function R_modifyFn(sridx){
+	if(loginYN){
+		location.href="store_review_modify.do?spidx="+spidx+"&sridx="+sridx;
+	}else{
+		alert("로그인 후 이용하여 주세요.");
+	}
+}
+
 
 function R_delFn(sridx){
 	var isCancel = false;
