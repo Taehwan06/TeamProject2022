@@ -23,8 +23,6 @@ public class MypageDAO {
 	
 	private static final String Namespace = "edu.study.mapper.mypageMapper";
 	
-	
-	
 	 public List<MemberVO> list(SearchVO vo) throws Exception{ 
 		 return sqlSession.selectList(Namespace+".listMember",vo); 
 	 }
