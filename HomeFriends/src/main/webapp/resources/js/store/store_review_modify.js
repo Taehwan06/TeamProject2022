@@ -24,7 +24,6 @@ function submitFn(){
 	if(result){
 		var img_style = $("#imgArea").attr("style");
 		/*img_style= img_style.replace(/&/g,"%26");*/
-		console.log(img_style);
 		if(img_style != "" && img_style != null){
 			img_style= img_style.replace(/\+/g,"%2B");
 		}

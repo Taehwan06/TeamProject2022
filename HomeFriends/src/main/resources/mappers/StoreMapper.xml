@@ -179,9 +179,17 @@
     </insert>
     
     <select id="listqna" resultType="Store_qnaVO" parameterType="int">
-         SELECT *
-         		,date_format(write_date, '%Y-%m-%d') w_day
-         		,date_format(answer_date, '%Y-%m-%d') a_day
+         SELECT sqidx
+         		,content
+         		,writer
+         		,date_format(write_date, '%Y-%m-%d') write_date
+         		,modify_yn
+         		,date_format(modify_date, '%Y-%m-%d') modify_date
+         		,answer
+         		,answer_content
+         		,answer_writer
+         		,date_format(answer_date, '%Y-%m-%d') answer_date
+         		,spidx
            FROM shopping_qna
           WHERE 1=1
             AND del_yn = 'N' 
