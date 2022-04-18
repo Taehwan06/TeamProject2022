@@ -12,6 +12,7 @@ import edu.study.vo.MemberVO;
 import edu.study.vo.MyContentVO;
 import edu.study.vo.MyQnaVO;
 import edu.study.vo.SearchVO;
+import edu.study.vo.Store_reviewVO;
 import edu.study.vo.OrderListVO;
 
 @Repository //
@@ -71,6 +72,10 @@ public class MypageDAO {
 	} 
 	 
 	
+	public int ReviewCount(Store_reviewVO vo) throws Exception{ 
+		return sqlSession.selectOne(Namespace+".ReviewCount",vo);
+	}
+	
 	public int count(OrderListVO vo) throws Exception{ 
 		return sqlSession.selectOne(Namespace+".comcount",vo);
 	}
@@ -93,6 +98,10 @@ public class MypageDAO {
 	
 	public List<MyQnaVO> myquestion(MyQnaVO vo) throws Exception{ 
 		return sqlSession.selectList(Namespace+".myquestion",vo);
+	}
+	
+	public List<Store_reviewVO> myreview(Store_reviewVO vo) throws Exception{ 
+		return sqlSession.selectList(Namespace+".myreview",vo);
 	}
 	
 }

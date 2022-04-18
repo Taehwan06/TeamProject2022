@@ -17,7 +17,24 @@ public class Store_reviewVO {
 	private String profile_system;
 	private String nick_name;
 	
+	private String title;
+	private String del_yn;
 	
+	
+	
+	
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getDel_yn() {
+		return del_yn;
+	}
+	public void setDel_yn(String del_yn) {
+		this.del_yn = del_yn;
+	}
 	public int getSridx() {
 		return sridx;
 	}
