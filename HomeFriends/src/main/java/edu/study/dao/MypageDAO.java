@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import edu.study.vo.Community_BoardVO;
+import edu.study.vo.FollowVO;
 import edu.study.vo.MemberVO;
 import edu.study.vo.MyContentVO;
 import edu.study.vo.MyQnaVO;
@@ -77,6 +78,11 @@ public class MypageDAO {
 	public int count(OrderListVO vo) throws Exception{ 
 		return sqlSession.selectOne(Namespace+".comcount",vo);
 	}
+	
+	public int following_cnt(FollowVO vo) throws Exception{ 
+		return sqlSession.selectOne(Namespace+".following_cnt",vo);
+	}
+	
 
 	public List<OrderListVO> delState(OrderListVO vo) throws Exception{ 
 		return sqlSession.selectList(Namespace+".delState",vo);

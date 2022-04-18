@@ -84,7 +84,7 @@
 							<div class="col-8">
 								<p class="p1">
 									<i class="bi bi-chat chat"></i> 
-									<a href="/controller/community/home_view.do?cbidx=${vo.cbidx}&nowPage=1#reply_area">${vo.content}</a>
+									<a href="/controller/community/home_view.do?cbidx=${vo.cbidx}&fmidx=${vo.midx}&nowPage=1#reply_area">${vo.content}</a>
 								</p>
 								<p class="p2">${vo.title}</p> 
 								<p class="p3">
@@ -95,7 +95,7 @@
 								</p>	
 							</div>
 							<div class="col-4 comment2">
-								<a href="/controller/community/home_view.do?cbidx=${vo.cbidx}&nowPage=1"><img src="/controller/image/${vo.img_origin}"></a>
+								<a href="/controller/community/home_view.do?cbidx=${vo.cbidx}&fmidx=${vo.midx}&nowPage=1"><img src="/controller/image/${vo.img_origin}"></a>
 							</div>
 							<div class="mydivVacant"></div>
 							</div>

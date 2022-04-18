@@ -176,6 +176,17 @@
 			color:#222222;
 		}
 		
+		.p4{
+			margin-left:14px;
+			font-size:0.8rem;
+			color:gray;
+		}
+		
+		.p4 strong{
+			font-weight:bold;
+		}
+		
+		
 		.no{
 			text-align:center;
 			font-weight:bolder;

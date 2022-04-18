@@ -29,6 +29,7 @@ import edu.study.service.MemberService;
 import edu.study.service.MypageService;
 import edu.study.vo.BasketVO;
 import edu.study.vo.Community_BoardVO;
+import edu.study.vo.FollowVO;
 import edu.study.vo.HomeSearchVO;
 import edu.study.vo.MemberVO;
 import edu.study.vo.MyContentVO;
@@ -59,7 +60,7 @@ public class MypageController {
 	 * @throws Exception 
 	 */
 	@RequestMapping(value = "/mypage.do", method = RequestMethod.GET)
-	public String mypage(Locale locale, Model model,OrderListVO vo, HttpServletRequest request, Community_BoardVO list) throws Exception {
+	public String mypage(Locale locale, Model model,OrderListVO vo, HttpServletRequest request, Community_BoardVO list, FollowVO follow) throws Exception {
 		
 		HttpSession session = request.getSession(); 
 	    MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
@@ -101,6 +102,10 @@ public class MypageController {
 	  		
 	  		List<Community_BoardVO> Storylist = mypageService.viewStory(list);
 	  		model.addAttribute("Storylist", Storylist);
+	  		
+	  		follow.setMidx(Midx);
+	  		int following = mypageService.following_cnt(follow);
+	  		model.addAttribute("following", following);
 	  		
 	        return "mypage/mypage";
 	      }  
