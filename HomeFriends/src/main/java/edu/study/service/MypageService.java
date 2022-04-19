@@ -6,6 +6,7 @@ import edu.study.vo.Community_BoardVO;
 import edu.study.vo.FollowVO;
 import edu.study.vo.MemberVO;
 import edu.study.vo.MyContentVO;
+import edu.study.vo.MyFollowVO;
 import edu.study.vo.MyQnaVO;
 import edu.study.vo.SearchVO;
 import edu.study.vo.Store_reviewVO;
@@ -24,7 +25,8 @@ public interface MypageService {
 	List<MyContentVO> mycomment(MyContentVO vo) throws Exception;
 	List<MyQnaVO> myquestion(MyQnaVO vo) throws Exception;
 	List<Store_reviewVO> myreview(Store_reviewVO vo) throws Exception;
-	
+	List<MyFollowVO> myFollower(MyFollowVO vo) throws Exception;
+	List<MyFollowVO> myFollowing(MyFollowVO vo) throws Exception;
 	
 	int update(MemberVO vo) throws Exception;
 	int updatePwd(MemberVO vo) throws Exception;
@@ -34,6 +36,7 @@ public interface MypageService {
 	int count(OrderListVO vo) throws Exception;
 	int ReviewCount(Store_reviewVO vo) throws Exception;
 	int following_cnt(FollowVO vo) throws Exception;
+	int follower_cnt(FollowVO vo) throws Exception;
 	
 		
 	

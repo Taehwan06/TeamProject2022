@@ -13,11 +13,11 @@
    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css" />
 
-	<title>나의 홈스토리 - 홈프렌즈</title>
+	<title>나의 팔로워/팔로잉 - 홈프렌즈</title>
 
 	<link href="/controller/css/header.css" rel="stylesheet">
 	<link href="/controller/css/nav.css" rel="stylesheet">
-	<link href="/controller/css/mypage/mypage.css" rel="stylesheet">
+	<link href="/controller/css/mypage/myFollowing.css" rel="stylesheet">
 	<link href="/controller/css/footer.css" rel="stylesheet">
 	
 	<script src="/controller/js/jquery-3.6.0.min.js"></script>
@@ -32,69 +32,39 @@
 	<section>
 	<div class="container-fluid align-items-center" >
 		<div class="row">
-			<div class="col-12 col-lg-3 mydiv1">
-				<div id="mypage_profile_box" class="row">
-					<div class="col-3 col-lg-12" id="profile_image">
-						<img src="/controller/image/${vo.profile_system}">
+			<!-- <div class="title">나의 팔로워/팔로잉</div> -->
+			<div class="col-6">
+				<div class="title">나의 팔로잉</div>
+				<div class="do"><i class="bi bi-check"></i>&nbsp;회원님께서 팔로우 하고 있는 분들의 목록입니다</div>
+				<div class="row">
+				<c:forEach items="${followingList}" var="followingList" varStatus="cnt">
+					<div class="col-12 col-lg-6 profile_image">
+						<a href='${pageContext.request.contextPath}/mypage/Member_page.do?midx=${followingList.fmidx}'>
+						<img src="/controller/image/${followingList.profile_system}">
+						<span class="nickname">${followingList.nick_name}</span>
+						</a>
 					</div>
-					<div class="col-9 col-lg-12" id="profile_id">
-						<div id="profile_name">
-							${vo.nick_name}
-						</div>
-						<div id="profile_follow">
-							<p>	
-							<a href='${pageContext.request.contextPath}/mypage/myFollowing.do'>
-							   팔로워 <strong>${follower}</strong> | 
-							   팔로잉 <strong>${following}</strong>
-							</a>
-							</p> 
-						</div>
-						<div id="profile_btn">
-							<button onclick="location.href='${pageContext.request.contextPath}/mypage/member_modify.do'">설정</button>
-						</div>
-					</div>
-					<hr>
-					<div class="col-12 col-lg-12" id="profile_etc">
-						<div class="profile_icon">
-							<i class="bi bi-bookmark icon-pointer"></i><br>스크랩<br>
-							<strong>10</strong>
-						</div>
-						<div class="profile_icon">
-							<i class="bi bi-heart icon-pointer"></i><br>좋아요<br>
-							<strong>20</strong>
-						</div> 
-					</div>
+				</c:forEach>
 				</div>
 			</div>
-<!-- ===============================================================프로필영역================================================================ -->
-<!-- ==================================================================================================================================== -->
-			<div class="col-12 col-lg-9 mydiv2">
-				<div class="mydivtitle mydiv2-2">나의 홈스토리</div>
-				<br><br>
-				<c:set var="length" value="${fn:length(Storylist)}" />
-				<c:choose>
-					<c:when test="${length eq 0}">
-					<div id="AllstoryDiv">	
-						<div class="row">
-							<p class="no">아직 등록된 글이 없습니다.</p>
-						</div>
+			<div class="col-6">
+				<div class="title">나의 팔로워</div>
+				<div class="do"><i class="bi bi-check"></i>&nbsp;현재 회원님을 팔로잉 하고 있는 분들의 목록입니다</div>
+				<div class="row">
+				<c:forEach items="${followList}" var="followList" varStatus="cnt">
+					<div class="col-12 col-lg-6 profile_image">
+					<a href='${pageContext.request.contextPath}/mypage/Member_page.do?midx=${followList.midx}'>
+						<img src="/controller/image/${followList.profile_system}">
+						<span class="nickname">${followList.nick_name}</span> 
+					</a>
 					</div>
-					</c:when>
-					<c:when test="${length ne 0}">
-					<div id="AllstoryDiv">	
-						<c:forEach items="${Storylist}" var="vo" varStatus="cnt">
-							<div id ="myStoryDiv">
-								<input type="hidden" value="${vo.cbidx}">
-								<a href="/controller/community/home_view.do?cbidx=${vo.cbidx}&fmidx=${vo.midx}&nowPage=1"><img class="all_homestroy_img" src="/controller/upload/${vo.img_system}"><br><span>${vo.title} </span></a>
-							</div>	
-						</c:forEach>	
-					</div>
-					</c:when>
-				</c:choose>
+				</c:forEach>
+				</div>
 			</div>
+			<!-- 끝 -->
+			<div class="vacant"></div>
 		</div>
-		<br><br><br><br>
-	</div>	
+	</div>
 	</section>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	

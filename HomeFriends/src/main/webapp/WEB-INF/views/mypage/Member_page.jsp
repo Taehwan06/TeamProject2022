@@ -13,11 +13,11 @@
    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css" />
 
-	<title>나의 리뷰 - 홈프렌즈</title>
+	<title>멤버페이지 - 홈프렌즈</title>
 
 	<link href="/controller/css/header.css" rel="stylesheet">
 	<link href="/controller/css/nav.css" rel="stylesheet">
-	<link href="/controller/css/mypage/my_review.css" rel="stylesheet">
+	<link href="/controller/css/mypage/Member_page.css" rel="stylesheet">
 	<link href="/controller/css/footer.css" rel="stylesheet">
 	
 	<script src="/controller/js/jquery-3.6.0.min.js"></script>
@@ -43,18 +43,18 @@
 						</div>
 						<div id="profile_follow">
 							<p>	
-							<a href='${pageContext.request.contextPath}/mypage/myFollowing.do'>
+							
 							   팔로워 <strong>${follower}</strong> | 
 							   팔로잉 <strong>${following}</strong>
-							</a>
+							
 							</p> 
 						</div>
-						<div id="profile_btn">
+						<%-- <div id="profile_btn">
 							<button onclick="location.href='${pageContext.request.contextPath}/mypage/member_modify.do'">설정</button>
-						</div>
+						</div> --%>
 					</div>
-					<hr>
-					<div class="col-12 col-lg-12" id="profile_etc">
+					<!-- <hr> -->
+					<!-- <div class="col-12 col-lg-12" id="profile_etc">
 						<div class="profile_icon">
 							<i class="bi bi-bookmark icon-pointer"></i><br>스크랩<br>
 							<strong>10</strong>
@@ -63,54 +63,38 @@
 							<i class="bi bi-heart icon-pointer"></i><br>좋아요<br>
 							<strong>20</strong>
 						</div> 
-					</div>
+					</div> -->
 				</div>
 			</div>
 <!-- ===============================================================프로필영역================================================================ -->
 <!-- ==================================================================================================================================== -->
 			<div class="col-12 col-lg-9 mydiv2">
-				<div class="mydivtitle mydiv2-2">나의 리뷰</div>
-				<div class="count">
-						총 <strong>${review_cnt}</strong>개의 리뷰를 등록하셨습니다
-				</div>	
-					<div class="mydivVacant"></div>
-					<c:set var="length" value="${fn:length(Reviewlist)}" />
-					<c:forEach items="${Reviewlist}" var="vo" varStatus="cnt">
-					<div id="mycomment">	
+				<div class="mydivtitle mydiv2-2">${vo.nick_name}의 홈스토리</div>
+				<br><br>
+				<c:set var="length" value="${fn:length(Storylist)}" />
+				<c:choose>
+					<c:when test="${length eq 0}">
+					<div id="AllstoryDiv">	
 						<div class="row">
-						<div class="col-8">
-							<p class="p1"><a href="/controller/store/store_view.do?spidx=${vo.spidx}">${vo.title}</a></p>
-							<p class="p2"><!-- ★ 평점 -->
-								<c:set var="star" value="${vo.score}" />
-								<c:forEach begin="0" end="4" varStatus="status">
-									<c:if test="${status.index < star}">
-									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-										<path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-									</svg>	
-									</c:if>
-								</c:forEach>
-							</p>
-							<p class="p3">
-								<strong>${vo.write_date}&nbsp;에 남긴 리뷰</strong>
-								<br><br>
-								<a href="/controller/store/store_view.do?spidx=${vo.spidx}#review_area_header">${vo.content}</a>&nbsp;&#183; 
-								<a id="pinky" style="color:#87ceeb;" href="/controller/store/store_review_modify.do?spidx=${vo.spidx}&sridx=${vo.sridx}">수정</a>
-							</p>	
+							<p class="no">아직 등록된 글이 없습니다.</p>
 						</div>
-						<div class="col-4 comment2">
-							<a href="/controller/store/store_view.do?spidx=${vo.spidx}"><img src="${vo.img_origin}"></a>
-						</div>
-						<div class="mydivVacant"></div>
-						</div>
-					</div>	
-					</c:forEach>
+					</div>
+					</c:when>
+					<c:when test="${length ne 0}">
+					<div id="AllstoryDiv">	
+						<c:forEach items="${Storylist}" var="vo" varStatus="cnt">
+							<div id ="myStoryDiv">
+								<input type="hidden" value="${vo.cbidx}">
+								<a href="/controller/community/home_view.do?cbidx=${vo.cbidx}&fmidx=${vo.midx}&nowPage=1"><img class="all_homestroy_img" src="/controller/upload/${vo.img_system}"><br><span>${vo.title} </span></a>
+							</div>	
+						</c:forEach>	
+					</div>
+					</c:when>
+				</c:choose>
 			</div>
-		</div><!-- row -->
+		</div>
 		<br><br><br><br>
-			
-	
-
-	</div><!-- container -->
+	</div>	
 	</section>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	
