@@ -1,5 +1,7 @@
 package edu.study.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,5 +40,11 @@ public class ScrapServiceImpl implements ScrapService {
 	public int scrapOff(ScrapVO svo) throws Exception {
 		
 		return scrapDao.scrapOff(svo);
+	}
+
+	@Override
+	public List<ScrapVO> selectActiveUserList(int midx) throws Exception {
+		
+		return scrapDao.selectActiveUserList(midx);
 	}
 }

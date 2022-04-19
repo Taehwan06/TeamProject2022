@@ -1,11 +1,13 @@
 package edu.study.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import edu.study.vo.FollowVO;
 import edu.study.vo.MemberVO;
 
 @Repository // 컴포넌트 하위에 있는 어노테이션, 외부와 연결 할 때 사용하는 어노테이션
@@ -67,6 +69,13 @@ public class MemberDAO {
 	public List<MemberVO> mlist() throws Exception {
 		
 		return sqlSession.selectList(Namespace+".memberList");
+	}
+	
+	//팔로우 아닌 유저 목록 가져오기
+	public List<MemberVO> notfollowlist(List<FollowVO> flist) throws Exception {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("flist", flist);
+		return sqlSession.selectList(Namespace+".notfollowList", map);
 	}
 }
 
