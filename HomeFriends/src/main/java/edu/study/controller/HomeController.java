@@ -57,7 +57,7 @@ public class HomeController {
 		
 		model.addAttribute("searchList", searchList);
 		
-		List<Community_BoardVO> list = Community_boardService.list(vo);
+		List<Community_BoardVO> list = Community_boardService.list4(vo);
 	      
 	    model.addAttribute("list",list);
 	    

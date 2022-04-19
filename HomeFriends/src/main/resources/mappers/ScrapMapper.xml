@@ -35,4 +35,11 @@
 		 WHERE cbidx = #{cbidx}
 		   AND midx = #{midx}
 	</delete>
+	
+	<!-- 스크랩 리스트 -->
+	<select id="scrapList" resultType="ScrapVO">
+		SELECT cbidx
+		  FROM scrap
+		 WHERE midx = #{midx}
+	</select>
 </mapper>

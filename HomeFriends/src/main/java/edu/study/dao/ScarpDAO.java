@@ -1,5 +1,7 @@
 package edu.study.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -36,5 +38,11 @@ public class ScarpDAO {
 	public int scrapDown(int cbidx) throws Exception {
 		
 		return sqlSession.update(Namespace+".scrapDown", cbidx);
+	}
+	
+	//스크랩 리스트
+	public List<ScrapVO> selectActiveUserList(int midx) throws Exception {
+		
+		return sqlSession.selectList(Namespace+".scrapList", midx);
 	}
 }

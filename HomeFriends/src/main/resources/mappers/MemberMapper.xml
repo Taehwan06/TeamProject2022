@@ -183,11 +183,27 @@
     
     <!-- 유저 목록 가져오기 -->
     <select id="memberList" parameterType="int" resultType="MemberVO">
-    	SELECT *
+    	SELECT midx,
+    		   nick_name,
+    		   profile_system
     	  FROM member
     	 WHERE 1=1
     	   AND del_yn = 'N'
+    	 LIMIT 10
     </select>
     
+    <!-- 팔로우 아닌 유저 목록 가져오기 -->
+    <select id="notfollowList" resultType="MemberVO" parameterType="FollowVO">
+    	SELECT midx,
+    		   nick_name,
+    		   profile_system
+    	  FROM member
+    	 WHERE del_yn = 'N'
+    	   AND NOT midx IN
+    	  <foreach item="midx" index="index" collection="flist" open="(" close=")" separator=",">
+          	  #{midx.midx}
+          </foreach>
+         LIMIT 10
+    </select>
     
 </mapper>

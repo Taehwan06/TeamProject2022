@@ -1,5 +1,7 @@
 package edu.study.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import edu.study.vo.ScrapVO;
@@ -18,4 +20,6 @@ public interface ScrapService {
 	
 	//스크랩 취소
 	int scrapOff(ScrapVO svo) throws Exception;
+
+	List<ScrapVO> selectActiveUserList(int midx) throws Exception;
 }
