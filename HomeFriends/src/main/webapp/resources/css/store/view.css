@@ -162,6 +162,10 @@ article{
 	height: 500px;
 	overflow: hidden;
 }
+
+.like{
+	color: #ffb6c1;
+}
 /*상품 상세보기 더보기*/
 .moreview{
 	position: absolute;

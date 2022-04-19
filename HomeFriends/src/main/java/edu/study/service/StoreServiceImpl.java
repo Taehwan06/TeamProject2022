@@ -56,9 +56,9 @@ public class StoreServiceImpl implements StoreService {
 	}
 
 	@Override
-	public List<Store_qnaVO> qnaList(int spidx) throws Exception {
+	public List<Store_qnaVO> qnaList(int spidx, int start, int end) throws Exception {
 		// TODO Auto-generated method stub
-		return StoreDao.qnaList(spidx);
+		return StoreDao.qnaList(spidx, start, end);
 	}
 
 	@Override
@@ -151,9 +151,33 @@ public class StoreServiceImpl implements StoreService {
 	}
 
 	@Override
-	public List<Store_reviewVO> reviewList(StorePagingVO vo) throws Exception {
+	public List<Store_reviewVO> reviewList(int spidx, int start, int end) throws Exception {
 		// TODO Auto-generated method stub
-		return StoreDao.reviewList(vo);
+		return StoreDao.reviewList(spidx, start, end);
+	}
+
+	@Override
+	public int islikey(int midx, int spidx) throws Exception {
+		// TODO Auto-generated method stub
+		return StoreDao.islikey(midx, spidx);
+	}
+
+	@Override
+	public int likeIN(int midx, int spidx) throws Exception {
+		// TODO Auto-generated method stub
+		return StoreDao.likeIN(midx, spidx);
+	}
+
+	@Override
+	public int likeDEL(int midx, int spidx) throws Exception {
+		// TODO Auto-generated method stub
+		return StoreDao.likeDEL(midx, spidx);
+	}
+
+	@Override
+	public List<StoreVO> likelist(int midx) throws Exception {
+		// TODO Auto-generated method stub
+		return StoreDao.likelist(midx);
 	}
 
 	
