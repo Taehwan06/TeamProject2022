@@ -11,6 +11,7 @@ import edu.study.vo.Community_BoardVO;
 import edu.study.vo.FollowVO;
 import edu.study.vo.MemberVO;
 import edu.study.vo.MyContentVO;
+import edu.study.vo.MyFollowVO;
 import edu.study.vo.MyQnaVO;
 import edu.study.vo.SearchVO;
 import edu.study.vo.Store_reviewVO;
@@ -83,6 +84,10 @@ public class MypageDAO {
 		return sqlSession.selectOne(Namespace+".following_cnt",vo);
 	}
 	
+	public int follower_cnt(FollowVO vo) throws Exception{ 
+		return sqlSession.selectOne(Namespace+".follower_cnt",vo);
+	}
+	
 
 	public List<OrderListVO> delState(OrderListVO vo) throws Exception{ 
 		return sqlSession.selectList(Namespace+".delState",vo);
@@ -107,6 +112,15 @@ public class MypageDAO {
 	public List<Store_reviewVO> myreview(Store_reviewVO vo) throws Exception{ 
 		return sqlSession.selectList(Namespace+".myreview",vo);
 	}
+	 
+	public List<MyFollowVO> myFollower(MyFollowVO vo) throws Exception{ 
+		return sqlSession.selectList(Namespace+".myFollower",vo);
+	}
+	
+	public List<MyFollowVO> myFollowing(MyFollowVO vo) throws Exception{ 
+		return sqlSession.selectList(Namespace+".myFollowing",vo);
+	}
+	
 	
 }
 

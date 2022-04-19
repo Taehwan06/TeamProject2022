@@ -42,8 +42,12 @@
 							${vo.nick_name}
 						</div>
 						<div id="profile_follow">
-							<p>팔로워 <strong>100</strong> | 
-							   팔로잉 <strong>${following}</strong></p> 
+							<p>	
+							<a href='${pageContext.request.contextPath}/mypage/myFollowing.do'>
+							   팔로워 <strong>${follower}</strong> | 
+							   팔로잉 <strong>${following}</strong>
+							</a>
+							</p> 
 						</div>
 						<div id="profile_btn">
 							<button onclick="location.href='${pageContext.request.contextPath}/mypage/member_modify.do'">설정</button>
