@@ -183,27 +183,37 @@
     
     <!-- 유저 목록 가져오기 -->
     <select id="memberList" parameterType="int" resultType="MemberVO">
-    	SELECT midx,
+    	SELECT m.midx,
     		   nick_name,
     		   profile_system
-    	  FROM member
+    	  FROM member m
+    	 INNER JOIN (
+    	SELECT DISTINCT midx
+    	  FROM community_board
+    	 WHERE del_yn = 'N'
+    	 ) c
+    	    ON m.midx = c.midx
     	 WHERE 1=1
     	   AND del_yn = 'N'
-    	 LIMIT 10
     </select>
     
     <!-- 팔로우 아닌 유저 목록 가져오기 -->
     <select id="notfollowList" resultType="MemberVO" parameterType="FollowVO">
-    	SELECT midx,
+    	SELECT m.midx,
     		   nick_name,
     		   profile_system
-    	  FROM member
+    	  FROM member m
+    	 INNER JOIN (
+   	    SELECT DISTINCT midx
+   	  	  FROM community_board
+   	 	 WHERE del_yn = 'N'
+   	 	 ) c
+    	    ON m.midx = c.midx
     	 WHERE del_yn = 'N'
-    	   AND NOT midx IN
+    	   AND NOT m.midx IN
     	  <foreach item="midx" index="index" collection="flist" open="(" close=")" separator=",">
           	  #{midx.midx}
           </foreach>
-         LIMIT 10
     </select>
     
 </mapper>

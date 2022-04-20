@@ -105,9 +105,9 @@
 			<c:forEach items="${list}" var="vo">
 				<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 story" <c:if test="${cnt.last}">id="mdlg_display_none"</c:if>>
 					<img src="/controller/upload/${vo.img_system }" class="storyImg" onclick="location.href='/controller/community/home_view.do?cbidx=${vo.cbidx}&fmidx=${vo.midx }&nowPage=1'">
-					<div class="storyText" onclick="location.href='/controller/community/home_view.do?cbidx=${vo.cbidx}&fmidx=${vo.midx }&nowPage=1'">
-						<div class="storyTitle">${vo.title }</div>
-						<div class="storyWriter">
+					<div class="storyText">
+						<div class="storyTitle" onclick="location.href='/controller/community/home_view.do?cbidx=${vo.cbidx}&fmidx=${vo.midx }&nowPage=1'">${vo.title }</div>
+						<div class="storyWriter" onclick="location.href='/controller/mypage/Member_page.do?midx=${vo.midx}'">
 							<img class="writerImg" src="/controller/image/${vo.profile_system }">${vo.writer }
 						</div>
 					</div>
