@@ -29,6 +29,7 @@ import edu.study.service.MemberService;
 import edu.study.service.MypageService;
 import edu.study.vo.BasketVO;
 import edu.study.vo.Community_BoardVO;
+import edu.study.vo.Community_ReplyVO;
 import edu.study.vo.FollowVO;
 import edu.study.vo.HomeSearchVO;
 import edu.study.vo.MemberVO;
@@ -36,6 +37,7 @@ import edu.study.vo.MyContentVO;
 import edu.study.vo.MyFollowVO;
 import edu.study.vo.MyQnaVO;
 import edu.study.vo.OrderListVO;
+import edu.study.vo.PagingVO;
 import edu.study.vo.PayInfoVO;
 import edu.study.vo.SearchVO;
 import edu.study.vo.Store_reviewVO;
@@ -114,6 +116,11 @@ public class MypageController {
 	  		int follower = mypageService.follower_cnt(follow);
 	  		model.addAttribute("follower", follower);
 	  		
+	  		int stroyCnt = mypageService.stroyCnt(Midx);
+	  		model.addAttribute("stroyCnt", stroyCnt);
+	  		
+	  		int likeCnt = mypageService.likeCnt(Midx);
+	  		model.addAttribute("likeCnt", likeCnt);
 	  		
 	        return "mypage/mypage";
 	      }  
@@ -372,7 +379,7 @@ public class MypageController {
 	
 	
 	@RequestMapping(value = "/mypage_allStory.do", method = RequestMethod.GET)
-	public String mypage_allStory(Locale locale, Model model, SearchVO vo, HttpServletRequest request ,Community_BoardVO list, FollowVO follow) throws Exception {
+	public String mypage_allStory(Locale locale, Model model, SearchVO vo, HttpServletRequest request ,Community_BoardVO list, FollowVO follow,int nowPage) throws Exception {
 
 		HttpSession session = request.getSession(); 
 		MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
@@ -391,8 +398,20 @@ public class MypageController {
 	  		int Midx = loginUser.getMidx();
 			list.setMidx(Midx);
 	  		
-	  		List<Community_BoardVO> Storylist = mypageService.viewStory(list);
+			//페이징
+			int total = mypageService.allstoryCnt(Midx);
+			PagingVO pvo = new PagingVO(total, nowPage, 6);
+			int start = pvo.getStart();
+			int end = pvo.getEnd();
+			list.setStart(start);
+			list.setEnd(end);
+			
+			
+	  		List<Community_BoardVO> Storylist = mypageService.pagingStory(list);
 	  		model.addAttribute("Storylist", Storylist);
+	  		model.addAttribute("pvo", pvo);
+	  		
+	  		//숫자처리
 	  		
 	  		follow.setMidx(Midx);
 	  		int following = mypageService.following_cnt(follow);
@@ -403,6 +422,13 @@ public class MypageController {
 	  		
 	  		int follower = mypageService.follower_cnt(follow);
 	  		model.addAttribute("follower", follower);
+	  		
+	  		int stroyCnt = mypageService.stroyCnt(Midx);
+	  		model.addAttribute("stroyCnt", stroyCnt);
+	  		
+	  		int likeCnt = mypageService.likeCnt(Midx);
+	  		model.addAttribute("likeCnt", likeCnt);
+	  		
 	  		
 	  		return "mypage/mypage_allStory";
 		      
@@ -482,6 +508,12 @@ public class MypageController {
 	  		int follower = mypageService.follower_cnt(follow);
 	  		model.addAttribute("follower", follower);
 	  		
+	  		int stroyCnt = mypageService.stroyCnt(Midx);
+	  		model.addAttribute("stroyCnt", stroyCnt);
+	  		
+	  		int likeCnt = mypageService.likeCnt(Midx);
+	  		model.addAttribute("likeCnt", likeCnt);
+	  		
 	  		return "mypage/my_comment";
 		      
 	    }
@@ -520,6 +552,12 @@ public class MypageController {
 	  		
 	  		int follower = mypageService.follower_cnt(follow);
 	  		model.addAttribute("follower", follower);
+	  		
+	  		int stroyCnt = mypageService.stroyCnt(Midx);
+	  		model.addAttribute("stroyCnt", stroyCnt);
+	  		
+	  		int likeCnt = mypageService.likeCnt(Midx);
+	  		model.addAttribute("likeCnt", likeCnt);
 	  		
 	  		return "mypage/my_QnA";
 		      
@@ -561,6 +599,12 @@ public class MypageController {
 	  		
 	  		int follower = mypageService.follower_cnt(follow);
 	  		model.addAttribute("follower", follower);
+	  		
+	  		int stroyCnt = mypageService.stroyCnt(Midx);
+	  		model.addAttribute("stroyCnt", stroyCnt);
+	  		
+	  		int likeCnt = mypageService.likeCnt(Midx);
+	  		model.addAttribute("likeCnt", likeCnt);
 	  		
 	  		
 	  		return "mypage/my_review";
