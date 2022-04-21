@@ -82,8 +82,8 @@ $(function() {
 					
 				}else{
 					var resultAry = result.split(",")
-					var img_origin = resultAry[1];
-					var img_system = resultAry[0];
+					var img_origin = resultAry[0];
+					var img_system = resultAry[1];
 					
 					$("#img_origin").val(img_origin);
 					$("#img_system").val(img_system);

@@ -956,7 +956,7 @@ public class StoreController {
 	            stream.write(bytes);
 	            stream.close();
 	           	
-	            result = originalFilename+","+"/controller/image/"+rename;
+	            result = originalFilename+","+rename;
 	        } catch (Exception e) {
 	        	result = "fail2";
 	        }

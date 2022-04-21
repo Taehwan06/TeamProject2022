@@ -19,24 +19,27 @@
     
 	<title>상품 좋아요 - 홈프렌즈</title>
 	
-	<link href="/controller/css/header.css" rel="stylesheet">
-	<link href="/controller/css/nav.css" rel="stylesheet">
-	<link href="/controller/css/home.css" rel="stylesheet">
-	<link href="/controller/css/footer.css" rel="stylesheet">
-	<link href="/controller/css/store/store.css" rel="stylesheet">
-	<script src="/controller/js/jquery-3.6.0.min.js"></script>
-	<script src="/controller/js/nav.js"></script>
-	<script src="/controller/js/header.js"></script>
-	<script src="/controller/js/home.js"></script>
-	<script src="/controller/js/store/store.js"></script>
-	<script src="/controller/js/footer.js"></script>
+	<link href="${pageContext.request.contextPath}/css/header.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/nav.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/home.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/footer.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/store/store.css" rel="stylesheet">
+	<script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/nav.js"></script>
+	<script src="${pageContext.request.contextPath}/js/header.js"></script>
+	<script src="${pageContext.request.contextPath}/js/home.js"></script>
+	<script src="${pageContext.request.contextPath}/js/store/store.js"></script>
+	<script src="${pageContext.request.contextPath}/js/footer.js"></script>
 	<!-- kakao SDK -->
    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
    <!-- facebook SDK -->
    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
    <!-- naver SDK -->
    <script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
-	
+   
+   <!-- 페이지 경로가져오기 -->
+   <script>var contextPath = "${pageContext.request.contextPath}"</script>
+   	
 </head>
 <body>
 	<%@ include file="../header.jsp" %>
@@ -45,7 +48,7 @@
 	<section>
 		<!-- 이벤트 베너 -->
 		<div class="row" style="margin-bottom: 100px; ">
-			<img class="col-12" src="/controller/image/store_van.jpg">
+			<img class="col-12" src="${pageContext.request.contextPath}/image/store_van.jpg">
 		</div>
 
 
@@ -58,8 +61,8 @@
 			        <div class="clear"></div>
 		        </div>
 		       <c:forEach items="${likelist}" var="vo" varStatus="cnt">
-				<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop" onClick="location.href='/controller/store/store_view.do?spidx=${vo.spidx}'">
-					<img src="${vo.img_origin}" class="shopImg" onClick="">
+				<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop" onClick="location.href='${pageContext.request.contextPath}/store/store_view.do?spidx=${vo.spidx}'">
+					<img src="${pageContext.request.contextPath}/image/${vo.img_system}" class="shopImg" onClick="">
 					<div class="shopText" onClick="">
 						<div class="shopTitle">
 							<div class="brand">${vo.brand}</div>
@@ -90,7 +93,7 @@
 			        <div class="clear"></div>
 		        </div>
 				 <c:forEach items="${list}" var="vo" end="3" varStatus="cnt">
-				<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop" <c:if test="${cnt.count==4}">id="mdlg_display_none"</c:if> onClick="location.href='/controller/store/store_view.do?spidx=${vo.spidx}'">
+				<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop" <c:if test="${cnt.count==4}">id="mdlg_display_none"</c:if> onClick="location.href='${pageContext.request.contextPath}/store/store_view.do?spidx=${vo.spidx}'">
 					<img src="${vo.img_origin}" class="shopImg" onClick="">
 					<div class="shopText" onClick="">
 						<div class="shopTitle">

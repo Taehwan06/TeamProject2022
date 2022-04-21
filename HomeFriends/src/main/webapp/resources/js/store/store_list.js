@@ -101,7 +101,7 @@ function lookup(){
 			}*/
 
 			for(var i=0; i<jsondata.length; i++){
-				sethtml+="<div class='col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop' onClick=\"location.href=\'/controller/store/store_view.do?spidx="+jsondata[i].spidx+"\'\">";
+				sethtml+="<div class='col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop' onClick=\"location.href=\'${pageContext.request.contextPath}/store/store_view.do?spidx="+jsondata[i].spidx+"\'\">";
 				sethtml+="<img src='"+jsondata[i].img_origin+"' class='shopImg'>";
 				sethtml+="<div class='shopText'>";
 				sethtml+="<div class='shopTitle'>";
