@@ -19,17 +19,17 @@
     
 	<title>스토어 - 홈프렌즈</title>
 	
-	<link href="/controller/css/header.css" rel="stylesheet">
-	<link href="/controller/css/nav.css" rel="stylesheet">
-	<link href="/controller/css/home.css" rel="stylesheet">
-	<link href="/controller/css/footer.css" rel="stylesheet">
-	<link href="/controller/css/store/store.css" rel="stylesheet">
-	<script src="/controller/js/jquery-3.6.0.min.js"></script>
-	<script src="/controller/js/nav.js"></script>
-	<script src="/controller/js/header.js"></script>
-	<script src="/controller/js/home.js"></script>
-	<script src="/controller/js/store/store.js"></script>
-	<script src="/controller/js/footer.js"></script>
+	<link href="${pageContext.request.contextPath}/css/header.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/nav.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/home.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/footer.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/store/store.css" rel="stylesheet">
+	<script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/nav.js"></script>
+	<script src="${pageContext.request.contextPath}/js/header.js"></script>
+	<script src="${pageContext.request.contextPath}/js/home.js"></script>
+	<script src="${pageContext.request.contextPath}/js/store/store.js"></script>
+	<script src="${pageContext.request.contextPath}/js/footer.js"></script>
 	<!-- kakao SDK -->
    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
    <!-- facebook SDK -->
@@ -37,7 +37,8 @@
    <!-- naver SDK -->
    <script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
 	
-	
+	<!-- 페이지 경로가져오기 -->
+   <script>var contextPath = "${pageContext.request.contextPath}"</script>
 </head>
 <body>
 	<%@ include file="../header.jsp" %>
@@ -58,44 +59,44 @@
 		</c:if>
 		<!-- 이벤트 베너 -->
 		<div class="row">
-			<img class="col-12" src="/controller/image/store_van.jpg">
+			<img class="col-12" src="${pageContext.request.contextPath}/image/store_van.jpg">
 		</div>
 
 		<!-- 상품 카테고리 -->
 		<div class="row category">
 			<div id="10" class="category_link col-4 col-sm-2 col-md-2 col-lg-2 col-xl-2">
 				<div class="img_box">
-					<img class="category_img" src="/controller/image/furniture.png"><br>
+					<img class="category_img" src="${pageContext.request.contextPath}/image/furniture.png"><br>
 				</div>
 				가구
 			</div>
 			<div id="30" class="category_link col-4 col-sm-2 col-md-2 col-lg-2 col-xl-2">
 				<div class="img_box">
-					<img class="category_img" src="/controller/image/bedding.png"><br>
+					<img class="category_img" src="${pageContext.request.contextPath}/image/bedding.png"><br>
 				</div>
 				침구
 			</div>
 			<div id="40" class="category_link col-4 col-sm-2 col-md-2 col-lg-2 col-xl-2">
 				<div class="img_box">
-					<img id="big_img" class="category_img" src="/controller/image/appliances.png"><br>
+					<img id="big_img" class="category_img" src="${pageContext.request.contextPath}/image/appliances.png"><br>
 				</div>
 				가전
 			</div>
 			<div id="20" class="category_link col-4 col-sm-2 col-md-2 col-lg-2 col-xl-2">
 				<div class="img_box">
-					<img class="category_img" src="/controller/image/light.png"><br>
+					<img class="category_img" src="${pageContext.request.contextPath}/image/light.png"><br>
 				</div>
 				조명
 			</div>
 			<div id="50" class="category_link col-4 col-sm-2 col-md-2 col-lg-2 col-xl-2">
 				<div class="img_box">
-					<img class="category_img" src="/controller/image/kitchen.png"><br>
+					<img class="category_img" src="${pageContext.request.contextPath}/image/kitchen.png"><br>
 				</div>
 				주방
 			</div>
 			<div id="60" class="category_link col-4 col-sm-2 col-md-2 col-lg-2 col-xl-2">
 				<div class="img_box">
-					<img class="category_img" src="/controller/image/daily.png"><br>
+					<img class="category_img" src="${pageContext.request.contextPath}/image/daily.png"><br>
 				</div>
 				생활
 			</div>
@@ -112,8 +113,8 @@
 			        <div class="clear"></div>
 		        </div>
 		       <c:forEach items="${list.get(0)}" var="vo" end="3" varStatus="cnt">
-				<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop" <c:if test="${cnt.last}">id="mdlg_display_none"</c:if> onClick="location.href='/controller/store/store_view.do?spidx=${vo.spidx}'">
-					<img src="${vo.img_origin}" class="shopImg" onClick="">
+				<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop" <c:if test="${cnt.last}">id="mdlg_display_none"</c:if> onClick="location.href='${pageContext.request.contextPath}/store/store_view.do?spidx=${vo.spidx}'">
+					<img src="${pageContext.request.contextPath}/image/${vo.img_system}" class="shopImg" onClick="">
 					<div class="shopText" onClick="">
 						<div class="shopTitle">
 							<div class="brand">${vo.brand}</div>
@@ -144,8 +145,8 @@
 			        <div class="clear"></div>
 		        </div>
 				 <c:forEach items="${list.get(1)}" var="vo" end="3" varStatus="cnt">
-				<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop" <c:if test="${cnt.last}">id="mdlg_display_none"</c:if> onClick="location.href='/controller/store/store_view.do?spidx=${vo.spidx}'">
-					<img src="${vo.img_origin}" class="shopImg" onClick="">
+				<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop" <c:if test="${cnt.last}">id="mdlg_display_none"</c:if> onClick="location.href='${pageContext.request.contextPath}/store/store_view.do?spidx=${vo.spidx}'">
+					<img src="${pageContext.request.contextPath}/image/${vo.img_system}" class="shopImg" onClick="">
 					<div class="shopText" onClick="">
 						<div class="shopTitle">
 							<div class="brand">${vo.brand}</div>
@@ -176,8 +177,8 @@
 			        <div class="clear"></div>
 		        </div>
 				 <c:forEach items="${list.get(2)}" var="vo" end="3" varStatus="status">
-				<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop" <c:if test="${status.count==4}">id="mdlg_display_none"</c:if> onClick="location.href='/controller/store/store_view.do?spidx=${vo.spidx}'">
-					<img src="${vo.img_origin}" class="shopImg" onClick="">
+				<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop" <c:if test="${status.count==4}">id="mdlg_display_none"</c:if> onClick="location.href='${pageContext.request.contextPath}/store/store_view.do?spidx=${vo.spidx}'">
+					<img src="${pageContext.request.contextPath}/image/${vo.img_system}" class="shopImg" onClick="">
 					<div class="shopText" onClick="">
 						<div class="shopTitle">
 							<div class="brand">${vo.brand}</div>

@@ -336,7 +336,7 @@ function R_modifyFn(sridx){
 	         button: "확인",
 	         closeOnClickOutside : false
 	      }).then(function(){
-	         location.href="/controller/login/login.do";
+	         location.href="${pageContext.request.contextPath}/login/login.do";
 	      });
 		
 	}
@@ -401,7 +401,7 @@ function qnaInFn(){
 	         button: "확인",
 	         closeOnClickOutside : false
 	      }).then(function(){
-	         location.href="/controller/login/login.do";
+	         location.href="${pageContext.request.contextPath}/login/login.do";
 	      });
 	}
 }
@@ -414,7 +414,7 @@ function Q_modifyFn(sqidx){
 	         button: "확인",
 	         closeOnClickOutside : false
 	      }).then(function(){
-	         location.href="/controller/login/login.do";
+	         location.href="${pageContext.request.contextPath}/login/login.do";
 	      });
 	}
 }
@@ -631,7 +631,7 @@ function likeFn(likeYN){
 		         button: "확인",
 		         closeOnClickOutside : false
 		      }).then(function(){
-		         location.href="/controller/login/login.do";
+		         location.href="${pageContext.request.contextPath}/login/login.do";
 		      });
 		}
 		$.ajax({
@@ -648,7 +648,7 @@ function likeFn(likeYN){
 				         button: "확인",
 				         closeOnClickOutside : false
 				      }).then(function(){
-				         location.href="/controller/login/login.do";
+				         location.href="${pageContext.request.contextPath}/login/login.do";
 				      });
 				}
 				var html="<div onclick='likeFn(1)'>"
@@ -674,7 +674,7 @@ function likeFn(likeYN){
 				         button: "확인",
 				         closeOnClickOutside : false
 				      }).then(function(){
-				         location.href="/controller/login/login.do";
+				         location.href="${pageContext.request.contextPath}/login/login.do";
 				      });
 				}
 				var html="<div onclick='likeFn(0)'>"
@@ -703,7 +703,7 @@ function likeFn(likeYN){
 				sethtml+= "<article class='reply_item_'>";
 				sethtml+= "<p class='reply_item_content'>";
 				sethtml+= "<a class='reply_item_content_writer' href=''>"+jsondata[i].nick_name;
-				sethtml+= "<img class='reply_item_content_writer_image' src='/controller/image/"+jsondata[i].profile_system+"'>";
+				sethtml+= "<img class='reply_item_content_writer_image' src='${pageContext.request.contextPath}/image/"+jsondata[i].profile_system+"'>";
 				sethtml+= "</a>";
 				sethtml+= "<time class='reply_item_footer_time'>";
 				if(jsondata[i].modify_yn=='N'){

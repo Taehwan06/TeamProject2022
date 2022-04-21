@@ -28,14 +28,14 @@
 	-->
 	
 	
-	<link href="/controller/css/header.css" rel="stylesheet">
-	<link href="/controller/css/nav.css" rel="stylesheet">
-	<link href="/controller/css/store/store_insert.css" rel="stylesheet">
-	<link href="/controller/css/footer.css" rel="stylesheet">
-	<script src="/controller/js/jquery-3.6.0.min.js"></script>
-	<script src="/controller/js/nav.js"></script>
-	<script src="/controller/js/store/store_modify.js"></script>
-	<script src="/controller/js/footer.js"></script>
+	<link href="${pageContext.request.contextPath}/css/header.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/nav.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/store/store_insert.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/footer.css" rel="stylesheet">
+	<script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/nav.js"></script>
+	<script src="${pageContext.request.contextPath}/js/store/store_modify.js"></script>
+	<script src="${pageContext.request.contextPath}/js/footer.js"></script>
 	<!-- kakao SDK -->
    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
    <!-- facebook SDK -->
@@ -45,16 +45,18 @@
 	
 	
 	<!-- 썸머노트 -->
-	<script src="/controller/js/summernote/summernote-lite.js"></script>
-	<script src="/controller/js/summernote/lang/summernote-ko-KR.js"></script>
-	<link rel="stylesheet" href="/controller/css/summernote/summernote-lite.css">
+	<script src="${pageContext.request.contextPath}/js/summernote/summernote-lite.js"></script>
+	<script src="${pageContext.request.contextPath}/js/summernote/lang/summernote-ko-KR.js"></script>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/summernote/summernote-lite.css">
 	
+	<!-- 페이지 경로가져오기 -->
+   <script>var contextPath = "${pageContext.request.contextPath}"</script>
 	
 	<script>
 		var thisSpidx = ${vo.spidx};
 		$(document).ready(function(){
 			$("#imgArea").css("background-color", "none");
-			$("#imgArea").css("background-image", "url('${vo.img_origin}')");
+			$("#imgArea").css("background-image", "url('"+contextPath+"/image/${vo.img_system}')");
 			$("#imgText").css("display", "none");
 			$("#imgButton").css("display", "none");
 			

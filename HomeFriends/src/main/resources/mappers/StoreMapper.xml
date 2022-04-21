@@ -14,7 +14,7 @@
          		,score
          		,discount
          		,review_cnt
-         		,img_origin
+         		,img_system
          		,category
          		,detail
            FROM shopping_product

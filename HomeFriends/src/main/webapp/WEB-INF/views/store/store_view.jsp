@@ -16,16 +16,16 @@
 	
 	<title>${vo.title} - 홈프렌즈</title>
 	
-	<link href="/controller/css/header.css" rel="stylesheet">
-	<link href="/controller/css/nav.css" rel="stylesheet">
-	<link href="/controller/css/home.css" rel="stylesheet">
-	<link href="/controller/css/footer.css" rel="stylesheet">
-	<script src="/controller/js/jquery-3.6.0.min.js"></script>
-	<link href="/controller/css/store/view.css" rel="stylesheet">
-	<script src="/controller/js/nav.js"></script>
-	<script src="/controller/js/header.js"></script>
-	<script src="/controller/js/store/view.js"></script>
-	<script src="/controller/js/footer.js"></script>
+	<link href="${pageContext.request.contextPath}/css/header.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/nav.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/home.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/footer.css" rel="stylesheet">
+	<script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+	<link href="${pageContext.request.contextPath}/css/store/view.css" rel="stylesheet">
+	<script src="${pageContext.request.contextPath}/js/nav.js"></script>
+	<script src="${pageContext.request.contextPath}/js/header.js"></script>
+	<script src="${pageContext.request.contextPath}/js/store/view.js"></script>
+	<script src="${pageContext.request.contextPath}/js/footer.js"></script>
 	<!-- sweet alert SDK -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <!-- kakao SDK -->
@@ -41,7 +41,8 @@
 		var midx = "${loginUser.midx}";
 		
 	</script>
-	
+	<!-- 페이지 경로가져오기 -->
+   <script>var contextPath = "${pageContext.request.contextPath}"</script>
 	<style>
 	
 	</style>
@@ -65,7 +66,7 @@
 	<section id="Shop_area">
 		<c:if test="${loginUser.grade eq 'A'}">
 			<div id="sv_md">
-				<button onClick="location.href='/controller/store/store_modify.do?spidx=${vo.spidx}'">상품수정</button>
+				<button onClick="location.href='${pageContext.request.contextPath}/store/store_modify.do?spidx=${vo.spidx}'">상품수정</button>
 				<button onClick="delFn()">상품삭제</button>
 			</div>
 		</c:if>
@@ -81,7 +82,7 @@
 		</div>
 		<div class="row" id="shop_content">
 			<div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-				<img src= "${vo.img_origin}" class="shopImg" onClick="">
+				<img src= "${pageContext.request.contextPath}/image/${vo.img_system}" class="shopImg" onClick="">
 			</div>
 			<div class="col-sm-11 col-md-5 col-lg-5 col-xl-5 content">
 				<div class="row">
@@ -186,7 +187,7 @@
 									<article class="reply_item_">
 										<p class="reply_item_content">
 											<a class="reply_item_content_writer" href="">${rvo.nick_name}
-												<img class="reply_item_content_writer_image" src="/controller/image/${rvo.profile_system }">
+												<img class="reply_item_content_writer_image" src="${pageContext.request.contextPath}/image/${rvo.profile_system }">
 											</a>
 											<time class="reply_item_footer_time">
 												<c:if test="${rvo.modify_yn == 'N' }">
@@ -540,7 +541,7 @@
 	                  button: "확인",
 	                  closeOnClickOutside : false
 	               }).then(function(){
-	            	   location.href="/controller/login/login.do"
+	            	   location.href="${pageContext.request.contextPath}/login/login.do"
 	               });
 				
 			}
@@ -558,11 +559,11 @@
 	                  icon: "warning",
 	                  closeOnClickOutside : false
 	               }).then(function(){
-	                  location.href="/controller/mypage/addr_modify.do";
+	                  location.href="${pageContext.request.contextPath}/mypage/addr_modify.do";
 	               });
 	               
 	            }else{
-	               location.href="/controller/mypage/directPayment.do"+"?midx="+"${loginUser.midx}"+"&spidx="+${vo.spidx}+"&cnt="+cnt;
+	               location.href="${pageContext.request.contextPath}/mypage/directPayment.do"+"?midx="+"${loginUser.midx}"+"&spidx="+${vo.spidx}+"&cnt="+cnt;
 	            }
 	            
 	         }else{
