@@ -108,7 +108,7 @@ public class CommunityController {
 		String datePath = str.replace("-", File.separator);
 
 		/* 폴더 생성 */
-		File uploadPath = new File(uploadFolder, datePath);
+		File uploadPath = new File(uploadFolder + datePath);
 
 		if (uploadPath.exists() == false) {
 			uploadPath.mkdirs();
@@ -132,7 +132,7 @@ public class CommunityController {
 
 		uploadFileName = uuid + "_" + uploadFileName;
 		/* 파일 위치, 파일 이름을 합친 File 객체 */
-		File saveFile = new File(uploadPath, uploadFileName);
+		File saveFile = new File(uploadPath + uploadFileName);
 
 		/* 파일 저장 */
 		uploadFile.transferTo(saveFile);

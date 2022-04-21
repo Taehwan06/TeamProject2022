@@ -23,6 +23,7 @@ import com.github.scribejava.core.model.OAuth2AccessToken;
 
 import edu.study.service.HomeService;
 import edu.study.service.MemberService;
+import edu.study.service.testService;
 import edu.study.util.RandomNumber;
 import edu.study.util.RandomPass;
 import edu.study.vo.HomeSearchVO;
@@ -46,6 +47,9 @@ public class LoginController {
 	private RandomNumber randomNumber;
 	private RandomPass randomPass;
 	private String apiResult = null;
+	
+	@Autowired
+	private testService testService;
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -77,6 +81,16 @@ public class LoginController {
 		model.addAttribute("vo", vo);
 		
 		return "login/join_result";
+	}
+	
+	@RequestMapping(value = "/phoneCheck", method = RequestMethod.GET)
+	@ResponseBody 
+	public String sendSMS(@RequestParam("phone") String userPhoneNumber) throws Exception { // 휴대폰 문자보내기 
+		int randomNumber = (int)((Math.random()* (9999 - 1000 + 1)) + 1000);//난수 생성 
+		
+		testService.certifiedPhoneNumber(userPhoneNumber,randomNumber); 
+		
+		return Integer.toString(randomNumber);
 	}
 	
 	@RequestMapping(value = "/login.do", method = RequestMethod.GET)
