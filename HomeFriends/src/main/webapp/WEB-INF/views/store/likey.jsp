@@ -94,7 +94,7 @@
 		        </div>
 				 <c:forEach items="${list}" var="vo" end="3" varStatus="cnt">
 				<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop" <c:if test="${cnt.count==4}">id="mdlg_display_none"</c:if> onClick="location.href='${pageContext.request.contextPath}/store/store_view.do?spidx=${vo.spidx}'">
-					<img src="${vo.img_origin}" class="shopImg" onClick="">
+					<img src="${pageContext.request.contextPath}/image/${vo.img_system}" class="shopImg" onClick="">
 					<div class="shopText" onClick="">
 						<div class="shopTitle">
 							<div class="brand">${vo.brand}</div>

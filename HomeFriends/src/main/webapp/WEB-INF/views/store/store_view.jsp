@@ -44,7 +44,7 @@
 	<!-- 페이지 경로가져오기 -->
    <script>var contextPath = "${pageContext.request.contextPath}"</script>
 	<style>
-	
+		
 	</style>
 </head>
 <body>
@@ -133,7 +133,7 @@
 				
 				<div class="row order_price">
 					<div class="col-sm-6 col-md-6 order_price_">
-						<select id="selectCnt" class="form-control" style="width: 70px; text-align: center;" onChange="cntFn()">
+						<select id="selectCnt" class="form-control selectCnt" style="width: 70px; text-align: center;" >
 							<option value="1">1</option>
 							<option value="2">2</option>
 							<option value="3">3</option>
@@ -145,7 +145,7 @@
 							<option value="9">9</option>
 							<option value="10">10+</option>
 						</select>
-						<input class="hiddenCnt" type="number" value="1" style="width: 70px; text-align: center;" onChange="cntFn2()">
+						<input class="hiddenCnt" type="number" value="10" min="1" max="100" style="width: 70px; text-align: center;" >
 					</div>
 					<div class="col-sm-6 col-md-6 order_price__">주문금액:<span class="sum_price">${vo.sale_price}</span>원</div>
 				</div>
@@ -186,7 +186,7 @@
 								<li class="reply_list_item">
 									<article class="reply_item_">
 										<p class="reply_item_content">
-											<a class="reply_item_content_writer" href="">${rvo.nick_name}
+											<a class="reply_item_content_writer" href="javascript:void(0)">${rvo.nick_name}
 												<img class="reply_item_content_writer_image" src="${pageContext.request.contextPath}/image/${rvo.profile_system }">
 											</a>
 											<time class="reply_item_footer_time">
@@ -220,7 +220,7 @@
 									</article>
 									<div style="margin:30px 0px 0 20px;">
 									<c:if test="${not empty rvo.img_origin && rvo.img_origin ne ''}">
-										<div style="padding: 5px; width: 150px; height: 150px;"><img alt="" src="${rvo.img_origin}" style="width: 100%; height: 100%;border-radius: 5px;"> </div>
+										<div style="padding: 5px; width: 150px; height: 150px;"><img alt="" src="${pageContext.request.contextPath}/image/${vo.img_system}" style="width: 100%; height: 100%;border-radius: 5px;"> </div>
 									</c:if>
 										<div style="padding: 10px;">${rvo.content}</div>
 									</div>
@@ -491,13 +491,29 @@
 							<option value="01">${vo.product_name}</option>
 						</select>
 					</div>
-					<div class="hidden_area"></div>
+					<div class="hidden_area"><br>
+						<select id="selectCnt2" class="form-control selectCnt" style="width: 70px; text-align: center;">
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10+</option>
+						</select>
+						
+						<input class="hiddenCnt" type="number" value="10" min="1" max="100" style="width: 70px; text-align: center;">
+					
+					</div>
 					<div class="price___">
-						주문금액<span>0원</span>
+						주문금액<span class="sum_price">${vo.sale_price}</span><span>원</span>
 					</div>
 					<div class="buy_btn_area">
 						<button id="basket_btn2" onClick="basketInFn()">장바구니</button>
-						<button id="buy_btn2" onClick="">바로구매</button>
+						<button id="buy_btn2" onClick="paymentInFn()">바로구매</button>
 					</div>
 				</div>
 			</div>
@@ -551,7 +567,7 @@
 	         
 	         console.log(${spidx});
 	         if(${!empty loginUser}){
-	            var postCode = ${loginUser.post_code};
+	            var postCode = "${loginUser.post_code}";
 	            if(postCode == 0){
 	               swal({
 	                  text: "주소 등록 후 구매 가능합니다.",
@@ -567,7 +583,13 @@
 	            }
 	            
 	         }else{
-	            alert("로그인 후 이용가능 합니다.");
+	        	 swal({
+	                  text: "로그인 후 이용가능 합니다.",
+	                  button: "확인",
+	                  closeOnClickOutside : false
+	               }).then(function(){
+	            	   location.href="${pageContext.request.contextPath}/login/login.do"
+	               });
 	         }
 	      }
 	
