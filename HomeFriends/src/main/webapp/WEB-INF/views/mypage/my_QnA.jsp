@@ -15,14 +15,15 @@
 
 	<title>나의 문의 - 홈프렌즈</title>
 
-	<link href="/controller/css/header.css" rel="stylesheet">
-	<link href="/controller/css/nav.css" rel="stylesheet">
-	<link href="/controller/css/mypage/my_QnA.css" rel="stylesheet">
-	<link href="/controller/css/footer.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/header.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/nav.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/mypage/my_QnA.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/footer.css" rel="stylesheet">
 	
-	<script src="/controller/js/jquery-3.6.0.min.js"></script>
-	<script src="/controller/js/header.js"></script>
-	<script src="/controller/js/nav.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/header.js"></script>
+	<script src="${pageContext.request.contextPath}/js/nav.js"></script>
+	<script>var contextPath = "${pageContext.request.contextPath}"</script>
 </head>
 <body>
 	<%@ include file="../header.jsp" %>
@@ -53,7 +54,7 @@
 							<div class="col-8">
 								<p class="p1">
 									<i class="bi bi-question-circle-fill chat"></i>
-									<a href="/controller/store/store_view.do?spidx=${vo.spidx}#QnAwrite">${vo.content}</a>
+									<a href="${pageContext.request.contextPath}/store/store_view.do?spidx=${vo.spidx}#QnAwrite">${vo.content}</a>
 								</p>
 								<p class="p3">
 									<strong>${vo.brand}</strong>&nbsp;
@@ -65,7 +66,7 @@
 									<c:choose>
 										<c:when test="${state eq 'Y'}">
 											<strong style="color:#87ceeb;">답변완료</strong>&nbsp;
-											<a href="/controller/store/store_view.do?spidx=${vo.spidx}#QnAwrite">${vo.answer_content}</a>
+											<a href="${pageContext.request.contextPath}/store/store_view.do?spidx=${vo.spidx}#QnAwrite">${vo.answer_content}</a>
 										</c:when>
 										<c:when test="${state eq 'N'}">
 											<strong style="color:#ff8da1;">답변예정</strong>&nbsp;
@@ -74,7 +75,7 @@
 								</p>	
 							</div>
 							<div class="col-4 comment2">
-								<a href="/controller/store/store_view.do?spidx=${vo.spidx}"><img src="${vo.img_origin}"></a>
+								<a href="${pageContext.request.contextPath}/store/store_view.do?spidx=${vo.spidx}"><img src="${vo.img_origin}"></a>
 							</div>
 							<div class="mydivVacant"></div>
 						</div>

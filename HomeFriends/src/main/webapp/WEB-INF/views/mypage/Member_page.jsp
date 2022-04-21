@@ -15,14 +15,15 @@
 
 	<title>멤버페이지 - 홈프렌즈</title>
 
-	<link href="/controller/css/header.css" rel="stylesheet">
-	<link href="/controller/css/nav.css" rel="stylesheet">
-	<link href="/controller/css/mypage/Member_page.css" rel="stylesheet">
-	<link href="/controller/css/footer.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/header.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/nav.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/mypage/Member_page.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/footer.css" rel="stylesheet">
 	
-	<script src="/controller/js/jquery-3.6.0.min.js"></script>
-	<script src="/controller/js/header.js"></script>
-	<script src="/controller/js/nav.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/header.js"></script>
+	<script src="${pageContext.request.contextPath}/js/nav.js"></script>
+	<script>var contextPath = "${pageContext.request.contextPath}"</script>
 </head>
 <body>
 	<%@ include file="../header.jsp" %>
@@ -35,7 +36,7 @@
 			<div class="col-12 col-lg-3 mydiv1">
 				<div id="mypage_profile_box" class="row">
 					<div class="col-3 col-lg-12" id="profile_image">
-						<img src="/controller/image/${vo.profile_system}">
+						<img src="${pageContext.request.contextPath}/image/${vo.profile_system}">
 					</div>
 					<div class="col-9 col-lg-12" id="profile_id">
 						<div id="profile_name">
@@ -85,7 +86,7 @@
 						<c:forEach items="${Storylist}" var="vo" varStatus="cnt">
 							<div id ="myStoryDiv">
 								<input type="hidden" value="${vo.cbidx}">
-								<a href="/controller/community/home_view.do?cbidx=${vo.cbidx}&fmidx=${vo.midx}&nowPage=1"><img class="all_homestroy_img" src="/controller/upload/${vo.img_system}"><br><span>${vo.title} </span></a>
+								<a href="${pageContext.request.contextPath}/community/home_view.do?cbidx=${vo.cbidx}&fmidx=${vo.midx}&nowPage=1"><img class="all_homestroy_img" src="${pageContext.request.contextPath}/upload/${vo.img_system}"><br><span>${vo.title} </span></a>
 							</div>	
 						</c:forEach>	
 					</div>

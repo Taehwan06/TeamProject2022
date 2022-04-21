@@ -209,7 +209,7 @@ function payFn(){
 			icon: "warning",
 			closeOnClickOutside : false
 		}).then(function(){
-			location.href="/controller/mypage/addr_modify.do";
+			location.href="contextPath/mypage/addr_modify.do";
 		});
 		
 	}else{

@@ -15,14 +15,14 @@
 	<title>주문상세정보 - 홈프렌즈</title>
 	
 		
-	<link href="/controller/css/header.css" rel="stylesheet">
-	<link href="/controller/css/nav.css" rel="stylesheet">
-	<link href="/controller/css/mypage/detailOrder.css" rel="stylesheet">
-	<link href="/controller/css/footer.css" rel="stylesheet">
-	<script src="/controller/js/jquery-3.6.0.min.js"></script>
-	<script src="/controller/js/header.js"></script>
-	<script src="/controller/js/nav.js"></script>
-	
+	<link href="${pageContext.request.contextPath}/css/header.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/nav.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/mypage/detailOrder.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/footer.css" rel="stylesheet">
+	<script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/header.js"></script>
+	<script src="${pageContext.request.contextPath}/js/nav.js"></script>
+	<script>var contextPath = "${pageContext.request.contextPath}"</script>
 </head>
 <body>
 	<%@ include file="../header.jsp" %>
@@ -74,13 +74,13 @@
 					</div>
 				</div><!-- odrWrap  -->
 					<div class="aWrap">
-					<a href="/controller/mypage/order_list.do" id="backOrderlist">주문배송조회로 돌아가기</a>
+					<a href="${pageContext.request.contextPath}/mypage/order_list.do" id="backOrderlist">주문배송조회로 돌아가기</a>
 					</div>
 			</div><!-- row -->
 		</div><!-- container -->
 	</section>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-	<script src="/controller/js/login/join2.js"></script>
+	<script src="${pageContext.request.contextPath}/js/login/join2.js"></script>
 
 	<%@ include file="../footer.jsp" %>
 	<!-- 부트스트랩 -->	
