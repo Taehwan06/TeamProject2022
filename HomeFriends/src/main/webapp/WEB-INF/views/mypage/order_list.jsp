@@ -16,17 +16,19 @@
 	<title>주문배송조회 - 홈프렌즈</title>
 	
 		
-	<link href="/controller/css/header.css" rel="stylesheet">
-	<link href="/controller/css/nav.css" rel="stylesheet">
-	<link href="/controller/css/mypage/order_list.css" rel="stylesheet">
-	<link href="/controller/css/footer.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/header.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/nav.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/mypage/order_list.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/footer.css" rel="stylesheet">
 	
-	<script src="/controller/js/jquery-3.6.0.min.js"></script>
-	<script src="/controller/js/header.js"></script>
-	<script src="/controller/js/nav.js"></script> 
-	<script src="/controller/js/mypage/order_list.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/header.js"></script>
+	<script src="${pageContext.request.contextPath}/js/nav.js"></script> 
+	<script src="${pageContext.request.contextPath}/js/mypage/order_list.js"></script>
+	<script>var contextPath = ${pageContext.request.contextPath}</script>
 	<!-- SweetAlert  -->
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script>var contextPath = "${pageContext.request.contextPath}"</script>
 </head>
 <body>
 	<%@ include file="../header.jsp" %>
@@ -88,7 +90,7 @@
 									<option value="ing">배송중</option>
 									<option value="complete">배송완료</option>
 								</select>
-								<input type="button" id="Go_reset" value="초기화" onclick="location.href='/controller/mypage/order_list.do'">
+								<input type="button" id="Go_reset" value="초기화" onclick="location.href='${pageContext.request.contextPath}/mypage/order_list.do'">
 							</div>
 				<!-- =============================================== -->		
 							<div class="product">
@@ -98,16 +100,16 @@
 										${orderList2.buying_date}
 									</div>
 									<div class="col-6 goDatail">
-										<a href="/controller/mypage/detailOrder.do?spidx=${orderList2.spidx}" id="goDetail">상세보기 <i class="bi bi-chevron-right detailIcon"></i></a>
+										<a href="${pageContext.request.contextPath}/mypage/detailOrder.do?spidx=${orderList2.spidx}" id="goDetail">상세보기 <i class="bi bi-chevron-right detailIcon"></i></a>
 									</div>
 									<hr>
 								</div>
 								<div class="row odrNdelBox">
 									<div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3 productPic">
-										<a href="/controller/store/store_view.do?spidx=${orderList2.spidx}"><img src="${orderList2.img_system}"></a>
+										<a href="${pageContext.request.contextPath}/store/store_view.do?spidx=${orderList2.spidx}"><img src="${orderList2.img_system}"></a>
 									</div>
 									<div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-6 productInfo">
-										<a href="/controller/store/store_view.do?spidx=${orderList2.spidx}">${orderList2.title}&nbsp;</a>| ${orderList2.cnt} 개 <br>
+										<a href="${pageContext.request.contextPath}/store/store_view.do?spidx=${orderList2.spidx}">${orderList2.title}&nbsp;</a>| ${orderList2.cnt} 개 <br>
 										<span class="producSpan">${orderList2.progress} | 일반택배</span>
 									</div>
 									<div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3 productInfo">
@@ -153,7 +155,7 @@
 	</div><!-- container 닫힘 -->
 	</section>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-	<script src="/controller/js/login/join2.js"></script>
+	<script src="${pageContext.request.contextPath}/js/login/join2.js"></script>
 
 	<%@ include file="../footer.jsp" %>
 	<!-- 부트스트랩 -->	

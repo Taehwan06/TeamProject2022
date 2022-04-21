@@ -15,14 +15,15 @@
 
 	<title>나의 리뷰 - 홈프렌즈</title>
 
-	<link href="/controller/css/header.css" rel="stylesheet">
-	<link href="/controller/css/nav.css" rel="stylesheet">
-	<link href="/controller/css/mypage/my_review.css" rel="stylesheet">
-	<link href="/controller/css/footer.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/header.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/nav.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/mypage/my_review.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/footer.css" rel="stylesheet">
 	
-	<script src="/controller/js/jquery-3.6.0.min.js"></script>
-	<script src="/controller/js/header.js"></script>
-	<script src="/controller/js/nav.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/header.js"></script>
+	<script src="${pageContext.request.contextPath}/js/nav.js"></script>
+	<script>var contextPath = "${pageContext.request.contextPath}"</script>
 </head>
 <body>
 	<%@ include file="../header.jsp" %>
@@ -45,7 +46,7 @@
 				<div id="mycomment">	
 					<div class="row">
 					<div class="col-8">
-						<p class="p1"><a href="/controller/store/store_view.do?spidx=${vo.spidx}">${vo.title}</a></p>
+						<p class="p1"><a href="${pageContext.request.contextPath}/store/store_view.do?spidx=${vo.spidx}">${vo.title}</a></p>
 						<p class="p2"><!-- ★ 평점 -->
 							<c:set var="star" value="${vo.score}" />
 							<c:forEach begin="0" end="4" varStatus="status">
@@ -59,12 +60,12 @@
 						<p class="p3">
 							<strong>${vo.write_date}&nbsp;에 남긴 리뷰</strong>
 							<br><br>
-							<a href="/controller/store/store_view.do?spidx=${vo.spidx}#review_area_header">${vo.content}</a>&nbsp;&#183; 
-							<a id="pinky" style="color:#87ceeb;" href="/controller/store/store_review_modify.do?spidx=${vo.spidx}&sridx=${vo.sridx}">수정</a>
+							<a href="${pageContext.request.contextPath}/store/store_view.do?spidx=${vo.spidx}#review_area_header">${vo.content}</a>&nbsp;&#183; 
+							<a id="pinky" style="color:#87ceeb;" href="${pageContext.request.contextPath}/store/store_review_modify.do?spidx=${vo.spidx}&sridx=${vo.sridx}">수정</a>
 						</p>	
 					</div>
 					<div class="col-4 comment2">
-						<a href="/controller/store/store_view.do?spidx=${vo.spidx}"><img src="${vo.img_origin}"></a>
+						<a href="${pageContext.request.contextPath}/store/store_view.do?spidx=${vo.spidx}"><img src="${vo.img_origin}"></a>
 					</div>
 					<div class="mydivVacant"></div>
 					</div>

@@ -102,7 +102,7 @@ function readURL(input) {
 			reader.readAsDataURL(input.files[0]);
 		}
 	}else{
-		$("#coverImg").attr("src", "/controller/image/kakao_profile_basic.png");
+		$("#coverImg").attr("src", "contextPath/image/kakao_profile_basic.png");
 		$("#coverImg").css("width", "180px");
 		$("#coverImg").css("height", "auto");
 	}
@@ -114,7 +114,7 @@ function imgValCheckFn(){
     console.log("fileValue="+fileValue);
     
     if(fileValue == "" || fileValue == null){
-    	$("#coverImg").attr("src", "/controller/image/kakao_profile_basic.png");
+    	$("#coverImg").attr("src", "contextPath/image/kakao_profile_basic.png");
 		$("#coverImg").css("width", "180px");
 		$("#coverImg").css("height", "auto");
     }
@@ -141,7 +141,7 @@ $(function() {
 					
 				}else if(result == "fail2"){
 					alert("이미지 변경에 실패했습니다");
-					$("#coverImg").attr("src", "/controller/image/kakao_profile_basic.png");
+					$("#coverImg").attr("src", "contextPath/image/kakao_profile_basic.png");
 					$("#coverImg").css("width", "180px");
 					$("#coverImg").css("height", "auto");
 					

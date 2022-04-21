@@ -15,16 +15,16 @@
 	
 	<title>회원정보수정 - 홈프렌즈</title>
 	
-	<link href="/controller/css/header.css" rel="stylesheet">
-	<link href="/controller/css/nav.css" rel="stylesheet">
-	<link href="/controller/css/mypage/member_modify.css" rel="stylesheet">
-	<link href="/controller/css/footer.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/header.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/nav.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/mypage/member_modify.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/footer.css" rel="stylesheet">
 	
-	<script src="/controller/js/jquery-3.6.0.min.js"></script>
-	<script src="/controller/js/header.js"></script>
-	<script src="/controller/js/nav.js"></script>
-	<script src="/controller/js/mypage/member_modify.js"></script>
-
+	<script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/header.js"></script>
+	<script src="${pageContext.request.contextPath}/js/nav.js"></script>
+	<script src="${pageContext.request.contextPath}/js/mypage/member_modify.js"></script>
+	<script>var contextPath = "${pageContext.request.contextPath}"</script>
 
 </head>
 <body>
@@ -142,7 +142,7 @@
 								<label for="imgUpload" id="imgLabel">
 									<div id="imgArea" class="Edit edit_member_form imageDiv">
 										<img id="coverImg" name="coverImg" alt="" onclick="imgValCheckFn()"
-										src="/controller/image/${vo.profile_system}" width="180px">
+										src="${pageContext.request.contextPath}/image/${vo.profile_system}" width="180px">
 									</div>
 								</label>
 								
@@ -168,7 +168,7 @@
 	
 	</section>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-	<script src="/controller/js/login/join2.js"></script>
+	<script src="${pageContext.request.contextPath}/js/login/join2.js"></script>
 	
 	<%@ include file="../footer.jsp" %>
 	<!-- 부트스트랩 -->	

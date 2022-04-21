@@ -68,7 +68,6 @@
     		nick_name = #{nick_name},
     		gender = #{gender},
     		phone = CONCAT(#{phone1},"-",#{phone2},"-",#{phone3}),
-    		addr =  CONCAT(#{addr1}," ",#{addr2}), 
     		profile_origin = #{profile_origin}, 
     		profile_system = #{profile_system} 
     	WHERE 
@@ -226,7 +225,8 @@
     		M.membername,
     		M.addr,
     		M.phone,
-    		O.memo
+    		O.memo,
+    		O.price
     	FROM order_list O
     	INNER JOIN member M
 		ON M.midx = O.midx
