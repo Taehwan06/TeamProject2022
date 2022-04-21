@@ -23,6 +23,8 @@
     <!-- naver SDK -->
     <script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
 	
+	<script>var contextPath = "${pageContext.request.contextPath}"</script>
+	
 	<title>스크랩 - 홈프렌즈</title>
 	
 	<script src="/controller/js/jquery-3.6.0.min.js"></script>

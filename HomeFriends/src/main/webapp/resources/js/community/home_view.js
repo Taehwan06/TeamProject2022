@@ -15,7 +15,7 @@ $(window).scroll(function(){
 function follow(fmidx){
 	$.ajax({
 		type : 'post',
-		url : '/controller/follow/followC',
+		url : contextPath+'/follow/followC',
 		data : 'fmidx='+fmidx,
 		success : function(result){
 			if(result == "FollowOK"){
@@ -30,7 +30,7 @@ function follow(fmidx){
 function unfollow(fmidx){
 	$.ajax({
 		type : 'post',
-		url : '/controller/follow/unfollowC',
+		url : contextPath+'follow/unfollowC',
 		data : 'fmidx='+fmidx,
 		success : function(result){
 			if(result == "UnFollowOK"){
@@ -45,7 +45,7 @@ function unfollow(fmidx){
 function scrap(cbidx){
 	$.ajax({
 		type : 'post',
-		url : '/controller/scrap/scrapUp',
+		url : contextPath+'/scrap/scrapUp',
 		data : 'cbidx='+cbidx,
 		success  : function(result){
 			if(result == "ScrapOK"){
@@ -59,7 +59,7 @@ function scrap(cbidx){
 function unscrap(cbidx){
 	$.ajax({
 		type : 'post',
-		url : '/controller/scrap/scrapDown',
+		url : contextPath+'/scrap/scrapDown',
 		data : 'cbidx='+cbidx,
 		success : function(result){
 			if(result == "UnScrapOK"){
@@ -158,7 +158,7 @@ function replydel(cbridx){
 		 var formdata = form.serialize();
 		
 		 $.ajax({
-			 url : "/controller/reply/delete",
+			 url : contextPath+"/reply/delete",
 			 type : "post",
 			 data : formdata,
 			 success : function(data){
@@ -182,9 +182,9 @@ function replymodify(cbridx, img){
 	var contents = "<form id='RereplyFrm' name='RereplyFrm' method='post'>"
 				+ "<input type='hidden' name='cbridx' value="+cbridx+">"
 				+ "<div class='reply_writer'>"
-				+ "<img class='reply_item_content_writer_image' src='/controller/image/"+img+"'></div>"
+				+ "<img class='reply_item_content_writer_image' src='"+contextPath+"/image/"+img+"'></div>"
 				+ "<textarea name='content' class='Re' onkeyup='adjustHeight_()'>"+content+"</textarea>"
-				+ "<div class='mfdel_'><button type='button' class='Rereply_submit' onclick='Resubmit()'>등록</button>"
+				+ "<div class='mfdel_'><button type='button' class='Rereply_submit' onclick='Resubmit("+contextPath+")'>등록</button>"
 				+ "<button type='button' onclick='Recancle()'>취소</button></div>"
 				+ "</form>";		
 	p.html(contents);
@@ -199,7 +199,7 @@ function replymodify(cbridx, img){
 function replyRedistribution(cbridx){
 	
 	$.ajax({
-		url : "/controller/reply/redistribution",
+		url : contextPath+"/reply/redistribution",
 		type : "post",
 		data : "cbridx="+cbridx,
 		success : function(result){
@@ -216,7 +216,7 @@ function Resubmit(){
 	formdata = decodeURIComponent(formdata);
 	
 	$.ajax({
-		url : "/controller/reply/modify",
+		url : contextPath+"/reply/modify",
 		type : "post",
 		data : formdata,
 		success : function(data){
@@ -251,7 +251,7 @@ function ReNot(){
 		button : "확인",
 		closeOnClickOutside : false
 	}).then(function(){
-		location.href = "/controller/login/login.do"
+		location.href = contextPath+"/login/login.do"
 	});
 }
 
@@ -273,7 +273,7 @@ function Reinsert(orincbridx){
 	formdata = decodeURIComponent(formdata);
 	
 	$.ajax({
-		url : "/controller/reply/Reinsert",
+		url : contextPath+"/reply/Reinsert",
 		type : "post",
 		data : formdata,
 		success : function(data){
@@ -293,7 +293,7 @@ $(document).ready(function(){
 		var formdata = $("form[name='replyFrm']").serialize();
 		
 		$.ajax({
-			url : "/controller/reply/write",
+			url : contextPath+"/reply/write",
 			type : "post",
 			data : formdata,
 			success : function(data){

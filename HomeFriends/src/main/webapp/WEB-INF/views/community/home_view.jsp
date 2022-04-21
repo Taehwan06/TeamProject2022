@@ -24,18 +24,21 @@
     <!-- naver SDK -->
     <script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
 	
+	<script>var contextPath = "${pageContext.request.contextPath}"</script>
+	
 	<title>홈 스토리 글 상세보기 - 홈프렌즈</title>
-	<script src="/controller/js/jquery-3.6.0.min.js"></script>
-	<link href="/controller/css/header.css" rel="stylesheet">
-	<link href="/controller/css/nav.css" rel="stylesheet">
-	<link href="/controller/css/home.css" rel="stylesheet">
-	<link href="/controller/css/footer.css" rel="stylesheet">
-	<link href="/controller/css/community/home_view.css" rel="stylesheet">
-	<script src="/controller/js/community/home_story.js"></script>
-	<script src="/controller/js/community/home_view.js"></script>
-	<script src="/controller/js/header.js"></script>
-	<script src="/controller/js/nav.js"></script>
-	<script src="/controller/js/footer.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+	<link href="${pageContext.request.contextPath}/css/header.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/nav.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/home.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/footer.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/community/home_view.css" rel="stylesheet">
+	<script src="${pageContext.request.contextPath}/js/community/home_story.js"></script>
+	<script src="${pageContext.request.contextPath}/js/community/home_view.js"></script>
+	<script src="${pageContext.request.contextPath}/js/header.js"></script>
+	<script src="${pageContext.request.contextPath}/js/nav.js"></script>
+	<script src="${pageContext.request.contextPath}/js/footer.js"></script>
+	
 	
 </head>
 <body>
@@ -44,7 +47,7 @@
 	
 	<!-- 본문 영역 -->
 	<div class="row MainImg">
-		<img src="/controller/upload/${vo.img_system }">
+		<img src="${pageContext.request.contextPath}/upload/${vo.img_system }">
 	</div>
 	<section id="story_area">
 		<div class="comm_area">
@@ -54,9 +57,9 @@
 				<div class="comm_category">홈 스토리</div>
 				<div class="comm_title">${vo.title }</div>
 				<div class="col-xl-4 storyWriter">
-					<div class="profile" onclick="location.href='/controller/mypage/Member_page.do?midx=${vo.midx}'">
+					<div class="profile" onclick="location.href='${pageContext.request.contextPath}/mypage/Member_page.do?midx=${vo.midx}'">
 						<div class="profile_img">
-							<img class="writerImg" src="/controller/image/${vo.profile_system }">
+							<img class="writerImg" src="${pageContext.request.contextPath}/image/${vo.profile_system }">
 						</div>
 						<div class="profile_name">
 							${vo.writer }
@@ -90,7 +93,7 @@
 			<div class="row content_img">
 				${vo.content }
 				<div id="footer_img_">
-					<img src="/controller/image/footer_img.PNG">
+					<img src="${pageContext.request.contextPath}/image/footer_img.PNG">
 				</div>
 			</div>
 		</div>
@@ -112,8 +115,8 @@
 		</div>
 		<div class="footer_profile">
 			<div class="footer_profile_img">
-				<img class="footer_writerImg" src="/controller/image/${vo.profile_system }" onclick="location.href='/controller/mypage/Member_page.do?midx=${vo.midx}'">
-				<span id="footer_writerImg_span" onclick="location.href='/controller/mypage/Member_page.do?midx=${vo.midx}'">${vo.writer }</span>
+				<img class="footer_writerImg" src="${pageContext.request.contextPath}/image/${vo.profile_system }" onclick="location.href='${pageContext.request.contextPath}/mypage/Member_page.do?midx=${vo.midx}'">
+				<span id="footer_writerImg_span" onclick="location.href='${pageContext.request.contextPath}/mypage/Member_page.do?midx=${vo.midx}'">${vo.writer }</span>
 				<c:if test="${isFollow == 0 && loginUser.midx != vo.midx && loginUser != null}">
 					<button onclick="follow(${vo.midx})">팔로우</button>
 				</c:if>
@@ -141,7 +144,7 @@
 				<input type="hidden" id="midx" name="midx" value="${loginUser.midx }">
 				<input type="hidden" name="writer" value="${loginUser.nick_name }">
 				<div class="reply_writer">
-					<img src="/controller/image/${loginUser.profile_system }">
+					<img src="${pageContext.request.contextPath}/image/${loginUser.profile_system }">
 				</div>
 				<div class="reply_input">
 					<div class="reply_content">
@@ -161,7 +164,7 @@
 				<input type="hidden" id="origin_cbridx" name="origin_cbridx" value="${orincbridx}">
 				<input type="hidden" id="cbidx" name="cbidx" value="${vo.cbidx }">
 				<div class="reply_writer">
-					<img src="/controller/image/kakao_profile_basic.png">
+					<img src="${pageContext.request.contextPath}/image/kakao_profile_basic.png">
 				</div>
 				<div class="reply_input" onclick="ReNot()">
 					<div class="reply_content">
@@ -190,8 +193,8 @@
 				<li class="reply_list_item reply_list_item${reply.depth }" style="margin-left : calc(${reply.depth}*65px);">
 					<article class="reply_item_">
 						<p class="reply_item_content reply_item_content${reply.cbridx }">
-							<a class="reply_item_content_writer" href="/controller/mypage/Member_page.do?midx=${reply.midx }">${reply.writer }
-								<img class="reply_item_content_writer_image" src="/controller/image/${reply.profile_system }">
+							<a class="reply_item_content_writer" href="${pageContext.request.contextPath}/mypage/Member_page.do?midx=${reply.midx }">${reply.writer }
+								<img class="reply_item_content_writer_image" src="${pageContext.request.contextPath}/image/${reply.profile_system }">
 							</a>
 							<c:if test="${reply.del_yn == 'N' || loginUser.grade == 'A' }">
 								<span class="reply_item_content_content reply_item_content_content${reply.cbridx}">${reply.content }</span>
@@ -261,7 +264,7 @@
 							<input type="hidden" name="depth" value="${reply.depth }">
 							<input type="hidden" name="lvl" value="${reply.lvl }">
 							<div class="reply_writer">
-								<img src="/controller/image/${loginUser.profile_system }">
+								<img src="${pageContext.request.contextPath}/image/${loginUser.profile_system }">
 							</div>
 							<div class="reply_input_">
 								<div class="reply_content">

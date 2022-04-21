@@ -22,16 +22,18 @@
     <!-- naver SDK -->
     <script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
 	
+	<script>var contextPath = "${pageContext.request.contextPath}"</script>
+	
 	<title>팔로잉 - 홈프렌즈</title>
 	
-	<link href="/controller/css/header.css" rel="stylesheet">
-	<link href="/controller/css/nav.css" rel="stylesheet">
-	<link href="/controller/css/community/following.css" rel="stylesheet">
-	<link href="/controller/css/footer.css" rel="stylesheet">
-	<script src="/controller/js/jquery-3.6.0.min.js"></script>
-	<script src="/controller/js/community/follow.js"></script>
-	<script src="/controller/js/nav.js"></script>
-	<script src="/controller/js/footer.js"></script>
+	<link href="${pageContext.request.contextPath}/css/header.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/nav.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/community/following.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/footer.css" rel="stylesheet">
+	<script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/community/follow.js"></script>
+	<script src="${pageContext.request.contextPath}/js/nav.js"></script>
+	<script src="${pageContext.request.contextPath}/js/footer.js"></script>
 	
 </head>
 <body>
@@ -51,8 +53,8 @@
 				<c:forEach items="${followlist}" var="blist">
 					<div class="community row">
 						<div class="profile">
-							<img src="/controller/image/${blist.profile_system }" class="profileImg" alt="팔로잉 유저 프로필 사진" onclick="location.href='/controller/mypage/Member_page.do?midx=${blist.midx}'">
-							<div class="nick" onclick="location.href='/controller/mypage/Member_page.do?midx=${blist.midx}'">${blist.writer }</div>
+							<img src="${pageContext.request.contextPath}/image/${blist.profile_system }" class="profileImg" alt="팔로잉 유저 프로필 사진" onclick="location.href='${pageContext.request.contextPath}/mypage/Member_page.do?midx=${blist.midx}'">
+							<div class="nick" onclick="location.href='${pageContext.request.contextPath}/mypage/Member_page.do?midx=${blist.midx}'">${blist.writer }</div>
 							<button type="button" class="followingButton1" onclick="unfollow('${blist.midx}')">언팔로우</button>
 						</div>
 					</div>
@@ -75,9 +77,9 @@
 							<div class="followingTextArea col-12">
 								<div class="row">
 									<div class="profile col-2">
-										<img src="/controller/image/${mlist.profile_system }" class="profileImg" alt="팔로잉 유저 프로필 사진" onclick="location.href='/controller/mypage/Member_page.do?midx=${mlist.midx}'">
+										<img src="${pageContext.request.contextPath}/image/${mlist.profile_system }" class="profileImg" alt="팔로잉 유저 프로필 사진" onclick="location.href='${pageContext.request.contextPath}/mypage/Member_page.do?midx=${mlist.midx}'">
 									</div>
-									<div class="userName col-7" onclick="location.href='/controller/mypage/Member_page.do?midx=${mlist.midx}'">
+									<div class="userName col-7" onclick="location.href='${pageContext.request.contextPath}/mypage/Member_page.do?midx=${mlist.midx}'">
 										<span class="nick">${mlist.nick_name }
 									</div>
 									<div class="followingButtonArea followingButtonArea${mlist.midx } col-3">
@@ -95,7 +97,7 @@
 							<div class="row">
 								<c:forEach items="${mlist.bvo }" var="blist" end="3">
 									<div class="followingImgDiv col-3">
-										<img src="/controller/upload/${blist.img_system }" alt="게시글 사진" class="followingImg" onclick="location.href='home_view.do?cbidx=${blist.cbidx}&fmidx=${blist.midx }&nowPage=1'">
+										<img src="${pageContext.request.contextPath}/upload/${blist.img_system }" alt="게시글 사진" class="followingImg" onclick="location.href='home_view.do?cbidx=${blist.cbidx}&fmidx=${blist.midx }&nowPage=1'">
 									</div>
 								</c:forEach>
 							</div>
@@ -111,9 +113,9 @@
 							<div class="followingTextArea col-12">
 								<div class="row">
 									<div class="profile col-2">
-										<img src="/controller/image/${mlist.profile_system }" class="profileImg" alt="팔로잉 유저 프로필 사진" onclick="location.href='/controller/mypage/Member_page.do?midx=${mlist.midx}'">
+										<img src="${pageContext.request.contextPath}/image/${mlist.profile_system }" class="profileImg" alt="팔로잉 유저 프로필 사진" onclick="location.href='${pageContext.request.contextPath}/mypage/Member_page.do?midx=${mlist.midx}'">
 									</div>
-									<div class="userName col-7" onclick="location.href='/controller/mypage/Member_page.do?midx=${mlist.midx}'">
+									<div class="userName col-7" onclick="location.href='${pageContext.request.contextPath}/mypage/Member_page.do?midx=${mlist.midx}'">
 										<span class="nick">${mlist.nick_name }
 									</div>
 									<div class="followingButtonArea followingButtonArea${mlist.midx } col-3">
@@ -131,7 +133,7 @@
 							<div class="row">
 								<c:forEach items="${mlist.bvo }" var="blist" end="3">
 									<div class="followingImgDiv col-3">
-										<img src="/controller/upload/${blist.img_system }" alt="게시글 사진" class="followingImg" onclick="location.href='home_view.do?cbidx=${blist.cbidx}&fmidx=${blist.midx }&nowPage=1'">
+										<img src="${pageContext.request.contextPath}/upload/${blist.img_system }" alt="게시글 사진" class="followingImg" onclick="location.href='home_view.do?cbidx=${blist.cbidx}&fmidx=${blist.midx }&nowPage=1'">
 									</div>
 								</c:forEach>
 							</div>
