@@ -20,4 +20,6 @@ public interface MemberService {
 	MemberVO inquiryOfUserByMidx(int midx) throws Exception;
 	List<MemberVO> mlist() throws Exception;
 	List<MemberVO> notfollowlist(List<FollowVO> flist) throws Exception;
+	MemberVO loginNaverMember(MemberVO vo) throws Exception;
+	int insertNaverMember(MemberVO vo) throws Exception;
 }

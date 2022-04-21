@@ -6,17 +6,18 @@
 <mapper namespace="edu.study.mapper.memberMapper">
 
 	<insert id="insertMember" parameterType="MemberVO">
-    	INSERT INTO member(
-    		id,
-    		pass,
-    		nick_name,
-    		membername,
-    		birthday,
-    		gender,
-    		phone,
-    		post_code,
-    		addr,
-    		recommender
+    	INSERT INTO member( 
+    		id, 
+    		pass, 
+    		nick_name, 
+    		membername, 
+    		birthday, 
+    		gender, 
+    		phone, 
+    		post_code, 
+    		addr, 
+    		recommender, 
+    		uid 
     	) VALUES(
     		#{id},
     		SHA2(#{pass},512),
@@ -27,7 +28,38 @@
     		CONCAT(#{phone1},"-",#{phone2},"-",#{phone3}),
     		#{addr1},
     		CONCAT(#{addr2}," ",#{addr3}),
-    		#{recommender}
+    		#{recommender}, 
+    		#{uid}
+    	)
+    </insert>
+    
+    <insert id="insertNaverMember" parameterType="MemberVO">
+    	INSERT INTO member( 
+    		id, 
+    		pass, 
+    		nick_name, 
+    		membername, 
+    		birthday, 
+    		gender, 
+    		phone, 
+    		post_code, 
+    		addr, 
+    		recommender, 
+    		profile_system, 
+    		profile_origin 
+    	) VALUES(
+    		#{id},
+    		#{pass},
+    		#{nick_name},
+    		#{membername},
+    		#{birthday},
+    		#{gender},
+    		#{phone},
+    		#{post_code},
+    		#{addr},
+    		#{recommender}, 
+    		#{profile_system}, 
+    		#{profile_origin} 
     	)
     </insert>
     
@@ -57,6 +89,34 @@
 			id = #{id}
 		AND
 			pass = SHA2(#{pass},512)
+    </select>
+    
+    <select id="loginNaverMember" resultType="memberVO" parameterType="memberVO">
+		SELECT 
+			midx,
+    		id,
+    		nick_name,
+    		membername,
+    		birthday,
+    		gender,
+    		phone,
+    		join_date,
+    		mileage,
+    		grade,
+    		del_yn,
+    		blacklist_yn,
+    		follower_cnt,
+    		post_code,
+    		addr,
+    		profile_system 
+		FROM 
+			member 
+		WHERE 
+			del_yn = "N" 
+		AND
+			id = #{id} 
+		AND
+			pass = #{pass} 
     </select>
     
     <select id="findIdMember" resultType="memberVO" parameterType="MemberVO">

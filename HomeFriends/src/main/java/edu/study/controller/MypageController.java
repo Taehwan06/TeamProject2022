@@ -931,26 +931,6 @@ public class MypageController {
 	    }
 	}
 	
-	@RequestMapping(value = "/mileage.do", method = RequestMethod.GET)
-	public String mileage(Locale locale, Model model, SearchVO vo, HttpServletRequest request) throws Exception {
-
-		HttpSession session = request.getSession(); 
-		MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
-
-	    if(loginUser == null) {
-	         return "redirect:/login/login.do";
-	    }else {
-		
-			int deleteResult = homeService.deleteSearchList();
-			
-			List<HomeSearchVO> searchList = homeService.listSearchList();
-			
-			model.addAttribute("searchList", searchList);
-				
-			return "mypage/mileage";
-	    }
-	}
-	
 	@RequestMapping(value = "/address_list.do", method = RequestMethod.GET)
 	public String address_list(Locale locale, Model model, SearchVO vo, HttpServletRequest request) throws Exception {
 
@@ -1044,8 +1024,6 @@ public class MypageController {
 				ordernumber += midxStr;
 			}
 			
-			
-			
 			int paidAmount = 0;
 			
 			for(int i = 0; i < basketList.size(); i++) {
@@ -1075,7 +1053,6 @@ public class MypageController {
 				
 				return "mypage/order_fail";
 			}
-			
 	    }
 	}
 	
@@ -1215,7 +1192,6 @@ public class MypageController {
 			
 			basketList.add(directvo);
 			
-			
 			LocalDateTime now = LocalDateTime.now(); 
 			String ordernumber = now.format(DateTimeFormatter.ofPattern("YYMMddHHmmss"));
 			
@@ -1343,8 +1319,7 @@ public class MypageController {
 					model.addAttribute("payInfovo", payInfovo);
 					
 					return "mypage/order_fail";
-				}
-				
+				}				
 				
 				// deleteBasketList
 				int result = basketService.deleteListBasket(basketvo);
@@ -1354,8 +1329,7 @@ public class MypageController {
 					model.addAttribute("payInfovo", payInfovo);
 					
 					return "mypage/order_fail";
-				}
-				
+				}				
 				
 				return "mypage/order_success"; 
 				
@@ -1368,10 +1342,7 @@ public class MypageController {
 		
 		}else {
 			
-			return "mypage/order_fail";
-			
+			return "mypage/order_fail";			
 		}
-		
-	}
-	
+	}	
 }

@@ -11,11 +11,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.github.scribejava.core.model.OAuth2AccessToken;
 
 import edu.study.service.Community_BoardService;
 import edu.study.service.HomeService;
@@ -24,9 +31,10 @@ import edu.study.vo.Community_BoardVO;
 import edu.study.vo.HomeSearchVO;
 import edu.study.vo.HomeStoreVO;
 import edu.study.vo.HomeStoryVO;
-import edu.study.vo.MemberVO;
+import edu.study.vo.NaverLoginVO;
 import edu.study.vo.SearchVO;
 import edu.study.vo.StoreVO;
+
 
 /**
  * Handles requests for the application home page.
@@ -40,6 +48,9 @@ public class HomeController {
 	private Community_BoardService Community_boardService;
 	@Autowired
 	private StoreService storeService;
+	
+	private String apiResult = null;
+	
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -63,6 +74,7 @@ public class HomeController {
 	    
 	    SearchVO searchvo = new SearchVO();
 	    searchvo.setReview_cnt("yes");
+	    searchvo.setPage("limit");
 	    List<StoreVO> storeList = storeService.list(searchvo);
 	    
 	    model.addAttribute("storeList",storeList);
@@ -143,6 +155,7 @@ public class HomeController {
 		
 		SearchVO searchvo = new SearchVO();
 	    searchvo.setReview_cnt("yes");
+	    searchvo.setPage("limit");
 	    List<StoreVO> storeList = storeService.list(searchvo);
 	    
 	    model.addAttribute("storeList",storeList);
@@ -213,6 +226,7 @@ public class HomeController {
 	    }else {
 	    	SearchVO searchvo = new SearchVO();
 	 	    searchvo.setReview_cnt("yes");
+	 	   searchvo.setPage("limit");
 	 	    List<StoreVO> storeList = storeService.list(searchvo);
 	 	    
 	 	    model.addAttribute("storeList",storeList);

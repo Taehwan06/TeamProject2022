@@ -85,5 +85,17 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.notfollowlist(flist);
 	}
 
+	@Override
+	public MemberVO loginNaverMember(MemberVO vo) throws Exception {
+		
+		return memberDao.loginNaverMember(vo);
+	}
+
+	@Override
+	public int insertNaverMember(MemberVO vo) throws Exception {
+		
+		return memberDao.insertNaverMember(vo);
+	}
+
 
 }

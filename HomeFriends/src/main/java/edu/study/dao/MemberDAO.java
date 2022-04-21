@@ -77,6 +77,15 @@ public class MemberDAO {
 		map.put("flist", flist);
 		return sqlSession.selectList(Namespace+".notfollowList", map);
 	}
+	
+	public MemberVO loginNaverMember(MemberVO vo) throws Exception{
+		return sqlSession.selectOne(Namespace+".loginNaverMember",vo);
+	}
+	
+	public int insertNaverMember(MemberVO vo) throws Exception{
+		return sqlSession.insert(Namespace+".insertNaverMember",vo);
+	}
+	
 }
 
 
