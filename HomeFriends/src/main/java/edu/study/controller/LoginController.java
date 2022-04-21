@@ -125,13 +125,13 @@ public class LoginController {
 				session.setAttribute("nowUri", null);
 				return "redirect: "+nowUri;
 			}else {
-				return "redirect: /controller/";
+				return "redirect:/";
 			}
 		}
 	}
 	
 	@RequestMapping(value = "/logout.do", method = RequestMethod.GET)
-	public String logout(Locale locale, Model model, HttpSession session) throws Exception {
+	public String logout(Locale locale, Model model, HttpSession session, HttpServletRequest request) throws Exception {
 		
 		int deleteResult = homeService.deleteSearchList();
 		
@@ -141,7 +141,7 @@ public class LoginController {
 		
 		session.invalidate();
 		
-		return "redirect: /controller/";
+		return "redirect:/";
 	}
 	
 	@RequestMapping(value = "/join_result.do", method = RequestMethod.GET)
@@ -379,7 +379,7 @@ public class LoginController {
 		
 		session.setAttribute("kakaoUser", vo);
 		
-		return "redirect: /controller/";		
+		return "redirect:/";	
 	}
 	
 	@RequestMapping(value = "/facebookLogin.do", method = RequestMethod.POST)
@@ -398,7 +398,7 @@ public class LoginController {
 		
 		session.setAttribute("facebookUser", vo);
 		
-		return "redirect: /controller/";		
+		return "redirect:/";
 	}
 		
 	//네이버 로그인 성공시 callback호출 메소드
@@ -462,7 +462,7 @@ public class LoginController {
 		if(naverLoginUser != null) {
 			session.setAttribute("loginUser",naverLoginUser);
 			
-			return "redirect: /controller/";	
+			return "redirect:/";
 		}else {
 			memberService.insertNaverMember(naverUser);
 			
@@ -470,7 +470,7 @@ public class LoginController {
 			
 			session.setAttribute("loginUser",loginUser);
 			
-			return "redirect: /controller/";
+			return "redirect:/";
 		}
 		
 	}

@@ -8,7 +8,7 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title" id="exampleModalLabel">
-					<img class="col-4" id="modalLogo" src="/controller/image/mainLogo.png" alt="메인 로고" 
+					<img class="col-4" id="modalLogo" src="${pageContext.request.contextPath}/image/mainLogo.png" alt="메인 로고" 
 					onclick="location.href='${pageContext.request.contextPath}'">
 				</h5>
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -62,7 +62,7 @@
 					</c:if>
 					<c:if test="${loginUser != null}">
 						<div class="" id="modalProfile" onclick="location.href='${pageContext.request.contextPath}/mypage/mypage.do'">
-							<img id="modalProfileImg" src="/controller/image/${loginUser.profile_system}"> ${loginUser.nick_name}
+							<img id="modalProfileImg" src="${pageContext.request.contextPath}/image/${loginUser.profile_system}"> ${loginUser.nick_name}
 						</div>
 					</c:if>		
 				</div>
@@ -128,7 +128,7 @@
 	<div class="row" id="headerDiv">
 		
 		<div class="col-4" id="spaceDiv"></div>
-		<img class="col-4 col-pull-4 col-md-2 col-sm-3" id="logo" src="/controller/image/mainLogo.png" alt="메인 로고" 
+		<img class="col-4 col-pull-4 col-md-2 col-sm-3" id="logo" src="${pageContext.request.contextPath}/image/mainLogo.png" alt="메인 로고" 
 		onclick="location.href='${pageContext.request.contextPath}'">
 		<div class="col-2" id="spaceDiv"></div>
 		
