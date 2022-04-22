@@ -64,8 +64,7 @@ function checkForm() {
 		}else{
 			$("#profile_origin").val(prevImg);
 			$("#profile_system").val(prevImg);
-		}
-		
+		}	
 	}
 	
 	if(nickInput == '' || phone2 == '' ||phone3 == ''){
