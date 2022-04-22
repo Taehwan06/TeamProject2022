@@ -13,6 +13,13 @@
 	<!-- Bootstrap icon CSS-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css" />
+    <!-- kakao SDK -->
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    <!-- naver SDK -->
+    <script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
+    <!-- facebook SDK -->
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+	<script>var contextPath = "${pageContext.request.contextPath}"</script>
 	
 	<!-- iamport.payment.js -->
 	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
@@ -30,13 +37,7 @@
 	<script src="${pageContext.request.contextPath}/js/nav.js"></script>
 	<script src="${pageContext.request.contextPath}/js/mypage/payment1.js"></script>
 	<script src="${pageContext.request.contextPath}/js/footer.js"></script>
-	<!-- kakao SDK -->
-    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-    <!-- naver SDK -->
-    <script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
-    <!-- facebook SDK -->
-    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
-	<script>var contextPath = "${pageContext.request.contextPath}"</script>
+	
 	<%@ include file="paymentScript.jsp" %>
 	
 </head>
