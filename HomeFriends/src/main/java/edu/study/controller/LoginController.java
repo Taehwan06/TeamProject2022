@@ -29,6 +29,7 @@ import edu.study.util.RandomPass;
 import edu.study.vo.HomeSearchVO;
 import edu.study.vo.MemberVO;
 import edu.study.vo.NaverLoginVO;
+import edu.study.vo.SearchVO;
 
 /**
  * Handles requests for the application home page.
@@ -75,6 +76,15 @@ public class LoginController {
 		List<HomeSearchVO> searchList = homeService.listSearchList();
 		
 		model.addAttribute("searchList", searchList);
+		
+		String phone = vo.getPhone();
+		String phone1 = phone.substring(0, 3);
+		String phone2 = phone.substring(3, 7);
+		String phone3 = phone.substring(7);
+		
+		vo.setPhone1(phone1);
+		vo.setPhone2(phone2);
+		vo.setPhone3(phone3);
 		
 		int result = memberService.insert(vo);
 		
@@ -291,9 +301,9 @@ public class LoginController {
 		}
 	}
 	
-	@RequestMapping(value = "/send_number", method = RequestMethod.POST)
+	@RequestMapping(value = "/idCheck", method = RequestMethod.POST)
 	@ResponseBody
-	public String send_number(Locale locale, Model model, HttpServletRequest request) throws Exception {
+	public String idCheck(Locale locale, Model model, HttpServletRequest request) throws Exception {
 		
 		int deleteResult = homeService.deleteSearchList();
 		
@@ -309,73 +319,82 @@ public class LoginController {
 			return "idCheckFail";
 			
 		}else {
-			memberService.deleteTempNum(id);
-			
-			String ranNum = randomNumber.random();
-			
-			MemberVO tempVo = new MemberVO();
-			tempVo.setId(id);
-			tempVo.setTemp_number(ranNum);
-			
-			int result = memberService.insertTempNum(tempVo);
-						
-			if(result > 0) {
-				
-				String setfrom = "testmaillth@gmail.com";
-				String tomail = id; // 받는 사람 이메일
-				String title = "[홈 프렌즈] 이메일 인증 번호입니다."; // 제목
-				String content = "이메일 인증 번호는 "+ranNum+" 입니다."; // 내용
-
-				try {
-					MimeMessage message = mailSender.createMimeMessage();
-					MimeMessageHelper messageHelper = new MimeMessageHelper(message,
-							true, "UTF-8");
-
-					messageHelper.setFrom(setfrom); // 보내는사람 생략하면 정상작동을 안함
-					messageHelper.setTo(tomail); // 받는사람 이메일
-					messageHelper.setSubject(title); // 메일제목은 생략이 가능하다
-					messageHelper.setText(content); // 메일 내용
-
-					mailSender.send(message);
-				} catch (Exception e) {
-					System.out.println(e);
-				}
-				
-				return "success";
-				
-			}else {
-				return "fail";
-			}
-		}	
-	}
-	
-	@RequestMapping(value = "/temp_num_check", method = RequestMethod.POST)
-	@ResponseBody
-	public String temp_num_check(Locale locale, Model model, HttpServletRequest request) throws Exception {
-		
-		int deleteResult = homeService.deleteSearchList();
-		
-		List<HomeSearchVO> searchList = homeService.listSearchList();
-		
-		model.addAttribute("searchList", searchList);
-		
-		String id = request.getParameter("id");
-		String temp_number = request.getParameter("temp_number");
-		
-		MemberVO vo = new MemberVO();
-		
-		vo.setId(id);
-		vo.setTemp_number(temp_number);
-		
-		MemberVO tempCheck = memberService.tempNumCheck(vo);
-		
-		if(tempCheck != null) {
-			return "success";
-		
-		}else {
-			return "fail";
+			return "idCheckSuccess";
 		}
 	}
+	
+	/*
+	 * @RequestMapping(value = "/send_number", method = RequestMethod.POST)
+	 * 
+	 * @ResponseBody public String send_number(Locale locale, Model model,
+	 * HttpServletRequest request) throws Exception {
+	 * 
+	 * int deleteResult = homeService.deleteSearchList();
+	 * 
+	 * List<HomeSearchVO> searchList = homeService.listSearchList();
+	 * 
+	 * model.addAttribute("searchList", searchList);
+	 * 
+	 * String id = request.getParameter("id");
+	 * 
+	 * MemberVO idCheck = memberService.idCheckMember(id);
+	 * 
+	 * if(idCheck != null) { return "idCheckFail";
+	 * 
+	 * }else { memberService.deleteTempNum(id);
+	 * 
+	 * String ranNum = randomNumber.random();
+	 * 
+	 * MemberVO tempVo = new MemberVO(); tempVo.setId(id);
+	 * tempVo.setTemp_number(ranNum);
+	 * 
+	 * int result = memberService.insertTempNum(tempVo);
+	 * 
+	 * if(result > 0) {
+	 * 
+	 * String setfrom = "testmaillth@gmail.com"; String tomail = id; // 받는 사람 이메일
+	 * String title = "[홈 프렌즈] 이메일 인증 번호입니다."; // 제목 String content =
+	 * "이메일 인증 번호는 "+ranNum+" 입니다."; // 내용
+	 * 
+	 * try { MimeMessage message = mailSender.createMimeMessage(); MimeMessageHelper
+	 * messageHelper = new MimeMessageHelper(message, true, "UTF-8");
+	 * 
+	 * messageHelper.setFrom(setfrom); // 보내는사람 생략하면 정상작동을 안함
+	 * messageHelper.setTo(tomail); // 받는사람 이메일 messageHelper.setSubject(title); //
+	 * 메일제목은 생략이 가능하다 messageHelper.setText(content); // 메일 내용
+	 * 
+	 * mailSender.send(message); } catch (Exception e) { System.out.println(e); }
+	 * 
+	 * return "success";
+	 * 
+	 * }else { return "fail"; } } }
+	 */
+	
+	/*
+	 * @RequestMapping(value = "/temp_num_check", method = RequestMethod.POST)
+	 * 
+	 * @ResponseBody public String temp_num_check(Locale locale, Model model,
+	 * HttpServletRequest request) throws Exception {
+	 * 
+	 * int deleteResult = homeService.deleteSearchList();
+	 * 
+	 * List<HomeSearchVO> searchList = homeService.listSearchList();
+	 * 
+	 * model.addAttribute("searchList", searchList);
+	 * 
+	 * String id = request.getParameter("id"); String temp_number =
+	 * request.getParameter("temp_number");
+	 * 
+	 * MemberVO vo = new MemberVO();
+	 * 
+	 * vo.setId(id); vo.setTemp_number(temp_number);
+	 * 
+	 * MemberVO tempCheck = memberService.tempNumCheck(vo);
+	 * 
+	 * if(tempCheck != null) { return "success";
+	 * 
+	 * }else { return "fail"; } }
+	 */
 	
 	@RequestMapping(value = "/kakaoLogin.do", method = RequestMethod.POST)
 	public String kakaoLogin(Locale locale, Model model, HttpServletRequest request, MemberVO vo) throws Exception {
@@ -486,7 +505,36 @@ public class LoginController {
 			
 			return "redirect:/";
 		}
+	}
+	
+	@RequestMapping(value = "/phoneCheck", method = RequestMethod.POST)
+	@ResponseBody
+	public String phoneCheck(Locale locale, Model model, HttpServletRequest request) throws Exception {
 		
+		int deleteResult = homeService.deleteSearchList();
+		
+		List<HomeSearchVO> searchList = homeService.listSearchList();
+		
+		model.addAttribute("searchList", searchList);
+		
+		String phone = request.getParameter("phone");
+		String phone1 = phone.substring(0, 3);
+		String phone2 = phone.substring(3, 7);
+		String phone3 = phone.substring(7);
+		
+		MemberVO vo = new MemberVO();
+		vo.setPhone1(phone1);
+		vo.setPhone2(phone2);
+		vo.setPhone3(phone3);
+		
+		MemberVO phoneCheck = memberService.phoneCheckMember(vo);
+		
+		if(phoneCheck != null) {
+			return "CheckFail";
+			
+		}else {
+			return "CheckSuccess";
+		}
 	}
 	
 	

@@ -52,7 +52,7 @@
 			
 			<c:forEach items="${recentViewList}" end="11" var="recentViewListvo" varStatus="cnt">
 				<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop">
-					<img src="${recentViewListvo.img_origin}" class="shopImg" onclick="location.href='${pageContext.request.contextPath}/store/store_view.do?spidx=${recentViewListvo.spidx}'">
+					<img src="${pageContext.request.contextPath}/image/${recentViewListvo.img_system}" class="shopImg" onclick="location.href='${pageContext.request.contextPath}/store/store_view.do?spidx=${recentViewListvo.spidx}'">
 					<div class="shopText" onclick="location.href='${pageContext.request.contextPath}/store/store_view.do?spidx=${recentViewListvo.spidx}'">
 						<div class="shopTitle">
 							<div class="brand">${recentViewListvo.brand}</div>

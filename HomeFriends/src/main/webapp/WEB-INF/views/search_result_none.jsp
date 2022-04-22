@@ -52,21 +52,19 @@
 		
 		
 		<!-- 추천 상품 영역 -->
-		<!-- ================================================================================ -->
-		<div class="recommendList row">
-<!-- 		<div class="recommendTitle bold col-8">추천 상품</div>		
-			<div class="col-4 moreButtonDiv">
+		<!-- ====================================================================================== -->
+		<!-- ====================================================================================== -->
+		<div class="row shopList">
+			<div class="shopListTitle">
+				추천 상품
 				<span class="moreview" onclick="location.href='${pageContext.request.contextPath}/store/store_list.do?type=review_cnt'">더보기</span>
-	           	<div class="clear"></div>
+				<div class="clear"></div>
 			</div>
-		</div>
- -->			
-		<div class="row shopList">	
-			
-			<c:forEach items="${storeList}" end="3" var="storeListvo" varStatus="cnt">	
-				<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop">
-					<img src="${storeListvo.img_origin}" class="shopImg" onclick="">
-					<div class="shopText" onclick="">
+		
+			<c:forEach items="${storeList}" end="3" var="storeListvo" varStatus="cnt">
+				<div id="storeList${cnt.count }" class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop">
+					<img src="${pageContext.request.contextPath}/image/${storeListvo.img_system }" class="shopImg" onclick="location.href='${pageContext.request.contextPath}/store/store_view.do?spidx=${storeListvo.spidx}'">
+					<div class="shopText" onclick="location.href='${pageContext.request.contextPath}/store/store_view.do?spidx=${storeListvo.spidx}'">
 						<div class="shopTitle">
 							<div class="brand">${storeListvo.brand}</div>
 							${storeListvo.title}
@@ -83,7 +81,7 @@
 					</div>
 				</div>
 			</c:forEach>
-						
+			
 		</div>
 		
 	</section>

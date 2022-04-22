@@ -157,9 +157,9 @@
 			<li class="col-sm-2 col-md-2 subMenu" id="community" onclick="location.href='${pageContext.request.contextPath}/community/home_story.do'">홈 스토리</li>
 			<li class="col-sm-2 col-md-2 subMenu" id="following" onclick="location.href='${pageContext.request.contextPath}/community/following.do'">팔로잉</li>
 			<li class="col-md-2 subMenu" id="scrab" onclick="location.href='${pageContext.request.contextPath}/community/scrap.do'">스크랩</li>
-			<li class="col-md-2 subMenu" id="QnA"></li>
-			<li class="col-sm-2 col-md-2 subMenu"></li>
-			<li class="col-sm-2 col-md-2 subMenu"></li>
+			<li class="col-md-2 subMenu2" id="QnA"></li>
+			<li class="col-sm-2 col-md-2 subMenu2"></li>
+			<li class="col-sm-2 col-md-2 subMenu2"></li>
 		</ul>
 	</div>
 </nav>

@@ -43,6 +43,9 @@ nav{
 	cursor : pointer;
 	padding: 3px 0px;
 }
+.subMenu2{
+	padding: 3px 0px;
+}
 .mainMenu:hover{
 	color: #ffb6c1;
 }

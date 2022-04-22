@@ -107,7 +107,7 @@
 				<div class="clear"></div>
 			</div>
 			<c:forEach items="${list}" var="vo" varStatus="cnt">
-				<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 story" <c:if test="${cnt.last}">id="mdlg_display_none"</c:if>>
+				<div id="storyList${cnt.count }" class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 story">
 					<img src="${pageContext.request.contextPath}/upload/${vo.img_system }" class="storyImg" onclick="location.href='${pageContext.request.contextPath}/community/home_view.do?cbidx=${vo.cbidx}&fmidx=${vo.midx }&nowPage=1'">
 					<div class="storyText">
 						<div class="storyTitle" onclick="location.href='${pageContext.request.contextPath}/community/home_view.do?cbidx=${vo.cbidx}&fmidx=${vo.midx }&nowPage=1'">${vo.title }</div>
@@ -130,7 +130,7 @@
 			</div>
 		
 			<c:forEach items="${storeList}" end="3" var="storeListvo" varStatus="cnt">
-				<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop" <c:if test="${cnt.last}">id="mdlg_display_none_"</c:if>>
+				<div id="storeList${cnt.count }" class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop">
 					<img src="${pageContext.request.contextPath}/image/${storeListvo.img_system }" class="shopImg" onclick="location.href='${pageContext.request.contextPath}/store/store_view.do?spidx=${storeListvo.spidx}'">
 					<div class="shopText" onclick="location.href='${pageContext.request.contextPath}/store/store_view.do?spidx=${storeListvo.spidx}'">
 						<div class="shopTitle">

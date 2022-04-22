@@ -85,7 +85,7 @@ section{
 	display: inline-block;
 	border-radius: 5px;
 }
-.emailbtn, .idbtn{
+.emailbtn, .idbtn, .doubleChk{
 	border: none;
 	height: 25px;
 	width: 90px;

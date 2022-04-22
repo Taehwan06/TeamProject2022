@@ -64,7 +64,7 @@
 				
 				<c:forEach items="${storeList}" end="11" var="storeListvo" varStatus="cnt">
 					<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 shop" <c:if test="${cnt.last}">id="mdlg_display_none_"</c:if>>
-						<img src="${storeListvo.img_origin}" class="shopImg" onclick="location.href='${pageContext.request.contextPath}/store/store_view.do?spidx=${storeListvo.spidx}'">
+						<img src="${pageContext.request.contextPath}/image/${storeListvo.img_system}" class="shopImg" onclick="location.href='${pageContext.request.contextPath}/store/store_view.do?spidx=${storeListvo.spidx}'">
 						<div class="shopText" onclick="location.href='${pageContext.request.contextPath}/store/store_view.do?spidx=${storeListvo.spidx}'">
 							<div class="shopTitle">
 								<div class="brand">${storeListvo.brand}</div>

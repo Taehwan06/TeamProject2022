@@ -38,6 +38,11 @@ section{
 	margin-top: 10px;
 	margin-bottom: 50px;
 }
+.storyListTitle, .shopListTitle{
+	font-size: 25px;
+	margin-bottom: 20px;
+	font-weight: bold;
+}
 .searchType, .recommendTitle{
 	font-size: 25px;
 	margin-bottom: 20px;
@@ -146,6 +151,9 @@ section{
 		width: 80%;
 		margin-left: 20px;
 	}
+	#storeList4{
+		display: none;
+	}
 }
 @media screen and (min-width: 768px) and (max-width: 991.99px){
 	#headerDiv, .navbar, section, footer{
@@ -164,6 +172,9 @@ section{
 	}
 	.categoryUl{
 		padding: 15px 0px 15px 10px;
+	}
+	#storeList4{
+		display: none;
 	}
 }
 @media screen and (min-width: 576px) and (max-width: 767.99px){
