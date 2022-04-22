@@ -5,7 +5,7 @@
 		
 		
 		
-		location.href="contextPath/mypage/state?progress="+delState;
+		location.href=contextPath+"/mypage/state?progress="+delState;
 			
 	}
 	
