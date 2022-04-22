@@ -50,13 +50,13 @@
 		<img src="${pageContext.request.contextPath}/upload/${vo.img_system }">
 	</div>
 	<section id="story_area">
-		<div class="comm_area">
+		<div class="comm_area col-10 col-sm-10 col-md-8 col-lg-8">
 			<input type="hidden" id="cbidx" name="cbidx" value="${vo.cbidx }">
 			<input type="hidden" name="fmidx" value="${vo.midx }">
 			<div class="row comm_area_">
 				<div class="comm_category">홈 스토리</div>
 				<div class="comm_title">${vo.title }</div>
-				<div class="col-xl-4 storyWriter">
+				<div class="col-8 col-sm-8 storyWriter">
 					<div class="profile" onclick="location.href='${pageContext.request.contextPath}/mypage/Member_page.do?midx=${vo.midx}'">
 						<div class="profile_img">
 							<img class="writerImg" src="${pageContext.request.contextPath}/image/${vo.profile_system }">
@@ -74,7 +74,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-xl-8 follow_btn">
+				<div class="col-4 follow_btn">
 					<c:if test="${isFollow == 0 && loginUser.midx != vo.midx && loginUser != null}">
 						<button onclick="follow(${vo.midx})">+ 팔로우</button>
 					</c:if>
@@ -89,7 +89,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="row content_area">
+		<div class="row content_area col-10 col-sm-10 col-md-8 col-lg-8">
 			<div class="row content_img">
 				${vo.content }
 				<div id="footer_img_">
@@ -97,7 +97,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="btn_area">
+		<div class="btn_area col-11 col-sm-10 col-md-8 col-lg-8">
 			<button type="button" onclick="location.href='home_list.do?&sort=recent'">목록</button>
 		<c:if test="${loginUser.midx == vo.midx }">
 			<button type="button" onclick="location.href='home_modify.do?cbidx='+${vo.cbidx}">수정</button>
@@ -108,12 +108,12 @@
 		</c:if>
 			
 		</div>
-		<div class="content_stats">
+		<div class="content_stats col-10 col-sm-10 col-md-8 col-lg-8">
 			<div>스크랩<span>${vo.scrap_cnt }</span></div>
 			<div>댓글<span>${vo.reply_cnt }</span></div>
 			<div>조회<span>${vo.hit_cnt }</span></div>
 		</div>
-		<div class="footer_profile">
+		<div class="footer_profile col-10 col-sm-10 col-md-8 col-lg-8">
 			<div class="footer_profile_img">
 				<img class="footer_writerImg" src="${pageContext.request.contextPath}/image/${vo.profile_system }" onclick="location.href='${pageContext.request.contextPath}/mypage/Member_page.do?midx=${vo.midx}'">
 				<span id="footer_writerImg_span" onclick="location.href='${pageContext.request.contextPath}/mypage/Member_page.do?midx=${vo.midx}'">${vo.writer }</span>
@@ -132,7 +132,7 @@
 		</div>
 	</section>
 	<!-- 댓글 영역 -->
-	<section id="reply_area">
+	<section id="reply_area" class="col-10 col-sm-10 col-md-8 col-lg-7">
 		<h1 class="reply_area">
 			댓글&nbsp;<span>${vo.reply_cnt }</span>
 		</h1>

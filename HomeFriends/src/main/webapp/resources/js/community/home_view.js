@@ -1,15 +1,78 @@
 /* 사이드 메뉴 바 */
-$(window).scroll(function(){
-	if ($(this).scrollTop() > 700){
-		$('.slide_bar').css({"display" : "block"});
-		$('.slide_bar_').css({"display" : "block"});
-		$('.slide_bar').show();
-		$('.slide_bar_').show();
-	} else{
-		$('.slide_bar').hide();
-		$('.slide_bar_').hide();
-	}
-});
+if($(window).width() > 1400){
+	$(window).scroll(function(){
+		if ($(this).scrollTop() > 700){
+			$('.slide_bar').css({"display" : "block"});
+			$('.slide_bar_').css({"display" : "block"});
+			$('.slide_bar').show();
+			$('.slide_bar_').show();
+		} else{
+			$('.slide_bar').hide();
+			$('.slide_bar_').hide();
+		}
+	});	
+}else if($(window).width() > 1200){
+	$(window).scroll(function(){
+		if ($(this).scrollTop() > 550){
+			$('.slide_bar').css({"display" : "block"});
+			$('.slide_bar_').css({"display" : "block"});
+			$('.slide_bar').show();
+			$('.slide_bar_').show();
+		} else{
+			$('.slide_bar').hide();
+			$('.slide_bar_').hide();
+		}
+	});	
+}else if($(window).width() > 992){
+	$(window).scroll(function(){
+		if ($(this).scrollTop() > 400){
+			$('.slide_bar').css({"display" : "block"});
+			$('.slide_bar_').css({"display" : "block"});
+			$('.slide_bar').show();
+			$('.slide_bar_').show();
+		} else{
+			$('.slide_bar').hide();
+			$('.slide_bar_').hide();
+		}
+	});	
+}else if($(window).width() > 768){
+	$(window).scroll(function(){
+		if ($(this).scrollTop() > 300){
+			$('.slide_bar').css({"display" : "block"});
+			$('.slide_bar_').css({"display" : "block"});
+			$('.slide_bar').show();
+			$('.slide_bar_').show();
+		} else{
+			$('.slide_bar').hide();
+			$('.slide_bar_').hide();
+		}
+	});	
+}else if($(window).width() > 576){
+	$(window).scroll(function(){
+		if ($(this).scrollTop() > 220){
+			$('.slide_bar').css({"display" : "block"});
+			$('.slide_bar_').css({"display" : "block"});
+			$('.slide_bar').show();
+			$('.slide_bar_').show();
+		} else{
+			$('.slide_bar').hide();
+			$('.slide_bar_').hide();
+		}
+	});	
+}else{
+	$(window).scroll(function(){
+		if ($(this).scrollTop() > 100){
+			$('.slide_bar').css({"display" : "block"});
+			$('.slide_bar_').css({"display" : "block"});
+			$('.slide_bar').show();
+			$('.slide_bar_').show();
+		} else{
+			$('.slide_bar').hide();
+			$('.slide_bar_').hide();
+		}
+	});	
+}
+
 
 /* 팔로우 요청 */
 function follow(fmidx){
@@ -304,4 +367,6 @@ $(document).ready(function(){
 			}
 		});
 	});
+	var img = document.getElementsByTagName("img");
+	$(".content_img").children().find(img).css("width", "100%");
 });
