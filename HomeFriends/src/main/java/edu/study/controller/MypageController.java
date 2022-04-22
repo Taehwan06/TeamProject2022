@@ -47,7 +47,7 @@ import edu.study.vo.Store_reviewVO;
  */  
 @RequestMapping(value="/mypage")
 @Controller
-public class MypageController {
+public class MypageController { 
 	
 	@Autowired 
 	private MypageService mypageService;
