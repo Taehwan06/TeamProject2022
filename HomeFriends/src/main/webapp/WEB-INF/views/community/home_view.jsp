@@ -132,7 +132,7 @@
 		</div>
 	</section>
 	<!-- 댓글 영역 -->
-	<section id="reply_area" class="col-10 col-sm-10 col-md-8 col-lg-7">
+	<section id="reply_area" class="col-10 col-sm-10 col-md-8 col-lg-6">
 		<h1 class="reply_area">
 			댓글&nbsp;<span>${vo.reply_cnt }</span>
 		</h1>
@@ -184,7 +184,7 @@
 				<input type="hidden" name="origin_cbridx" value="${reply.cbridx }">
 				<input type="hidden" name="cbridx" value="${reply.cbridx }">
 				<c:if test="${reply.depth != 0 }">
-					<div class="reply reply${reply.depth } " style="margin-left : calc(${reply.depth-1}*65px);">
+					<div class="reply reply${reply.depth } " style="margin-left : calc(${reply.depth-1}*65px + 15px);">
 						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-return-right" viewBox="0 0 16 16">
 						  <path fill-rule="evenodd" d="M1.5 1.5A.5.5 0 0 0 1 2v4.8a2.5 2.5 0 0 0 2.5 2.5h9.793l-3.347 3.346a.5.5 0 0 0 .708.708l4.2-4.2a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 8.3H3.5A1.5 1.5 0 0 1 2 6.8V2a.5.5 0 0 0-.5-.5z"/>
 						</svg>
@@ -269,7 +269,7 @@
 							<div class="reply_input_">
 								<div class="reply_content">
 									<div class="reply_content_input">
-										<span>@${reply.writer }</span><textarea name="content" class="reply_content_input_text_ reply_content_form_text_${reply.cbridx}" onkeyup="adjust_Height('${reply.cbridx}')"></textarea>
+										<div class="reply_writer_ reply_writer_${reply.depth }">@${reply.writer }</div><textarea name="content" class="reply_content_input_text_ reply_content_form_text_${reply.cbridx}" onkeyup="adjust_Height('${reply.cbridx}')"></textarea>
 									</div>
 								</div>
 								<div class="reply_action">
