@@ -928,8 +928,8 @@ public class StoreController {
 	public String fileUpload(Locale locale, Model model, HttpServletRequest request, @RequestParam("imgFile") MultipartFile imgFile) throws Exception {
 		
 		//String savePath = "C://Users//lth-m//git//TeamProject2022//HomeFriends//src//main//webapp//resources//image";  // 파일이 저장될 프로젝트 안의 폴더 경로
-		//String savePath = request.getServletContext().getRealPath("/resources/image");  // 파일이 저장될 프로젝트 안의 폴더 경로
-		String savePath ="C://Users//MYCOM//git//TeamProject2022//HomeFriends//src//main//webapp//resources//image";
+		String savePath = request.getServletContext().getRealPath("/resources/image");  // 파일이 저장될 프로젝트 안의 폴더 경로
+		//String savePath ="C://Users//MYCOM//git//TeamProject2022//HomeFriends//src//main//webapp//resources//image";
 		
 		 
 		
