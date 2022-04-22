@@ -9,7 +9,8 @@
          SELECT spidx
          		,title
          		,product_name
-         		,sale_price
+         		,FORMAT(origin_price,0) as origin_price
+         		,FORMAT(sale_price,0) as sale_price
          		,brand
          		,score
          		,discount
