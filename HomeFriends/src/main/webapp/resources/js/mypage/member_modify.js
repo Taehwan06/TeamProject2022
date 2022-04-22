@@ -51,11 +51,22 @@ function checkForm() {
 	var nickInput = document.getElementById("nickInput").value;
 	var phone2 = document.getElementById("phone2").value;
 	var phone3 = document.getElementById("phone3").value;
-	var fileVal = document.getElementById("profile_system").value;
+	var fileVal = document.getElementById("imgUpload").value;
+	var prevImg = document.getElementById("profile_prev").value;
 	
 	let phone_val =  /^[0-9]+$/; 
 	let nick_val = /[가-힣0-9a-zA-Z]{1,20}$/;
 	
+	if(fileVal == '' || fileVal == null){
+		if(prevImg == '' || prevImg == null){
+			$("#profile_origin").val("kakao_profile_basic.png");
+			$("#profile_system").val("kakao_profile_basic.png");
+		}else{
+			$("#profile_origin").val(prevImg);
+			$("#profile_system").val(prevImg);
+		}
+		
+	}
 	
 	if(nickInput == '' || phone2 == '' ||phone3 == ''){
 		
@@ -67,15 +78,6 @@ function checkForm() {
          
     			 });
 		//alert("값을 입력하세요");
-		//return false;
-		
-	}else if(fileVal == '' || fileVal == null){
-		$("#profile_origin").val("kakao_profile_basic.png");
-		$("#profile_system").val("kakao_profile_basic.png");
-		
-		document.memberModifyFrm.method = "post";
-		document.memberModifyFrm.action = "member_modify.do";
-		document.memberModifyFrm.submit();
 		//return false;
 		
 	}else if(!phone_val.test(phone2)||!phone_val.test(phone3)||!nick_val.test(nickInput)){

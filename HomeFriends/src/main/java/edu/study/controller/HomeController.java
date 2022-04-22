@@ -93,6 +93,12 @@ public class HomeController {
 		int insertResult = homeService.insertSearchList(vo);
 		int deleteResult = homeService.deleteSearchList();
 		
+		String searchValue = vo.getSearch_value();
+		
+		String[] searchValueAry = searchValue.split(" ");
+		
+		vo.setSearchValueAry(searchValueAry);
+		
 		List<HomeSearchVO> searchList = homeService.listSearchList();
 		
 		model.addAttribute("searchList", searchList);

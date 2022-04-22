@@ -448,7 +448,7 @@ function idCheck(){
 	
 	if(id != null && id != "" && reg.test(id)){
 		$.ajax({
-			url: "idCheck",
+			url: contextPath+"/login/idCheck",
 			type: "post",
 			data: "id="+id,
 			success: function(data){
@@ -477,7 +477,7 @@ function phoneCheckFn(){
 	
 	if(phone != null && phone != "" && reg.test(phone)){
 		$.ajax({
-			url: "phoneCheck",
+			url: contextPath+"/login/phoneCheck",
 			type: "post",
 			data: "phone="+phone,
 			success: function(data){
@@ -510,7 +510,7 @@ function checkphone(){
 	var phone = $("#phone").val(); 
 	$.ajax({ 
 		type:"GET", 
-		url:"/controller/login/phoneCheck?phone=" + phone, 
+		url:contextPath+"/login/phoneCheck?phone=" + phone, 
 		cache : false, 
 		success:function(data){ 
 			if(data == "error"){ 

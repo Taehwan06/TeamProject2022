@@ -43,7 +43,7 @@
 		<div class="login_vacant" id="vacant1"></div>
 		<div class="login_wrap container-fluid">  
 			<div class="row">
-				<div class="col-8" style="float: none; margin:0 auto;">
+				<div id="loginArea" class="col-12 col-sm-8" style="float: none; margin:0 auto;">
 					<img class="login_logo" width="180px" src="${pageContext.request.contextPath}/image/mainLogo.png">
 					<c:if test="${facebookUser != null or kakaoUser != null or naverUser != null }">
 						<div id="sectionTitle">

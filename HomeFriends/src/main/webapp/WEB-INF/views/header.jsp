@@ -75,7 +75,8 @@
 				<div class="accordion" id="accordionExample">
 					<div class="accordion-item">
 						<h2 class="accordion-header" id="headingOne">
-							<button class="accordion-button modalTextMenu" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+							<button id="abtn1" class="abtn accordion-button modalTextMenu" type="button" data-bs-toggle="collapse" 
+							data-bs-target="#collapseOne" onclick="colorFn(this)" aria-expanded="true" aria-controls="collapseOne">
 								스토어
 							</button>
 						</h2>
@@ -93,7 +94,8 @@
 					</div>
 					<div class="accordion-item">
 						<h2 class="accordion-header" id="headingTwo">
-							<button class="accordion-button collapsed modalTextMenu" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+							<button id="abtn2" class="abtn accordion-button collapsed modalTextMenu" type="button" data-bs-toggle="collapse" 
+							onclick="colorFn(this)" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
 								홈 스토리
 							</button>
 						</h2>

@@ -53,7 +53,7 @@
 					<div name="idHead" id="idHead" class="head">아이디</div>
 				</label>
 				<input type="text" name="id" id="id" class="input value" onblur="onBlurFn(this)" placeholder="예) IU@hanmail.net">
-				<input type="button" name="idbtn" id="idbtn" class="idbtn button" value="중복 확인" onclick="sendMailFn()">
+				<input type="button" name="idbtn" id="idbtn" class="idbtn button" value="중복 확인" onclick="idCheck()">
 			</div>
 			
 			<label for="id">
@@ -79,7 +79,7 @@
 					<div name="phoneHead" id="phoneHead" class="head">휴대폰 번호</div>
 				</label>
 				<input name="phone" id="phone" type="text" class="input value" title="전화번호 입력" onblur="onBlurFn(this)" placeholder="숫자만 입력하세요 예) 01012345678" required/> 
-				<input id="phoneChk" class="doubleChk" type="button" value="인증번호 발송" onclick="phoneCheckFn()">
+				<input id="phoneChk" class="doubleChk button" type="button" value="인증번호 발송" onclick="phoneCheckFn()">
 			</div>
 						
 			<label for="phone">
@@ -92,7 +92,7 @@
 					<div class="head">인증번호</div>
 				</label>
 				<input name="phoneCheck" id="phoneCheck" type="text" class="input value" title="인증번호 입력" required/> 
-				<input id="phoneChk2" class="doubleChk" type="button" value="인증번호 확인" onclick="checkphone2()">
+				<input id="phoneChk2" class="doubleChk button" type="button" value="인증번호 확인" onclick="checkphone2()">
 			</div>
 			
 			<label for="phoneCheck">
