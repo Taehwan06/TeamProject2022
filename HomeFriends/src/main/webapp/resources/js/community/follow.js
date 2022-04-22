@@ -36,3 +36,8 @@ function login(){
 		location.href=contextPath+"/login/login.do"
 	})
 }
+
+$(document).ready(function(){
+	var img = document.getElementsByTagName("img");
+	$(".com_content").children().find(img).css("width", "100%");
+});

@@ -1,3 +1,9 @@
+body, section{
+	min-width : 460px;
+}
+body{
+	overflow-x : hidden;
+}
 .MainImg{
 	overflow : hidden;
 	max-height : 800px;
@@ -241,7 +247,7 @@ section{
     background: none;
     color: #424242;
     margin: 0;
-    padding: 8px 15px 9px;
+    padding: 8px 10px 9px;
     font-family: inherit;
     font-size: 15px;
     line-height: 1.4;
@@ -251,11 +257,19 @@ section{
     box-sizing: border-box;
     outline : none;
 }
-.reply_content_input span{
+.reply_writer_{
+	padding-top : 10px;
+	display : inline-block;
 	color : #ffb6c1;
 	font-weight : 900;
-	margin-top : 10px;
 	margin-left : 10px;
+	width : 68px;
+}
+.reply_writer_1{
+	width : 75px;
+}
+.reply_writer_2{
+	width : 93px;
 }
 .reply_action{
 	right : 10px;
@@ -295,15 +309,14 @@ section{
 .reply{
 	clear : both;
 	float : left;
-	margin-top : 30px;
-	margin-left : 10px;
+	margin-top : 10px;
 }
 .reply_item{
 	padding-left : 40px;
 	display : block;
 }
 .reply_item_{
-	padding : 20px 0 0 61px;
+	padding : 0 0 0 61px;
 }
 p{
 	display: block;
@@ -361,6 +374,9 @@ p{
 	padding : 0;
 	margin-left : 20px;
 	font-weight : bold;
+}
+.reply_item_footer_reply-btn3{
+	display : none;
 }
 .Re{
 	width: 99%;
@@ -488,6 +504,6 @@ p{
 }
 @media screen and (max-width: 575.99px){
 	.slide_bar, .slide_bar_{
-		right : 5px;
+		right : 10px;
 	}
 }

@@ -97,6 +97,7 @@ public class CommunityController {
 			throws Exception {
 
 		String uploadFolder = request.getServletContext().getRealPath("/resources/upload");
+		//String uploadFolder = "C://Users//MYCOM//git//TeamProject2022//HomeFriends//src//main//webapp//resources//upload";
 
 		/* 날짜 폴더 경로 */
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
