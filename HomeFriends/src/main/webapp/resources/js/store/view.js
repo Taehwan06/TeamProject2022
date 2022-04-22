@@ -211,7 +211,7 @@ $(document).ready(function(){
 	$("#shop_information_area img").css("width","100%");
 	/*$("#shop_information_area").children("p").children("img").css("width","100%");*/
 
-
+	//갯수선택박스
 	$(".selectCnt").on("change",function(){
 		var selectCnt = $(this).val();
 		$(".selectCnt").val(selectCnt);
@@ -222,21 +222,46 @@ $(document).ready(function(){
 			
 		}
 		cnt=selectCnt
-		var sum_price = selectCnt*price;
-		$('.sum_price').text(sum_price);
+		if(select_spidx != 0){
+			var sum_price = selectCnt*price+"";
+			sum_price = sum_price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+			$('.sum_price').text(sum_price);
+		}else{
+			$('.sum_price').text(0);
+		}
+		
 	});
 	$(".hiddenCnt").on("change",function(){
 		var selectCnt = $(this).val();
 		$(".hiddenCnt").val(selectCnt);
 		$('#cnt').val(selectCnt);
 		cnt=selectCnt
-		var sum_price = selectCnt*price;
-		$('.sum_price').text(sum_price);
+		if(select_spidx != 0){
+			var sum_price = selectCnt*price+"";
+			sum_price = sum_price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+			$('.sum_price').text(sum_price);
+		}
+		
+		
 		$(".hiddenCnt").val(selectCnt);
 	});
 	$(".form-select").on("change",function(){
 		var selectCnt = $(this).val();
 		$(".form-select").val(selectCnt);
+	});
+	
+	//상품선택시 바꿔주기
+	$(".form-select").on("change",function(){
+		select_spidx=$(this).val();
+		if(select_spidx != 0){
+			var sum_price= cnt*price+"";
+			sum_price = sum_price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+			$(".sum_price").text(sum_price);
+		}else{
+			$(".sum_price").text(0);
+		}
+		
+		
 	});
 
 });

@@ -222,7 +222,31 @@
 	border-radius: 4px;
 	transition: color 0.1s ease 0s, background-color 0.1s ease 0s, border-color 0.1s ease 0s;
 }
-
+/*상품금액영역*/
+.shop_price{
+	display: flex;
+}
+.shopPrice{
+	font-size: 15px;
+}
+.price_area{
+	display: inline-block;
+	padding: 0;
+}
+.discount_area{
+	display: inline-block;
+	margin-top : auto;
+	margin-bottom : auto;
+	padding: 0;
+}
+.discount{
+	font-size: 1.3em;
+}
+.origin{
+	font-size: 0.8em;
+	text-decoration:line-through;
+	color: gray;
+}
 
 /* 미디어 쿼리  CSS */
 /*========================================================================*/
