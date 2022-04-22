@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,6 @@ import edu.study.service.MemberService;
 import edu.study.service.MypageService;
 import edu.study.vo.BasketVO;
 import edu.study.vo.Community_BoardVO;
-import edu.study.vo.Community_ReplyVO;
 import edu.study.vo.FollowVO;
 import edu.study.vo.HomeSearchVO;
 import edu.study.vo.MemberVO;
@@ -63,10 +63,12 @@ public class MypageController {
 	 * @throws Exception 
 	 */
 	@RequestMapping(value = "/mypage.do", method = RequestMethod.GET)
-	public String mypage(Locale locale, Model model,OrderListVO vo, HttpServletRequest request, Community_BoardVO list, FollowVO follow) throws Exception {
+	public String mypage(Locale locale, Model model,OrderListVO vo, HttpServletRequest request, Community_BoardVO list, FollowVO follow, HttpServletResponse response) throws Exception {
 		
 		HttpSession session = request.getSession(); 
 	    MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
+	    
+	    response.setHeader("Cache-Control","no-store");
 	    
 	    String nowUri = request.getRequestURI();
 		
@@ -122,13 +124,16 @@ public class MypageController {
 	  		int likeCnt = mypageService.likeCnt(Midx);
 	  		model.addAttribute("likeCnt", likeCnt);
 	  		
+	  		
+	  		
 	        return "mypage/mypage";
 	      }  
 	}
 	
 	@RequestMapping(value = "/member_modify.do", method = RequestMethod.GET)
-	public String member_modify(Locale locale, Model model, HttpServletRequest request) throws Exception {
+	public String member_modify(Locale locale, Model model, HttpServletRequest request,HttpServletResponse response) throws Exception {
 
+		response.setHeader("Cache-Control","no-store");
 		HttpSession session = request.getSession(); 
 		MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
 
@@ -268,8 +273,10 @@ public class MypageController {
 	
 	
 	@RequestMapping(value = "/order_list.do", method = RequestMethod.GET)
-	public String order_list(Locale locale, Model model,OrderListVO vo, HttpServletRequest request) throws Exception {
+	public String order_list(Locale locale, Model model,OrderListVO vo, HttpServletRequest request, HttpServletResponse response) throws Exception {
 
+
+		response.setHeader("Cache-Control","no-store");
 		HttpSession session = request.getSession(); 
 		MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
 
@@ -444,34 +451,88 @@ public class MypageController {
 	    if(loginUser == null) {
 	         return "redirect:/login/login.do";
 	    }else {
-		
 			int deleteResult = homeService.deleteSearchList();
 			List<HomeSearchVO> searchList = homeService.listSearchList();
 			model.addAttribute("searchList", searchList);
-			    	  
+			
+			//멤버정보
 	    	MemberVO result = mypageService.detail(midx);
 	  		model.addAttribute("vo", result);
 	  		
-	  		//int Midx = loginUser.getMidx();
-			list.setMidx(midx);
-	  		
+			//멤버가 작성한 글 
+	  		list.setMidx(midx);
 	  		List<Community_BoardVO> Storylist = mypageService.viewStory(list);
 	  		model.addAttribute("Storylist", Storylist);
 	  		
+	  		//멤버의 팔로잉 수
 	  		follow.setMidx(midx);
 	  		int following = mypageService.following_cnt(follow);
 	  		model.addAttribute("following", following);
 	  		
+	  		//멤버의 팔로워 수
 	  		int fmidx = midx;
 	  		follow.setFmidx(fmidx);
 	  		
 	  		int follower = mypageService.follower_cnt(follow);
 	  		model.addAttribute("follower", follower);
 	  		
+	  		//팔로우체크
+			FollowVO fvo = new FollowVO();
+			
+			fvo.setMidx(loginUser.getMidx());
+			fvo.setFmidx(midx); 
+
+			int isFollow = mypageService.isFollow(fvo);
+
+			model.addAttribute("isFollow", isFollow);
+	  		
 	  		return "mypage/Member_page";
 		      
 	    }
 	}
+	
+	@RequestMapping(value="/followC", method = RequestMethod.POST)
+	@ResponseBody
+	public String followC(int fmidx, HttpServletRequest req, Model model) throws Exception {
+		
+		String nowUri = req.getRequestURI();
+	      
+        HttpSession session = req.getSession();
+        session.setAttribute("nowUri", nowUri);
+        
+		//MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
+		
+		Object object = session.getAttribute("loginUser");
+		MemberVO activeUser = (MemberVO)object;
+		MemberVO passiveUser = memberService.inquiryOfUserByMidx(fmidx);
+		
+		FollowVO follow = new FollowVO();
+		follow.setMidx(activeUser.getMidx());
+		follow.setFmidx(passiveUser.getMidx());
+		
+		mypageService.follow(follow);
+		
+        return "FollowOK";
+	}
+	
+	//언팔로우 요청
+		@RequestMapping(value="/unfollowC", method = RequestMethod.POST)
+		@ResponseBody
+		public String unfollowC(int fmidx, HttpSession session, Model model) throws Exception {
+			
+			Object object = session.getAttribute("loginUser");
+			MemberVO activeUser = (MemberVO)object;
+			MemberVO passiveUser = memberService.inquiryOfUserByMidx(fmidx);
+			
+			FollowVO follow = new FollowVO();
+			follow.setMidx(activeUser.getMidx());
+			follow.setFmidx(passiveUser.getMidx());
+			
+			mypageService.unfollow(follow);
+			
+			return "UnFollowOK";
+		}
+	
 	
 	
 
@@ -679,8 +740,9 @@ public class MypageController {
 	
 	
 	@RequestMapping(value = "/payment.do", method = RequestMethod.GET)
-	public String payment(Locale locale, Model model, SearchVO vo, HttpServletRequest request) throws Exception {
-
+	public String payment(Locale locale, Model model, SearchVO vo, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		response.setHeader("Cache-Control","no-store");
 		HttpSession session = request.getSession(); 
 		MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
 
@@ -1238,6 +1300,7 @@ public class MypageController {
 		//String savePath = "C://Users//lth-m//git//TeamProject2022//HomeFriends//src//main//webapp//resources//image";  // 파일이 저장될 프로젝트 안의 폴더 경로
 		String savePath = request.getServletContext().getRealPath("/resources/image");  // 파일이 저장될 프로젝트 안의 폴더 경로
 		//String savePath ="C://Users//MYCOM//git//TeamProject2022//HomeFriends//src//main//webapp//resources//image";
+		String savePath2 ="C://Users//MYCOM//git//TeamProject2022//HomeFriends//src//main//webapp//resources//image";
 		
 	    String originalFilename = imgFile.getOriginalFilename(); // fileName.jpg
 	    String onlyFileName = originalFilename.substring(0, originalFilename.indexOf(".")); // fileName
