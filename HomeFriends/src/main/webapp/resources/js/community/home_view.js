@@ -30,7 +30,7 @@ function follow(fmidx){
 function unfollow(fmidx){
 	$.ajax({
 		type : 'post',
-		url : contextPath+'follow/unfollowC',
+		url : contextPath+'/follow/unfollowC',
 		data : 'fmidx='+fmidx,
 		success : function(result){
 			if(result == "UnFollowOK"){
@@ -184,7 +184,7 @@ function replymodify(cbridx, img){
 				+ "<div class='reply_writer'>"
 				+ "<img class='reply_item_content_writer_image' src='"+contextPath+"/image/"+img+"'></div>"
 				+ "<textarea name='content' class='Re' onkeyup='adjustHeight_()'>"+content+"</textarea>"
-				+ "<div class='mfdel_'><button type='button' class='Rereply_submit' onclick='Resubmit("+contextPath+")'>등록</button>"
+				+ "<div class='mfdel_'><button type='button' class='Rereply_submit' onclick='Resubmit()'>등록</button>"
 				+ "<button type='button' onclick='Recancle()'>취소</button></div>"
 				+ "</form>";		
 	p.html(contents);
