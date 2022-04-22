@@ -186,7 +186,8 @@ public class StoreController {
 //		   break;
 //		}
 //		vo.setDetail(remain);
-		if(vo.getFree_delivery()!="N") {
+		
+		if(vo.getFree_delivery().equals("N")) {
 			vo.setDelivery_charge("0");
 		}
 		
