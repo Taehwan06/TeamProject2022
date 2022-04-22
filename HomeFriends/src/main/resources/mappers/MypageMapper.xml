@@ -164,7 +164,8 @@
     	SELECT
     			cbidx,
     			img_system,
-    			title
+    			title,
+    			midx
     	FROM
     			community_board
     	WHERE
@@ -247,7 +248,8 @@
     		B.img_origin,
     		B.cbidx,
     		R.write_date,
-    		R.content
+    		R.content,
+    		R.midx
   		FROM 
   		 	community_board B
   		INNER JOIN 
@@ -273,7 +275,8 @@
     		P.img_origin,
     		Q.spidx,
     		Q.answer_content,
-    		Q.answer
+    		Q.answer,
+    		Q.midx
   		FROM 
   		 	shopping_product P
   		INNER JOIN 
@@ -307,7 +310,8 @@
     		 P.img_origin,
     		 R.spidx,
     		 R.sridx,
-    		 R.score
+    		 R.score,
+    		 R.midx
 		FROM 
 			shopping_review R
 		INNER JOIN 
