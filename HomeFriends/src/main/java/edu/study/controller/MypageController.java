@@ -667,8 +667,8 @@ public class MypageController {
 			List<OrderListVO> detailOrder = mypageService.detailOrder(orderlist);
 			model.addAttribute("detailOrder", detailOrder);
 			
-			MemberVO result = mypageService.detail(midx); 
-			model.addAttribute("vo", result);
+			//MemberVO result = mypageService.detail(midx); 
+			//model.addAttribute("vo", result);
 	  	
 	  		return "mypage/detailOrder";
 		      

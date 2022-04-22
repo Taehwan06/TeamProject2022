@@ -219,6 +219,7 @@
     		O.free_delivery,
     		O.progress,
     		O.img_origin,
+    		O.img_system,
     		O.buying_date,
     		O.review_registration,
     		O.spidx,

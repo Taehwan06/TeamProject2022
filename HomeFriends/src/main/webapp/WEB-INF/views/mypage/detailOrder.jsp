@@ -11,6 +11,14 @@
     <!-- Bootstrap icon CSS-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css" />
+    <!-- kakao SDK -->
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    <!-- naver SDK -->
+    <script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
+    <!-- facebook SDK -->
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+	
+	<script>var contextPath = "${pageContext.request.contextPath}"</script>
     
 	<title>주문상세정보 - 홈프렌즈</title>
 	
@@ -22,14 +30,7 @@
 	<script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 	<script src="${pageContext.request.contextPath}/js/header.js"></script>
 	<script src="${pageContext.request.contextPath}/js/nav.js"></script>
-	<!-- kakao SDK -->
-    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-    <!-- naver SDK -->
-    <script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
-    <!-- facebook SDK -->
-    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
 	
-	<script>var contextPath = "${pageContext.request.contextPath}"</script>
 </head>
 <body>
 	<%@ include file="../header.jsp" %>
@@ -46,10 +47,10 @@
 					<hr>
 					<div id="detail_order">
 						<c:forEach items="${detailOrder}" var="detailOrder">
-						<div class="number_order">주문번호:${detailOrder.ordernumber} (${ detailOrder.buying_date})</div>
+						<div class="number_order">주문번호:${detailOrder.ordernumber} (${detailOrder.buying_date})</div>
 						<hr>
 						<div class="row">
-							<div class="col-3 imgDiv"><img src="${detailOrder.img_origin}"></div>
+							<div class="col-3 imgDiv"><img src="${pageContext.request.contextPath}/image/${detailOrder.img_system}"></div>
 							<div class="col-9">
 								<div class="row">
 									<div class = "col-4 ligtD">${detailOrder.title}</div>

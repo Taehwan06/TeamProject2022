@@ -10,8 +10,17 @@
 	<!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <!-- Bootstrap icon CSS-->
-   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css" />
+    <!-- SweetAlert  -->
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<!-- kakao SDK -->
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    <!-- naver SDK -->
+    <script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
+    <!-- facebook SDK -->
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+	<script>var contextPath = "${pageContext.request.contextPath}"</script>
     
 	<title>주문배송조회 - 홈프렌즈</title>
 	
@@ -25,16 +34,7 @@
 	<script src="${pageContext.request.contextPath}/js/header.js"></script>
 	<script src="${pageContext.request.contextPath}/js/nav.js"></script> 
 	<script src="${pageContext.request.contextPath}/js/mypage/order_list.js"></script>
-	<script>var contextPath = ${pageContext.request.contextPath}</script>
-	<!-- SweetAlert  -->
-	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-	<!-- kakao SDK -->
-    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-    <!-- naver SDK -->
-    <script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
-    <!-- facebook SDK -->
-    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
-	<script>var contextPath = "${pageContext.request.contextPath}"</script>
+	
 </head>
 <body>
 	<%@ include file="../header.jsp" %>
@@ -112,7 +112,7 @@
 								</div>
 								<div class="row odrNdelBox">
 									<div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3 productPic">
-										<a href="${pageContext.request.contextPath}/store/store_view.do?spidx=${orderList2.spidx}"><img src="${orderList2.img_system}"></a>
+										<a href="${pageContext.request.contextPath}/store/store_view.do?spidx=${orderList2.spidx}"><img src="${pageContext.request.contextPath}/image/${orderList2.img_system}"></a>
 									</div>
 									<div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-6 productInfo">
 										<a href="${pageContext.request.contextPath}/store/store_view.do?spidx=${orderList2.spidx}">${orderList2.title}&nbsp;</a>| ${orderList2.cnt} 개 <br>
