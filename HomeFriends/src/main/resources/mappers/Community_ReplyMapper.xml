@@ -128,7 +128,6 @@
 		SELECT COUNT(cbidx) 
 		FROM community_reply 
 		WHERE cbidx = #{cbidx}
-		AND del_yn = 'N'
 	</select>
 	
 	<!-- 댓글 작성 -->

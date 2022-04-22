@@ -281,19 +281,20 @@
 				</li>
 			</c:forEach>
 		</ul>
+		<c:if test="${vo.reply_cnt != 0 }">
 		<!-- 페이징 처리 -->
 		<ul class="list-paginator">
 			<li>
-				<a class="list-paginator_first" href="home_view.do?cbidx=${vo.cbidx }&fmidx=${vo.midx }&nowPage=${pvo.startPage}#reply_area">
+				<a class="list-paginator_first" href="home_view.do?cbidx=${vo.cbidx }&fmidx=${vo.midx }&nowPage=1#reply_area">
 					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-double-left" viewBox="0 0 16 16">
 					  <path fill-rule="evenodd" d="M8.354 1.646a.5.5 0 0 1 0 .708L2.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
 					  <path fill-rule="evenodd" d="M12.354 1.646a.5.5 0 0 1 0 .708L6.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
 					</svg>
 				</a>
 			</li>
-			<c:if test="${pvo.nowPage != pvo.startPage}">
+			<c:if test="${pvo.nowPage != 1 && pvo.nowPage > 5}">
 				<li>
-					<a class="list-paginator_prev" href="home_view.do?cbidx=${vo.cbidx }&fmidx=${vo.midx }&nowPage=${pvo.nowPage-1}#reply_area">
+					<a class="list-paginator_prev" href="home_view.do?cbidx=${vo.cbidx }&fmidx=${vo.midx }&nowPage=${pvo.startPage-5}#reply_area">
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
 						  <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
 						</svg>
@@ -315,9 +316,9 @@
 					</c:otherwise>
 				</c:choose>
 			</c:forEach>
-			<c:if test="${pvo.nowPage != pvo.lastPage}">
+			<c:if test="${pvo.nowPage != pvo.lastPage && pvo.endPage != pvo.lastPage}">
 				<li>
-					<a class="list-paginator_next" href="home_view.do?cbidx=${vo.cbidx }&fmidx=${vo.midx }&nowPage=${pvo.nowPage+1}#reply_area">
+					<a class="list-paginator_next" href="home_view.do?cbidx=${vo.cbidx }&fmidx=${vo.midx }&nowPage=${pvo.endPage+1}#reply_area">
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
 						  <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
 						</svg>
@@ -333,6 +334,7 @@
 				</a>
 			</li>
 		</ul>
+		</c:if>
 		<c:if test="${loginUser.midx != vo.midx && loginUser != null}">
 			<div class="slide_bar off" id="off" onclick="scrap(${vo.cbidx})">
 				<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-bookmark sideMenu" viewBox="0 0 16 16">

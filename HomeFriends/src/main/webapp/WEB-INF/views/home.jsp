@@ -106,7 +106,7 @@
 				<span class="moreview" onclick="location.href='community/home_list.do?&sort=recent'">더보기</span>
 				<div class="clear"></div>
 			</div>
-			<c:forEach items="${list}" var="vo">
+			<c:forEach items="${list}" var="vo" varStatus="cnt">
 				<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 story" <c:if test="${cnt.last}">id="mdlg_display_none"</c:if>>
 					<img src="${pageContext.request.contextPath}/upload/${vo.img_system }" class="storyImg" onclick="location.href='${pageContext.request.contextPath}/community/home_view.do?cbidx=${vo.cbidx}&fmidx=${vo.midx }&nowPage=1'">
 					<div class="storyText">

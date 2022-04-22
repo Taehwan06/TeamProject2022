@@ -108,7 +108,7 @@ public class CommunityController {
 		String datePath = str.replace("-", File.separator);
 
 		/* 폴더 생성 */
-		File uploadPath = new File(uploadFolder + datePath);
+		File uploadPath = new File(uploadFolder, datePath);
 
 		if (uploadPath.exists() == false) {
 			uploadPath.mkdirs();
@@ -132,7 +132,7 @@ public class CommunityController {
 
 		uploadFileName = uuid + "_" + uploadFileName;
 		/* 파일 위치, 파일 이름을 합친 File 객체 */
-		File saveFile = new File(uploadPath + uploadFileName);
+		File saveFile = new File(uploadPath, uploadFileName);
 
 		/* 파일 저장 */
 		uploadFile.transferTo(saveFile);
@@ -319,7 +319,7 @@ public class CommunityController {
 
 		// 페이징처리
 		int total = replyService.count(cbidx);
-		PagingVO pvo = new PagingVO(total, nowPage, 10);
+		PagingVO pvo = new PagingVO(total, nowPage, 8);
 		int start = pvo.getStart();
 		int end = pvo.getEnd();
 		
@@ -496,7 +496,7 @@ public class CommunityController {
 		List<Community_BoardVO> boardlist = Community_boardService.boardlist();
 
 		model.addAttribute("boardlist", boardlist);
-
+		
 		int midx = 0;
 		
 		List<ScrapVO> scrapList = null;
