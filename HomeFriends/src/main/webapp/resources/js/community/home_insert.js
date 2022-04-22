@@ -141,7 +141,6 @@ $(document).ready(function() {
 				    uuid = this["uuid"]
 				});
 				var filePath = uploadPath + "/" + uuid + "_" + fileName;
-
 			    
 				ornval = orinfilename.val(fileName);
 				upload = uploadfilename.val(filePath);
@@ -186,4 +185,12 @@ $(document).ready(function() {
 		return true;		
 		
 	}
+	
+	if($(window).width() > 576){
+		$(".note-editor").css({"width" : "auto", "max-width" : "750px" });
+	}else if($(window).width() < 576){
+		$(".note-editor").css("width" , "500px");
+	}
+	
+	
 });

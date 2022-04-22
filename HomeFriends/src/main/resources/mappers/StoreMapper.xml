@@ -10,7 +10,8 @@
          		,title
          		,product_name
          		,FORMAT(origin_price,0) as origin_price
-         		,FORMAT(sale_price,0) as sale_price
+         		,sale_price
+         		,FORMAT(sale_price,0) as view_price
          		,brand
          		,score
          		,discount
@@ -70,8 +71,22 @@
 	<select id="detailStore" resultType="StoreVO" parameterType="int">
 		<!-- <![CDATA[...]] 쿼리문의 >,< 등을 구분해주기 위해-->
 		<![CDATA[
-			SELECT 
-				  *
+			SELECT spidx
+         		,title
+         		,product_name
+         		,FORMAT(origin_price,0) as origin_price
+         		,sale_price
+         		,FORMAT(sale_price,0) as view_price
+         		,brand
+         		,content
+         		,free_delivery
+         		,delivery_charge
+         		,score
+         		,discount
+         		,review_cnt
+         		,img_system
+         		,category
+         		,detail
 			FROM shopping_product
 			WHERE spidx = #{spidx}
 		]]>
@@ -285,6 +300,7 @@
     			,sr.modify_yn
     			,date_format(sr.modify_date, '%Y-%m-%d') as modify_date
     			,sr.img_origin
+    			,sr.img_system
     			,sr.score
     			,sr.spidx
     			,sr.midx
@@ -302,6 +318,7 @@
     	SELECT sr.sridx
     			,sr.content
     			,sr.img_origin
+    			,sr.img_system
     			,sr.score
     			,sr.spidx
     			,sr.midx
@@ -393,6 +410,7 @@
 				,sr.modify_yn 
 				,date_format(sr.modify_date, '%Y-%m-%d') as modify_date 
 				,sr.img_origin 
+				,sr.img_system
 				,sr.score 
 				,sr.spidx 
 				,sr.midx 
@@ -435,12 +453,15 @@
          		,s.title
          		,s.content
          		,s.product_name
+         		,FORMAT(s.origin_price,0) as origin_price
          		,s.sale_price
+         		,FORMAT(s.sale_price,0) as view_price
          		,s.brand
          		,s.score
          		,s.discount
          		,s.review_cnt
          		,s.img_origin
+         		,s.img_system
          		,s.category
          		,s.detail 
     	FROM likey l 

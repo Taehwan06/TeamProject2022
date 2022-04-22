@@ -108,8 +108,8 @@ function lookup(){
 				sethtml+="<div class='brand'>"+jsondata[i].brand+"</div>";
 				sethtml+=""+jsondata[i].title+"";
 				sethtml+="</div>";
-				sethtml+="<div class='shopPrice'>";
-				sethtml+="<span class='red'>"+jsondata[i].discount+"%</span> "+jsondata[i].sale_price+"원";
+				sethtml+="<div class='shopPrice row'>";
+				sethtml+="<div class='discount_area col-4'><span class='red discount'>"+jsondata[i].discount+"%</span></div><div class='price_area col-8'><span class='origin'>"+jsondata[i].sale_price+"원</span><br>"+jsondata[i].view_price+"원</div>";
 				sethtml+="</div>";
 				sethtml+="<span class='sky'>";
 				sethtml+="<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-star-fill' viewBox='0 0 16 16'>";

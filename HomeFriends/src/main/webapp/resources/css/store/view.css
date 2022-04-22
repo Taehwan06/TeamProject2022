@@ -53,9 +53,15 @@ body{
 	line-height : 40px;
 }
 .discount{
+	padding-top:20px;
 	width : 100px;
 	color : #ffb6c1;
 	font-size : 30px;
+}
+.origin{
+	font-size: 0.8em;
+	text-decoration:line-through;
+	color: gray;
 }
 .price{
 	margin-top : 15px;
