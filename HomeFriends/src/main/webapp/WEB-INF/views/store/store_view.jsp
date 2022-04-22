@@ -13,6 +13,14 @@
 	<!-- Bootstrap icon CSS-->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css" />
+	<!-- sweet alert SDK -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <!-- kakao SDK -->
+   <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+   <!-- facebook SDK -->
+   <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+   <!-- naver SDK -->
+   <script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
 	
 	<title>${vo.title} - 홈프렌즈</title>
 	
@@ -26,14 +34,7 @@
 	<script src="${pageContext.request.contextPath}/js/header.js"></script>
 	<script src="${pageContext.request.contextPath}/js/store/view.js"></script>
 	<script src="${pageContext.request.contextPath}/js/footer.js"></script>
-	<!-- sweet alert SDK -->
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <!-- kakao SDK -->
-   <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-   <!-- facebook SDK -->
-   <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
-   <!-- naver SDK -->
-   <script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
+	
 	<script>
 		var spidx=${vo.spidx};
 		var price=${vo.sale_price};
@@ -220,7 +221,7 @@
 									</article>
 									<div style="margin:30px 0px 0 20px;">
 									<c:if test="${not empty rvo.img_origin && rvo.img_origin ne ''}">
-										<div style="padding: 5px; width: 150px; height: 150px;"><img alt="" src="${pageContext.request.contextPath}/image/${vo.img_system}" style="width: 100%; height: 100%;border-radius: 5px;"> </div>
+										<div style="padding: 5px; width: 150px; height: 150px;"><img alt="" src="${pageContext.request.contextPath}/image/${rvo.img_system}" style="width: 100%; height: 100%;border-radius: 5px;"> </div>
 									</c:if>
 										<div style="padding: 10px;">${rvo.content}</div>
 									</div>

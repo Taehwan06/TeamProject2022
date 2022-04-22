@@ -45,6 +45,25 @@
 .img_box{
 	margin-bottom: 10px;
 }
+.shop_price{
+	display: flex;
+}
+.price_area{
+	display: inline-block;
+}
+.discount_area{
+	display: inline-block;
+	margin-top : auto;
+	margin-bottom : auto;
+}
+.discount{
+	font-size: 1.3em;
+}
+.origin{
+	font-size: 0.8em;
+	text-decoration:line-through;
+	color: gray;
+}
 /* 미디어 쿼리  CSS */
 /*========================================================================*/
 @media screen and (min-width: 1400px){

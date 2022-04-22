@@ -16,6 +16,14 @@
     <!-- Bootstrap icon CSS-->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css" />
+	<!-- kakao SDK -->
+   <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+   <!-- facebook SDK -->
+   <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+   <!-- naver SDK -->
+   <script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
+   <!-- sweet alert SDK -->
+   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     
 	<title>스토어 - 홈프렌즈</title>
 	
@@ -30,12 +38,7 @@
 	<script src="${pageContext.request.contextPath}/js/home.js"></script>
 	<script src="${pageContext.request.contextPath}/js/store/store.js"></script>
 	<script src="${pageContext.request.contextPath}/js/footer.js"></script>
-	<!-- kakao SDK -->
-   <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-   <!-- facebook SDK -->
-   <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
-   <!-- naver SDK -->
-   <script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
+	
 	
 	<!-- 페이지 경로가져오기 -->
    <script>var contextPath = "${pageContext.request.contextPath}"</script>
@@ -120,8 +123,9 @@
 							<div class="brand">${vo.brand}</div>
 							${vo.title}
 						</div>
-						<div class="shopPrice">
-							<span class="red">${vo.discount}%</span> ${vo.sale_price}원
+						<div class="shopPrice row">
+							<div class="discount_area col-4"><span class="red discount">${vo.discount}%</span></div><div class="price_area col-8"><span class="origin">${vo.origin_price}원</span><br>
+							${vo.sale_price}원</div>
 						</div>
 						<span class="sky">
 							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
@@ -153,7 +157,8 @@
 							${vo.title}
 						</div>
 						<div class="shopPrice">
-							<span class="red">${vo.discount}%</span> ${vo.sale_price}
+							<div class="discount_area col-4"><span class="red discount">${vo.discount}%</span></div><div class="price_area col-8"><span class="origin">${vo.origin_price}원</span><br>
+							${vo.sale_price}원</div>
 						</div>
 						<span class="sky">
 							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
@@ -184,8 +189,9 @@
 							<div class="brand">${vo.brand}</div>
 							${vo.title}
 						</div>
-						<div class="shopPrice">
-							<span class="red">${vo.discount}%</span> ${vo.sale_price}
+						<div class="shopPrice row">
+							<div class="discount_area col-4"><span class="red discount">${vo.discount}%</span></div><div class="price_area col-8"><span class="origin">${vo.origin_price}원</span><br>
+							${vo.sale_price}원</div>
 						</div>
 						<span class="sky">
 							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">

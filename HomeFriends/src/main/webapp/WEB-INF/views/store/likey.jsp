@@ -16,6 +16,17 @@
     <!-- Bootstrap icon CSS-->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css" />
+	<!-- kakao SDK -->
+   <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+   <!-- facebook SDK -->
+   <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+   <!-- naver SDK -->
+   <script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
+   <!-- sweet alert SDK -->
+   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+   
+   <!-- 페이지 경로가져오기 -->
+   <script>var contextPath = "${pageContext.request.contextPath}"</script>
     
 	<title>상품 좋아요 - 홈프렌즈</title>
 	
@@ -30,15 +41,7 @@
 	<script src="${pageContext.request.contextPath}/js/home.js"></script>
 	<script src="${pageContext.request.contextPath}/js/store/store.js"></script>
 	<script src="${pageContext.request.contextPath}/js/footer.js"></script>
-	<!-- kakao SDK -->
-   <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-   <!-- facebook SDK -->
-   <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
-   <!-- naver SDK -->
-   <script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
-   
-   <!-- 페이지 경로가져오기 -->
-   <script>var contextPath = "${pageContext.request.contextPath}"</script>
+	
    	
 </head>
 <body>
