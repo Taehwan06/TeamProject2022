@@ -25,6 +25,7 @@
 	<link href="${pageContext.request.contextPath}/css/header.css" rel="stylesheet">
 	<link href="${pageContext.request.contextPath}/css/nav.css" rel="stylesheet">
 	<link href="${pageContext.request.contextPath}/css/home.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/recentView.css" rel="stylesheet">
 	<link href="${pageContext.request.contextPath}/css/footer.css" rel="stylesheet">
 	<script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 	<script src="${pageContext.request.contextPath}/js/header.js"></script>
@@ -40,13 +41,8 @@
 
 	<!-- 본문 영역 -->
 	<section>
-		
-		
-		
-		<!-- 추천 상품 영역 -->
-		<!-- ====================================================================================== -->
-		<!-- ====================================================================================== -->
-		<div class="row shopList">
+				
+		<div class="shopList">
 			<div class="shopListTitle">
 				최근 본 상품이 없습니다<br><br>
 				<div class="clear"></div>

@@ -1,59 +1,116 @@
 @charset "UTF-8";
+/* 본문 CSS */
 section{
 	margin: auto;
 	max-width: 1560px;
 }
-.contents{
-	text-align: center;
-	font-size: 25px;
-	width: 80%;
-	margin-top: 100px;
-	margin-bottom: 50px;
-	margin-right: auto;
+
+
+.eventDiv{
+	width: 90%;
 	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 50px;
+}
+.eventImg{
+	width: 100%;
+	height: auto;
+	border-radius: 15px;
+	cursor: pointer;
+}
+
+.searchTitle{
+	font-size: 25px;
+	text-align: center;
+	margin-bottom: 50px;	
 }
 .bold{
 	font-weight: bold;
 }
-.sectionBtnArea{
+
+.resultNone{
 	text-align: center;
-	font-size: 25px;
-	width: 80%;
-	margin-top: 50px;
-	margin-bottom: 150px;
-	margin-right: auto;
-	margin-left: auto;
+	font-size: 20px;
+	margin-bottom: 70px;
 }
-#sectionLoginBtn{
-	width: 200px;
-	height: 50px;
-	border: 2px solid #ffb6c1;
-	border-radius: 5px;
-	background-color: #ffb6c1;
-	color: white;
+
+.storyList, .shopList{
+	margin-top: 10px;
+	margin-bottom: 50px;
+}
+.storyListTitle, .shopListTitle{
+	font-size: 25px;
 	margin-bottom: 20px;
 	font-weight: bold;
 }
-#sectionLoginBtn:hover{
-	background-color: white;
-	color: #ffb6c1;
+.searchType, .recommendTitle{
+	font-size: 25px;
+	margin-bottom: 20px;
 }
-.sectionBtnArea{
+.moreButtonDiv{
+	text-align: right;
+	
+}
+.moreview{
+   color : #ffb6c1;
+   font-size : 18px;
+   font-weight : bold;
+   float : right;
+   cursor : pointer;
+}
+.clear{
+	clear: both;
+}
+.story, .shop{
+	margin-bottom: 25px;
+}
+.storyImg, .shopImg{
 	width: 100%;
-	display: inline-block;
-	text-align: center;
-	margin-top: 50px;
-	margin-bottom: 100px;
+	border-radius: 10px;
+	cursor: pointer;
 }
-.sectionBtnArea a{
-	text-decoration: none;
-	color: gray;
-	font-size: 15px;
+.storyText, .shopText{
+	width: 100%;
+	padding: 15px;
+	cursor: pointer;
 }
-.sectionBtnArea a:hover{
-	color: #ffb6c1;
+.storyTitle{
+	font-size: 19px;
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+.storyWriter{
+	font-size: 18px;
+	font-weight: 100;
+}
+.writerImg{
+	width: 40px;
+	height: 40px;
+	border-radius: 50px;
+	margin-right: 10px;
 }
 
+.brand{
+	color: gray;
+	font-size: 14px;
+}
+.shopTitle{
+	font-size: 16px;
+}
+.shopPrice{
+	font-size: 18px;
+	font-weight: bold;
+}
+.red{
+	color: red;
+}
+.sky{
+	color: skyblue;
+}
+.gray{
+	color: gray;
+}
+		
 
 /* 미디어 쿼리  CSS */
 /*========================================================================*/
@@ -94,6 +151,9 @@ section{
 		width: 80%;
 		margin-left: 20px;
 	}
+	#storeList4{
+		display: none;
+	}
 }
 @media screen and (min-width: 768px) and (max-width: 991.99px){
 	#headerDiv, .navbar, section, footer{
@@ -113,10 +173,16 @@ section{
 	.categoryUl{
 		padding: 15px 0px 15px 10px;
 	}
+	#storeList4{
+		display: none;
+	}
 }
 @media screen and (min-width: 576px) and (max-width: 767.99px){
-	#headerDiv, .navbar, section, footer{
+	#headerDiv, .navbar, footer{
 		width: 98%;
+	}
+	section{
+		width: 100%;
 	}
 	#searchFrm{
 		width: 55%;
@@ -135,13 +201,18 @@ section{
 		width: 95%;
 		margin-left: 0px;
 	}
-	.sidebar_menu{
-		width: 400px;
+	.eventDiv{
+		width: 99%;
+		margin-right: auot;
+		margin-left: auot;
 	}
 }
 @media screen and (max-width: 575.99px){
-	#headerDiv, .navbar, section, footer{
+	#headerDiv, .navbar, footer{
 		width: 98%;
+	}
+	section{
+		width: 100%;
 	}
 	#searchFrm, #mypage, #delivery, #basket, #viewList, #mainNavbar{
 		display: none;
@@ -149,18 +220,9 @@ section{
 	#smallMenu{
 		display: inline-block;
 	}
-	.sidebar_menu{
-		width: 100%;
-		max-width: 400px;
-	}
-	.contents{
-		font-size: 15px;
+	.eventDiv{
+		width: 99%;
 		margin-right: auot;
 		margin-left: auot;
-	}
-	#sectionLoginBtn{
-		font-size: 15px;
-		width: 150px;
-		height: 35px;
 	}
 }

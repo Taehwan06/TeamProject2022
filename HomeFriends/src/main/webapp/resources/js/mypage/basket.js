@@ -95,17 +95,17 @@ function deleteOneBasketFn(sbidx,cnt,price,delivery){
 	}
 	
 	$.ajax({
-		url: "deleteOneBasket",
+		url: contextPath+"/mypage/deleteOneBasket",
 		type: "post",
 		data: "sbidx="+sbidx,
 		success: function(data){
 			var result = data.trim();
 			if(result == "success"){
-				basket.css("display","none");
+				$("#Selection"+sbidx).prop("checked", false);
+				basket.remove();
 			}
 		}
 	});
-	
 }
 
 function selectFn(){
@@ -145,7 +145,7 @@ function minusFn(obj,sbidx,price,delivery){
 	var cnt = parseInt($(obj).next().val());
 	if(cnt > 1){
 		$.ajax({
-			url: "minusCntBasket",
+			url: contextPath+"/mypage/minusCntBasket",
 			type: "post",
 			data: "sbidx="+sbidx,
 			success: function(data){
@@ -174,7 +174,7 @@ function plusFn(obj,sbidx,price,delivery){
 	var cnt = parseInt($(obj).prev().val());
 	if(cnt < 999){
 		$.ajax({
-			url: "plusCntBasket",
+			url: contextPath+"/mypage/plusCntBasket",
 			type: "post",
 			data: "sbidx="+sbidx,
 			success: function(data){
@@ -209,7 +209,7 @@ function payFn(){
 			icon: "warning",
 			closeOnClickOutside : false
 		}).then(function(){
-			location.href="contextPath/mypage/addr_modify.do";
+			location.href = contextPath+"/mypage/addr_modify.do";
 		});
 		
 	}else{
@@ -238,7 +238,7 @@ function payFn(){
 				});
 		}else{
 			document.payFrm.method = "post";
-			document.payFrm.action = "payment.do";
+			document.payFrm.action = contextPath+"/mypage/payment.do";
 			document.payFrm.submit();
 		}
 	}

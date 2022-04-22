@@ -41,7 +41,7 @@
 	<section>
 		
 		<div class="contents">
-			회원님의 아이디는 <span class="bold">${user.id}</span>입니다.<br>
+			회원님의 아이디는 <span class="bold">${user.id}</span> 입니다.<br>
 		</div>
 		<div class="sectionBtnArea">
 			<input type="button" name="sectionLoginBtn" id="sectionLoginBtn" class="sectionLoginBtn" value="로그인" 
