@@ -211,7 +211,57 @@ $(document).ready(function(){
 	$("#shop_information_area img").css("width","100%");
 	/*$("#shop_information_area").children("p").children("img").css("width","100%");*/
 
+
+	$(".selectCnt").on("change",function(){
+		var selectCnt = $(this).val();
+		$(".selectCnt").val(selectCnt);
+		if(selectCnt == 10){
+			$('#selectCnt').css("display","none");
+			$('#selectCnt2').css("display","none");
+			$('.hiddenCnt').css("display","inline-block");
+			
+		}
+		cnt=selectCnt
+		var sum_price = selectCnt*price;
+		$('.sum_price').text(sum_price);
+	});
+	$(".hiddenCnt").on("change",function(){
+		var selectCnt = $(this).val();
+		$(".hiddenCnt").val(selectCnt);
+		$('#cnt').val(selectCnt);
+		cnt=selectCnt
+		var sum_price = selectCnt*price;
+		$('.sum_price').text(sum_price);
+		$(".hiddenCnt").val(selectCnt);
+	});
+	$(".form-select").on("change",function(){
+		var selectCnt = $(this).val();
+		$(".form-select").val(selectCnt);
+	});
+
 });
+
+
+/*function cntFn(){
+	var selectCnt = $('#selectCnt option:selected').val();
+	if(selectCnt == 10){
+		$('#selectCnt').css("display","none");
+		$('#selectCnt2').css("display","none");
+		$('.hiddenCnt').css("display","inline-block");
+	}
+	cnt=selectCnt
+	var sum_price = selectCnt*price;
+	$('.sum_price').text(sum_price);
+}	*/
+
+/*function cntFn2(){
+	var selectCnt = $(this).val();
+	$('#cnt').val(selectCnt);
+	cnt=selectCnt
+	var sum_price = selectCnt*price;
+	$('.sum_price').text(sum_price);
+	$("hiddenCnt").val(selectCnt)
+}*/
 
 function moreview(){
 	$("#shop_information_area").css("height","auto");
@@ -308,24 +358,7 @@ textEle.on('keyup', function() {
 });
 
 
-function cntFn(){
-	var selectCnt = $('#selectCnt option:selected').val();
-	if(selectCnt == 10){
-		$('#selectCnt').css("display","none");
-		$('.hiddenCnt').css("display","inline-block");
-	}
-	cnt=selectCnt
-	var sum_price = selectCnt*price;
-	$('.sum_price').text(sum_price);
-}	
 
-function cntFn2(){
-	var selectCnt = $('.hiddenCnt').val();
-	$('#cnt').val(selectCnt);
-	cnt=selectCnt
-	var sum_price = selectCnt*price;
-	$('.sum_price').text(sum_price);
-}
 
 function R_modifyFn(sridx){
 	if(loginYN){
@@ -511,7 +544,13 @@ function A_insert(sqidx){
 				         location.reload();
 				      });
 				}else{
-					alert("실행오류");
+					swal({
+				         text: "실행 오류.",
+				         button: "확인",
+				         closeOnClickOutside : false
+				      }).then(function(){
+					
+				      });
 				}
 			}
 		});
@@ -604,7 +643,13 @@ function Q_delFn(sqidx){
 									         location.reload();
 									      });
 									}else{
-										alert("실행오류");
+										swal({
+									         text: "실행 오류.",
+									         button: "확인",
+									         closeOnClickOutside : false
+									      }).then(function(){
+										
+									      });
 									}
 								}
 							});
@@ -631,7 +676,7 @@ function likeFn(likeYN){
 		         button: "확인",
 		         closeOnClickOutside : false
 		      }).then(function(){
-		         location.href="${pageContext.request.contextPath}/login/login.do";
+		         location.href=contextPath+"/login/login.do";
 		      });
 		}
 		$.ajax({

@@ -240,10 +240,22 @@ function submitFn(){
 				
 				console.log(res);
 				if(res>0){
-					alert("상품이 수정되었습니다.");
-					location.href="store_view.do?spidx="+thisSpidx;
+					swal({
+				         text: "상품이 수정되었습니다.",
+				         button: "확인",
+				         closeOnClickOutside : false
+				      }).then(function(){
+				         location.href="store_view.do?spidx="+thisSpidx;
+				      });
+					
 				}else{
-					alert("실행오류");
+					swal({
+				         text: "실행 오류.",
+				         button: "확인",
+				         closeOnClickOutside : false
+				      }).then(function(){
+				         
+				      });
 				}
 			}
 		});
@@ -267,13 +279,31 @@ $(function() {
 				var result = data.trim();
 				
 				if(result == "fail1"){
-					alert("이미지 파일만 등록할 수 있습니다");
+					swal({
+				         text: "이미지 파일만 등록할 수 있습니다.",
+				         button: "확인",
+				         closeOnClickOutside : false
+				      }).then(function(){
+				         
+				      });
 					
 				}else if(result == "fail2"){
-					alert("이미지 변경에 실패했습니다");
+					swal({
+				         text: "이미지 변경에 실패했습니다.",
+				         button: "확인",
+				         closeOnClickOutside : false
+				      }).then(function(){
+				        
+				      });
 					
 				}else if(result == "fail3"){
-					alert("변경할 이미지를 선택해 주세요");
+					aswal({
+				         text: "변경할 이미지를 선택해 주세요.",
+				         button: "확인",
+				         closeOnClickOutside : false
+				      }).then(function(){
+				        
+				      });
 					
 				}else{
 					var resultAry = result.split(",")
@@ -314,10 +344,19 @@ function readURL(input) {
 }
 
 function cancelFn(){
-   var isCancel = confirm("이 페이지를 나가면 수정된 사항이 모두 유실됩니다! 그래도 나가시겠어요?");
-   if(isCancel){
-      location.href = "store_view.do?spidx="+thisSpidx;
-   }
+  swal({
+	      text: "이 페이지를 나가면 수정된 사항이 모두 유실됩니다! 그래도 나가시겠어요?",
+	      icon: "warning",
+	      buttons: [" 취소 ", " 확인 "],
+	      dangerMode: false,
+	   })
+	   .then((willDelete) => {
+		      if (willDelete) {
+		          location.href = "store_view.do?spidx="+thisSpidx;
+		   } else {
+		      
+		   }
+		});
 }
 
 function adjustHeight() {
