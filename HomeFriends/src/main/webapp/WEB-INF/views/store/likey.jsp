@@ -32,7 +32,7 @@
 	
 	<link href="${pageContext.request.contextPath}/css/header.css" rel="stylesheet">
 	<link href="${pageContext.request.contextPath}/css/nav.css" rel="stylesheet">
-	<link href="${pageContext.request.contextPath}/css/home.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/store/store_common.css" rel="stylesheet">
 	<link href="${pageContext.request.contextPath}/css/footer.css" rel="stylesheet">
 	<link href="${pageContext.request.contextPath}/css/store/store.css" rel="stylesheet">
 	<script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
