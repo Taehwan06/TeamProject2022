@@ -62,28 +62,33 @@ public class StoreController {
 	 * Simply selects the home view to render by returning its name.
 	 * @throws Exception 
 	 */
+	//스토어 메인페이지
 	@RequestMapping(value = "/store.do", method = RequestMethod.GET)
 	public String store(HttpServletRequest request, Locale locale, Model model, SearchVO vo) throws Exception {
 		
+		//현제 페이지 uri저장를 세션에 저장(로그인시 현제페이지로 돌아옴)
 		String nowUri = request.getRequestURI();
-	      
 		HttpSession session = request.getSession();
 		session.setAttribute("nowUri", nowUri);
 		
-		
+		//오래된 검색어 지우기
 		int deleteResult = homeService.deleteSearchList();
-		
+		//검색어순위 담기
 		List<HomeSearchVO> searchList = homeService.listSearchList();
-		
 		model.addAttribute("searchList", searchList);
-			
+		
+		//화면에 보내줄 상품리스트의 리스트(3종)
 		List<List> list = new ArrayList<List>();
+		//4개만 가져오도록 리미트 설정
 		vo.setPage("limit");
+		//할인율 순
 		vo.setDiscount("yes");
 		List<StoreVO> list1 = storeService.list(vo);
+		//판매량 순
 		vo.setSell_cnt("yes");
 		vo.setDiscount(null);
 		List<StoreVO> list2 = storeService.list(vo);
+		//쿠기에있는 최근본 상품과 같은 디테일값으로 조회
 		vo.setSell_cnt(null);
 		List<StoreVO> list3 ;
 		Cookie[] myCookies = request.getCookies();
@@ -94,76 +99,78 @@ public class StoreController {
 		    		recentView = myCookies[i].getValue();
 		    	}
 		    }
-		    
 		    if(recentView != null) {
 			    String[] spidxAryDup = recentView.split("&"); 
 			    int size = spidxAryDup.length;
-			    
 				String[] reverseSpidxAry = new String[size];
-				
 				for (int i = size - 1, j = 0; i >= 0; i--, j++) {
 					reverseSpidxAry[j] = spidxAryDup[i];
 				}
 				LinkedHashSet<String> linkedHashSet = new LinkedHashSet<String>(Arrays.asList(reverseSpidxAry));
-				
 				String[] spidxAry = linkedHashSet.toArray(new String[0]);
-	
 				StoreVO selectOne = storeService.detail(Integer.parseInt(spidxAry[0]));
-				
 				vo.setDetail(selectOne.getDetail());
-
 		    }
 			list3 = storeService.list(vo);
 	    }else {
 	    	list3 = storeService.list(vo);
 	    }
 
-		
+		//list에 담기
 		list.add(list1);
 		list.add(list2);
 		list.add(list3);
 		
+		//정보 담아주기
 		model.addAttribute("list",list);
 		
 		
 		return "store/store";
 	}
 	
+	//상품 등록 페이지이동
 	@RequestMapping(value = "/store_insert.do", method = RequestMethod.GET)
 	public String store_insert(HttpServletRequest request, Locale locale, Model model, SearchVO vo) throws Exception {
+		
+		//오래된 검색기록 삭제
+		int deleteResult = homeService.deleteSearchList();
+		//검색어순위 담기
+		List<HomeSearchVO> searchList = homeService.listSearchList();
+		model.addAttribute("searchList", searchList);
+		
+		//로그인페이지 이동 후 로그인시 다시 돌아오기위해 uri저장
 		String nowUri = request.getRequestURI();
-	      
 		HttpSession session = request.getSession();
 		session.setAttribute("nowUri", nowUri);
 		
-		
+		//로그인유저 조회
 		MemberVO member = (MemberVO)session.getAttribute("loginUser");
 		
+		//미로그인시 로그인페이지이동
 		if(member==null) {
 			System.out.println("잘못된 접근으로인한 로그인이동");
 			return "redirect:/login/login.do";
 		}
+		//로그인된 유저 등급확인
 		if(!member.getGrade().equals("A")) {
 			System.out.println(member.getMidx()+"유저의 잘못된 방식의 접근");
 			return "redirect:/store/store.do";
 		}
-
 		
-		
-		int deleteResult = homeService.deleteSearchList();
-		
-		List<HomeSearchVO> searchList = homeService.listSearchList();
-		
-		model.addAttribute("searchList", searchList);
-			
+		//페이지이동
 		return "store/store_insert";
 	}
+	
+	//상품 등록
 	@RequestMapping(value = "/store_insert.do", method = RequestMethod.POST)
 	public String store_insertOK(HttpServletRequest request, Locale locale, Model model,
 			StoreVO vo/* , @RequestParam String img_style */) throws Exception {
 		
+		//오래된 검색기록 삭제
 		int deleteResult = homeService.deleteSearchList();
 		
+		//이전에는 이미지스타일 코드를 받아 DB에 스타일코드로 집어넣음
+			//이렇게 진행할시 상품관련 페이지 입장시 로딩이 느려짐
 //		List<HomeSearchVO> searchList = homeService.listSearchList();
 //		
 //		model.addAttribute("searchList", searchList);
@@ -187,31 +194,36 @@ public class StoreController {
 //		}
 //		vo.setDetail(remain);
 		
-		if(vo.getFree_delivery().equals("N")) {
+		
+		//전달받은 정보중 배달이 무료배송일시 배달료를 0원으로 측정
+		if(vo.getFree_delivery().equals("Y")) {
 			vo.setDelivery_charge("0");
 		}
 		
 		
-		
+		//로그인한 유저의 정보
 		HttpSession session = request.getSession();
 		MemberVO member = (MemberVO)session.getAttribute("loginUser");
 		
-		
-			
+		//로그인한 유저(작성자)의 인덱스번호와 닉네임을 vo에 담음
 		vo.setMidx(member.getMidx());
 		vo.setWriter(member.getMembername());
 		
-		System.out.println(vo.getContent());
-		
+		//상품등록
+		//쿼리에서 생성된 상품 spidx를 가져옴
 		storeService.insert(vo);
-
+		
+		//등록된 페이지로 이동
 		return "redirect:store_view.do?spidx=" + vo.getSpidx();
 		
 	}
 	
+	//카테고리 상품 필터
 	@RequestMapping(value="/lookup", method = RequestMethod.GET, produces = "application/text; charset=UTF-8")
-	public @ResponseBody String lookup(Locale locale, Model model, SearchVO vo) throws Exception {
+	@ResponseBody
+	public String lookup(Locale locale, Model model, SearchVO vo) throws Exception {
 		
+		//전달받은 데이터로 상품을 조회
 		List<StoreVO> list = storeService.list(vo);
 		
 //		ResponseVO<StoreVO> response = new ResponseVO<StoreVO>();
@@ -221,31 +233,40 @@ public class StoreController {
 //		
 //		return new ResponseEntity<ResponseVO<StoreVO>>(response,headers, HttpStatus.OK);
 		
+		//제이슨을로 변경 후 호출한 페이지에 전송
 		String json = new Gson().toJson(list);
 	    return json;
 	}
 	
-	
+	//상품 수정 페이지 이동
 	@RequestMapping(value = "/store_modify.do", method = RequestMethod.GET)
 	public String store_modify(HttpServletRequest request, Locale locale, Model model, int spidx) throws Exception {
 		int deleteResult = homeService.deleteSearchList();
 		List<HomeSearchVO> searchList = homeService.listSearchList();
 		
+		//로그인유저 조회
 		HttpSession session = request.getSession();
 		MemberVO member = (MemberVO)session.getAttribute("loginUser");
-
+		
+		//미로그인시 로그인페이지이동
 		if(member==null) {return "redirect:/login/login.do";}
+		
+		//로그인된 유저 등급확인
 		if(!member.getGrade().equals("A")) {return "redirect:/store/store.do";}
-
+		
+		//해당상품 정보조회
 		StoreVO selectOne = storeService.detail(spidx);
 		
+		//상품정보 담기
 		model.addAttribute("vo",selectOne);
-			
+		
+		//수정페이지 이동
 		return "store/store_modify";
 	}
 	
+	//상품 수정
 	@RequestMapping(value = "/store_modify.do", method = RequestMethod.POST)
-	public @ResponseBody String store_modifyOK(HttpServletRequest request, Locale locale, Model model,
+	public String store_modifyOK(HttpServletRequest request, Locale locale, Model model,
 			StoreVO vo/* , @RequestParam String img_style */) throws Exception {
 		
 		int deleteResult = homeService.deleteSearchList();
@@ -259,17 +280,20 @@ public class StoreController {
 		 * String new_img_style = img_style.substring(idx1+5, idx2);
 		 * vo.setImg_origin(new_img_style); vo.setImg_system(new_img_style);
 		 */
-		StringTokenizer st = new StringTokenizer(vo.getDetail(), ",");
-		String remain = "";
-		while(st.hasMoreTokens()) {
-		   String cur = st.nextToken();
-		   if (cur.equals("0")) {
-		       continue;
-		    } 
-		   remain = cur;
-		   break;
-		}
-		vo.setDetail(remain);
+		//디테일값 여러개 넘어올 시 하나만 추림(사용안함)
+//		StringTokenizer st = new StringTokenizer(vo.getDetail(), ",");
+//		String remain = "";
+//		while(st.hasMoreTokens()) {
+//		   String cur = st.nextToken();
+//		   if (cur.equals("0")) {
+//		       continue;
+//		    } 
+//		   remain = cur;
+//		   break;
+//		}
+//		vo.setDetail(remain);
+		
+		
 		if(vo.getFree_delivery()!="N") {
 			vo.setDelivery_charge("0");
 		}
@@ -286,8 +310,9 @@ public class StoreController {
 		
 		
 		int result = storeService.update(vo);
-
-		return result+"";
+		
+		
+		return "redirect:store_view.do?spidx=" + vo.getSpidx();
 		
 	}
 	

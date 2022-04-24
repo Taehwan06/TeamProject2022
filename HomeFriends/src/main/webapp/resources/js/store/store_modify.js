@@ -232,6 +232,10 @@ function submitFn(){
 		/*img_style= img_style.replace(/=/g,"%3D");*/
 		/*
 		console.log($("#insertFrm").serialize());*/
+		
+		document.insertFrm.submit();
+		
+		/*
 		$.ajax({
 			type : "POST",
 			url : "store_modify.do",
@@ -259,6 +263,7 @@ function submitFn(){
 				}
 			}
 		});
+		*/
 	}
 }
 
@@ -397,5 +402,10 @@ $(document).ready(function() {
          fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72']
 
    });
+   //디테일값 등록
+	$(".detailSelect").on("change",function(){
+		var detail = $(this).val();
+		$("#detail").val(detail);
+	});
 	  
 });
