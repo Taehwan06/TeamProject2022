@@ -26,7 +26,7 @@
 	
 	<link href="${pageContext.request.contextPath}/css/header.css" rel="stylesheet">
 	<link href="${pageContext.request.contextPath}/css/nav.css" rel="stylesheet">
-	<link href="${pageContext.request.contextPath}/css/home.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/store/store_common.css" rel="stylesheet">
 	<link href="${pageContext.request.contextPath}/css/footer.css" rel="stylesheet">
 	<script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 	<link href="${pageContext.request.contextPath}/css/store/view.css" rel="stylesheet">
@@ -110,7 +110,7 @@
 				</div>
 				<div class="row price">
 					<div class="col-sm-4 col-md-4 col-lg-3 discount">${vo.discount}%</div>
-					<div class="col-sm-7 col-md-7 original_price"> <div class="origin">${vo.origin_price}</div>${vo.view_price}원</div>
+					<div class="col-sm-7 col-md-7 original_price"> <div class="origin">${vo.oview_price}</div>${vo.view_price}원</div>
 				</div>
 				<div class="row delivery">
 					<div class="col-sm-2 col-md-2 delivery_">배송</div>

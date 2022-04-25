@@ -394,7 +394,7 @@ function R_modifyFn(sridx){
 	         button: "확인",
 	         closeOnClickOutside : false
 	      }).then(function(){
-	         location.href="${pageContext.request.contextPath}/login/login.do";
+	         location.href=contextPath+"/login/login.do";
 	      });
 		
 	}
@@ -459,7 +459,7 @@ function qnaInFn(){
 	         button: "확인",
 	         closeOnClickOutside : false
 	      }).then(function(){
-	         location.href="${pageContext.request.contextPath}/login/login.do";
+	         location.href=contextPath+"/login/login.do";
 	      });
 	}
 }
@@ -472,7 +472,7 @@ function Q_modifyFn(sqidx){
 	         button: "확인",
 	         closeOnClickOutside : false
 	      }).then(function(){
-	         location.href="${pageContext.request.contextPath}/login/login.do";
+	         location.href=contextPath+"/login/login.do";
 	      });
 	}
 }
@@ -718,7 +718,7 @@ function likeFn(likeYN){
 				         button: "확인",
 				         closeOnClickOutside : false
 				      }).then(function(){
-				         location.href="${pageContext.request.contextPath}/login/login.do";
+				         location.href=contextPath+"/login/login.do";
 				      });
 				}
 				var html="<div onclick='likeFn(1)'>"

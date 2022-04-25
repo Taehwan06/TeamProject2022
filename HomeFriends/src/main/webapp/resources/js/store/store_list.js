@@ -60,7 +60,7 @@ function freeFn(e){
 	}
 }
 
-//상품 필터
+//상품 필터 적용
 function lookup(){
 	var lookupdata = "";
 	if($("#priceStart").val()!=""){
@@ -109,7 +109,7 @@ function lookup(){
 				sethtml+=""+jsondata[i].title+"";
 				sethtml+="</div>";
 				sethtml+="<div class='shopPrice row'>";
-				sethtml+="<div class='discount_area col-4'><span class='red discount'>"+jsondata[i].discount+"%</span></div><div class='price_area col-8'><span class='origin'>"+jsondata[i].sale_price+"원</span><br>"+jsondata[i].view_price+"원</div>";
+				sethtml+="<div class='discount_area col-4'><span class='red discount'>"+jsondata[i].discount+"%</span></div><div class='price_area col-8'><span class='origin'>"+jsondata[i].origin_price+"원</span><br>"+jsondata[i].view_price+"원</div>";
 				sethtml+="</div>";
 				sethtml+="<span class='sky'>";
 				sethtml+="<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-star-fill' viewBox='0 0 16 16'>";
@@ -128,6 +128,8 @@ function lookup(){
 	});
 }
 
+
+//페이지 분류코드
 let match = {10:"가구", 11:"가구 > 소파", 12:"가구 > 수납장", 13:"가구 > 의자", 14:"가구 > 침대", 15:"가구 > 테이블", 16:"가구 > 화장대",
 			20:"조명", 21:"조명 > LED", 22:"조명 > 단스텐드", 23:"조명 > 장스텐드", 24:"조명 > 무드등", 25:"조명 > 천장등",
 			30:"침구", 31:"침구 > 베게", 32:"침구 > 이불", 33:"침구 > 커버", 34:"침구 > 커튼", 35:"침구 > 쿠션 & 방석",
@@ -136,7 +138,7 @@ let match = {10:"가구", 11:"가구 > 소파", 12:"가구 > 수납장", 13:"가
 			60:"생활", 61:"생활 > 욕실", 62:"생활 > 수건", 63:"생활 > 청소", 64:"생활 > 세탁", 65:"생활 > 생활잡화",
 			"Discount":"오늘의 딜","sell_cnt":"Best","select":"추천상품"};
 
-
+//아코디언 마우스 호버시 글씨 색 변경
 function colorFn(obj){
 	$(obj).css("color", "white");
 	$(".abtn").not(obj).css("color", "black");
@@ -146,7 +148,7 @@ function colorFn(obj){
 	});
 
 	$(obj).mouseleave(function(){
-		$(obj).css("color", "white");
+		$(obj).css("color", "black");
 	});
 	
 	$(".abtn").not(obj).mouseover(function(){
