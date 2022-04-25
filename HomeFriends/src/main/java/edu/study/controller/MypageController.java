@@ -489,6 +489,10 @@ public class MypageController {
 			int isFollow = mypageService.isFollow(fvo);
 
 			model.addAttribute("isFollow", isFollow);
+			
+			//로그인유저의 midx
+			int login_midx = loginUser.getMidx();
+			model.addAttribute("login_midx", login_midx);
 	  		
 	  		return "mypage/Member_page";
 		      

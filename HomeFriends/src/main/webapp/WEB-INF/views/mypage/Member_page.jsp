@@ -57,12 +57,19 @@
 							</p>
 						</div>
 						<div id="profile_btn">
-							<c:if test="${isFollow eq 0}">
-								<button onclick="follow(${vo.midx})">+ 팔로우</button>
-							</c:if>
-							<c:if test="${isFollow ne 0}">
-								<button onclick="unfollow(${vo.midx})">- 언팔로우</button>
-							</c:if>
+							<c:choose>
+								<c:when test="${vo.midx eq login_midx }">								
+									
+								</c:when>
+								<c:when test="${vo.midx ne login_midx }">
+									<c:if test="${isFollow eq 0}">
+										<button onclick="follow(${vo.midx})" class="followBtn">+ 팔로우</button>
+									</c:if>
+									<c:if test="${isFollow ne 0}">
+										<button onclick="unfollow(${vo.midx})" class="unfollowBtn">- 언팔로우</button>
+									</c:if>
+								</c:when>
+							</c:choose>
 						</div>
 						<br>
 					</div>

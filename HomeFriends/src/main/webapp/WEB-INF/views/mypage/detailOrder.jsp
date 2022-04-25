@@ -55,7 +55,8 @@
 								<div class="row">
 									<div class = "col-4 ligtD">${detailOrder.title}</div>
 									<div class = "col-4 ligtD">
-										<span  id ="price">${detailOrder.price}</span><br>
+										<span  id ="price"></span><br>
+                              			<script>$("#price").text((${detailOrder.price}).toLocaleString()+" 원");</script>
 										<span class="small">(${detailOrder.cnt}개)</span>
 									</div>
 									<div class = "col-4 ligtD">

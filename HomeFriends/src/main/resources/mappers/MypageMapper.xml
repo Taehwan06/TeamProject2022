@@ -95,7 +95,8 @@
          		progress,
          		delivery_status,
          		review_registration,
-         		spidx
+         		spidx,
+         		ordernumber
            FROM 
            		order_list
           WHERE 
@@ -116,7 +117,8 @@
          		progress,
          		delivery_status,
          		review_registration,
-         		spidx
+         		spidx,
+         		ordernumber
            FROM 
            		order_list
           WHERE 
@@ -236,6 +238,9 @@
     		O.spidx = #{spidx}
     	AND
 			M.midx = #{midx}
+		AND
+			O.ordernumber = #{ordernumber}
+		
     </select>
     
    
