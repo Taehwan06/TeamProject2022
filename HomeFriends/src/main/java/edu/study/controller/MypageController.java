@@ -28,6 +28,7 @@ import edu.study.service.BasketService;
 import edu.study.service.HomeService;
 import edu.study.service.MemberService;
 import edu.study.service.MypageService;
+import edu.study.service.StoreService;
 import edu.study.vo.BasketVO;
 import edu.study.vo.Community_BoardVO;
 import edu.study.vo.FollowVO;
@@ -40,6 +41,7 @@ import edu.study.vo.OrderListVO;
 import edu.study.vo.PagingVO;
 import edu.study.vo.PayInfoVO;
 import edu.study.vo.SearchVO;
+import edu.study.vo.StoreVO;
 import edu.study.vo.Store_reviewVO;
 
 /**
@@ -57,6 +59,8 @@ public class MypageController {
 	private BasketService basketService;
 	@Autowired
 	private MemberService memberService;
+	@Autowired
+	private StoreService storeService;
 	 
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -708,8 +712,10 @@ public class MypageController {
 	
 	
 	@RequestMapping(value = "/detailOrder.do", method = RequestMethod.GET)
-	public String detailOrder(Locale locale, Model model, SearchVO vo, HttpServletRequest request, OrderListVO orderlist) throws Exception {
-
+	public String detailOrder(Locale locale, Model model, SearchVO vo, HttpServletRequest request, OrderListVO orderlist, HttpServletResponse response) throws Exception {
+		
+		response.setHeader("Cache-Control","no-store");
+		
 		HttpSession session = request.getSession(); 
 		MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
 
@@ -801,8 +807,10 @@ public class MypageController {
 	}
 	
 	@RequestMapping(value = "/basket.do", method = RequestMethod.GET)
-	public String basket(Locale locale, Model model, SearchVO vo, HttpServletRequest request) throws Exception {
+	public String basket(Locale locale, Model model, SearchVO vo, HttpServletRequest request, HttpServletResponse response) throws Exception {
 
+		response.setHeader("Cache-Control","no-store");
+		
 		HttpSession session = request.getSession(); 
 		MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
 
@@ -953,6 +961,42 @@ public class MypageController {
 	}
 		
 	
+	//리뷰삭제
+		@RequestMapping(value = "/mypage_review_del.do", method = RequestMethod.POST)
+		public @ResponseBody String mypage_review_delOK(HttpServletRequest request, Locale locale, Model model,int spidx, int sridx, int midx) throws Exception {
+			
+			int deleteResult = homeService.deleteSearchList();
+			
+			List<HomeSearchVO> searchList = homeService.listSearchList();
+			
+			model.addAttribute("searchList", searchList);
+			
+			HttpSession session = request.getSession();
+			MemberVO member = (MemberVO)session.getAttribute("loginUser");
+			
+			int result=0;
+			if(member==null) {return "redirect:/login/login.do";}
+			if(member.getMidx() == midx) {
+				result = storeService.store_review_del(sridx);
+			}
+			
+			//상품 별점 및 리뷰갯수 갱신
+			StoreVO svo = new StoreVO();
+			svo = storeService.store_review_cnt(spidx);
+			svo.setSpidx(spidx);
+			double score = svo.getScore()/svo.getReview_cnt();
+			
+			score = Math.round(score * 10) / 10.0;
+
+			svo.setScore(score);
+			storeService.store_review_change(svo);
+			//--
+			
+			
+			return result+"";
+		}
+		
+	
 	
 	@RequestMapping(value = "/review_insert.do", method = RequestMethod.GET)
 	public String review_insert(Locale locale, Model model, SearchVO vo, HttpServletRequest request) throws Exception {
@@ -1055,7 +1099,9 @@ public class MypageController {
 	}
 	
 	@RequestMapping(value = "/payment.do", method = RequestMethod.POST)
-	public String payment(Locale locale, Model model, BasketVO vo, HttpServletRequest request) throws Exception {
+	public String payment(Locale locale, Model model, BasketVO vo, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		response.setHeader("Cache-Control","no-store");
 		
 		HttpSession session = request.getSession();
 		MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
