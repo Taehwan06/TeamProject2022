@@ -74,7 +74,6 @@ window.onload = function(){
 	$(".totalDelivery").text(totalDelivery);
 }
 
-
 function deleteOneBasketFn(sbidx,cnt,price,delivery){
 	var basket = $("#basket"+sbidx);
 	
@@ -87,10 +86,10 @@ function deleteOneBasketFn(sbidx,cnt,price,delivery){
 		checkedPay -= (price*cnt);
 		checkedPay -= delivery;
 		
-		$(".totalPay").text(checkedPay);
+		$(".totalPay").text(checkedPay.toLocaleString());
 		$(".productCnt").text(checkedCnt);
-		$(".totalPrice").text(checkedPrice);
-		$(".totalDelivery").text(checkedDelivery);
+		$(".totalPrice").text(checkedPrice.toLocaleString());
+		$(".totalDelivery").text(checkedDelivery.toLocaleString());
 		
 	}
 	
@@ -127,22 +126,24 @@ function selectFn(){
 			var delivery = parseInt(valueAry[3]);
 			
 			checkedCnt += cnt;
-			checkedPrice += (price*cnt);
-			checkedDelivery += delivery;
+			checkedPrice += parseInt(price*cnt);
+			checkedDelivery += parseInt(delivery);
 	        
 	    })
 	}
 	
 	checkedPay = (checkedPrice + checkedDelivery);
 	
-	$(".totalPay").text(checkedPay);
+	$(".totalPay").text(checkedPay.toLocaleString());
 	$(".productCnt").text(checkedCnt);
-	$(".totalPrice").text(checkedPrice);
-	$(".totalDelivery").text(checkedDelivery);
+	$(".totalPrice").text(checkedPrice.toLocaleString());
+	$(".totalDelivery").text(checkedDelivery.toLocaleString());
 }
 
 function minusFn(obj,sbidx,price,delivery){
 	var cnt = parseInt($(obj).next().val());
+	var pa = $(obj).parent().parent().next().children().children();	
+	
 	if(cnt > 1){
 		$.ajax({
 			url: contextPath+"/mypage/minusCntBasket",
@@ -151,18 +152,22 @@ function minusFn(obj,sbidx,price,delivery){
 			success: function(data){
 				var result = data.trim();
 				if(result = "success"){
+					if(cnt > 2){
+						pa.text((parseInt(price)*(parseInt(cnt)-1)).toLocaleString());
+					}
+					
 					if($("#Selection"+sbidx).is(":checked")){
 						
-						checkedPrice -= price;
+						checkedPrice -= parseInt(price);
 						checkedCnt -= 1;
-						checkedDelivery -= delivery;
-						checkedPay -= price;
-						checkedPay -= delivery;
+						checkedDelivery -= parseInt(delivery);
+						checkedPay -= parseInt(price);
+						checkedPay -= parseInt(delivery);
 						
-						$(".totalPay").text(checkedPay);
+						$(".totalPay").text(checkedPay.toLocaleString());
 						$(".productCnt").text(checkedCnt);
-						$(".totalPrice").text(checkedPrice);
-						$(".totalDelivery").text(checkedDelivery);
+						$(".totalPrice").text(checkedPrice.toLocaleString());
+						$(".totalDelivery").text(checkedDelivery.toLocaleString());
 					}
 				}
 			}
@@ -172,6 +177,8 @@ function minusFn(obj,sbidx,price,delivery){
 
 function plusFn(obj,sbidx,price,delivery){
 	var cnt = parseInt($(obj).prev().val());
+	var pa = $(obj).parent().parent().next().children().children();	
+	
 	if(cnt < 999){
 		$.ajax({
 			url: contextPath+"/mypage/plusCntBasket",
@@ -179,19 +186,21 @@ function plusFn(obj,sbidx,price,delivery){
 			data: "sbidx="+sbidx,
 			success: function(data){
 				var result = data.trim();
-				if(result = "success"){						
+				if(result = "success"){
+					pa.text((parseInt(price)*(parseInt(cnt)+1)).toLocaleString());
+					
 					if($("#Selection"+sbidx).is(":checked")){
 						
-						checkedPrice += price;
+						checkedPrice += parseInt(price);
 						checkedCnt += 1;
-						checkedDelivery += delivery;
-						checkedPay += price;
-						checkedPay += delivery;
+						checkedDelivery += parseInt(delivery);
+						checkedPay += parseInt(price);
+						checkedPay += parseInt(delivery);
 						
-						$(".totalPay").text(checkedPay);
+						$(".totalPay").text(checkedPay.toLocaleString());
 						$(".productCnt").text(checkedCnt);
-						$(".totalPrice").text(checkedPrice);
-						$(".totalDelivery").text(checkedDelivery);
+						$(".totalPrice").text(checkedPrice.toLocaleString());
+						$(".totalDelivery").text(checkedDelivery.toLocaleString())
 					}
 				}
 			}

@@ -106,7 +106,8 @@
 									    </div>
 									</li>
 									<li class="col-3 text_center price_val_box">							
-										<div class="price_val margin_auto"><span class="priceSpan">${basketListAllvo.price * basketListAllvo.cnt}</span>원</div>
+										<div class="price_val margin_auto"><span id="PA${cnt.count}" class="priceSpan">${basketListAllvo.price * basketListAllvo.cnt}</span>원</div>
+										<script>$("#PA${cnt.count}").text((${basketListAllvo.price * basketListAllvo.cnt}).toLocaleString());</script>
 									</li>
 								</ul>
 							</li>
