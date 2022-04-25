@@ -92,7 +92,7 @@
 					alert( "어떤 값인지 파악이 되지 않습니다." );
 			}
 			$('select[name="detail_temp"]').find('option[value="${vo.detail}"]').attr("selected",true);
-			$('#detail').val(${vo.category});
+			$('#detail').val(${vo.detail});
 
 		});
 	</script>
@@ -135,7 +135,7 @@
 			<input type="hidden" name="spidx" value="${vo.spidx}">
 			<input type="hidden" name="img_origin" id="img_origin" value="${vo.img_origin}">
 			<input type="hidden" name="img_system" id="img_system" value="${vo.img_system}">
-			<input type="hidden" name="detail" id="detail" value="">
+			<input type="hidden" name="detail" id="detail" value="${vo.detail}">
 			
 			<div id="titleArea">
 				<input type="text" id="title" name="title" placeholder="제목을 입력해주세요." value="${vo.title}">

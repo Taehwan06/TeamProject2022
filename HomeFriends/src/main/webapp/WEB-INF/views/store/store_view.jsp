@@ -110,7 +110,7 @@
 				</div>
 				<div class="row price">
 					<div class="col-sm-4 col-md-4 col-lg-3 discount">${vo.discount}%</div>
-					<div class="col-sm-7 col-md-7 original_price"> <div class="origin">${vo.origin_price}</div>${vo.view_price}원</div>
+					<div class="col-sm-7 col-md-7 original_price"> <div class="origin">${vo.oview_price}</div>${vo.view_price}원</div>
 				</div>
 				<div class="row delivery">
 					<div class="col-sm-2 col-md-2 delivery_">배송</div>

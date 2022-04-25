@@ -130,7 +130,10 @@ public class StoreController {
 	
 	//상품 등록 페이지이동
 	@RequestMapping(value = "/store_insert.do", method = RequestMethod.GET)
-	public String store_insert(HttpServletRequest request, Locale locale, Model model, SearchVO vo) throws Exception {
+	public String store_insert(HttpServletResponse response, HttpServletRequest request, Locale locale, Model model, SearchVO vo) throws Exception {
+		
+		//로그아웃 후 뒤로가기로 페이지 입장시 입장불가
+		response.setHeader("Cache-Control","no-store");
 		
 		//오래된 검색기록 삭제
 		int deleteResult = homeService.deleteSearchList();
@@ -165,6 +168,7 @@ public class StoreController {
 	@RequestMapping(value = "/store_insert.do", method = RequestMethod.POST)
 	public String store_insertOK(HttpServletRequest request, Locale locale, Model model,
 			StoreVO vo/* , @RequestParam String img_style */) throws Exception {
+	
 		
 		//오래된 검색기록 삭제
 		int deleteResult = homeService.deleteSearchList();
@@ -233,14 +237,19 @@ public class StoreController {
 //		
 //		return new ResponseEntity<ResponseVO<StoreVO>>(response,headers, HttpStatus.OK);
 		
-		//제이슨을로 변경 후 호출한 페이지에 전송
+		//json으로 변경 후 호출한 페이지에 전송
 		String json = new Gson().toJson(list);
 	    return json;
 	}
 	
 	//상품 수정 페이지 이동
 	@RequestMapping(value = "/store_modify.do", method = RequestMethod.GET)
-	public String store_modify(HttpServletRequest request, Locale locale, Model model, int spidx) throws Exception {
+	public String store_modify(HttpServletResponse response, HttpServletRequest request, Locale locale, Model model, int spidx) throws Exception {
+		
+		//로그아웃 후 뒤로가기로 페이지 입장시 입장불가
+		response.setHeader("Cache-Control","no-store");
+		
+		
 		int deleteResult = homeService.deleteSearchList();
 		List<HomeSearchVO> searchList = homeService.listSearchList();
 		
@@ -268,13 +277,10 @@ public class StoreController {
 	@RequestMapping(value = "/store_modify.do", method = RequestMethod.POST)
 	public String store_modifyOK(HttpServletRequest request, Locale locale, Model model,
 			StoreVO vo/* , @RequestParam String img_style */) throws Exception {
-		
+
 		int deleteResult = homeService.deleteSearchList();
 		
-//		List<HomeSearchVO> searchList = homeService.listSearchList();
-//		
-//		model.addAttribute("searchList", searchList);
-			
+		//기존 이미지를 스타일코드로 받던방식(사용안함)
 		/*
 		 * int idx1 = img_style.indexOf("url("); int idx2 = img_style.lastIndexOf("\"");
 		 * String new_img_style = img_style.substring(idx1+5, idx2);
@@ -293,8 +299,8 @@ public class StoreController {
 //		}
 //		vo.setDetail(remain);
 		
-		
-		if(vo.getFree_delivery()!="N") {
+		//무료배송여부
+		if(vo.getFree_delivery()!="Y") {
 			vo.setDelivery_charge("0");
 		}
 		
@@ -304,7 +310,7 @@ public class StoreController {
 		MemberVO member = (MemberVO)session.getAttribute("loginUser");
 		
 		
-			
+		//작성자 변경
 		vo.setMidx(member.getMidx());
 		vo.setWriter(member.getMembername());
 		
@@ -316,23 +322,30 @@ public class StoreController {
 		
 	}
 	
+	//상품삭제
 	@RequestMapping(value = "/store_del.do", method = RequestMethod.GET)
 	public String store_del(HttpServletRequest request, Locale locale, Model model, int spidx) throws Exception {
 		int deleteResult = homeService.deleteSearchList();
 		List<HomeSearchVO> searchList = homeService.listSearchList();
 		
+		//로그인유저 조회
 		HttpSession session = request.getSession();
 		MemberVO member = (MemberVO)session.getAttribute("loginUser");
-
+		
+		//미로그인시 로그인페이지이동
 		if(member==null) {return "redirect:/login/login.do";}
+		
+		//로그인된 유저 등급확인
 		if(!member.getGrade().equals("A")) {return "redirect:/store/store.do";}
-
+		
+		//상품삭제
 		int result = storeService.delete(spidx);
 		
 		
 		return "redirect:/store/store.do";
 	}
 	
+	//카테고리(상품리스트) 페이지
 	@RequestMapping(value = "/store_list.do", method = RequestMethod.GET)
 	public String store_list(HttpServletRequest request, Locale locale, Model model, SearchVO vo, String type) throws Exception {
 		
@@ -418,6 +431,7 @@ public class StoreController {
 	 * return list; }
 	 */
 	
+	//상품 상세보기
 	@RequestMapping(value = "/store_view.do", method = RequestMethod.GET)
 	public String store_view(Locale locale, Model model, int spidx,@RequestParam(value="nowPage", required = false, defaultValue="1") int nowPage, @RequestParam(value="qanowPage", required = false, defaultValue="1") int qanowPage, HttpServletResponse response, HttpServletRequest request) throws Exception {
 		String nowUri = request.getRequestURI();
@@ -502,6 +516,7 @@ public class StoreController {
 		
 		
 	}
+	
 	//실패-에이젝스로 해보려했지만 받고나서 하단 바 정보처리가 복잡하여 포기
 //	@RequestMapping(value="/review_paging", method = RequestMethod.GET, produces = "application/text; charset=UTF-8")
 //	public @ResponseBody String paging(Locale locale, Model model,StorePagingVO vo) throws Exception {
@@ -521,7 +536,10 @@ public class StoreController {
 		
 	
 	@RequestMapping(value = "/store_review_insert.do", method = RequestMethod.GET)
-	public String store_review_insert(HttpServletRequest request, Locale locale, Model model, int spidx) throws Exception {
+	public String store_review_insert(HttpServletResponse response, HttpServletRequest request, Locale locale, Model model, int spidx) throws Exception {
+		
+		//로그아웃 후 뒤로가기로 페이지 입장시 입장불가
+		response.setHeader("Cache-Control","no-store");
 		
 		int deleteResult = homeService.deleteSearchList();
 		
@@ -578,9 +596,14 @@ public class StoreController {
 		
 		return result+"";
 	}
+	
 	//리뷰수정
 	@RequestMapping(value = "/store_review_modify.do", method = RequestMethod.GET)
-	public String store_store_modify(HttpServletRequest request, Locale locale, Model model, int spidx, int sridx) throws Exception {
+	public String store_store_modify(HttpServletResponse response, HttpServletRequest request, Locale locale, Model model, int spidx, int sridx) throws Exception {
+		
+		//로그아웃 후 뒤로가기로 페이지 입장시 입장불가
+		response.setHeader("Cache-Control","no-store");
+		
 		int deleteResult = homeService.deleteSearchList();
 		List<HomeSearchVO> searchList = homeService.listSearchList();
 		
@@ -670,7 +693,7 @@ public class StoreController {
 	
 	
 	
-	
+	//qna 작성페이지
 	@RequestMapping(value = "/store_qna_insert.do", method = RequestMethod.GET)
 	public String store_qna_insert(Locale locale, Model model, int spidx) throws Exception {
 		
@@ -687,6 +710,7 @@ public class StoreController {
 		model.addAttribute("spidx", spidx);	
 		return "store/store_qna_insert";
 	}
+	//qna 등록
 	@RequestMapping(value = "/store_qna_insert.do", method = RequestMethod.POST)
 	public @ResponseBody String store_qna_insertOK(HttpServletRequest request, Locale locale, Model model, Store_qnaVO vo) throws Exception {
 		
@@ -705,6 +729,8 @@ public class StoreController {
 		
 		return result+"";
 	}
+	
+	//qna수정페이지 이동
 	@RequestMapping(value = "/store_qna_modify.do", method = RequestMethod.GET)
 	public String store_qna_modify(Locale locale, Model model, int spidx, int sqidx) throws Exception {
 		
@@ -724,6 +750,7 @@ public class StoreController {
 		model.addAttribute("spidx", spidx);	
 		return "store/store_qna_modify";
 	}
+	//qna저장
 	@RequestMapping(value = "/store_qna_modify.do", method = RequestMethod.POST)
 	public @ResponseBody String store_qna_modifyOK(HttpServletRequest request, Locale locale, Model model, Store_qnaVO vo) throws Exception {
 		
@@ -742,7 +769,7 @@ public class StoreController {
 		
 		return result+"";
 	}
-	
+	//qna 질문 삭제
 	@RequestMapping(value = "/store_qna_q_del.do", method = RequestMethod.POST)
 	public @ResponseBody String store_qna_q_delOK(HttpServletRequest request, Locale locale, Model model, int sqidx, int midx) throws Exception {
 		
@@ -762,7 +789,7 @@ public class StoreController {
 		}
 		return result+"";
 	}
-	
+	//qna 답변등록
 	@RequestMapping(value = "/store_qna_a_insert.do", method = RequestMethod.POST)
 	public @ResponseBody String store_qna_a_insertOK(HttpServletRequest request, Locale locale, Model model, Store_qnaVO vo) throws Exception {
 		
@@ -781,6 +808,7 @@ public class StoreController {
 		
 		return result+"";
 	}
+	//qna 답변 삭제
 	@RequestMapping(value = "/store_qna_a_del.do", method = RequestMethod.POST)
 	public @ResponseBody String store_qna_a_delOK(HttpServletRequest request, Locale locale, Model model, int sqidx) throws Exception {
 		
@@ -799,7 +827,7 @@ public class StoreController {
 		}
 		return result+"";
 	}
-	
+	//장바구니 등록
 	@RequestMapping(value = "/basketIn.do", method = RequestMethod.GET)
 	@ResponseBody
 	public String basketIn(HttpServletRequest request,Locale locale, Model model,BasketVO vo) throws Exception {
@@ -818,9 +846,9 @@ public class StoreController {
 		vo.setTitle(svo.getTitle());
 		vo.setFree_delivery(svo.getFree_delivery());
 		vo.setImg_origin(svo.getImg_origin());
+		vo.setImg_system(svo.getImg_system());
 		vo.setPrice(Integer.parseInt(svo.getSale_price()));
 		vo.setDelivery_charge(Integer.parseInt(svo.getDelivery_charge()));
-		vo.setImg_system(svo.getImg_origin());
 		vo.setBrand(svo.getBrand());
 		
 		int result = storeService.basketIn(vo);
@@ -830,6 +858,7 @@ public class StoreController {
 		return result+""; 
 	}
 	
+	//좋아요등록
 	@RequestMapping(value = "/likeIN", method = RequestMethod.GET)
 	public @ResponseBody String likeIN(HttpServletRequest request, Locale locale, Model model, int spidx, int midx) throws Exception {
 		
@@ -854,6 +883,7 @@ public class StoreController {
 		
 		return result+"";
 	}
+	//좋앙 삭제
 	@RequestMapping(value = "/likeDEL", method = RequestMethod.GET)
 	public @ResponseBody String likeDEL(HttpServletRequest request, Locale locale, Model model, int spidx, int midx) throws Exception {
 		
@@ -874,7 +904,7 @@ public class StoreController {
 		
 		return result+"";
 	}
-	
+	//좋아요페이지이동
 	@RequestMapping(value = "/likey.do", method = RequestMethod.GET)
 	public String likey(HttpServletRequest request, Locale locale, Model model, SearchVO vo) throws Exception {
 		
@@ -948,7 +978,7 @@ public class StoreController {
 	}
 	
 	
-	
+	//이미지파일 업로드
 	@RequestMapping(value = "/fileUpload", method = RequestMethod.POST)
 	@ResponseBody
 	public String fileUpload(Locale locale, Model model, HttpServletRequest request, @RequestParam("imgFile") MultipartFile imgFile) throws Exception {
@@ -998,7 +1028,7 @@ public class StoreController {
 	    return dayTime.format(new Date(time));
 	}
 	
-	
+	//이벤트페이지
 	@RequestMapping(value = "/event.do", method = RequestMethod.GET)
 	public String event(Locale locale, Model model) throws Exception {
 		
@@ -1015,6 +1045,7 @@ public class StoreController {
 		return "store/event";
 	}
 	
+	//이벤트 상세보기
 	@RequestMapping(value = "/event_view.do", method = RequestMethod.GET)
 	public String event_view(Locale locale, Model model, int eidx) throws Exception {
 		

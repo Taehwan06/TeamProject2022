@@ -148,7 +148,7 @@ function colorFn(obj){
 	});
 
 	$(obj).mouseleave(function(){
-		$(obj).css("color", "white");
+		$(obj).css("color", "black");
 	});
 	
 	$(".abtn").not(obj).mouseover(function(){

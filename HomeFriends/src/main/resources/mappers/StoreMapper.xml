@@ -5,6 +5,7 @@
  
 <mapper namespace="edu.study.mapper.storeMapper">
 
+	<!-- 상품리스트 -->
 	<select id="listStore" resultType="StoreVO" parameterType="SearchVO">
          SELECT spidx
          		,title
@@ -68,13 +69,15 @@
            	
     </select>
 	
+	<!-- 상품 상세정보 -->
 	<select id="detailStore" resultType="StoreVO" parameterType="int">
 		<!-- <![CDATA[...]] 쿼리문의 >,< 등을 구분해주기 위해-->
 		<![CDATA[
 			SELECT spidx
          		,title
          		,product_name
-         		,FORMAT(origin_price,0) as origin_price
+         		,origin_price
+         		,FORMAT(origin_price,0) as oview_price
          		,sale_price
          		,FORMAT(sale_price,0) as view_price
          		,brand
@@ -84,6 +87,7 @@
          		,score
          		,discount
          		,review_cnt
+         		,img_origin
          		,img_system
          		,category
          		,detail
@@ -92,6 +96,7 @@
 		]]>
 	</select>
     
+    <!-- 상품등록 -->
     <insert id="insertStore" parameterType="StoreVO">
 	    <![CDATA[
 	    	INSERT INTO shopping_product(
@@ -134,6 +139,7 @@
 	    </selectKey>
     </insert>
     
+    <!-- 상품수정 -->
     <update id="updateStore" parameterType="StoreVO">
 	    <![CDATA[
 	    	UPDATE shopping_product
@@ -158,6 +164,7 @@
           ]]>
     </update>
     
+    <!-- 상품삭제 -->
     <update id="deleteStore" parameterType="int">
 	    <![CDATA[
 	    	UPDATE shopping_product
@@ -167,6 +174,7 @@
           ]]>
     </update>
     
+    <!-- 장바구니 저장 -->
     <insert id="basketIn" parameterType="BasketVO">
     	 <![CDATA[
 	    	INSERT INTO shopping_basket(
@@ -399,7 +407,7 @@
 		FROM shopping_review
 		where spidx = #{spidx} and del_yn='N';
     </select>
-    
+    <!-- 리뷰 리스트 -->
     <select id="reviewList" resultType="Store_reviewVO" parameterType="int">
     	SELECT review.* FROM
 		(SELECT @rownum := @rownum+1 as rownum
