@@ -88,7 +88,7 @@
 					<th>아이디</th>
 					<th>구매 횟수</th>
 					<th>총 구매 금액</th>
-					<th class="detailNum">상품 분류</th>
+					<th class="detailNum">가입일</th>
 					<th class="recent">마지막 구매일</th>
 				</tr>
 			</thead>
@@ -99,7 +99,7 @@
 						<td>${list.id}</td>
 						<td>${list.buyingCnt}</td>
 						<td>${list.amount}</td>
-						<td class="detailNum">${list.detail}</td>
+						<td class="detailNum">${list.join_date}</td>
 						<td class="recent">${list.recentBuying}</td>
 					</tr>
 				</c:forEach>

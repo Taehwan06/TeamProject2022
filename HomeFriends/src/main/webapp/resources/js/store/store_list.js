@@ -140,22 +140,34 @@ let match = {10:"가구", 11:"가구 > 소파", 12:"가구 > 수납장", 13:"가
 
 //아코디언 마우스 호버시 글씨 색 변경
 function colorFn(obj){
-	$(obj).css("color", "white");
-	$(".abtn").not(obj).css("color", "black");
-	
-	$(obj).mouseover(function(){
-		$(obj).css("color", "white");
-	});
+   $(".abtn").not(".collapsed").css("color", "white");
+   $(".collapsed").css("color", "black");
+   
+   if($(obj).hasClass("collapsed") === true) {
+      $(obj).css("color", "#ffb6c1");
+   }
+   
+   $(obj).not(".collapsed").mouseover(function(){
+      $(obj).css("color", "white");
+   });
 
-	$(obj).mouseleave(function(){
-		$(obj).css("color", "black");
-	});
-	
-	$(".abtn").not(obj).mouseover(function(){
-		$(this).css("color", "#ffb6c1");
-	});
+   $(obj).not(".collapsed").mouseleave(function(){
+      $(obj).css("color", "white");
+   });
+   
+   $(".collapsed").mouseover(function(){
+      $(this).css("color", "#ffb6c1");
+   });
 
-	$(".abtn").not(obj).mouseleave(function(){
-		$(this).css("color", "black");
-	});
+   $(".collapsed").mouseleave(function(){
+      $(this).css("color", "black");
+   });
+   
+   $(".abtn").not(obj).mouseover(function(){
+      $(this).not(obj).css("color", "#ffb6c1");
+   });
+
+   $(".abtn").not(obj).mouseleave(function(){
+      $(this).not(obj).css("color", "black");
+   });
 }
