@@ -18,6 +18,8 @@
     <script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
     <!-- facebook SDK -->
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+    <!-- sweet alert SDK -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<script>var contextPath = "${pageContext.request.contextPath}"</script>
 
 	<title>나의 리뷰 - 홈프렌즈</title>
@@ -27,7 +29,9 @@
 	<link href="${pageContext.request.contextPath}/css/mypage/my_review.css" rel="stylesheet">
 	<link href="${pageContext.request.contextPath}/css/footer.css" rel="stylesheet">
 	
+	
 	<script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/mypage/my_review.js"></script>
 	<script src="${pageContext.request.contextPath}/js/header.js"></script>
 	<script src="${pageContext.request.contextPath}/js/nav.js"></script>
 	
@@ -67,8 +71,9 @@
 						<p class="p3">
 							<strong>${vo.write_date}&nbsp;에 남긴 리뷰</strong>
 							<br><br>
-							<a href="${pageContext.request.contextPath}/store/store_view.do?spidx=${vo.spidx}#review_area_header">${vo.content}</a>&nbsp;&#183; 
-							<a id="pinky" style="color:#87ceeb;" href="${pageContext.request.contextPath}/store/store_review_modify.do?spidx=${vo.spidx}&sridx=${vo.sridx}">수정</a>
+							<a href="${pageContext.request.contextPath}/store/store_view.do?spidx=${vo.spidx}#review_area_header">${vo.content}</a>&nbsp;
+							<a id="pinky" style="color:#87ceeb;" href="${pageContext.request.contextPath}/store/store_review_modify.do?spidx=${vo.spidx}&sridx=${vo.sridx}">수정&nbsp;&#183; </a>
+							<span class="del_review" style="color:#87ceeb;" onclick="R_delFn(${vo.sridx},${vo.spidx},${vo.midx})">삭제</span>
 						</p>	
 					</div>
 					<div class="col-4 comment2">

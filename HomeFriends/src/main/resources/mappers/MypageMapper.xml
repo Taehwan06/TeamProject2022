@@ -299,6 +299,8 @@
     		shopping_review 
     	WHERE 
     		midx = #{midx}
+    	AND 
+    	 	del_yn  = "N"
     </select>
     
      <select id="myreview" resultType="Store_reviewVO" parameterType="Store_reviewVO">
