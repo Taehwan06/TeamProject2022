@@ -197,7 +197,7 @@ public class HomeController {
 	    }else {
 	    	SearchVO searchvo = new SearchVO();
 	 	    searchvo.setReview_cnt("yes");
-	 	   searchvo.setPage("limit");
+	 	    searchvo.setPage("limit");
 	 	    List<StoreVO> storeList = storeService.list(searchvo);
 	 	    
 	 	    model.addAttribute("storeList",storeList);

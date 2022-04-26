@@ -25,10 +25,13 @@ $(function(){
 		if(num<=0){
 			alert('1개미만은 선택할 수 없습니다.');
 			num =1;
+		}else{
+			$(this).next().val(num);
+			var price = $(this).parent().parent().next('.price_val_box').children('.hidden').text();
+			$(this).parent().parent().next('.price_val_box').children('.price_val').children('span').text((price*num).toLocaleString());
 		}
-		$(this).next().val(num);
-		var price = $(this).parent().parent().next('.price_val_box').children('.hidden').text();
-		$(this).parent().parent().next('.price_val_box').children('.price_val').children('span').text(price*num);
+		
+		
 	});
 	$('.increaseQuantity').click(function(e){
 		e.preventDefault();
@@ -39,10 +42,12 @@ $(function(){
 		if(num>999){
 			alert('상품은 999개까지만 구매가능합니다');
 			num=999;
+		}else{
+			$(this).prev().val(num);
+			var price = $(this).parent().parent().next('.price_val_box').children('.hidden').text();
+			$(this).parent().parent().next('.price_val_box').children('.price_val').children('span').text((price*num).toLocaleString());
 		}
-		$(this).prev().val(num);
-		var price = $(this).parent().parent().next('.price_val_box').children('.hidden').text();
-		$(this).parent().parent().next('.price_val_box').children('.price_val').children('span').text(price*num);
+		
 	});
 	
 	
@@ -142,8 +147,6 @@ function selectFn(){
 
 function minusFn(obj,sbidx,price,delivery){
 	var cnt = parseInt($(obj).next().val());
-	var pa = $(obj).parent().parent().next().children().children();	
-	
 	if(cnt > 1){
 		$.ajax({
 			url: contextPath+"/mypage/minusCntBasket",
@@ -152,10 +155,6 @@ function minusFn(obj,sbidx,price,delivery){
 			success: function(data){
 				var result = data.trim();
 				if(result = "success"){
-					if(cnt > 2){
-						pa.text((parseInt(price)*(parseInt(cnt)-1)).toLocaleString());
-					}
-					
 					if($("#Selection"+sbidx).is(":checked")){
 						
 						checkedPrice -= parseInt(price);
@@ -177,8 +176,6 @@ function minusFn(obj,sbidx,price,delivery){
 
 function plusFn(obj,sbidx,price,delivery){
 	var cnt = parseInt($(obj).prev().val());
-	var pa = $(obj).parent().parent().next().children().children();	
-	
 	if(cnt < 999){
 		$.ajax({
 			url: contextPath+"/mypage/plusCntBasket",
@@ -186,9 +183,7 @@ function plusFn(obj,sbidx,price,delivery){
 			data: "sbidx="+sbidx,
 			success: function(data){
 				var result = data.trim();
-				if(result = "success"){
-					pa.text((parseInt(price)*(parseInt(cnt)+1)).toLocaleString());
-					
+				if(result = "success"){			
 					if($("#Selection"+sbidx).is(":checked")){
 						
 						checkedPrice += parseInt(price);

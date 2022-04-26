@@ -100,11 +100,14 @@
 									<div class="brand">${storeListVO.brand}</div>
 									${storeListVO.title}
 								</div>
-								<div class="shopPrice">
-									<c:if test="${storeListVO.discount > 0}">
-										<span class="red">${storeListVO.discount}%</span>
-									</c:if>
-									${storeListVO.sale_price}
+								<div class="shopPrice row">
+									<div class="discount_area col-4">
+										<span class="red discount">${storeListVO.discount}%</span>
+									</div>
+									<div class="price_area col-8">
+										<span class="origin">${storeListVO.oview_price}원</span><br>
+										${storeListVO.view_price}원
+									</div>
 								</div>
 								<span class="sky">
 									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">

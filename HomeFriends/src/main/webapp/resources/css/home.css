@@ -114,6 +114,7 @@ body, section{
 .gray{
 	color: gray;
 }
+
 /*상품금액영역*/
 .shop_price{
 	display: flex;
