@@ -300,7 +300,7 @@ public class StoreController {
 //		vo.setDetail(remain);
 		
 		//무료배송여부
-		if(vo.getFree_delivery()!="Y") {
+		if(vo.getFree_delivery().equals("Y")) {
 			vo.setDelivery_charge("0");
 		}
 		
