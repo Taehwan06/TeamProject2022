@@ -403,8 +403,19 @@ $(document).ready(function() {
              ['insert',['picture']]
            ],
          fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋움체','바탕체'],
-         fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72']
-
+         fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72'],
+		 callbacks: {
+	         onImageUpload: function(image) {
+	            var file = image[0];
+	            var reader = new FileReader();
+	            reader.onloadend = function() {
+	               var image = $('<img>').attr('src',  reader.result);
+	               image.attr('width','100%');
+	               $('#summernote').summernote("insertNode", image[0]);
+	            }
+	            reader.readAsDataURL(file);
+	         }
+	      }
    });
 	
 	//디테일값 등록
