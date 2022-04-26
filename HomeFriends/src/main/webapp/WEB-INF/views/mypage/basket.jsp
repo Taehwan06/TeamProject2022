@@ -136,8 +136,8 @@
 							<div>
 								배송비
 								<br>
-								<div class="bottom_all_price_price totalDelivery">
-									<span class="font_size_15px"></span>&nbsp;원
+								<div class="bottom_all_price_price">
+									<span class="font_size_15px totalDelivery"></span>&nbsp;원
 								</div>
 							</div>
 						</div>

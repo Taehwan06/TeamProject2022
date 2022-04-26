@@ -1,4 +1,4 @@
-$(function(){
+$(document).ready(function() {
 	//전체선택 클릭시 모든상품 선택되도록
 	$('input[name=all]').click(function(){
 		if($(this).is(':checked')){

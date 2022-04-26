@@ -1,13 +1,13 @@
 /* 전역 변수 */
 var idcheck = false;
-var bir1Reg = /\d{4}/;
-var bir2Reg = /\d{1,2}/;
-var bir3Reg = /\d{1,2}/;
-var spaceReg = /\s/g;
+var bir1Reg = /^\d{4}/;
+var bir2Reg = /^\d{1,2}/;
+var bir3Reg = /^\d{1,2}/;
+var spaceReg = /^\s/g;
 //var emailCheck = false;
 var phoneCk = false;
 
-var phReg = /\d{10,11}/;
+var phReg = /^\d{10,11}/;
 
 /* 유효성 검사 */
 /* ============================================================== */
@@ -38,7 +38,7 @@ function onBlurFn(obj){
 			info.style.color = "green";
 		}
 	}else if(id =="phone"){	
-		reg = /\d{10,11}/;
+		reg = /^\d{10,11}/;
 		info = document.getElementById("phoneFoot");
 		if(value == ""){
 			info.style.visibility = "visible";
@@ -46,7 +46,7 @@ function onBlurFn(obj){
 			info.style.color = "red";
 		}else if(!reg.test(value)){
 			info.style.visibility = "visible";
-			info.textContent = "숫자만 입력하세요";
+			info.textContent = "휴대폰 번호 형식이 올바르지 않습니다";
 			info.style.color = "red";
 		}else{
 			info.style.visibility = "visible";
@@ -55,7 +55,7 @@ function onBlurFn(obj){
 		}
 	}else if(id =="pwd"){
 		info = document.getElementById("pwdFoot");
-		reg = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{6,20}$/;
+		reg = /(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{6,20}$/;
 		if(value == ""){
 			info.style.visibility = "visible";
 			info.textContent = "비밀번호를 입력하세요";
@@ -86,7 +86,7 @@ function onBlurFn(obj){
 		}
 	}else if(id =="name"){
 		info = document.getElementById("nameFoot");
-		reg = /[가-힣]{2,20}$/;
+		reg = /^[가-힣]{2,20}$/;
 		if(value == ""){
 			info.style.visibility = "visible";
 			info.textContent = "이름을 입력하세요";
@@ -102,7 +102,7 @@ function onBlurFn(obj){
 		}
 	}else if(id =="nick"){
 		info = document.getElementById("nickFoot");
-		reg = /[가-힣0-9a-zA-Z]{1,20}$/;
+		reg = /^[가-힣0-9a-zA-Z]{1,20}$/;
 		if(value == ""){
 			info.style.visibility = "visible";
 			info.textContent = "닉네임을 입력하세요";
@@ -162,8 +162,213 @@ function onBlurFn(obj){
 			info.style.color = "green";
 		}
 	}
+	
+/* =================================================================================================== */
+/* =================================================================================================== */
+/* =================================================================================================== */
+	var checkYear = /^[0-9]{4}/g;
+	var checkDate = /\d{1,2}/;
+         
+         
+	if(id =="birth1"){
+	    var span = $("#birthFoot");
+	    var yyVal = document.getElementById("birth1").value;
+	    var mmVal = document.getElementById("birth2").value;
+	    var ddVal = document.getElementById("birth3").value;
+    
+	    if(yyVal == "" || yyVal == null || parseInt(yyVal) < 1900){
+			span.text("태어난 년도 4자리를 정확하게 입력하세요.");
+			span.css({"color" : "red", "visibility" : "visible"});
+	    }else if(!checkYear.test(yyVal)){
+			span.text("태어난 년도 4자리를 정확하게 입력하세요.");
+			span.css({"color" : "red", "visibility" : "visible"});
+		}else{
+			if(mmVal == "00" || mmVal == "0" || mmVal == "" || mmVal == null){
+				span.text("태어난 월을 정확하게 입력하세요.");
+				span.css({"color" : "red", "visibility" : "visible"});
+			}else{
+				if(ddVal == "0" || ddVal == "00" || ddVal == "" || ddVal == null){
+					span.text("생년월일을 다시 확인해주세요.");
+					span.css({"color" : "red", "visibility" : "visible"});
+				}else if(ddVal == ""){
+					span.text("태어난 일(날짜) 2자리를 정확하게 입력하세요.");
+					span.css({"color" : "red", "visibility" : "visible"});
+				}else{
+					if(mmVal == "01" || mmVal == "03" || mmVal == "05" || mmVal == "07" || mmVal == "08" || mmVal == "10" || mmVal == "12"
+						|| mmVal == "1" || mmVal == "3" || mmVal == "5" || mmVal == "7" || mmVal == "8" ){
+						if(parseInt(ddVal) <= 31){
+							span.text("");
+							span.css({"visibility" : "hidden"});
+						}else{
+							span.text("생년월일을 다시 확인해주세요.");
+							span.css({"color" : "red", "visibility" : "visible"});
+						}
+					}else if(mmVal == "02" || mmVal == "2"){
+						if(parseInt(yyVal)%4 == 0){
+							if(parseInt(ddVal) <= 29){
+								span.text("");
+								span.css({"visibility" : "hidden"});
+							}else{
+								span.text("생년월일을 다시 확인해주세요.");
+								span.css({"color" : "red", "visibility" : "visible"});
+							}
+						}else{
+							if(parseInt(ddVal) <= 28){
+								span.text("");
+								span.css({"visibility" : "hidden"});
+							}else{
+								span.text("생년월일을 다시 확인해주세요.");
+								span.css({"color" : "red", "visibility" : "visible"});
+							}
+						}
+					}else{
+						if(parseInt(ddVal) <= 30){
+							span.text("");
+							span.css({"visibility" : "hidden"});
+						}else{
+							span.text("생년월일을 다시 확인해주세요.");
+							span.css({"color" : "red", "visibility" : "visible"});
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	
+	if(id == "birth2"){
+		var span = $("#birthFoot");
+	    var yyVal = document.getElementById("birth1").value;
+	    var mmVal = document.getElementById("birth2").value;
+	    var ddVal = document.getElementById("birth3").value;
+		
+		
+		if(mmVal == "00" || mmVal == "0" || mmVal == "" || mmVal == null){
+			span.text("태어난 월을 입력하세요.");
+			span.css({"color" : "red", "visibility" : "visible"});
+	    }else if(mmVal != "00" && mmVal != "0" && mmVal != "" && mmVal != null){
+			if(yyVal == "" || yyVal == null || parseInt(yyVal) < 1900){
+				span.text("태어난 년도 4자리를 정확하게 입력하세요.");
+				span.css({"color" : "red", "visibility" : "visible"});
+			}else if(ddVal == "" || ddVal == null){
+				span.text("태어난 일(날짜) 2자리를 정확하게 입력하세요.");
+				span.css({"color" : "red", "visibility" : "visible"});
+			}else if(ddVal == "0" || ddVal == "00"){
+				span.text("생년월일을 다시 확인해주세요.");
+				span.css({"color" : "red", "visibility" : "visible"});
+			}else{
+				if(mmVal == "01" || mmVal == "03" || mmVal == "05" || mmVal == "07" || mmVal == "08" || mmVal == "10" || mmVal == "12"
+					|| mmVal == "1" || mmVal == "3" || mmVal == "5" || mmVal == "7" || mmVal == "8"){
+					if(parseInt(ddVal) <= 31){
+						span.text("");
+						span.css({"visibility" : "hidden"});
+					}else{
+						span.text("생년월일을 다시 확인해주세요.");
+						span.css({"color" : "red", "visibility" : "visible"});
+					}
+				}else if(mmVal == "02" || mmVal == "2"){
+					if(parseInt(yyVal)%4 == 0){
+						if(parseInt(ddVal) <= 29){
+							span.text("");
+							span.css({"visibility" : "hidden"});
+						}else{
+							span.text("생년월일을 다시 확인해주세요.");
+							span.css({"color" : "red", "visibility" : "visible"});
+						}
+					}else{
+						if(parseInt(ddVal) <= 28){
+							span.text("");
+							span.css({"visibility" : "hidden"});
+						}else{
+							span.text("생년월일을 다시 확인해주세요.");
+							span.css({"color" : "red", "visibility" : "visible"});
+						}
+					}
+				}else{
+					if(parseInt(ddVal) <= 30){
+						span.text("");
+						span.css({"visibility" : "hidden"});
+					}else{
+						span.text("생년월일을 다시 확인해주세요.");
+						span.css({"color" : "red", "visibility" : "visible"});
+					}
+				}
+			}
+		}
+	}
+	
+	
+	if(id == "birth3"){
+		var span = $("#birthFoot");
+	    var yyVal = document.getElementById("birth1").value;
+	    var mmVal = document.getElementById("birth2").value;
+	    var ddVal = document.getElementById("birth3").value;
+   
+		if(ddVal == "" || ddVal == null){
+			span.text("태어난 일(날짜) 2자리를 정확하게 입력하세요.");
+			span.css({"color" : "red", "visibility" : "visible"});
+	    }else if(!checkDate.test(ddVal)){
+			span.text("생년월일을 다시 확인해주세요.");
+			span.css({"color" : "red", "visibility" : "visible"});
+	    }else if(ddVal == "0" || ddVal =="00"){
+			span.text("생년월일을 다시 확인해주세요.");
+			span.css({"color" : "red", "visibility" : "visible"});
+	    }else{
+			if(yyVal == "" || yyVal == null || parseInt(yyVal) < 1900){
+				span.text("태어난 년도 4자리를 정확하게 입력하세요.");
+				span.css({"color" : "red", "visibility" : "visible"});
+			}else if(mmVal == "00" || mmVal == "0" || mmVal == "" || mmVal == null){
+				span.text("태어난 월을 선택하세요.");
+				span.css({"color" : "red", "visibility" : "visible"});
+			}else{
+				if(mmVal == "01" || mmVal == "03" || mmVal == "05" || mmVal == "07" || mmVal == "08" || mmVal == "10" || mmVal == "12"
+					|| mmVal == "1" || mmVal == "3" || mmVal == "5" || mmVal == "7" || mmVal == "8"){
+					if(parseInt(ddVal) <= 31){
+						span.text("");
+						span.css({"visibility" : "hidden"});
+					}else{
+						span.text("생년월일을 다시 확인해주세요.");
+						span.css({"color" : "red", "visibility" : "visible"});
+					}
+				}else if(mmVal == "02" || mmVal == "2"){
+					if(parseInt(yyVal)%4 == 0){
+						if(parseInt(ddVal) <= 29){
+							span.text("");
+							span.css({"visibility" : "hidden"});
+						}else{
+							span.text("생년월일을 다시 확인해주세요.");
+							span.css({"color" : "red", "visibility" : "visible"});
+						}
+					}else{
+						if(parseInt(ddVal) <= 28){
+							span.text("");
+							span.css({"visibility" : "hidden"});
+						}else{
+							span.text("생년월일을 다시 확인해주세요.");
+							span.css({"color" : "red", "visibility" : "visible"});
+						}
+					}
+				}else{
+					if(parseInt(ddVal) <= 30){
+						span.text("");
+						span.css({"visibility" : "hidden"});
+					}else{
+						span.text("생년월일을 다시 확인해주세요.");
+						span.css({"color" : "red", "visibility" : "visible"});
+					}
+				}
+			}
+		}
+	}
+	
 
-	if(id =="birth1"){	
+ 
+/* =================================================================================================== */
+/* =================================================================================================== */
+/* =================================================================================================== */
+
+
+	/*if(id =="birth1"){	
 		info = document.getElementById("birthFoot");
 		if(bir1Reg.test(bir1Val) && bir2Reg.test(bir2Val) && bir3Reg.test(bir3Val) 
 		&& bir1Val!="0000" && bir2Val!="0" && bir2Val!="00" && bir3Val!="0" && bir3Val!="00" 
@@ -224,7 +429,9 @@ function onBlurFn(obj){
 			info.textContent = "생년월일을 올바르게 입력해주세요";
 			info.style.color = "red";
 		}
-	}
+	}*/
+	
+	
 }
 
 
@@ -254,7 +461,7 @@ function joinSubmitFn(){
 	
 	value = document.getElementById("phone").value;
 	info = document.getElementById("phoneFoot");
-	reg = /\d{10,11}/;
+	reg = /^\d{10,11}/;
 	if(value == ""){
 		result = false;
 		info.style.visibility = "visible";
@@ -263,7 +470,7 @@ function joinSubmitFn(){
 	}else if(!reg.test(value)){
 		result = false;
 		info.style.visibility = "visible";
-		info.textContent = "숫자만 입력하세요";
+		info.textContent = "휴대폰 번호 형식이 올바르지 않습니다";
 		info.style.color = "red";
 	}else{
 		info.style.visibility = "hidden";
@@ -273,7 +480,7 @@ function joinSubmitFn(){
 	
 	value = document.getElementById("pwd").value;
 	info = document.getElementById("pwdFoot");
-	reg = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{6,20}$/;
+	reg = /(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{6,20}$/;
 	if(value == ""){
 		result = false;
 		info.style.visibility = "visible";
@@ -311,7 +518,7 @@ function joinSubmitFn(){
 
 	value = document.getElementById("name").value;
 	info = document.getElementById("nameFoot");
-	reg = /[가-힣]{2,20}$/;
+	reg = /^[가-힣]{2,20}$/;
 	if(value == ""){
 		result = false;
 		info.style.visibility = "visible";
@@ -329,7 +536,7 @@ function joinSubmitFn(){
 	}
 
 	value = document.getElementById("nick").value;
-	reg = /[가-힣0-9a-zA-Z]{1,20}$/;
+	reg = /^[가-힣0-9a-zA-Z]{1,20}$/;
 	info = document.getElementById("nickFoot");
 	if(value == ""){
 		result = false;
@@ -473,7 +680,7 @@ function idCheck(){
 function phoneCheckFn(){
 	var phone = $("#phone").val();
 	var phoneFoot = $("#phoneFoot");
-	var reg = /\d{10,11}/;
+	var reg = /^\d{10,11}/;
 	
 	if(phone != null && phone != "" && reg.test(phone)){
 		$.ajax({

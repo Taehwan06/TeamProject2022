@@ -7,11 +7,12 @@
 
 	<select id="searchStory" resultType="homeStoryVO" parameterType="homeSearchVO">
 		SELECT
-			cbidx,
-			writer,
-			title,
-			img_system,
-			profile_system
+			c.cbidx,
+			c.writer,
+			c.title,
+			c.img_system,
+			m.profile_system, 
+			c.midx 
 		FROM
 			community_board c
         INNER JOIN 

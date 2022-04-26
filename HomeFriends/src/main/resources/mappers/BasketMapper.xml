@@ -165,8 +165,7 @@
 			free_delivery,
 			img_origin,
 			img_system,
-			brand,
-			FORMAT((price*cnt), 0) AS view_price 
+			brand 
 		FROM
 			shopping_product
 		WHERE

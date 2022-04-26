@@ -27,6 +27,7 @@ body, section{
 	border: none;
 	background: none;
 	color: white;
+	z-index: 500;
 }
 #cycle{
 	margin-right: 20px;
