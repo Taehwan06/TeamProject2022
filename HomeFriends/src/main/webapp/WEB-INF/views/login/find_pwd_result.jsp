@@ -41,7 +41,7 @@
 	<section>
 		
 		<div class="contents">
-			<span class="bold">${user.id}</span>으로 임시 비밀번호를 발송했습니다.<br><br>
+			<span class="bold">${user.id}</span> 으로 임시 비밀번호를 발송했습니다.<br><br>
 			<span class="red">로그인 후 반드시 비밀번호를 변경해주세요!</span>
 		</div>
 		<div class="sectionBtnArea">

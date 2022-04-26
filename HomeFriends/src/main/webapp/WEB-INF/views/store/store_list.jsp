@@ -25,7 +25,7 @@
 	
 	<link href="${pageContext.request.contextPath}/css/header.css" rel="stylesheet">
 	<link href="${pageContext.request.contextPath}/css/nav.css" rel="stylesheet">
-	<link href="${pageContext.request.contextPath}/css/home.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/store/store_common.css" rel="stylesheet">
 	<link href="${pageContext.request.contextPath}/css/footer.css" rel="stylesheet">
 	<link href="${pageContext.request.contextPath}/css/store/store_list.css" rel="stylesheet">
 	<script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
@@ -263,8 +263,9 @@
 									<div class="brand">${vo.brand}</div>
 									${vo.title}
 								</div>
-								<div class="shopPrice">
-									<span class="red">${vo.discount}%</span> ${vo.sale_price}원
+								<div class="shopPrice row">
+									<div class="discount_area col-4"><span class="red discount">${vo.discount}%</span></div><div class="price_area col-8"><span class="origin">${vo.origin_price}원</span><br>
+									${vo.view_price}원</div>
 								</div>
 								<span class="sky">
 									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">

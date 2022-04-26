@@ -5,6 +5,7 @@ import java.util.Locale;
 
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
@@ -29,7 +30,6 @@ import edu.study.util.RandomPass;
 import edu.study.vo.HomeSearchVO;
 import edu.study.vo.MemberVO;
 import edu.study.vo.NaverLoginVO;
-import edu.study.vo.SearchVO;
 
 /**
  * Handles requests for the application home page.
@@ -193,7 +193,9 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value = "/find_id.do", method = RequestMethod.POST)
-	public String find_id(Locale locale, Model model, MemberVO vo) throws Exception {
+	public String find_id(Locale locale, Model model, MemberVO vo, HttpServletResponse response) throws Exception {
+		
+		response.setHeader("Cache-Control","no-store");
 		
 		int deleteResult = homeService.deleteSearchList();
 		
@@ -213,7 +215,9 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value = "/find_id_result.do", method = RequestMethod.GET)
-	public String find_id_result(Locale locale, Model model) throws Exception {
+	public String find_id_result(Locale locale, Model model, HttpServletResponse response) throws Exception {
+		
+		response.setHeader("Cache-Control","no-store");
 		
 		int deleteResult = homeService.deleteSearchList();
 		
@@ -222,18 +226,6 @@ public class LoginController {
 		model.addAttribute("searchList", searchList);
 		
 		return "login/find_id_result";
-	}
-	
-	@RequestMapping(value = "/find_pwd_result.do", method = RequestMethod.GET)
-	public String find_pwd_result(Locale locale, Model model) throws Exception {
-		
-		int deleteResult = homeService.deleteSearchList();
-		
-		List<HomeSearchVO> searchList = homeService.listSearchList();
-		
-		model.addAttribute("searchList", searchList);
-		
-		return "login/find_pwd_result";
 	}
 	
 	@RequestMapping(value = "/find_pwd.do", method = RequestMethod.GET)
@@ -249,7 +241,10 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value = "/find_pwd.do", method = RequestMethod.POST)
-	public String find_pwd(Locale locale, Model model, MemberVO vo, HttpServletRequest request) throws Exception {
+	public String find_pwd(Locale locale, Model model, MemberVO vo
+			, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		response.setHeader("Cache-Control","no-store");
 		
 		int deleteResult = homeService.deleteSearchList();
 		
@@ -259,8 +254,10 @@ public class LoginController {
 		
 		MemberVO user = memberService.findPwd(vo);
 		
+		System.out.println("user="+user);
+		
 		if(user == null) {
-			return "login/find_pwd_result_none";
+			return "redirect:/login/find_pwd_result_none.do";
 		}else {	
 			String ranPass = randomPass.random();
 			user.setPass(ranPass);
@@ -269,6 +266,9 @@ public class LoginController {
 			model.addAttribute("user", user);
 			
 			if(result>0) {
+				
+				HttpSession session = request.getSession(); 
+			    session.setAttribute("user", user);
 				
 				String setfrom = "testmaillth@gmail.com";
 				String tomail = user.getId(); // 받는 사람 이메일
@@ -287,18 +287,62 @@ public class LoginController {
 
 					mailSender.send(message);
 					
-					return "login/find_pwd_result";
+					return "redirect:/login/find_pwd_result.do";
 					
 				} catch (Exception e) {
 					System.out.println(e);
 				}
 				
-				return "login/find_pwd_result_none";
+				return "redirect:/login/find_pwd_result_fail.do";
 				
 			}else {
-				return "login/find_pwd_result_fail";
+				return "redirect:/login/find_pwd_result_fail.do";	
 			}
 		}
+	}
+	
+	@RequestMapping(value = "/find_pwd_result.do", method = RequestMethod.GET)
+	public String find_pwd_result(Locale locale, Model model, MemberVO vo
+			, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		response.setHeader("Cache-Control","no-store");
+		
+		HttpSession session = request.getSession(); 
+	    MemberVO user = (MemberVO)session.getAttribute("user");
+	    model.addAttribute("user", user);
+	    session.setAttribute("user", null);
+		
+		int deleteResult = homeService.deleteSearchList();
+		
+		List<HomeSearchVO> searchList = homeService.listSearchList();
+		
+		model.addAttribute("searchList", searchList);
+			
+		return "login/find_pwd_result";
+	}
+	
+	@RequestMapping(value = "/find_pwd_result_none.do", method = RequestMethod.GET)
+	public String find_pwd_result_none(Locale locale, Model model, MemberVO vo, HttpServletRequest request) throws Exception {
+		
+		int deleteResult = homeService.deleteSearchList();
+		
+		List<HomeSearchVO> searchList = homeService.listSearchList();
+		
+		model.addAttribute("searchList", searchList);
+		
+		return "login/find_pwd_result_none";
+	}
+	
+	@RequestMapping(value = "/find_pwd_result_fail.do", method = RequestMethod.GET)
+	public String find_pwd_result_fail(Locale locale, Model model, MemberVO vo, HttpServletRequest request) throws Exception {
+		
+		int deleteResult = homeService.deleteSearchList();
+		
+		List<HomeSearchVO> searchList = homeService.listSearchList();
+		
+		model.addAttribute("searchList", searchList);
+		
+		return "login/find_pwd_result_fail";
 	}
 	
 	@RequestMapping(value = "/idCheck", method = RequestMethod.POST)

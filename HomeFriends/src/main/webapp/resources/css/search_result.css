@@ -198,6 +198,11 @@ section{
 		width: 95%;
 		margin-left: 0px;
 	}
+	.eventDiv{
+		width: 99%;
+		margin-right: auot;
+		margin-left: auot;
+	}
 }
 @media screen and (max-width: 575.99px){
 	#headerDiv, .navbar, section, footer{
@@ -208,5 +213,10 @@ section{
 	}
 	#smallMenu{
 		display: inline-block;
+	}
+	.eventDiv{
+		width: 99%;
+		margin-right: auot;
+		margin-left: auot;
 	}
 }

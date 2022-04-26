@@ -26,7 +26,7 @@
 	
 	<link href="${pageContext.request.contextPath}/css/header.css" rel="stylesheet">
 	<link href="${pageContext.request.contextPath}/css/nav.css" rel="stylesheet">
-	<link href="${pageContext.request.contextPath}/css/home.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/store/store_common.css" rel="stylesheet">
 	<link href="${pageContext.request.contextPath}/css/footer.css" rel="stylesheet">
 	<script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 	<link href="${pageContext.request.contextPath}/css/store/view.css" rel="stylesheet">
@@ -110,7 +110,7 @@
 				</div>
 				<div class="row price">
 					<div class="col-sm-4 col-md-4 col-lg-3 discount">${vo.discount}%</div>
-					<div class="col-sm-7 col-md-7 original_price"> ${vo.sale_price}원</div>
+					<div class="col-sm-7 col-md-7 original_price"> <div class="origin">${vo.oview_price}</div>${vo.view_price}원</div>
 				</div>
 				<div class="row delivery">
 					<div class="col-sm-2 col-md-2 delivery_">배송</div>
@@ -127,8 +127,8 @@
 				</div>
 				<div class="row selectbox">
 					<select class="form-select form-select-lg">
-						<option value="00" selected>상품을 선택하세요.</option>
-						<option value="01" data-image="/shop05.webp" onClick="">${vo.product_name}</option>
+						<option value="0" selected>상품을 선택하세요.</option>
+						<option value="${vo.spidx}" data-image="/shop05.webp" onClick="">${vo.product_name}</option>
 					</select>
 				</div>
 				
@@ -148,7 +148,7 @@
 						</select>
 						<input class="hiddenCnt" type="number" value="10" min="1" max="100" style="width: 70px; text-align: center;" >
 					</div>
-					<div class="col-sm-6 col-md-6 order_price__">주문금액:<span class="sum_price">${vo.sale_price}</span>원</div>
+					<div class="col-sm-6 col-md-6 order_price__">주문금액:<span class="sum_price">0</span>원</div>
 				</div>
 				<div class="row btn_area">
 					<div class="col-6 col-sm-6 col-md-6"><button id="basket_btn" onClick="basketInFn()">장바구니</button></div>
@@ -488,8 +488,8 @@
 				<div class="buy_area_">
 					<div class="selectbox_">
 						<select class="form-select form-select-lg">
-							<option value="00" selected>상품을 선택하세요.</option>
-							<option value="01">${vo.product_name}</option>
+							<option value="0" selected>상품을 선택하세요.</option>
+							<option value="${vo.spidx}">${vo.product_name}</option>
 						</select>
 					</div>
 					<div class="hidden_area"><br>
@@ -510,7 +510,7 @@
 					
 					</div>
 					<div class="price___">
-						주문금액<span class="sum_price">${vo.sale_price}</span><span>원</span>
+						주문금액<span class="sum_price">0</span><span>원</span>
 					</div>
 					<div class="buy_btn_area">
 						<button id="basket_btn2" onClick="basketInFn()">장바구니</button>
@@ -525,33 +525,44 @@
 	
 	<script>
 		var cnt=1;
+		var select_spidx= 0;
 		function basketInFn(){
 			if(${!empty loginUser}){
-				$.ajax({
-					type : "GET",
-					url : "basketIn.do",
-					data : "midx="+${vo.midx}+"&spidx="+${vo.spidx}+"&cnt="+cnt,
-					success : function(result) {
-						if(result > 0){
-							swal({
-				                  text: "장바구니에 담겼습니다.",
-				                  button: "확인",
-				                  closeOnClickOutside : false
-				               }).then(function(){
-				                
-				               });
-						}else{
-							swal({
-				                  text: "장바구니에 담기지 못했습니다.",
-				                  button: "확인",
-				                  closeOnClickOutside : false
-				               }).then(function(){
-				                
-				               });
+				if(select_spidx!=0){
+					$.ajax({
+						type : "GET",
+						url : "basketIn.do",
+						data : "midx="+${vo.midx}+"&spidx="+select_spidx+"&cnt="+cnt,
+						success : function(result) {
+							if(result > 0){
+								swal({
+					                  text: "장바구니에 담겼습니다.",
+					                  button: "확인",
+					                  closeOnClickOutside : false
+					               }).then(function(){
+					                
+					               });
+							}else{
+								swal({
+					                  text: "장바구니에 담기지 못했습니다.",
+					                  button: "확인",
+					                  closeOnClickOutside : false
+					               }).then(function(){
+					                
+					               });
+							}
+							
 						}
-						
-					}
-				});
+					});
+				}else{
+					swal({
+		                  text: "상품을 선택하여주세요.",
+		                  button: "확인",
+		                  closeOnClickOutside : false
+		               }).then(function(){
+		                
+		               });
+				}
 			}else{
 				swal({
 	                  text: "로그인 후 이용가능 합니다.",
@@ -565,24 +576,32 @@
 		}
 		
 		function paymentInFn(){
-	         
-	         console.log(${spidx});
+	    	
 	         if(${!empty loginUser}){
-	            var postCode = "${loginUser.post_code}";
-	            if(postCode == 0){
-	               swal({
-	                  text: "주소 등록 후 구매 가능합니다.",
-	                  button: "확인",
-	                  icon: "warning",
-	                  closeOnClickOutside : false
-	               }).then(function(){
-	                  location.href="${pageContext.request.contextPath}/mypage/addr_modify.do";
-	               });
-	               
+	        	 if(select_spidx!=0){
+		            var postCode = "${loginUser.post_code}";
+		            if(postCode == 0){
+		               swal({
+		                  text: "주소 등록 후 구매 가능합니다.",
+		                  button: "확인",
+		                  icon: "warning",
+		                  closeOnClickOutside : false
+		               }).then(function(){
+		                  location.href="${pageContext.request.contextPath}/mypage/addr_modify.do";
+		               });
+		               
+		            }else{
+		               location.href="${pageContext.request.contextPath}/mypage/directPayment.do"+"?midx="+"${loginUser.midx}"+"&spidx="+${vo.spidx}+"&cnt="+cnt;
+		            }
 	            }else{
-	               location.href="${pageContext.request.contextPath}/mypage/directPayment.do"+"?midx="+"${loginUser.midx}"+"&spidx="+${vo.spidx}+"&cnt="+cnt;
+	            	swal({
+		                  text: "상품을 선택하여주세요.",
+		                  button: "확인",
+		                  closeOnClickOutside : false
+		               }).then(function(){
+		                
+		               });
 	            }
-	            
 	         }else{
 	        	 swal({
 	                  text: "로그인 후 이용가능 합니다.",

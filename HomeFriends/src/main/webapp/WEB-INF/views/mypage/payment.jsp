@@ -19,11 +19,9 @@
     <script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
     <!-- facebook SDK -->
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
-	<script>var contextPath = "${pageContext.request.contextPath}"</script>
-	
+	<script>var contextPath = "${pageContext.request.contextPath}"</script>	
 	<!-- iamport.payment.js -->
-	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
-	
+	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>	
 	
 	<title>주문/결제 - 홈프렌즈</title>
 	
@@ -91,7 +89,7 @@
 						<div class="brand">${basketListvo.brand}</div>
 						<div class="productDetail row">
 							<div class="productImgDiv col-4 col-md-4 col-lg-3">
-								<img src="${basketListvo.img_origin}" class="productImg" alt="" 
+								<img src="${pageContext.request.contextPath}/image/${basketListvo.img_system}" class="productImg" alt="" 
 								onclick="location.href='${pageContext.request.contextPath}/store/store_view.do?spidx=${basketListvo.spidx}'">
 							</div>
 							<div class="col-8 col-md-8 col-lg-9">
@@ -100,16 +98,17 @@
 										<span class="productLink" onclick="location.href='${pageContext.request.contextPath}/store/store_view.do?spidx=${basketListvo.spidx}'">
 											${basketListvo.title}
 										</span>
-										<div class="schedule"><span class="blue">4/8(금) 이내</span> 도착예정</div>
+										<div class="schedule"><span class="blue">5/4(수) 이내</span> 도착예정</div>
 									</div>
 									<div class="productCnt col-4 col-md-4 col-lg-2">
 										<input type="text" id="proCnt1" class="proCnt" value="${basketListvo.cnt}" disabled>개
 									</div>
 									<div class="productPrice col-4 col-md-4 col-lg-2">
-										<input type="text" id="proPrice1" class="proPrice" value="${basketListvo.price}" disabled>원
+										<input type="text" id="proPrice${cnt.count}" class="proPrice" value="" disabled>원
+										<script>$("#proPrice${cnt.count}").val((${basketListvo.price * basketListvo.cnt}).toLocaleString());</script>
 									</div>
 									<div class="productDelivery col-4 col-md-4 col-lg-2">
-										<input type="text" id="deliCharge1" class="deliCharge" 
+										<input type="text" id="deliCharge${cnt.count}" class="deliCharge" 
 											<c:if test="${basketListvo.free_delivery == 'Y'}">
 												value="무료배송"
 											</c:if>

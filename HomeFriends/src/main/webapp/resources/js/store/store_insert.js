@@ -1,3 +1,4 @@
+//카테고리 선택시 해당하는 디테일 select박스 보이기
 function selectFn(obj){
 	var detail1 = document.getElementById("detailArea1");
 	var detail2 = document.getElementById("detailArea2");
@@ -57,7 +58,7 @@ function selectFn(obj){
 		detail6.style.display = "none";
 	}
 }
-	
+//배달비 설정시 금액설정 보이기
 function selectFn2(obj){
 	var deliveryChargeArea = document.getElementById("deliveryChargeArea");
 	
@@ -147,6 +148,9 @@ function submitFn(){
 		info.style.visibility = "hidden";
 	}
 	
+	//디테일값 미설정시 resul=false주어 submit버튼 비활성화
+	//id값이 아닌 클래스를 주어 좀더 짧게 구현할것
+	//아니면 따로 변수를 두어 변수값으로 조회할것
 	value = document.getElementById("categorySelect").value;
 	info = document.getElementById("categorySelectInfo");
 	valueD1 = document.getElementById("detailSelect1").value;
@@ -217,6 +221,7 @@ function submitFn(){
 		info.style.visibility = "hidden";
 	}
 	
+	
 	value = document.getElementById("summernote").value;
 	info = document.getElementById("contentInfo");
 	if(value == ""){
@@ -255,8 +260,10 @@ function submitFn(){
 
 
 
-
+//이건 왜둔거지
+//페이지 로드 펑션 안쓰고 이런식으로도 되네
 $(function() {
+	//이미지 업로드
 	$("#imgUpload").on("change", function(){
 		
 		var form = $("#uploadForm")[0];
@@ -314,6 +321,7 @@ $(function() {
 	});
 });
 
+//이미지 등록시 화면노출
 function readURL(input) {
 	let regex = new RegExp("(.*?)\.(jpg|png|webp|jfif|bmp|rle|dib|gif|tif|tiff|raw)$");
 	
@@ -337,6 +345,7 @@ function readURL(input) {
 	}
 }
 
+//취소버튼
 function cancelFn(){
    swal({
 	      text: "이 페이지를 나가면 수정된 사항이 모두 유실됩니다! 그래도 나가시겠어요?",
@@ -353,6 +362,12 @@ function cancelFn(){
 		});
 }
 
+//content영역 내용작성시 보이는 크기 변화
+var textEle = $(".note-editable");
+textEle.on('keyup', function() {
+   adjustHeight();
+});
+
 function adjustHeight() {
    var textEle = $(".note-editable");
    textEle[0].style.height = 'auto';
@@ -360,15 +375,12 @@ function adjustHeight() {
    textEle.css('height', textEleHeight);
    textEle.css('overflow', 'hidden');
 };
-
-var textEle = $(".note-editable");
-textEle.on('keyup', function() {
-   adjustHeight();
-});
+//
 
 
 
 
+//페이지가 로딩된 후 동작
 $(document).ready(function() {
 	
 	$('#summernote').summernote({
@@ -394,7 +406,8 @@ $(document).ready(function() {
          fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72']
 
    });
-
+	
+	//디테일값 등록
 	$(".detailSelect").on("change",function(){
 		var detail = $(this).val();
 		$("#detail").val(detail);

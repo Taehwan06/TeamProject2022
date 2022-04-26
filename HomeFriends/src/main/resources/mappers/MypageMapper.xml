@@ -95,7 +95,8 @@
          		progress,
          		delivery_status,
          		review_registration,
-         		spidx
+         		spidx,
+         		ordernumber
            FROM 
            		order_list
           WHERE 
@@ -116,7 +117,8 @@
          		progress,
          		delivery_status,
          		review_registration,
-         		spidx
+         		spidx,
+         		ordernumber
            FROM 
            		order_list
           WHERE 
@@ -236,6 +238,9 @@
     		O.spidx = #{spidx}
     	AND
 			M.midx = #{midx}
+		AND
+			O.ordernumber = #{ordernumber}
+		
     </select>
     
    
@@ -299,6 +304,8 @@
     		shopping_review 
     	WHERE 
     		midx = #{midx}
+    	AND 
+    	 	del_yn  = "N"
     </select>
     
      <select id="myreview" resultType="Store_reviewVO" parameterType="Store_reviewVO">
@@ -415,5 +422,31 @@
     AND
     	img_origin is not null
     </select>
+    
+    <!-- 팔로우 버튼 관련 -->
+    <insert id="follow">
+		INSERT INTO follow(
+			midx,
+			fmidx
+		) VALUES(
+			#{midx},
+			#{fmidx}
+		)
+	</insert>
+    <!-- 언팔로우 기능 -->
+	<delete id="unfollow">
+		DELETE FROM follow
+		 WHERE midx = #{midx}
+		   AND fmidx = #{fmidx}
+	</delete>
+	
+    <!-- 팔로우 유무 조회 -->
+    <select id="isFollow" resultType="int" parameterType="FollowVO">
+    	SELECT COUNT(*)
+    	  FROM follow
+    	 WHERE midx = #{midx}
+    	   AND fmidx = #{fmidx}
+    </select>
+    
     
 </mapper>

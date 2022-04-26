@@ -104,9 +104,10 @@
 								<div class="row">
 									<div class="col-6 buyDate">
 										${orderList2.buying_date}
+										<%-- 주문번호:${orderList2.ordernumber} (${orderList2.buying_date}) --%>
 									</div>
 									<div class="col-6 goDatail">
-										<a href="${pageContext.request.contextPath}/mypage/detailOrder.do?spidx=${orderList2.spidx}" id="goDetail">상세보기 <i class="bi bi-chevron-right detailIcon"></i></a>
+										<a href="${pageContext.request.contextPath}/mypage/detailOrder.do?spidx=${orderList2.spidx}&ordernumber=${orderList2.ordernumber}" id="goDetail">상세보기 <i class="bi bi-chevron-right detailIcon"></i></a>
 									</div>
 									<hr>
 								</div>
@@ -118,11 +119,13 @@
 										<a href="${pageContext.request.contextPath}/store/store_view.do?spidx=${orderList2.spidx}">${orderList2.title}&nbsp;</a>| ${orderList2.cnt} 개 <br>
 										<span class="producSpan">${orderList2.progress} | 일반택배</span>
 									</div>
-									<div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3 productInfo">
-										${orderList2.price} 원	
-									</div> 
+									
+									<div id="price${cnt.count}" class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3 productInfo">
+                        		    </div> 
+                         			  <script>$("#price${cnt.count}").text((${orderList2.price}).toLocaleString()+" 원");</script>
+									
 									<div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12 productBtn">
-										<button id="delTrack" onclick= "window.open('https://www.cjlogistics.com/ko/tool/parcel/tracking');">배송추적</button>
+										<button type="button" id="delTrack" onclick= "javascript:window.open('https://www.cjlogistics.com/ko/tool/parcel/tracking');void(0)">배송추적</button>
 										<c:choose>
 											<c:when test = "${orderList2.review_registration eq 'N' && orderList2.progress eq '배송완료'}">
 												<input type="button" class="goReview" onclick="location.href='${pageContext.request.contextPath}/store/store_review_insert.do?spidx=${orderList2.spidx}'" value="리뷰작성">

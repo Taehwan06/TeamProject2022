@@ -159,28 +159,7 @@ function cancelFn(){
 		});
 }
 
-function readURL(input) {
-	let regex = new RegExp("(.*?)\.(jpg|png|webp|jfif|bmp|rle|dib|gif|tif|tiff|raw)$");
-	
-	var fileValue = document.getElementById("imgUpload").value;
-	
-	var fileNameAry = fileValue.split("\\");
-	var fileNameBe = fileNameAry[2];
-	var fileName = fileNameBe.toLowerCase();
-	
-	if(regex.test(fileName)){
-		if (input.files && input.files[0]) {
-			var reader = new FileReader();
-			reader.onload = function (e) {
-				$("#imgArea").css("background-color", "none");
-				$("#imgArea").css("background-image", "url('"+e.target.result+"')");
-				$("#imgText").css("display", "none");
-				$("#imgButton").css("display", "none");
-			}
-			reader.readAsDataURL(input.files[0]);
-		}
-	}
-}
+
 //textarea크기 자동조절
 function adjustHeight() {
    var textEle = $(".note-editable");

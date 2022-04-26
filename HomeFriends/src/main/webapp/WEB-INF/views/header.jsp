@@ -76,7 +76,7 @@
 					<div class="accordion-item">
 						<h2 class="accordion-header" id="headingOne">
 							<button id="abtn1" class="abtn accordion-button modalTextMenu" type="button" data-bs-toggle="collapse" 
-							data-bs-target="#collapseOne" onclick="colorFn(this)" aria-expanded="true" aria-controls="collapseOne">
+							onclick="colorFn(this)" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
 								스토어
 							</button>
 						</h2>
@@ -104,8 +104,7 @@
 								<ul class="list-unstyled">
 									<li class="detailMenu" onclick="location.href='${pageContext.request.contextPath}/community/home_story.do'">홈 스토리</li>
 									<li class="detailMenu" onclick="location.href='${pageContext.request.contextPath}/community/following.do'">팔로잉</li>
-									<li class="detailMenu" onclick="location.href='${pageContext.request.contextPath}/community/home_story.do'">스크랩</li>
-									<li class="detailMenu" onclick="location.href='${pageContext.request.contextPath}/community/home_story.do'">질문 & 답변</li>
+									<li class="detailMenu" onclick="location.href='${pageContext.request.contextPath}/community/scrap.do'">스크랩</li>
 								</ul>
 							</div>
 						</div>

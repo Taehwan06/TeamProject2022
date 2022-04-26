@@ -56,6 +56,7 @@
 	
 	
 	<script>
+		//페이지 입장시 상품정보 보이기
 		var thisSpidx = ${vo.spidx};
 		$(document).ready(function(){
 			$("#imgArea").css("background-color", "none");
@@ -90,7 +91,8 @@
 				default:
 					alert( "어떤 값인지 파악이 되지 않습니다." );
 			}
-			$('select[name="detail"]').find('option[value="${vo.detail}"]').attr("selected",true);
+			$('select[name="detail_temp"]').find('option[value="${vo.detail}"]').attr("selected",true);
+			$('#detail').val(${vo.detail});
 
 		});
 	</script>
@@ -128,11 +130,12 @@
 			</div>
 		</form>
 				
-		<form id="insertFrm" name="insertFrm" method="post">	
+		<form id="insertFrm" name="insertFrm" action="store_modify.do" method="post">	
 			
-			<iuput type="hidden" name="midx" value="">
+			<input type="hidden" name="spidx" value="${vo.spidx}">
 			<input type="hidden" name="img_origin" id="img_origin" value="${vo.img_origin}">
 			<input type="hidden" name="img_system" id="img_system" value="${vo.img_system}">
+			<input type="hidden" name="detail" id="detail" value="${vo.detail}">
 			
 			<div id="titleArea">
 				<input type="text" id="title" name="title" placeholder="제목을 입력해주세요." value="${vo.title}">
@@ -207,7 +210,7 @@
 			</div>
 			
 			<div id="detailArea1" class="detailArea area">
-				<select id="detailSelect1" name="detail" class="detailSelect select">
+				<select id="detailSelect1" name="detail_temp" class="detailSelect select">
 					<option value="0">상품 분류를 선택하세요</option>
 					<option value="11">소파</option>
 					<option value="12">수납장</option>
@@ -222,7 +225,7 @@
 			</div>
 			
 			<div id="detailArea2" class="detailArea area">
-				<select id="detailSelect2" name="detail" class="detailSelect select">
+				<select id="detailSelect2" name="detail_temp" class="detailSelect select">
 					<option value="0">상품 분류를 선택하세요</option>
 					<option value="21">LED</option>
 					<option value="22">단 스텐드</option>
@@ -236,7 +239,7 @@
 			</div>
 			
 			<div id="detailArea3" class="detailArea area">
-				<select id="detailSelect3" name="detail" class="detailSelect select">
+				<select id="detailSelect3" name="detail_temp" class="detailSelect select">
 					<option value="0">상품 분류를 선택하세요</option>
 					<option value="31">베개</option>
 					<option value="32">이불</option>
@@ -250,7 +253,7 @@
 			</div>
 			
 			<div id="detailArea4" class="detailArea area">
-				<select id="detailSelect4" name="detail" class="detailSelect select">
+				<select id="detailSelect4" name="detail_temp" class="detailSelect select">
 					<option value="0">상품 분류를 선택하세요</option>
 					<option value="41">냉장고</option>
 					<option value="42">TV</option>
@@ -264,7 +267,7 @@
 			</div>
 			
 			<div id="detailArea5" class="detailArea area">
-				<select id="detailSelect5" name="detail" class="detailSelect select">
+				<select id="detailSelect5" name="detail_temp" class="detailSelect select">
 					<option value="0">상품 분류를 선택하세요</option>
 					<option value="51">그릇 & 접시</option>
 					<option value="52">냄비 & 팬</option>
@@ -279,7 +282,7 @@
 			</div>
 			
 			<div id="detailArea6" class="detailArea area">
-				<select id="detailSelect6" name="detail" class="detailSelect select">
+				<select id="detailSelect6" name="detail_temp" class="detailSelect select">
 					<option value="0">상품 분류를 선택하세요</option>
 					<option value="61">욕실 용품</option>
 					<option value="62">수건</option>

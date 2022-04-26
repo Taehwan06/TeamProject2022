@@ -61,7 +61,8 @@
 							</div>		
 							<div  class="inlineDiv">
 								<p class="odrTitle">주문금액</p>
-								<p>${payInfovo.paidAmount}원</p>
+								<p id="amount">${payInfovo.paidAmount}원</p>
+								<script>$("#amount").text((${payInfovo.paidAmount}).toLocaleString());</script>
 							</div>
 						</div>
 					</form>

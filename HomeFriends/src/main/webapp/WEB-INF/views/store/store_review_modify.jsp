@@ -63,10 +63,11 @@
 		$(document).ready(function(){
 			if(${not empty rvo.img_origin}){
 				$("#imgArea").css("background-color", "none");
+				
 				$("#imgText").css("display", "none");
 				$("#imgButton").css("display", "none");
 			}
-			$("#imgArea").css("background-image", "url('${rvo.img_origin}')");
+			$("#imgArea").css("background-image", "url('"+contextPath+"/image/${rvo.img_system}')");
 			$(":radio[name='score'][value='" + ${rvo.score} + "']").attr('checked', true);
 
 			$("#reviewContents").val(content);
@@ -118,7 +119,7 @@
 		
 		<form class="mb-3" name="myform" id="myform" method="post">
 			<input type="hidden" name="img_origin" id="img_origin" value="${rvo.img_origin}">
-			<input type="hidden" name="img_system" id="img_system" value="${rvo.img_origin}">
+			<input type="hidden" name="img_system" id="img_system" value="${rvo.img_system}">
 			
 			<fieldset>
 				<span class="text-bold">별점을 선택해주세요</span>

@@ -86,9 +86,8 @@
 		<table class="table table-responsive statsTable">
 			<thead>
 				<tr>
-					<th>주문 번호</th>
-					<th>아이디</th>
-					<th>구매 금액</th>
+					<th>주문 번호</th>	
+					<th>구매 금액</th>	
 					<th class="detailNum">상품 분류</th>
 					<th class="spidx">상품 등록 번호</th>
 					<th class="buyingDate">구매일</th>
@@ -98,7 +97,6 @@
 				<c:forEach items="${orderList}" var="list" varStatus="cnt">
 					<tr>
 						<td>${list.ordernumber}</td>
-						<td>${list.id}</td>
 						<td>${list.price}</td>
 						<td class="detailNum">${list.detail}</td>
 						<td class="spidx">${list.spidx}</td>

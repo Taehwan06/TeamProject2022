@@ -105,9 +105,9 @@
 										    onclick="plusFn(this,${basketListAllvo.sbidx},${basketListAllvo.price},${basketListAllvo.delivery_charge})">&#43;</button>
 									    </div>
 									</li>
-									<li class="col-3 text_center price_val_box">
-										<div class="hidden">${basketListAllvo.price}</div>
-										<div class="price_val margin_auto"><span>${basketListAllvo.price * basketListAllvo.cnt}</span>원</div>
+									<li class="col-3 text_center price_val_box">							
+										<div class="price_val margin_auto"><span id="PA${cnt.count}" class="priceSpan">${basketListAllvo.price * basketListAllvo.cnt}</span>원</div>
+										<script>$("#PA${cnt.count}").text((${basketListAllvo.price * basketListAllvo.cnt}).toLocaleString());</script>
 									</li>
 								</ul>
 							</li>
@@ -157,7 +157,7 @@
 					<!--  -->
 					<!-- 모바일 결제버튼 -->
 						<div class="m_payment_button">
-							<button class="sumPriceBox_button" type="button">구매하기</button>
+							<button class="sumPriceBox_button" type="button" onclick="payFn()">구매하기</button>
 						</div>
 				</div>
 			</div>

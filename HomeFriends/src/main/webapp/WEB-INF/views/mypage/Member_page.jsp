@@ -30,6 +30,7 @@
 	<script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 	<script src="${pageContext.request.contextPath}/js/header.js"></script>
 	<script src="${pageContext.request.contextPath}/js/nav.js"></script>
+	<script src="${pageContext.request.contextPath}/js/mypage/Member_page.js"></script>
 	
 </head>
 <body>
@@ -51,27 +52,27 @@
 						</div>
 						<div id="profile_follow">
 							<p>	
-							
 							   팔로워 <strong>${follower}</strong> | 
 							   팔로잉 <strong>${following}</strong>
-							
-							</p><br><br> 
+							</p>
 						</div>
-						<%-- <div id="profile_btn">
-							<button onclick="location.href='${pageContext.request.contextPath}/mypage/member_modify.do'">설정</button>
-						</div> --%>
+						<div id="profile_btn">
+							<c:choose>
+								<c:when test="${vo.midx eq login_midx }">								
+									
+								</c:when>
+								<c:when test="${vo.midx ne login_midx }">
+									<c:if test="${isFollow eq 0}">
+										<button onclick="follow(${vo.midx})" class="followBtn">+ 팔로우</button>
+									</c:if>
+									<c:if test="${isFollow ne 0}">
+										<button onclick="unfollow(${vo.midx})" class="unfollowBtn">- 언팔로우</button>
+									</c:if>
+								</c:when>
+							</c:choose>
+						</div>
+						<br>
 					</div>
-					<!-- <hr> -->
-					<!-- <div class="col-12 col-lg-12" id="profile_etc">
-						<div class="profile_icon">
-							<i class="bi bi-bookmark icon-pointer"></i><br>스크랩<br>
-							<strong>10</strong>
-						</div>
-						<div class="profile_icon">
-							<i class="bi bi-heart icon-pointer"></i><br>좋아요<br>
-							<strong>20</strong>
-						</div> 
-					</div> -->
 				</div>
 			</div>
 <!-- ===============================================================프로필영역================================================================ -->
