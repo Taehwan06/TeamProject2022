@@ -16,15 +16,21 @@ $(function(){
 	//
 	
 	
-	//수량선택시 1미만 100초과시 선택못하도록 설정
+	//수량선택시 1미만 1000초과시 선택못하도록 설정
 	$('.decreaseQuantity').click(function(e){
 		e.preventDefault();
 		var stat = $(this).next().val();
 		var num = parseInt(stat,10);
 		num--;
 		if(num<=0){
-			alert('1개미만은 선택할 수 없습니다.');
-			num =1;
+			swal({
+				text: "1개미만은 선택할 수 없습니다.",
+				button: "확인",
+				icon: "warning",
+				closeOnClickOutside : false
+			}).then(function(){
+				num =1;
+			});
 		}else{
 			$(this).next().val(num);
 			var price = $(this).parent().parent().next('.price_val_box').children('.hidden').text();
@@ -40,25 +46,41 @@ $(function(){
 		num++;
 
 		if(num>999){
-			alert('상품은 999개까지만 구매가능합니다');
-			num=999;
+			swal({
+				text: "상품은 999개까지만 구매가능합니다.",
+				button: "확인",
+				icon: "warning",
+				closeOnClickOutside : false
+			}).then(function(){
+				num=999;
+			});
 		}else{
 			$(this).prev().val(num);
 			var price = $(this).parent().parent().next('.price_val_box').children('.hidden').text();
 			$(this).parent().parent().next('.price_val_box').children('.price_val').children('span').text((price*num).toLocaleString());
 		}
-		
 	});
 	
 	
 	$('.numberUpDown').change(function(){
 		var count = $(this).val();
 		var price = $(this).parent().parent().next('.price_val_box').children('.hidden').text();
-		$(this).parent().parent().next('.price_val_box').children('.price_val').children('span').text(price*count);
+		if(count > 0){
+			$(this).parent().parent().next('.price_val_box').children('.price_val').children('span').text((price*count).toLocaleString());
+		}else{
+			swal({
+				text: "0이하는 선택할 수 없습니다.",
+				button: "확인",
+				icon: "warning",
+				closeOnClickOutside : false
+			}).then(function(){
+				
+			});
+			$(this).val("1");
+			$(this).parent().parent().next('.price_val_box').children('.price_val').children('span').text(parseInt(price).toLocaleString());
+		}
 	});
-	
 });
-
 
 
 var productCnt = 0;
