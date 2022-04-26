@@ -350,22 +350,31 @@ function Reinsert(orincbridx){
 
 /* 댓글 작성 */
 $(document).ready(function(){
-	
 	$(".reply_submit").on("click", function(){
 		
-		var formdata = $("form[name='replyFrm']").serialize();
-		
-		$.ajax({
-			url : contextPath+"/reply/write",
-			type : "post",
-			data : formdata,
-			success : function(data){
-				location.reload();
-			},
-			error : function(data){
-				console.log("error");
-			}
-		});
+		if(!$(".reply_content_input_text").val().replace(/(^\s*)|(\s*$)/gi, "")){
+			swal({
+				text : "내용을 입력하세요.",
+				button : "확인",
+				closeOnClickOutside : false
+			}).then(function(){
+				$(".reply_content_input_text").focus();
+				return;
+			});
+		}else{
+			var formdata = $("form[name='replyFrm']").serialize();
+			$.ajax({
+				url : contextPath+"/reply/write",
+				type : "post",
+				data : formdata,
+				success : function(data){
+					location.reload();
+				},
+				error : function(data){
+					console.log("error");
+				}
+			});	
+		}
 	});
 	var img = document.getElementsByTagName("img");
 	$(".content_img").children().find(img).css("width", "100%");

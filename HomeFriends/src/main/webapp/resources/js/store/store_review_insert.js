@@ -145,7 +145,7 @@ function resize(obj) {
 function cancelFn(){
 	
 	swal({
-	      text: "이 페이지를 나가면 수정된 사항이 모두 유실됩니다! 그래도 나가시겠어요?",
+	      text: "이 페이지를 나가면 수정된 사항이 모두 유실됩니다!\n그래도 나가시겠어요?",
 	      icon: "warning",
 	      buttons: [" 취소 ", " 확인 "],
 	      dangerMode: false,
