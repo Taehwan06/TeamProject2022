@@ -46,7 +46,7 @@
 	<%@ include file="../nav.jsp" %>
 	
 	<!-- 본문 영역 -->
-	<div class="row MainImg">
+	<div class="MainImg">
 		<img src="${pageContext.request.contextPath}/upload/${vo.img_system }">
 	</div>
 	<section id="story_area">
