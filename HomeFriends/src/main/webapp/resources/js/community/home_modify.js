@@ -94,9 +94,6 @@ $(document).ready(function() {
 	var img = document.getElementsByTagName("img");
 	$(".note-editable").children().find(img).css("width", "100%")
 	
-	if($(window).width() > 576){
-		$(".note-editor").css({"width" : "auto", "max-width" : "750px" });
-	}else if($(window).width() < 576){
-		$(".note-editor").css("width" , "500px");
-	}
+	
+	$(".note-editor").css({"width" : "auto", "max-width" : "750px" , "min-width" : "500px"});
 });

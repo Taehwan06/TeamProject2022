@@ -203,11 +203,7 @@ $(document).ready(function() {
 		
 	}
 	
-	if($(window).width() > 576){
-		$(".note-editor").css({"width" : "auto", "max-width" : "750px" });
-	}else if($(window).width() < 576){
-		$(".note-editor").css("width" , "500px");
-	}
+	$(".note-editor").css({"width" : "auto", "max-width" : "750px" , "min-width" : "500px"});
 	
 	
 });
