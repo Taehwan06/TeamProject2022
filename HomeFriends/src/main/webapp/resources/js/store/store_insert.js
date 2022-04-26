@@ -417,6 +417,10 @@ $(document).ready(function() {
 	         }
 	      }
    });
+
+	//썸머노트 반응형
+    $(".note-editor").css({"width" : "auto", "max-width" : "100%" , "min-width" : "500px"});
+
 	
 	//디테일값 등록
 	$(".detailSelect").on("change",function(){

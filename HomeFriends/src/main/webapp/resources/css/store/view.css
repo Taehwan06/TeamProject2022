@@ -682,6 +682,9 @@ p{
 	color : white;
 	text-decoration : none;
 }
+.delivery_area_table{
+	width: 100%;
+}
 
 /*미디어쿼리*/
 @media screen and (min-width: 1400px){
@@ -757,6 +760,9 @@ p{
 	.buy_area{
 		display: none;
 	}
+	.content{
+		margin-left : 20px;
+	}
 }
 @media screen and (max-width: 575.99px){
 	#hiddenDiv{
@@ -771,5 +777,8 @@ p{
 	}
 	.buy_area{
 		display: none;
+	}
+	.content{
+		margin-left : 20px;
 	}
 }
