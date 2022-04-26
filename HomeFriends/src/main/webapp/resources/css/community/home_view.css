@@ -1,9 +1,3 @@
-body, section{
-	min-width : 460px;
-}
-body{
-	overflow-x : hidden;
-}
 .MainImg{
 	overflow : hidden;
 	max-height : 800px;
@@ -200,7 +194,7 @@ section{
 	display : flex;
 	position : relative;
 	width : 100%;
-	height : 50px;
+	height : 60px;
 	margin-top : 5px;
 	margin-left : 15px;
 	border : 1px solid #dbdbdb;
