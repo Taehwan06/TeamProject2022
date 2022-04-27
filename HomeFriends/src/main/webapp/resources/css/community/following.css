@@ -172,6 +172,9 @@ section{
 	#spaceDiv{
 		display: none;
 	}
+	.followingImg{
+		height : 100px;
+	}
 }
 @media screen and (min-width: 992px) and (max-width: 1199.99px){
 	#headerDiv, .navbar, section, footer{
@@ -187,6 +190,9 @@ section{
 		font-size: 15px;
 		width: 80%;
 		margin-left: 20px;
+	}
+	.followingImg{
+		height : 80px;
 	}
 }
 @media screen and (min-width: 768px) and (max-width: 991.99px){
@@ -216,6 +222,9 @@ section{
 	}
 	.foot{
 		margin-left: 170px;			
+	}
+	.followingImg{
+		height : 140px;
 	}
 }
 @media screen and (min-width: 576px) and (max-width: 767.99px){
@@ -267,6 +276,9 @@ section{
 	.birth{
 		font-size: 13px;
 	}
+	.followingImg{
+		height : 120px;
+	}
 }
 @media screen and (max-width: 575.99px){
 	#headerDiv, .navbar, section, footer{
@@ -310,5 +322,8 @@ section{
 	.birth{
 		font-size: 12px;
 		width: 30px;
+	}
+	.followingImg{
+		height : 100px;
 	}
 }
