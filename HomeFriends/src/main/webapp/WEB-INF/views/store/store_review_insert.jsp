@@ -69,8 +69,8 @@
 	<section>
 		<div id="product_page">
 			<div id="product_information" class="row">
-				<img id="product_img" class="col-3 col-md-3" alt="" src="${pageContext.request.contextPath}/image/${vo.img_system}">
-				<div id="product_title" class="col-8 col-md-8"><c:out value="${vo.product_name}"/></div>
+				<div class="col-12 col-sm-4"><img id="product_img" alt="" src="${pageContext.request.contextPath}/image/${vo.img_system}"></div>
+				<div id="product_title" class="col-12 col-sm-8"><c:out value="${vo.product_name}"/></div>
 			</div>
 			<h2 id="page_sub_title">상품리뷰</h2>
 		</div>
