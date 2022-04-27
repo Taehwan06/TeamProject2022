@@ -14,7 +14,7 @@ body{
 	width : 140px;
 }
 #searchInput{
-	width : 86%;
+	width : 85%;
 	min-width : 182px;
 }
 .headerMenu{
@@ -404,7 +404,6 @@ a:hover{
 }
 
 /*리뷰영역*/
-
 #reply_area{
 	width : 100%;
 	margin : auto;
