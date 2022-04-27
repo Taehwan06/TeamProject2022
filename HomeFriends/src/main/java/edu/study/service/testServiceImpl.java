@@ -14,8 +14,8 @@ public class testServiceImpl implements testService {
 
 	@Override
 	public void certifiedPhoneNumber(String userPhoneNumber, int randomNumber) { 
-		String api_key = "NCSG3ZOMUZX4F7GQ!"; 
-		String api_secret = "YILI5AXY2WBMYUBHNILKYEK2ONUOCR58!"; 
+		String api_key = "NCSG3ZOMUZX4F7GQ"; 
+		String api_secret = "YILI5AXY2WBMYUBHNILKYEK2ONUOCR58"; 
 		Message coolsms = new Message(api_key, api_secret); 
 		
 		// 4 params(to, from, type, text) are mandatory. must be filled 

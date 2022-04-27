@@ -20,19 +20,20 @@ section{
 }
 
 .searchTitle{
-	font-size: 25px;
+	font-size: 20px;
 	text-align: center;
 	margin-bottom: 50px;	
 }
 .bold{
 	font-weight: bold;
+	font-size: 25px;
 }
 
-.resultNone{
+/* .resultNone{
 	text-align: center;
 	font-size: 20px;
 	margin-bottom: 70px;
-}
+} */
 
 .storyList, .shopList{
 	margin-top: 10px;
