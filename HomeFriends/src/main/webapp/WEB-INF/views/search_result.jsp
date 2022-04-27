@@ -31,6 +31,7 @@
 	<script src="${pageContext.request.contextPath}/js/header.js"></script>
 	<script src="${pageContext.request.contextPath}/js/nav.js"></script>
 	<script src="${pageContext.request.contextPath}/js/footer.js"></script>
+	<script src="${pageContext.request.contextPath}/js/community/home_story.js"></script>
 	<script>var contextPath = "${pageContext.request.contextPath}"</script>	
 
 </head>
