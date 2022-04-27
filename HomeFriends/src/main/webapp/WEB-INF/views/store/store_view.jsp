@@ -178,7 +178,7 @@
 				</div>
 				<div id="review_area_header">
 					<div>리뷰 <span>${vo.review_cnt}</span></div>
-					<div id="reviewwrite" onclick="location.href='store_review_insert.do?spidx=${vo.spidx}'">리뷰쓰기</div>
+					<%-- <div id="reviewwrite" onclick="location.href='store_review_insert.do?spidx=${vo.spidx}'">리뷰쓰기</div> --%>
 				</div>
 				<div id="review_area">							
 					<section id="reply_area">
