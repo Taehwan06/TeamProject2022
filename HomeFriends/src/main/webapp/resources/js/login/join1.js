@@ -1,5 +1,5 @@
 /* 전역 변수 */
-var idcheck = false;
+var emailCheck = false;
 var bir1Reg = /^\d{4}/;
 var bir2Reg = /^\d{1,2}/;
 var bir3Reg = /^\d{1,2}/;
@@ -706,14 +706,10 @@ function joinSubmitFn(){
 		info.style.color = "red";
 		result = false;
 	}*/
-
-	if(result && phoneCk){
-		document.joinFrm.method = "post";
-		document.joinFrm.action = "join.do";
-		document.joinFrm.submit();
-	}else if(!result){
+	
+	if(!emailCheck){
 		swal({
-			text: "입력하신 정보가 올바르지 않습니다.",
+			text: "아이디 중복확인을 해주세요.",
 			button: "확인",
 			icon: "warning",
 			closeOnClickOutside : false
@@ -725,6 +721,17 @@ function joinSubmitFn(){
 			icon: "warning",
 			closeOnClickOutside : false
 		});
+	}else if(!result){
+		swal({
+			text: "입력하신 정보가 올바르지 않습니다.",
+			button: "확인",
+			icon: "warning",
+			closeOnClickOutside : false
+		});
+	}else if(result && phoneCk && idCheck){
+		document.joinFrm.method = "post";
+		document.joinFrm.action = "join.do";
+		document.joinFrm.submit();
 	}
 }
 
@@ -748,10 +755,12 @@ function idCheck(){
 					idFoot.text("이미 사용 중인 메일 주소입니다.");
 					idFoot.css("color","red");
 					idFoot.css("visibility","visible");
+					emailCheck = false;
 				}else if(result == "idCheckSuccess"){
 					idFoot.text("사용 가능한 아이디입니다.");
 					idFoot.css("color","green");
 					idFoot.css("visibility","visible");
+					emailCheck = true;
 				}
 			}
 		});
@@ -810,13 +819,15 @@ function checkphone(){
 					icon: "warning",
 					closeOnClickOutside : false
 				});
-				$(".successPhoneChk").text("유효한 번호를 입력해주세요."); 
-				$(".successPhoneChk").css("color","red"); 
+				$("#phoneCheckFoot").text("유효한 번호를 입력해주세요."); 
+				$("#phoneCheckFoot").css("color","red");
+				$("#phoneCheckFoot").css("visibility","visible");
 				$("#phone").attr("autofocus",true); 
 			}else{ $("#phoneCheck").attr("disabled",false); 
 				$("#phoneChk2").css("display","inline-block"); 
-				$(".successPhoneChk").text("인증번호를 입력한 뒤 본인인증을 눌러주십시오."); 
-				$(".successPhoneChk").css("color","green"); 
+				$("#phoneCheckFoot").text("인증번호 입력 후 인증번호 확인을 눌러주세요."); 
+				$("#phoneCheckFoot").css("color","green"); 
+				$("#phoneCheckFoot").css("visibility","visible"); 
 				$("#phone").attr("readonly",true); 
 				code2 = data; 
 			} 
@@ -827,18 +838,20 @@ function checkphone(){
 /* 휴대폰 인증번호 대조 */ 
 function checkphone2(){
 	if($("#phoneCheck").val() == code2){ 
-		$(".successPhoneChk").text("인증번호가 일치합니다."); 
-		$(".successPhoneChk").css("color","green"); 
+		$("#phoneCheckFoot").text("인증번호가 일치합니다."); 
+		$("#phoneCheckFoot").css("color","green"); 
+		$("#phoneCheckFoot").css("visibility","visible");
 		$("#phoneDoubleChk").val("true"); 
 		$("#phoneCheck").attr("disabled",true); 
 		phoneCk = true;
-	}else{ $(".successPhoneChk").text("인증번호가 일치하지 않습니다. 확인해주시기 바랍니다."); 
-		$(".successPhoneChk").css("color","red"); 
-		$("#phoneDoubleChk").val("false"); 
-		$(this).attr("autofocus",true); 
+	}else{ 
+		$("#phoneCheckFoot").text("인증번호가 일치하지 않습니다.");
+		$("#phoneCheckFoot").css("color","red");
+		$("#phoneCheckFoot").css("visibility","visible");
+		$("#phoneDoubleChk").val("false");
+		$(this).attr("autofocus",true);
 	} 
 }
-
 
 
 /* 인증번호 발송 */

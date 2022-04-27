@@ -234,7 +234,6 @@
 				onclick="restoreFn(${selectMember.midx },'${selectMember.membername }',${memberPagingvo.nowPage},'${memberPagingvo.searchType}','${memberPagingvo.searchValue}',${memberPagingvo.cntPerPage})">
 			</c:if>
 		</div>
-		
 		<form name="inifoFrm">
 			<input type="hidden" name="midx" id="midx">
 			<input type="hidden" name="nowPage" id="nowPage">

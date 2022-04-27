@@ -39,9 +39,8 @@
 	<%@ include file="../header.jsp" %>
 	<%@ include file="../nav.jsp" %>
 
-	<!-- 본문 영역 -->	
+	<!-- 본문 영역 -->
 	<section>
-
 		<form name="joinFrm" id="joinFrm" class="joinFrm" method="post">
 			<div class="title">회원 가입</div>
 			
@@ -236,7 +235,6 @@
 				</div>
 			</div>
 		</form>
-		
 	</section>
 	
 	<!-- 우편번호 찾기 -->
