@@ -85,7 +85,7 @@
 			<div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
 				<img src= "${pageContext.request.contextPath}/image/${vo.img_system}" class="shopImg" onClick="">
 			</div>
-			<div class="col-sm-11 col-md-5 col-lg-5 col-xl-5 content">
+			<div class="col-sm-12 col-md-5 col-lg-5 col-xl-5 content">
 				<div class="row">
 					<div class="col-sm-2 col-md-2 brand">${vo.brand}</div>
 				</div>
@@ -621,12 +621,9 @@
 	</script>
 	
 	<!-- 부트스트랩 -->	
-
 	<!-- Optional JavaScript; choose one of the two! -->
-
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <!--
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
