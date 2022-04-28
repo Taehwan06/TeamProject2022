@@ -451,24 +451,26 @@ public class LoginController {
 		return "redirect:/";	
 	}
 	
-	@RequestMapping(value = "/facebookLogin.do", method = RequestMethod.POST)
-	public String facebookLogin(Locale locale, Model model, HttpServletRequest request, MemberVO vo) throws Exception {
-		
-		int deleteResult = homeService.deleteSearchList();
-		
-		List<HomeSearchVO> searchList = homeService.listSearchList();
-		
-		model.addAttribute("searchList", searchList);
-		
-		HttpSession session = request.getSession();
-		
-		
-		vo.setProfile_system("facebook.png");
-		
-		session.setAttribute("facebookUser", vo);
-		
-		return "redirect:/";
-	}
+	/*
+	 * @RequestMapping(value = "/facebookLogin.do", method = RequestMethod.POST)
+	 * public String facebookLogin(Locale locale, Model model, HttpServletRequest
+	 * request, MemberVO vo) throws Exception {
+	 * 
+	 * int deleteResult = homeService.deleteSearchList();
+	 * 
+	 * List<HomeSearchVO> searchList = homeService.listSearchList();
+	 * 
+	 * model.addAttribute("searchList", searchList);
+	 * 
+	 * HttpSession session = request.getSession();
+	 * 
+	 * 
+	 * vo.setProfile_system("facebook.png");
+	 * 
+	 * session.setAttribute("facebookUser", vo);
+	 * 
+	 * return "redirect:/"; }
+	 */
 		
 	//네이버 로그인 성공시 callback호출 메소드
 	@RequestMapping(value = "/naverCallback", method = { RequestMethod.GET, RequestMethod.POST })

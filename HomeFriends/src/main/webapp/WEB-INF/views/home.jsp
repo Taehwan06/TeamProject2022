@@ -67,22 +67,22 @@
 			</div>
 			<div class="carousel-inner">
 				<div class="carousel-item active">
-					<img src="${pageContext.request.contextPath}/image/home01.jpg" class="d-block w-100" alt="...">
+					<img src="${pageContext.request.contextPath}/image/home01.jpg" class="d-block w-100" alt="메인 캐러셀 배너 이미지1">
 				</div>
 				<div class="carousel-item">
-					<img src="${pageContext.request.contextPath}/image/home02.jpg" class="d-block w-100" alt="...">
+					<img src="${pageContext.request.contextPath}/image/home02.jpg" class="d-block w-100" alt="메인 캐러셀 배너 이미지2">
 				</div>
 				<div class="carousel-item">
-					<img src="${pageContext.request.contextPath}/image/home03.jpg" class="d-block w-100" alt="...">
+					<img src="${pageContext.request.contextPath}/image/home03.jpg" class="d-block w-100" alt="메인 캐러셀 배너 이미지3">
 				</div>
 				<div class="carousel-item">
-					<img src="${pageContext.request.contextPath}/image/home04.jpg" class="d-block w-100" alt="...">
+					<img src="${pageContext.request.contextPath}/image/home04.jpg" class="d-block w-100" alt="메인 캐러셀 배너 이미지4">
 				</div>
 				<div class="carousel-item">
-					<img src="${pageContext.request.contextPath}/image/home05.jpg" class="d-block w-100" alt="...">
+					<img src="${pageContext.request.contextPath}/image/home05.jpg" class="d-block w-100" alt="메인 캐러셀 배너 이미지5">
 				</div>
 				<div class="carousel-item">
-					<img src="${pageContext.request.contextPath}/image/home06.png" class="d-block w-100" alt="...">
+					<img src="${pageContext.request.contextPath}/image/home06.png" class="d-block w-100" alt="메인 캐러셀 배너 이미지6">
 				</div>
 		
 			</div>
