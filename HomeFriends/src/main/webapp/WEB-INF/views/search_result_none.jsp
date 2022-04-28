@@ -41,7 +41,7 @@
 	<section>
 
 		<div class="eventDiv">
-			<img src="image/bannerSample1.png" alt="" class="eventImg">
+			<img src="${pageContext.request.contextPath}/image/bannerSample4.png" alt="이벤트 배너 이미지" class="eventImg">
 		</div>
 
 		<div class="searchTitle">

@@ -41,7 +41,11 @@
 
 	<!-- 본문 영역 -->
 	<section>
-				
+		
+		<div class="eventDiv">
+			<img src="${pageContext.request.contextPath}/image/bannerSample4.png" alt="이벤트 배너 이미지" class="eventImg">
+		</div>
+		
 		<div class="shopList">
 			<div class="shopListTitle">
 				최근 본 상품이 없습니다<br><br>

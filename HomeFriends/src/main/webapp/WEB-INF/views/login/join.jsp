@@ -229,9 +229,9 @@
 			<div class="submitArea">
 				<input type="button" name="submitbtn" id="submitbtn" class="submitbtn button" onclick="joinSubmitFn()" value="회원 가입"><br>
 				<div>
-					<a href="${pageContext.request.contextPath}/login/find_id.do">아이디 찾기 |</a>
-					<a href="${pageContext.request.contextPath}/login/find_pwd.do">비밀번호 찾기 |</a>
-					<a href="${pageContext.request.contextPath}/login/login.do">로그인</a>
+					<a class="subLink" href="${pageContext.request.contextPath}/login/find_id.do">아이디 찾기 |</a>
+					<a class="subLink href="${pageContext.request.contextPath}/login/find_pwd.do">비밀번호 찾기 |</a>
+					<a class="subLink href="${pageContext.request.contextPath}/login/login.do">로그인</a>
 				</div>
 			</div>
 		</form>

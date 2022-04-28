@@ -25,6 +25,7 @@
 	<link href="${pageContext.request.contextPath}/css/header.css" rel="stylesheet">
 	<link href="${pageContext.request.contextPath}/css/nav.css" rel="stylesheet">
 	<link href="${pageContext.request.contextPath}/css/home.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/recentView.css" rel="stylesheet">
 	<link href="${pageContext.request.contextPath}/css/footer.css" rel="stylesheet">
 	<script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 	<script src="${pageContext.request.contextPath}/js/header.js"></script>
@@ -41,8 +42,9 @@
 	<!-- 본문 영역 -->
 	<section>
 		
-		
-		
+		<div class="eventDiv">
+			<img src="${pageContext.request.contextPath}/image/bannerSample4.png" alt="이벤트 배너 이미지" class="eventImg">
+		</div>
 		
 		<div class="row shopList">
 			<div class="shopListTitle">
